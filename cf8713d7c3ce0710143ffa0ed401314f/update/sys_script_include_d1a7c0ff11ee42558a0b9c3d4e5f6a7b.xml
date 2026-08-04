@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.DarkOpsData</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Read-only data provider for the DarkOps dashboards. Aggregates seeded tables (dark_store, cases, pulse_score snapshots, refund_request, store_issue) into JSON consumed by the UI pages. Base64-encoded via execB64() for safe injection.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>DarkOpsData</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var DarkOpsData = Class.create();
+DarkOpsData.prototype = {
+    initialize: function () {
+        this.STORE = 'x_2145749_qc_dark_store';
+        this.CASE = 'sn_customerservice_case';
+        this.SNAP = 'x_2145749_qc_pulse_score';
+        this.REFUND = 'x_2145749_qc_refund_request';
+        this.ISSUE = 'x_2145749_qc_store_issue';
+        this.C_STORE = 'x_2145749_qc_dark_store'; // dark store ref column on case
+    },
+
+    // ---------- helpers ----------
+    _round: function (n, d) {
+        var p = Math.pow(10, d || 0);
+        return Math.round((parseFloat(n) || 0) * p) / p;
+    },
+    _num: function (v) {
+        var n = parseFloat(v);
+        return isNaN(n) ? null : n;
+    },
+    _daysAgo: function (days) {
+        var g = new GlideDateTime();
+        g.addDaysUTC(-1 * days);
+        return g.getValue();
+    },
+    _complaints: function () {
+        var gr = new GlideRecord(this.CASE);
+        gr.addNotNullQuery(this.C_STORE); // only cases tied to a dark store = complaints
+        return gr;
+    },
+    _countComplaints: function (fn) {
+        var ga = new GlideAggregate(this.CASE);
+        ga.addNotNullQuery(this.C_STORE);
+        if (fn) fn(ga);
+        ga.addAggregate('COUNT');
+        ga.query();
+        return ga.next() ? (parseInt(ga.getAggregate('COUNT'), 10) || 0) : 0;
+    },
+
+    // ---------- KPI pieces ----------
+    _networkPulse: function () {
+        var ga = new GlideAggregate(this.STORE);
+        ga.addAggregate('AVG', 'pulse_score');
+        ga.query();
+        return ga.next() ? this._round(ga.getAggregate('AVG', 'pulse_score'), 0) : 0;
+    },
+    _storeCounts: function () {
+        var total = new GlideAggregate(this.STORE);
+        total.addAggregate('COUNT');
+        total.query();
+        var t = total.next() ? (parseInt(total.getAggregate('COUNT'), 10) || 0) : 0;
+        var crit = new GlideAggregate(this.STORE);
+        crit.addQuery('pulse_score', '<', 60);
+        crit.addAggregate('COUNT');
+        crit.query();
+        var c = crit.next() ? (parseInt(crit.getAggregate('COUNT'), 10) || 0) : 0;
+        return { total: t, critical: c };
+    },
+    _slaCompliance: function () {
+        // avg SLA compliance score from recent pulse snapshots (fallback: all)
+        var ga = new GlideAggregate(this.SNAP);
+        ga.addQuery('snapshot_time', '>=', this._daysAgo(3));
+        ga.addAggregate('AVG', 'sla_compliance_score');
+        ga.query();
+        if (ga.next()) {
+            var v = this._num(ga.getAggregate('AVG', 'sla_compliance_score'));
+            if (v !== null) return this._round(v, 1);
+        }
+        var all = new GlideAggregate(this.SNAP);
+        all.addAggregate('AVG', 'sla_compliance_score');
+        all.query();
+        return all.next() ? this._round(all.getAggregate('AVG', 'sla_compliance_score'), 1) : 0;
+    },
+    _avgResolution: function () {
+        var gr = this._complaints();
+        gr.addQuery('active', false);
+        gr.addNotNullQuery('closed_at');
+        gr.addNotNullQuery('opened_at');
+        gr.setLimit(3000);
+        gr.query();
+        var total = 0, n = 0;
+        while (gr.next()) {
+            var o = new GlideDateTime(gr.getValue('opened_at'));
+            var c = new GlideDateTime(gr.getValue('closed_at'));
+            var mins = GlideDateTime.subtract(o, c).getNumericValue() / 60000;
+            if (mins >= 0) { total += mins; n++; }
+        }
+        return n ? this._round(total / n, 0) : 0;
+    },
+    _refundRate: function () {
+        var refunds = new GlideAggregate(this.REFUND);
+        refunds.addAggregate('COUNT');
+        refunds.query();
+        var rc = refunds.next() ? (parseInt(refunds.getAggregate('COUNT'), 10) || 0) : 0;
+        var cc = this._countComplaints();
+        return cc ? this._round((rc / cc) * 100, 1) : 0;
+    },
+    _pulseDelta: function () {
+        var now = this._avgSnapScore(0, 3);
+        var prior = this._avgSnapScore(27, 33);
+        if (now === null || prior === null) return null;
+        return this._round(now - prior, 0);
+    },
+    _avgSnapScore: function (fromDays, toDays) {
+        var ga = new GlideAggregate(this.SNAP);
+        ga.addQuery('snapshot_time', '>=', this._daysAgo(toDays));
+        ga.addQuery('snapshot_time', '<', this._daysAgo(fromDays));
+        ga.addAggregate('AVG', 'score');
+        ga.query();
+        return ga.next() ? this._num(ga.getAggregate('AVG', 'score')) : null;
+    },
+    _openDelta: function () {
+        var self = this;
+        var last7 = this._countComplaints(function (ga) {
+            ga.addQuery('opened_at', '>=', self._daysAgo(7));
+        });
+        var prior7 = this._countComplaints(function (ga) {
+            ga.addQuery('opened_at', '>=', self._daysAgo(14));
+            ga.addQuery('opened_at', '<', self._daysAgo(7));
+        });
+        if (!prior7) return null;
+        return this._round(((last7 - prior7) / prior7) * 100, 1);
+    },
+
+    // ---------- panels ----------
+    _trend: function () {
+        var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var buckets = {}, order = [];
+        var start = new GlideDateTime();
+        start.addDaysUTC(-29);
+        for (var i = 0; i < 30; i++) {
+            var d = new GlideDateTime(start.getValue());
+            d.addDaysUTC(i);
+            var key = d.getValue().substr(0, 10);
+            var lbl = key.substr(8, 2) + ' ' + MON[parseInt(key.substr(5, 2), 10) - 1];
+            buckets[key] = { label: lbl, complaints: 0, resolved: 0 };
+            order.push(key);
+        }
+        var gc = this._complaints();
+        gc.addQuery('opened_at', '>=', start.getValue());
+        gc.query();
+        while (gc.next()) {
+            var ov = gc.getValue('opened_at') || gc.getValue('sys_created_on');
+            if (!ov) continue;
+            var k = new GlideDateTime(ov).getValue().substr(0, 10);
+            if (buckets[k]) buckets[k].complaints++;
+        }
+        var gr = this._complaints();
+        gr.addQuery('closed_at', '>=', start.getValue());
+        gr.query();
+        while (gr.next()) {
+            var cv = gr.getValue('closed_at');
+            if (!cv) continue;
+            var k2 = new GlideDateTime(cv).getValue().substr(0, 10);
+            if (buckets[k2]) buckets[k2].resolved++;
+        }
+        var out = [];
+        for (var j = 0; j < order.length; j++) out.push(buckets[order[j]]);
+        return out;
+    },
+    _cities: function () {
+        var out = [];
+        var ga = new GlideAggregate(this.CASE);
+        ga.addNotNullQuery(this.C_STORE);
+        ga.groupBy(this.C_STORE + '.city');
+        ga.addAggregate('COUNT');
+        ga.query();
+        while (ga.next()) {
+            var city = ga.getValue(this.C_STORE + '.city');
+            if (!city) continue;
+            out.push({ city: city, complaints: parseInt(ga.getAggregate('COUNT'), 10) || 0 });
+        }
+        out.sort(function (a, b) { return b.complaints - a.complaints; });
+        return out.slice(0, 10);
+    },
+    _worst: function () {
+        var out = [];
+        var gr = new GlideRecord(this.STORE);
+        gr.addNotNullQuery('pulse_score');
+        gr.orderBy('pulse_score');
+        gr.setLimit(5);
+        gr.query();
+        while (gr.next()) {
+            out.push({
+                id: gr.getUniqueValue(),
+                name: gr.getDisplayValue('store_name'),
+                code: gr.getValue('store_code'),
+                city: gr.getValue('city'),
+                pulse: this._round(gr.getValue('pulse_score'), 0)
+            });
+        }
+        return out;
+    },
+    _heat: function () {
+        var byCity = {}, order = [];
+        var gr = new GlideRecord(this.STORE);
+        gr.orderBy('city');
+        gr.query();
+        while (gr.next()) {
+            var city = gr.getValue('city') || 'Other';
+            var p = parseFloat(gr.getValue('pulse_score')) || 0;
+            var tone = p >= 80 ? 'h' : (p >= 60 ? 'w' : 'c');
+            if (!byCity[city]) { byCity[city] = []; order.push(city); }
+            byCity[city].push({
+                t: tone,
+                id: gr.getUniqueValue(),
+                code: gr.getValue('store_code'),
+                name: gr.getDisplayValue('store_name'),
+                pulse: this._round(p, 0)
+            });
+        }
+        var out = [];
+        for (var i = 0; i < order.length; i++) out.push({ city: order[i], cells: byCity[order[i]] });
+        return out;
+    },
+    _storeList: function () {
+        var out = [];
+        var gr = new GlideRecord(this.STORE);
+        gr.query();
+        while (gr.next()) {
+            out.push({ id: gr.getUniqueValue(), code: gr.getValue('store_code'), name: gr.getDisplayValue('store_name') });
+        }
+        return out;
+    },
+    _alerts: function () {
+        var out = [];
+        var gr = new GlideRecord(this.ISSUE);
+        gr.orderByDesc('reported_at');
+        gr.setLimit(5);
+        gr.query();
+        while (gr.next()) {
+            out.push({
+                number: gr.getValue('number'),
+                store: gr.getDisplayValue('dark_store'),
+                desc: (gr.getDisplayValue('description') || gr.getDisplayValue('issue_category') || ''),
+                cat: gr.getDisplayValue('issue_category'),
+                severity: (gr.getValue('severity') || '').toLowerCase()
+            });
+        }
+        return out;
+    },
+
+    // ---------- public ----------
+    build: function () {
+        var sc = this._storeCounts();
+        return {
+            kpis: {
+                pulse: this._networkPulse(),
+                pulseDelta: this._pulseDelta(),
+                openComplaints: this._openComplaints(),
+                openDelta: this._openDelta(),
+                sla: this._slaCompliance(),
+                avgRes: this._avgResolution(),
+                refundRate: this._refundRate(),
+                critical: sc.critical,
+                totalStores: sc.total
+            },
+            trend: this._trend(),
+            cities: this._cities(),
+            worst: this._worst(),
+            heat: this._heat(),
+            alerts: this._alerts(),
+            stores: this._storeList()
+        };
+    },
+    _openComplaints: function () {
+        return this._countComplaints(function (ga) { ga.addQuery('active', true); });
+    },
+    execJson: function () {
+        try {
+            return JSON.stringify(this.build());
+        } catch (e) {
+            gs.error('[DarkOpsData] build() failed, returning empty payload: ' + e);
+            return JSON.stringify({ error: String(e), kpis: null });
+        }
+    },
+    execB64: function () {
+        return GlideStringUtil.base64Encode(this.execJson());
+    },
+
+    // ===================== shared helpers =====================
+    MON: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    _dayLabel: function (val) {
+        var k = new GlideDateTime(val).getValue();
+        return k.substr(8, 2) + ' ' + this.MON[parseInt(k.substr(5, 2), 10) - 1];
+    },
+    _ageMin: function (openedVal) {
+        if (!openedVal) return 0;
+        var o = new GlideDateTime(openedVal), now = new GlideDateTime();
+        return Math.round(GlideDateTime.subtract(o, now).getNumericValue() / 60000);
+    },
+    _pTag: function (v) { return v == '1' ? 'P1' : v == '2' ? 'P2' : v == '3' ? 'P3' : 'P4'; },
+    _pTone: function (v) { return v == '1' ? 'critical' : v == '2' ? 'warning' : 'neutral'; },
+
+    // ===================== DARK STORE =====================
+    _latestSnapshot: function (sysId) {
+        var gr = new GlideRecord(this.SNAP);
+        gr.addQuery('dark_store', sysId);
+        gr.orderByDesc('snapshot_time');
+        gr.setLimit(1);
+        gr.query();
+        return gr.next() ? gr : null;
+    },
+    _storeBreakdown: function (sysId) {
+        var gr = this._latestSnapshot(sysId);
+        if (!gr) return { score: null, components: [] };
+        var defs = [
+            ['Equipment uptime', 'equipment_uptime_score'],
+            ['SLA compliance', 'sla_compliance_score'],
+            ['Inventory accuracy', 'inventory_accuracy_score'],
+            ['Complaint volume', 'complaint_volume_score'],
+            ['Complaint severity', 'complaint_severity_score'],
+            ['Refund / fraud', 'refund_fraud_score'],
+            ['Partner incidents', 'partner_incident_score']
+        ];
+        var comps = [];
+        for (var i = 0; i < defs.length; i++) {
+            var v = this._num(gr.getValue(defs[i][1]));
+            if (v !== null) comps.push({ label: defs[i][0], score: this._round(v, 0) });
+        }
+        return {
+            score: this._round(gr.getValue('score'), 0),
+            band: gr.getDisplayValue('band'),
+            snapshotTime: gr.getDisplayValue('snapshot_time'),
+            openComplaints: gr.getValue('open_complaint_count'),
+            openIssues: gr.getValue('open_store_issue_count'),
+            components: comps
+        };
+    },
+    _storePulseTrend: function (sysId) {
+        var out = [];
+        var start = new GlideDateTime(); start.addDaysUTC(-30);
+        var gr = new GlideRecord(this.SNAP);
+        gr.addQuery('dark_store', sysId);
+        gr.addQuery('snapshot_time', '>=', start.getValue());
+        gr.orderBy('snapshot_time');
+        gr.query();
+        while (gr.next()) out.push({ label: this._dayLabel(gr.getValue('snapshot_time')), score: this._round(gr.getValue('score'), 0) });
+        return out;
+    },
+    _storeKpis: function (sysId, storePulse) {
+        var openC = this._countComplaints(function (ga) { ga.addQuery('x_2145749_qc_dark_store', sysId); ga.addQuery('active', true); });
+        var oi = new GlideAggregate(this.ISSUE);
+        oi.addQuery('dark_store', sysId);
+        oi.addQuery('state', 'IN', 'open,in_progress,pending_fsm_dispatch');
+        oi.addAggregate('COUNT');
+        oi.query();
+        var openIssues = oi.next() ? (parseInt(oi.getAggregate('COUNT'), 10) || 0) : 0;
+        var et = 0, ed = 0;
+        var eq = new GlideRecord('x_2145749_qc_equipment');
+        eq.addQuery('dark_store', sysId);
+        eq.query();
+        while (eq.next()) { et++; var s = eq.getValue('operational_status'); if (s == 'down' || s == 'degraded') ed++; }
+        return { pulse: storePulse, openComplaints: openC, openIssues: openIssues, equipmentTotal: et, equipmentDown: ed };
+    },
+    _storeEquipment: function (sysId) {
+        var out = [];
+        var gr = new GlideRecord('x_2145749_qc_equipment');
+        gr.addQuery('dark_store', sysId);
+        gr.setLimit(12);
+        gr.query();
+        while (gr.next()) {
+            var st = gr.getValue('operational_status');
+            out.push({ tag: gr.getValue('asset_tag'), type: gr.getDisplayValue('equipment_type'), status: gr.getDisplayValue('operational_status'), tone: st == 'down' ? 'critical' : st == 'degraded' ? 'warning' : 'healthy' });
+        }
+        return out;
+    },
+    _issueTone: function (sev) { return sev == 'critical' ? 'critical' : sev == 'high' ? 'critical' : sev == 'medium' ? 'warning' : 'healthy'; },
+    _storeIssues: function (sysId) {
+        var out = [];
+        var gr = new GlideRecord(this.ISSUE);
+        gr.addQuery('dark_store', sysId);
+        gr.orderByDesc('reported_at');
+        gr.setLimit(10);
+        gr.query();
+        while (gr.next()) {
+            var sev = gr.getValue('severity');
+            out.push({
+                number: gr.getValue('number'),
+                category: gr.getDisplayValue('issue_category'),
+                severity: gr.getDisplayValue('severity'),
+                tone: this._issueTone(sev),
+                state: gr.getDisplayValue('state'),
+                workOrder: gr.getDisplayValue('fsm_work_order'),
+                reportedAt: gr.getDisplayValue('reported_at')
+            });
+        }
+        return out;
+    },
+    _storeComplaints: function (sysId) {
+        var out = [];
+        var gr = this._complaints();
+        gr.addQuery('x_2145749_qc_dark_store', sysId);
+        gr.orderByDesc('opened_at');
+        gr.setLimit(6);
+        gr.query();
+        while (gr.next()) {
+            out.push({
+                number: gr.getValue('number'),
+                short: gr.getValue('short_description'),
+                priority: this._pTag(gr.getValue('priority')),
+                pTone: this._pTone(gr.getValue('priority')),
+                state: gr.getDisplayValue('state'),
+                active: gr.getValue('active') == 'true' || gr.getValue('active') === true
+            });
+        }
+        return out;
+    },
+    _storeCategories: function (sysId) {
+        var out = [];
+        var ga = new GlideAggregate(this.CASE);
+        ga.addQuery('x_2145749_qc_dark_store', sysId);
+        ga.addNotNullQuery('x_2145749_qc_complaint_type');
+        ga.groupBy('x_2145749_qc_complaint_type');
+        ga.addAggregate('COUNT');
+        ga.query();
+        while (ga.next()) out.push({ label: ga.getDisplayValue('x_2145749_qc_complaint_type'), value: parseInt(ga.getAggregate('COUNT'), 10) || 0 });
+        out.sort(function (a, b) { return b.value - a.value; });
+        return out.slice(0, 6);
+    },
+    storeData: function (sysId) {
+        var gr = new GlideRecord(this.STORE);
+        if (!sysId || !gr.get(sysId)) {
+            var w = new GlideRecord(this.STORE);
+            w.addNotNullQuery('pulse_score'); w.orderBy('pulse_score'); w.setLimit(1); w.query();
+            if (!w.next()) return { found: false, stores: this._storeList() };
+            sysId = w.getUniqueValue();
+            gr = new GlideRecord(this.STORE); gr.get(sysId);
+        }
+        var pulse = this._round(gr.getValue('pulse_score'), 0);
+        return {
+            found: true,
+            store: {
+                id: gr.getUniqueValue(), name: gr.getDisplayValue('store_name'), code: gr.getValue('store_code'),
+                city: gr.getValue('city'), zone: gr.getDisplayValue('zone'), status: gr.getDisplayValue('status'),
+                pulse: pulse, band: gr.getDisplayValue('pulse_score_band'), manager: gr.getDisplayValue('manager'),
+                dailyVolume: gr.getValue('daily_order_volume'), targetMin: gr.getValue('target_delivery_minutes')
+            },
+            breakdown: this._storeBreakdown(sysId),
+            pulseTrend: this._storePulseTrend(sysId),
+            kpis: this._storeKpis(sysId, pulse),
+            equipment: this._storeEquipment(sysId),
+            issues: this._storeIssues(sysId),
+            complaints: this._storeComplaints(sysId),
+            categories: this._storeCategories(sysId),
+            stores: this._storeList()
+        };
+    },
+    storeB64: function (sysId) { return GlideStringUtil.base64Encode(JSON.stringify(this.storeData(sysId))); },
+
+    // ===================== OPERATIONS =====================
+    opsData: function () {
+        var self = this;
+        return {
+            kpis: {
+                pending: this._countComplaints(function (ga) { ga.addQuery('active', true); }),
+                escalated: this._countComplaints(function (ga) { ga.addQuery('active', true); ga.addQuery('escalation', '>=', 1); }),
+                slaBreaches: this._countComplaints(function (ga) { ga.addQuery('made_sla', false); ga.addQuery('active', true); }),
+                unassigned: this._countComplaints(function (ga) { ga.addQuery('active', true); ga.addNullQuery('assigned_to'); }),
+                resolvedToday: this._countComplaints(function (ga) { ga.addQuery('closed_at', '>=', self._daysAgo(1)); })
+            },
+            priority: this._opsPriority(),
+            status: this._opsStatus(),
+            byCity: this._opsByCity(),
+            queue: this._opsQueue(),
+            stores: this._storeList()
+        };
+    },
+    _opsPriority: function () {
+        var map = { '1': { name: 'P1 Critical', color: 'var(--critical)' }, '2': { name: 'P2 High', color: 'var(--warning)' }, '3': { name: 'P3 Medium', color: 'var(--accent-blue)' }, '4': { name: 'P4 Low', color: 'var(--muted-foreground)' } };
+        var counts = { '1': 0, '2': 0, '3': 0, '4': 0 };
+        var ga = new GlideAggregate(this.CASE);
+        ga.addNotNullQuery(this.C_STORE); ga.addQuery('active', true);
+        ga.groupBy('priority'); ga.addAggregate('COUNT'); ga.query();
+        while (ga.next()) {
+            var p = ga.getValue('priority'); var c = parseInt(ga.getAggregate('COUNT'), 10) || 0;
+            if (p == '1' || p == '2' || p == '3') counts[p] += c; else counts['4'] += c;
+        }
+        return ['1', '2', '3', '4'].map(function (k) { return { name: map[k].name, color: map[k].color, value: counts[k] }; });
+    },
+    _opsStatus: function () {
+        var out = [];
+        var ga = new GlideAggregate(this.CASE);
+        ga.addNotNullQuery(this.C_STORE); ga.addQuery('active', true);
+        ga.groupBy('state'); ga.addAggregate('COUNT'); ga.query();
+        while (ga.next()) out.push({ label: ga.getDisplayValue('state'), value: parseInt(ga.getAggregate('COUNT'), 10) || 0 });
+        out.sort(function (a, b) { return b.value - a.value; });
+        return out.slice(0, 6);
+    },
+    _opsByCity: function () {
+        var out = [];
+        var ga = new GlideAggregate(this.CASE);
+        ga.addNotNullQuery(this.C_STORE); ga.addQuery('active', true);
+        ga.groupBy(this.C_STORE + '.city'); ga.addAggregate('COUNT'); ga.query();
+        while (ga.next()) { var c = ga.getValue(this.C_STORE + '.city'); if (c) out.push({ label: c, value: parseInt(ga.getAggregate('COUNT'), 10) || 0 }); }
+        out.sort(function (a, b) { return b.value - a.value; });
+        return out.slice(0, 8);
+    },
+    _opsQueue: function () {
+        var out = [];
+        var gr = this._complaints();
+        gr.addQuery('active', true);
+        gr.orderBy('opened_at');
+        gr.setLimit(15);
+        gr.query();
+        while (gr.next()) {
+            var assigned = gr.getDisplayValue('assigned_to');
+            var esc = parseInt(gr.getValue('escalation'), 10) || 0;
+            out.push({
+                number: gr.getValue('number'), short: gr.getValue('short_description'),
+                storeName: gr.getDisplayValue('x_2145749_qc_dark_store'), storeId: gr.getValue('x_2145749_qc_dark_store'),
+                priority: this._pTag(gr.getValue('priority')), pTone: this._pTone(gr.getValue('priority')),
+                agent: assigned, state: gr.getDisplayValue('state'), escalated: esc >= 1,
+                ageMin: this._ageMin(gr.getValue('opened_at'))
+            });
+        }
+        return out;
+    },
+    opsB64: function () { return GlideStringUtil.base64Encode(JSON.stringify(this.opsData())); },
+
+    // ===================== FRAUD =====================
+    _decisionTone: function (v) {
+        return (v == 'manually_denied') ? 'critical' : (v == 'auto_escalated') ? 'warning' : (v == 'auto_approved' || v == 'manually_approved') ? 'healthy' : 'neutral';
+    },
+    fraudData: function () {
+        var flaggedBase = function (ga) { ga.addQuery('fraud_flagged', true); };
+        var highRisk = new GlideAggregate(this.REFUND);
+        highRisk.addQuery('fraud_flagged', true); highRisk.addQuery('fraud_risk_score', '>=', 85);
+        highRisk.addAggregate('COUNT'); highRisk.query();
+        var hr = highRisk.next() ? (parseInt(highRisk.getAggregate('COUNT'), 10) || 0) : 0;
+
+        var avg = new GlideAggregate(this.REFUND);
+        avg.addQuery('fraud_flagged', true); avg.addAggregate('AVG', 'fraud_risk_score'); avg.query();
+        var avgConf = avg.next() ? this._round(avg.getAggregate('AVG', 'fraud_risk_score'), 1) : 0;
+
+        var val = new GlideAggregate(this.REFUND);
+        val.addQuery('fraud_flagged', true); val.addAggregate('SUM', 'amount_requested'); val.addAggregate('COUNT'); val.query();
+        var flaggedValue = 0, flaggedCount = 0;
+        if (val.next()) { flaggedValue = this._round(val.getAggregate('SUM', 'amount_requested'), 0); flaggedCount = parseInt(val.getAggregate('COUNT'), 10) || 0; }
+
+        // repeat offenders: customers with >=2 flagged refunds
+        var repeat = 0;
+        var rc = new GlideAggregate(this.REFUND);
+        rc.addQuery('fraud_flagged', true); rc.groupBy('customer'); rc.addAggregate('COUNT'); rc.query();
+        while (rc.next()) { if ((parseInt(rc.getAggregate('COUNT'), 10) || 0) >= 2) repeat++; }
+
+        return {
+            kpis: { highRisk: hr, avgConfidence: avgConf, flaggedValue: flaggedValue, flaggedCount: flaggedCount, repeatOffenders: repeat },
+            rows: this._fraudRows()
+        };
+    },
+    _fraudRows: function () {
+        var out = [];
+        var gr = new GlideRecord(this.REFUND);
+        gr.addQuery('fraud_flagged', true);
+        gr.orderByDesc('fraud_risk_score');
+        gr.setLimit(12);
+        gr.query();
+        while (gr.next()) {
+            var conf = this._round(gr.getValue('fraud_risk_score'), 0);
+            var dv = gr.getValue('decision');
+            // reason from linked fraud flag
+            var reason = '';
+            var ff = new GlideRecord('x_2145749_qc_fraud_flag');
+            ff.addQuery('refund_request', gr.getUniqueValue());
+            ff.setLimit(1); ff.query();
+            if (ff.next()) reason = ff.getDisplayValue('rule_name') || ff.getDisplayValue('details');
+            out.push({
+                number: gr.getValue('number'),
+                customer: gr.getDisplayValue('customer'),
+                confidence: conf,
+                confTone: conf >= 85 ? 'critical' : conf >= 70 ? 'warning' : 'healthy',
+                reason: reason,
+                amount: this._round(gr.getValue('amount_requested'), 0),
+                decision: gr.getDisplayValue('decision'),
+                decisionTone: this._decisionTone(dv),
+                pending: (dv == 'pending' || dv === '' || dv == null),
+                storeId: gr.getValue('case.x_2145749_qc_dark_store'),
+                storeName: gr.getDisplayValue('case.x_2145749_qc_dark_store')
+            });
+        }
+        return out;
+    },
+    fraudB64: function () { return GlideStringUtil.base64Encode(JSON.stringify(this.fraudData())); },
+
+    type: 'DarkOpsData'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 12:00:00</sys_created_on>
+        <sys_id>d1a7c0ff11ee42558a0b9c3d4e5f6a7b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DarkOpsData</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_d1a7c0ff11ee42558a0b9c3d4e5f6a7b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 12:00:00</sys_updated_on>
+    </sys_script_include>
+</record_update>

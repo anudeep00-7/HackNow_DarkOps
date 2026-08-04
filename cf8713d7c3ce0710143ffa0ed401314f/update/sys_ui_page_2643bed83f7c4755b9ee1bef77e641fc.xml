@@ -5,122 +5,258 @@
         <description/>
         <direct>true</direct>
         <endpoint>x_2145749_qc_home.do</endpoint>
-        <html>
-      
-&lt;!-- @fluent-import-html WARNING: This file was imported from the output of a static build. Modifications of any kind are likely to result in unintended behavior. In most cases, you should edit the source file of the HTML imported below. If you are absolutely certain you want to take control of this HTML, you can remove this comment to prevent the SDK from regenerating it. However, you will then be responsible for the management of this HTML in your Fluent file. --&gt;
-&lt;html class="-polaris"&gt;
-  &lt;head&gt;
-    &lt;title&gt;Quick Commerce&lt;/title&gt;
-    &lt;!-- @sdk:now-ux-globals --&gt;
-    &lt;!-- Resolved from sdk:now-ux-globals tag at NowSDK build time to support earlier Glide releases --&gt;
-    &lt;script&gt;window.NOW = {};
-window.NOW.user = {};
-window.NOW.batch_glide_ajax_requests = false;
-window.NOW.isUsingPolaris = true;
-window.NOW.exclude_dark_theme = "false";
-window.g_ck = "$[gs.getSession().getSessionToken() || gs.getSessionToken()]";&lt;/script&gt;
-    &lt;!-- Include ServiceNow's required scripts --&gt;
-    &lt;g:requires name="scripts/doctype/functions_bootstrap14.js"&gt;&lt;/g:requires&gt;
-    &lt;g:requires name="scripts/lib/prototype.js"&gt;&lt;/g:requires&gt;
-    &lt;g:requires name="scripts/classes/ajax/GlideURL.js"&gt;&lt;/g:requires&gt;
-    &lt;g:requires name="scripts/doctype/CustomEventManager.js"&gt;&lt;/g:requires&gt;
-    &lt;g:requires name="scripts/classes/ajax/GlideAjax.js"&gt;&lt;/g:requires&gt;
-    &lt;g:requires name="scripts/classes/GlideUser.js"&gt;&lt;/g:requires&gt;
-    &lt;g2:client_script type="user"&gt;&lt;/g2:client_script&gt;
-    &lt;link rel="preload" href="/uxasset/set-cache-buster/$[UxFrameworkScriptables.getFlushTimestamp()].js" as="script"&gt;&lt;/link&gt;
-    &lt;g:requires name="scripts/polaris_theme_refresh_observer.js"&gt;&lt;/g:requires&gt;
-    &lt;link data-source-id="glide-theme" id="polarisberg_theme_variables" rel="stylesheet" href="/$uxappimmutables.do?sysparm_request_type=ux_theme$[AMP]sysparm_app_sys_id=c86a62e2c7022010099a308dc7c26022$[AMP]uxpcb=$[sn_ui.PolarisUI.getThemeVariableCssCacheKey()]"&gt;&lt;/link&gt;
-    &lt;script type="module" src="/uxasset/externals/@devsnc/library-uxf/index.jsdbx"&gt;&lt;/script&gt;
-    &lt;!-- @sdk:now-ux-globals --&gt;
-    &lt;!-- Array.from polyfill to fix prototype.js breaking iterables (Set, Map, etc.) --&gt;
-    &lt;!-- MUST be inline script BEFORE module scripts - ESM imports are hoisted so external polyfill files won't work --&gt;
-    &lt;script type="text/javascript"&gt;//&lt;![CDATA[
-      (function () {
-        var testWorks = (function () {
-          try {
-            var result = Array.from(new Set([1, 2]));
-            return (
-              Array.isArray(result) &amp;&amp; result.length === 2 &amp;&amp; result[0] === 1
-            );
-          } catch (e) {
-            return false;
-          }
-        })();
-        if (testWorks) return;
-        var originalArrayFrom = Array.from;
-        function specArrayFrom(arrayLike, mapFn, thisArg) {
-          if (arrayLike == null)
-            throw new TypeError(
-              "Array.from requires an array-like or iterable object"
-            );
-          var C = this;
-          if (typeof C !== "function" || C === Window || C === Object) {
-            C = Array;
-          }
-          var mapping = typeof mapFn === "function";
-          var iterFn = arrayLike[Symbol.iterator];
-          if (typeof iterFn === "function") {
-            var result = [];
-            var i = 0;
-            var iterator = iterFn.call(arrayLike);
-            var step;
-            while (!(step = iterator.next()).done) {
-              result[i] = mapping
-                ? mapFn.call(thisArg, step.value, i)
-                : step.value;
-              i++;
-            }
-            result.length = i;
-            return result;
-          }
-          var items = Object(arrayLike);
-          var len = Math.min(
-            Math.max(Number(items.length) || 0, 0),
-            Number.MAX_SAFE_INTEGER
-          );
-          var result = new C(len);
-          for (var k = 0; k &lt; len; k++) {
-            result[k] = mapping ? mapFn.call(thisArg, items[k], k) : items[k];
-          }
-          result.length = len;
-          return result;
-        }
-        Array.from = function (arrayLike, mapFn, thisArg) {
-          if (
-            arrayLike != null &amp;&amp;
-            typeof arrayLike[Symbol.iterator] === "function"
-          ) {
-            try {
-              return specArrayFrom.call(this, arrayLike, mapFn, thisArg);
-            } catch (e) {
-              console.error("Array.from failed with error:", e);
-              return originalArrayFrom.call(this, arrayLike, mapFn, thisArg);
-            }
-          }
-          return originalArrayFrom.call(this, arrayLike, mapFn, thisArg);
-        };
-      })();
+        <html><![CDATA[
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DarkOps - Operational Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== DarkOps design system (ported from Lovable) ===== */
+:root{
+  --radius:0.5rem;
+  --background:oklch(0.163 0.008 264);
+  --foreground:oklch(0.965 0.003 260);
+  --card:oklch(0.199 0.009 264);
+  --panel:oklch(0.223 0.009 264);
+  --popover:oklch(0.21 0.009 264);
+  --primary:oklch(0.61 0.16 258);
+  --muted-foreground:oklch(0.665 0.013 262);
+  --accent:oklch(0.26 0.011 264);
+  --border:oklch(0.29 0.011 264);
+  --accent-blue:oklch(0.64 0.155 258);
+  --healthy:oklch(0.72 0.145 156);
+  --warning:oklch(0.79 0.14 80);
+  --critical:oklch(0.63 0.195 22);
+}
+*{box-sizing:border-box;border-color:var(--border)}
+html,body{margin:0;padding:0}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:"Inter Tight",-apple-system,"Segoe UI",Roboto,ui-sans-serif,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  font-size:14px;line-height:1.45;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{letter-spacing:-0.015em;margin:0}
+.num{font-family:"JetBrains Mono",ui-monospace,"Cascadia Code",Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
 
-      if (window.Element &amp;&amp; Element.Methods) {
-        Element.Methods.remove = function (element) {
-          element = $(element);
-          if (element.parentNode) {
-            element.parentNode.removeChild(element);
-          }
-          return element;
-        };
-        Element.addMethods();
-      }
+/* ---- top bar ---- */
+.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:color-mix(in oklch,var(--background) 95%,transparent);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1560px;margin:0 auto;display:flex;height:56px;align-items:center;gap:24px;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{width:28px;height:28px;display:grid;place-items:center;border-radius:6px;background:color-mix(in oklch,var(--primary) 15%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--primary) 30%,transparent)}
+.brand .logo span{width:10px;height:10px;border-radius:3px;background:var(--primary)}
+.brand .name{font-size:15px;font-weight:600;letter-spacing:-0.01em}
+.brand .name b{color:var(--primary);font-weight:600}
+.brand .tag{margin-left:4px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted-foreground)}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{border-radius:6px;padding:6px 12px;font-size:13px;font-weight:500;color:var(--muted-foreground);transition:.15s}
+.nav a:hover{background:color-mix(in oklch,var(--accent) 60%,transparent);color:var(--foreground)}
+.nav a.active{background:var(--accent);color:var(--foreground)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--card);border-radius:6px;padding:7px 10px;font-size:12px;color:var(--muted-foreground)}
+.search input{border:0;background:transparent;color:var(--foreground);outline:none;width:150px;font-size:12px;font-family:inherit}
+.iconbtn{position:relative;width:32px;height:32px;display:grid;place-items:center;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--muted-foreground)}
+.iconbtn .dot{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;display:grid;place-items:center;border-radius:9999px;background:var(--critical);padding:0 4px;font-size:10px;font-weight:600;color:var(--background)}
+.pillbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--card);border-radius:6px;padding:7px 10px;font-size:12px;font-weight:500;color:var(--foreground)}
+.avatar{width:28px;height:28px;display:grid;place-items:center;border-radius:9999px;background:var(--accent);font-size:11px;font-weight:600}
+svg.i{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:middle}
+svg.i.sm{width:13px;height:13px}
 
-      //]]
-      &gt;
-    &lt;/script&gt;
-    &lt;script src="/uxasset/externals/x_2145749_qc/main.jsdbx?uxpcb=$[UxFrameworkScriptables.getFlushTimestamp()]" type="module"&gt;&lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id="root"&gt;&lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</html>
+/* ---- layout ---- */
+main{max-width:1560px;margin:0 auto;padding:24px}
+.row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.mt4{margin-top:16px}.mt5{margin-top:20px}.mb4{margin-bottom:16px}.mb5{margin-bottom:20px}
+h1.page{font-size:19px;font-weight:600}
+.sub{margin-top:5px;font-size:12.5px;color:var(--muted-foreground)}
+.muted{color:var(--muted-foreground)}
+.grid{display:grid;gap:16px}
+
+/* ---- banner ---- */
+.banner{display:flex;flex-wrap:wrap;align-items:center;gap:12px;border-radius:8px;border:1px solid color-mix(in oklch,var(--critical) 30%,transparent);background:color-mix(in oklch,var(--critical) 10%,transparent);padding:12px 20px}
+.banner p{margin:0;font-size:13px;font-weight:500}
+.banner .auto{margin-left:auto;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted-foreground)}
+.i-crit{color:var(--critical)}
+
+/* ---- chips ---- */
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:500;letter-spacing:.01em;white-space:nowrap}
+.chip.neutral{background:var(--panel);color:var(--muted-foreground);border-color:var(--border)}
+.chip.healthy{background:color-mix(in oklch,var(--healthy) 12%,transparent);color:var(--healthy);border-color:color-mix(in oklch,var(--healthy) 25%,transparent)}
+.chip.warning{background:color-mix(in oklch,var(--warning) 12%,transparent);color:var(--warning);border-color:color-mix(in oklch,var(--warning) 25%,transparent)}
+.chip.critical{background:color-mix(in oklch,var(--critical) 12%,transparent);color:var(--critical);border-color:color-mix(in oklch,var(--critical) 25%,transparent)}
+.live{display:inline-flex;align-items:center;gap:7px;border:1px solid color-mix(in oklch,var(--healthy) 30%,transparent);background:color-mix(in oklch,var(--healthy) 10%,transparent);color:var(--healthy);border-radius:6px;padding:4px 9px;font-size:11px;font-weight:600}
+.live .blip{width:6px;height:6px;border-radius:9999px;background:var(--healthy);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---- kpi cards ---- */
+.kpi{border:1px solid var(--border);background:var(--card);border-radius:8px;padding:16px 20px}
+.kpi.urgent{border-color:color-mix(in oklch,var(--critical) 45%,transparent);background:color-mix(in oklch,var(--critical) 10%,transparent)}
+.kpi.emphasis{border-color:color-mix(in oklch,var(--primary) 35%,transparent);padding:20px 24px;box-shadow:0 0 0 1px color-mix(in oklch,var(--primary) 20%,transparent)}
+.kpi .label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted-foreground)}
+.kpi.urgent .label{color:var(--critical)}
+.kpi .val{margin-top:8px;display:flex;align-items:flex-end;gap:8px}
+.kpi .val .n{font-size:26px;line-height:1;font-weight:600}
+.kpi.emphasis .val .n{font-size:38px}
+.kpi .val .u{padding-bottom:2px;font-size:12px;color:var(--muted-foreground)}
+.kpi .foot{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:11.5px}
+.kpi .foot .hint{color:var(--muted-foreground)}
+.delta{display:inline-flex;align-items:center;gap:2px;font-size:11.5px;font-weight:500}
+.delta.good{color:var(--healthy)}.delta.bad{color:var(--critical)}
+.t-healthy{color:var(--healthy)}.t-warning{color:var(--warning)}.t-critical{color:var(--critical)}.t-primary{color:var(--primary)}
+
+/* ---- panels ---- */
+.panel{display:flex;flex-direction:column;border:1px solid var(--border);background:var(--card);border-radius:8px}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid color-mix(in oklch,var(--border) 70%,transparent);padding:14px 20px}
+.panel-title{font-size:13px;font-weight:600}
+.panel-sub{margin-top:2px;font-size:11.5px;line-height:1.35;color:var(--muted-foreground)}
+.panel-body{flex:1;padding:16px 20px}
+.panel-body.flush{padding:0}
+
+/* ---- lists ---- */
+.list{list-style:none;margin:0;padding:0}
+.list>li{border-top:1px solid color-mix(in oklch,var(--border) 70%,transparent)}
+.list>li:first-child{border-top:0}
+.li{display:flex;align-items:center;gap:12px;padding:12px 20px;transition:.15s}
+.li:hover{background:color-mix(in oklch,var(--accent) 50%,transparent)}
+.li .grow{min-width:0;flex:1}
+.li .t{font-size:13px;font-weight:500}
+.li .s{margin-top:2px;font-size:11px;color:var(--muted-foreground)}
+.dot{width:6px;height:6px;border-radius:9999px;flex:none}
+.dot.critical{background:var(--critical)}.dot.warning{background:var(--warning)}.dot.healthy{background:var(--healthy)}
+
+/* ---- pulse ring ---- */
+.pulse{display:flex;align-items:center;gap:16px}
+.pulse .ring{position:relative}
+.pulse .ring .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pulse .ring .ctr .s{font-size:24px;font-weight:600}
+.pulse .ring .ctr .o{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted-foreground)}
+
+/* ---- tables ---- */
+.tbl-wrap{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;text-align:left;font-size:12.5px}
+table.tbl thead th{border-bottom:1px solid color-mix(in oklch,var(--border) 70%,transparent);padding:10px 20px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-foreground)}
+table.tbl td{padding:12px 20px;border-top:1px solid color-mix(in oklch,var(--border) 60%,transparent);vertical-align:top}
+table.tbl tbody tr:hover{background:color-mix(in oklch,var(--accent) 40%,transparent)}
+.tr{text-align:right}
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-bottom:1px solid color-mix(in oklch,var(--border) 70%,transparent);padding:10px 20px}
+.filt{border:0;background:transparent;border-radius:6px;padding:4px 10px;font-size:11.5px;font-weight:500;color:var(--muted-foreground);cursor:pointer;font-family:inherit}
+.filt.active{background:var(--accent);color:var(--foreground)}
+
+/* ---- bar visuals (css) ---- */
+.bars{display:flex;align-items:flex-end;gap:10px;height:240px;padding-top:8px}
+.bars .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
+.bars .col .stack{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:4px}
+.bars .col .bar{width:60%;max-width:30px;border-radius:3px 3px 0 0;background:var(--accent-blue)}
+.bars .col .cap{font-size:11px;color:var(--muted-foreground);white-space:nowrap}
+.hbars{display:flex;flex-direction:column;gap:14px}
+.hbar{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:12px;font-size:12px}
+.hbar .track{height:16px;border-radius:4px;background:var(--panel);overflow:hidden}
+.hbar .fill{height:100%;background:var(--accent-blue);border-radius:4px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted-foreground);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* ---- mini progress ---- */
+.prog{height:6px;border-radius:9999px;background:var(--panel);overflow:hidden}
+.prog>i{display:block;height:100%;border-radius:9999px;background:var(--primary)}
+.confbar{height:6px;width:64px;border-radius:9999px;background:var(--panel);overflow:hidden}
+.confbar>i{display:block;height:100%;border-radius:9999px}
+
+/* ---- heatmap ---- */
+.heat{display:grid;grid-template-columns:1fr;gap:8px 32px}
+@media(min-width:768px){.heat{grid-template-columns:1fr 1fr}}
+.heat .rowh{display:flex;align-items:center;gap:12px}
+.heat .rowh .cty{width:96px;flex:none;font-size:11.5px;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heat .cells{display:flex;flex-wrap:wrap;gap:3px}
+.cell{width:15px;height:15px;border-radius:3px;display:block}
+.cell.h{background:color-mix(in oklch,var(--healthy) 70%,transparent)}
+.cell.w{background:color-mix(in oklch,var(--warning) 70%,transparent)}
+.cell.c{background:color-mix(in oklch,var(--critical) 75%,transparent)}
+
+/* ---- svg chart helpers ---- */
+.chart{width:100%;display:block}
+.axis{stroke:var(--muted-foreground);font-size:10px}
+.gridln{stroke:var(--border)}
+
+/* grid column helpers */
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.g7{grid-template-columns:repeat(7,minmax(0,1fr))}
+.col2{grid-column:span 2}
+@media(max-width:1100px){.g5,.g7,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3,.g2{grid-template-columns:1fr}.col2{grid-column:auto}}
+@media(max-width:640px){.g5,.g7,.g4,.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <a class="brand" href="x_2145749_qc_home.do"><span class="logo"><span></span></span><span class="name">Dark<b>Ops</b></span><span class="tag">Operational Intelligence</span></a>
+  <nav class="nav">
+    <a class="a" href="x_2145749_qc_exec_dashboard.do">Executive</a>
+    <a class="a" href="x_2145749_qc_ops_dashboard.do">Operations</a>
+    <a class="a" href="x_2145749_qc_dark_store_dashboard.do">Dark Store</a>
+    <a class="a" href="x_2145749_qc_fraud_dashboard.do">Fraud</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="search"><svg class="i sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input placeholder="Search store ID e.g. 1462..." aria-label="Search stores"></div>
+    <button class="iconbtn" aria-label="5 new alerts"><svg class="i" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="dot num">5</span></button>
+    <button class="pillbtn"><svg class="i sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Last 30 days<svg class="i sm" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <span class="avatar">AK</span>
+  </div>
+</div></header>
+<main>
+<div style="max-width:1100px;margin:0 auto">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:8px 0 4px">
+    <span class="live"><span class="blip"></span>LIVE</span>
+    <span class="chip neutral">Operational Intelligence</span>
+  </div>
+  <h1 style="font-size:30px;font-weight:600;margin-top:12px">DarkOps control center</h1>
+  <p class="sub" style="font-size:14px;max-width:640px">Real-time health across 200 dark stores in 15 cities. Jump into the view you need &mdash; leadership overview, the live operations queue, a single store, or the AI fraud review desk.</p>
+
+  <div class="grid g4 mt5">
+    <div class="kpi"><p class="label">Network PulseScore</p><div class="val"><span class="n num t-warning">78</span><span class="u">/100</span></div><div class="foot"><span class="hint">headline metric</span></div></div>
+    <div class="kpi"><p class="label">Open complaints</p><div class="val"><span class="n num">8,214</span></div><div class="foot"><span class="hint">last 24h</span></div></div>
+    <div class="kpi"><p class="label">SLA compliance</p><div class="val"><span class="n num t-warning">91.4</span><span class="u">%</span></div><div class="foot"><span class="hint">target 95%</span></div></div>
+    <div class="kpi urgent"><p class="label">Critical stores</p><div class="val"><span class="n num t-critical">14</span><span class="u">of 200</span></div><div class="foot"><span class="hint">need intervention</span></div></div>
+  </div>
+
+  <div class="grid g2 mt4">
+    <a class="panel" href="x_2145749_qc_exec_dashboard.do" style="text-decoration:none">
+      <div class="panel-body" style="display:flex;gap:16px;align-items:flex-start">
+        <span class="brandtile" style="width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:8px;background:color-mix(in oklch,var(--primary) 15%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--primary) 30%,transparent)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px;color:var(--primary)"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+        <span style="flex:1"><span style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600">Executive overview</span><svg class="i" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="panel-sub" style="display:block">Company-wide dark store health: complaints, SLA, PulseScore, red alerts and the store heatmap.</span></span>
+      </div>
+    </a>
+    <a class="panel" href="x_2145749_qc_ops_dashboard.do" style="text-decoration:none">
+      <div class="panel-body" style="display:flex;gap:16px;align-items:flex-start">
+        <span style="width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:8px;background:color-mix(in oklch,var(--accent-blue) 15%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--accent-blue) 30%,transparent)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px;color:var(--accent-blue)"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+        <span style="flex:1"><span style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600">Operations queue</span><svg class="i" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="panel-sub" style="display:block">Pending &amp; escalated cases, SLA breaches, agent capacity and the live complaint assignment queue.</span></span>
+      </div>
+    </a>
+    <a class="panel" href="x_2145749_qc_dark_store_dashboard.do" style="text-decoration:none">
+      <div class="panel-body" style="display:flex;gap:16px;align-items:flex-start">
+        <span style="width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:8px;background:color-mix(in oklch,var(--warning) 15%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--warning) 30%,transparent)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px;color:var(--warning)"><path d="M3 9 12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+        <span style="flex:1"><span style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600">Dark store view</span><svg class="i" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="panel-sub" style="display:block">A single store: PulseScore breakdown, equipment failures, inventory, work orders and complaints.</span></span>
+      </div>
+    </a>
+    <a class="panel" href="x_2145749_qc_fraud_dashboard.do" style="text-decoration:none">
+      <div class="panel-body" style="display:flex;gap:16px;align-items:flex-start">
+        <span style="width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:8px;background:color-mix(in oklch,var(--critical) 15%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--critical) 30%,transparent)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px;color:var(--critical)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span>
+        <span style="flex:1"><span style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600">Fraud &amp; AI review</span><svg class="i" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="panel-sub" style="display:block">AI-flagged complaints with model confidence, flag reasons and approve / escalate / deny decisions.</span></span>
+      </div>
+    </a>
+  </div>
+</div>
+
+</main>
+</body>
+</html>
+]]></html>
         <name>home</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>

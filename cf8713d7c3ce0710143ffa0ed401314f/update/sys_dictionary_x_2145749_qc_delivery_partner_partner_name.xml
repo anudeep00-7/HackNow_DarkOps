@@ -8,7 +8,7 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>Partner Name</column_label>
+        <column_label>Partner Name (Deprecated)</column_label>
         <comments/>
         <create_roles/>
         <default_value/>
@@ -28,7 +28,7 @@
         <function_definition/>
         <function_field>false</function_field>
         <internal_type display_value="String">string</internal_type>
-        <mandatory>true</mandatory>
+        <mandatory>false</mandatory>
         <max_length>100</max_length>
         <name>x_2145749_qc_delivery_partner</name>
         <next_element/>
@@ -48,7 +48,7 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:14:45</sys_created_on>
-        <sys_name>Partner Name</sys_name>
+        <sys_name>Partner Name (Deprecated)</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>

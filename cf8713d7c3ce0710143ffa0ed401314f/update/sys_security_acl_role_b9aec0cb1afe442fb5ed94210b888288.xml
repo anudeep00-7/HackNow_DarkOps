@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 19:48:31</sys_created_on>
+        <sys_id>b9aec0cb1afe442fb5ed94210b888288</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_2145749_qc_equipment.x_2145749_qc.dark_store_manager</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_security_acl display_value="x_2145749_qc_equipment">680873f6285e4e73b77790f9fd895596</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_b9aec0cb1afe442fb5ed94210b888288</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 19:48:31</sys_updated_on>
+        <sys_user_role display_value="x_2145749_qc.dark_store_manager" name="x_2145749_qc.dark_store_manager">f6472c92f1874279a3684fab5fb62544</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="contract_sla">
+    <contract_sla action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <adv_condition_type>none</adv_condition_type>
+        <cancel_condition table="sn_customerservice_case">state=7</cancel_condition>
+        <collection>sn_customerservice_case</collection>
+        <condition_class/>
+        <duration>1970-01-01 06:00:00</duration>
+        <duration_type/>
+        <enable_logging>false</enable_logging>
+        <flow display_value="Default SLA flow">828f267973333300e289235f04f6a7a3</flow>
+        <name>Medium Order Complaint - 6 Hour Resoluti</name>
+        <pause_condition/>
+        <relative_duration_works_on>Task record</relative_duration_works_on>
+        <reset_action>cancel</reset_action>
+        <reset_condition/>
+        <resume_condition/>
+        <retroactive>false</retroactive>
+        <retroactive_pause>true</retroactive_pause>
+        <schedule display_value="">38fa64edc0a8016400f4a5724b0434b8</schedule>
+        <schedule_source>no_schedule</schedule_source>
+        <schedule_source_field/>
+        <set_start_to/>
+        <start_condition table="sn_customerservice_case">x_2145749_qc_complaint_typeISNOTEMPTY^priority=2<item endquery="false" field="x_2145749_qc_complaint_type" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+        </start_condition>
+        <stop_condition table="sn_customerservice_case">state=3</stop_condition>
+        <sys_class_name>contract_sla</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 20:38:45</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>624145b4b11b4c639d31c68a94b03054</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Medium Order Complaint - 6 Hour Resoluti</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>contract_sla_624145b4b11b4c639d31c68a94b03054</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 20:38:45</sys_updated_on>
+        <target>resolution</target>
+        <timezone/>
+        <timezone_source>task.caller_id.time_zone</timezone_source>
+        <type>SLA</type>
+        <vendor/>
+        <when_to_cancel>on_condition</when_to_cancel>
+        <when_to_resume>on_condition</when_to_resume>
+        <workflow/>
+    </contract_sla>
+    <sys_translated_text action="delete_multiple" query="documentkey=624145b4b11b4c639d31c68a94b03054"/>
+</record_update>

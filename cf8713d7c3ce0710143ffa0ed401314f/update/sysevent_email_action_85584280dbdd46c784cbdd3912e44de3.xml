@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>x_2145749_qc_refund_request</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_digest>false</default_digest>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[--------------------------------------------------------------------------------
+]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digest_type>single</digest_type>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name/>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>triggered</generation_type>
+        <importance>high</importance>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<h2>Fraud-Flagged Refund Request Escalated</h2>
+<p>A refund request has been automatically escalated due to fraud detection rules.</p>
+<table style="border-collapse: collapse; width: 100%; max-width: 500px;">
+<tbody>
+<tr>
+<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Refund Number</td>
+<td style="padding: 8px; border: 1px solid #ddd;">${number}</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Amount Requested</td>
+<td style="padding: 8px; border: 1px solid #ddd;">$${amount_requested}</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Customer</td>
+<td style="padding: 8px; border: 1px solid #ddd;">${customer}</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Risk Score</td>
+<td style="padding: 8px; border: 1px solid #ddd;">${fraud_risk_score}</td>
+</tr>
+<tr>
+<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Order Number</td>
+<td style="padding: 8px; border: 1px solid #ddd;">${order_number}</td>
+</tr>
+</tbody>
+</table>
+<h3>Fraud Rules Triggered</h3>
+<p>${mail_script:QC Fraud Escalation Flags List}</p>
+<p><a style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 4px;" href="${mail_script:QC Fraud Escalation Record Link}"> Open Refund Request </a></p>
+<p style="color: #666; font-size: 12px;">This is an automated alert from the Quick Commerce Ops Fraud Detection Engine. Please review and take appropriate action.</p>
+<p>${mail_script:QC Fraud Escalation Ops Admin Recipients}</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>QC Fraud Escalation Alert</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields/>
+        <recipient_groups/>
+        <recipient_users>6816f79cc0a8016401c5a33be04be441</recipient_users>
+        <reply_to/>
+        <send_self>false</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>[Fraud Alert] Refund ${number} auto-escalated for manual review</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 19:30:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>85584280dbdd46c784cbdd3912e44de3</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>QC Fraud Escalation Alert</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sysevent_email_action_85584280dbdd46c784cbdd3912e44de3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 21:16:04</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

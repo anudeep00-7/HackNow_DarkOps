@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Autofill Suggestion</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var method = request.httpMethod;
+    try {
+        if (method !== 'POST') {
+            response.setStatus(405);
+            return { success: false, error: 'Method not allowed' };
+        }
+        var data = request.body.data;
+        if (!data || !data.text) {
+            response.setStatus(400);
+            return { success: false, error: 'text is required' };
+        }
+        var result = suggest(data.text);
+        response.setStatus(200);
+        return { success: true, result: result };
+    } catch (e) {
+        response.setStatus(500);
+        return { success: false, error: e.message };
+    }
+
+    function suggest(text) {
+        var lower = text.toLowerCase();
+        var complaint_type = 'general';
+        var urgency = 'low';
+        var typeKeywords = {
+            'damaged': 'damaged_item', 'missing': 'missing_item', 'late': 'delivery_delay',
+            'delay': 'delivery_delay', 'wrong': 'wrong_item', 'rude': 'partner_behavior',
+            'spoiled': 'quality_issue', 'refund': 'refund_request'
+        };
+        for (var kw in typeKeywords) {
+            if (lower.indexOf(kw) !== -1) { complaint_type = typeKeywords[kw]; break; }
+        }
+        var urgentKeywords = ['urgent', 'immediately', 'safety', 'injury', 'never arrived', 'fraud'];
+        for (var i = 0; i < urgentKeywords.length; i++) {
+            if (lower.indexOf(urgentKeywords[i]) !== -1) { urgency = 'high'; break; }
+        }
+        return {
+            suggested_complaint_type: complaint_type,
+            suggested_urgency: urgency,
+            note: 'keyword stub - replace with Complaint Triage Assistant skill call'
+        };
+    }
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/qc_ops_api/autofill</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/autofill</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Suggest complaint_type and urgency from free-text description (keyword stub)</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:40</sys_created_on>
+        <sys_id>21b121ab6e484a7faa675d00f6238dcf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Autofill Suggestion</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_21b121ab6e484a7faa675d00f6238dcf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:40</sys_updated_on>
+        <web_service_definition display_value="Quick Commerce Ops API">b9b3fd9e62e14c1faaa0577d1181af8a</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

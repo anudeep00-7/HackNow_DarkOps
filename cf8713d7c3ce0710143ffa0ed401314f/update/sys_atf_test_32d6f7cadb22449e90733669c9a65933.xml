@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Updates task_sla percentage to 85% to trigger the SLA Breach Early Warning flow</description>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>true</fail_on_server_error>
+        <name>Verify SLA Breach Early Warning Flow Triggers</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 12:16:36</sys_created_on>
+        <sys_id>32d6f7cadb22449e90733669c9a65933</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Verify SLA Breach Early Warning Flow Triggers</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_atf_test_32d6f7cadb22449e90733669c9a65933</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:16:36</sys_updated_on>
+        <test_origin/>
+    </sys_atf_test>
+    <sys_variable_value action="delete_multiple" query="document_key=32d6f7cadb22449e90733669c9a65933"/>
+</record_update>

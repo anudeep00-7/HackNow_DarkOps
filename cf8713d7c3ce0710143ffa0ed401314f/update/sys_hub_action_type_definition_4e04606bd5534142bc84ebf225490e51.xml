@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_action_type_definition">
+    <sys_hub_action_type_definition action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <action_status/>
+        <action_template/>
+        <active>true</active>
+        <annotation/>
+        <attributes>{}</attributes>
+        <authored_on_release_version>-1</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category display_value="">x_2145749_qc</category>
+        <copied_from/>
+        <copied_from_name/>
+        <description>Calculates composite PulseScore (0-100) for all active Dark Stores from 5 trailing-24-hour signals: complaint volume, refund rate, SLA breaches, equipment downtime, and delivery partner incidents. Creates snapshot records and notifies on Red band transitions.</description>
+        <flow_priority/>
+        <ih_action>false</ih_action>
+        <internal_name>pulsescore_recalculation__calculate_store_scores</internal_name>
+        <label_cache>[]</label_cache>
+        <master_snapshot>a468c7c8932647101ff0f40bdd03d6c9</master_snapshot>
+        <master_snapshot_digest/>
+        <name>PulseScore Recalculation - Calculate Store Scores</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <state>published</state>
+        <sys_class_name>sys_hub_action_type_definition</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4e04606bd5534142bc84ebf225490e51</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PulseScore Recalculation - Calculate Store Scores</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_hub_action_type_definition_4e04606bd5534142bc84ebf225490e51</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 18:12:38</sys_updated_on>
+        <system_level>false</system_level>
+        <type/>
+    </sys_hub_action_type_definition>
+    <sys_translated_text action="delete_multiple" query="documentkey=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_variable_value action="delete_multiple" query="document_key=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51^id=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_hub_step_instance action="delete_multiple" query="action=4e04606bd5534142bc84ebf225490e51^sys_idNOT IN29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_hub_step_instance action="INSERT_OR_UPDATE">
+        <action display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</action>
+        <cid>29d87fe1-b1b4-4e9f-a116-47a1610dcd30</cid>
+        <error_handling_type>1</error_handling_type>
+        <extended_inputs/>
+        <extended_outputs/>
+        <icon/>
+        <inputs/>
+        <label>Calculate PulseScores</label>
+        <order>1</order>
+        <outputs/>
+        <section/>
+        <step_type display_value="Script">106afb6647032200b4fad7527c9a71e7</step_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>29d87fe1b1b44e9fa11647a1610dcd30</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+    </sys_hub_step_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_step_instance</document>
+        <document_key>29d87fe1b1b44e9fa11647a1610dcd30</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>2627f9c386e246f9a4d0a98df690c132</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <value>instance</value>
+        <variable display_value="Required Runtime">74315b04b3201300176b051a16a8dc2b</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_step_instance</document>
+        <document_key>29d87fe1b1b44e9fa11647a1610dcd30</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>4ff496778c014f04b9d6ec7b3276df4a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <value>(function() {
+    // PulseScore Recalculation Script
+    // Runs every 15 minutes to calculate composite health scores for Dark Stores
+
+    var WEIGHT_COMPLAINTS = 0.25;
+    var WEIGHT_REFUNDS = 0.20;
+    var WEIGHT_SLA = 0.20;
+    var WEIGHT_EQUIPMENT = 0.15;
+    var WEIGHT_PARTNER_INCIDENTS = 0.20;
+
+    var GREEN_THRESHOLD = 80;
+    var YELLOW_THRESHOLD = 50;
+
+    gs.info('PulseScore Recalculation: Starting calculation cycle');
+
+    // Query all active Dark Store records
+    var stores = new GlideRecord('x_2145749_qc_dark_store');
+    stores.addQuery('status', 'active');
+    stores.query();
+
+    while (stores.next()) {
+        var storeSysId = stores.getUniqueValue();
+        var storeName = stores.getValue('store_name');
+        var zoneSysId = stores.getValue('zone');
+        var previousBand = stores.getValue('pulse_score_band') || '';
+
+        try {
+            // Calculate trailing 24-hour window
+            var twentyFourHoursAgo = new GlideDateTime();
+            twentyFourHoursAgo.addSeconds(-86400);
+            var windowStart = twentyFourHoursAgo.getValue();
+
+            // Signal 1: Complaint Volume (from sn_customerservice_case)
+            var complaints = new GlideRecord('sn_customerservice_case');
+            complaints.addQuery('x_2145749_qc_dark_store', storeSysId);
+            complaints.addQuery('sys_created_on', '&gt;=', windowStart);
+            complaints.query();
+            var complaintCount = complaints.getRowCount();
+            // Score: 100 if 0 complaints, decreases by 10 per complaint, min 0
+            var complaintScore = Math.max(0, 100 - (complaintCount * 10));
+
+            // Signal 2: Refund Rate (from x_2145749_qc_refund_request via case.dark_store)
+            var refunds = new GlideRecord('x_2145749_qc_refund_request');
+            refunds.addQuery('case.x_2145749_qc_dark_store', storeSysId);
+            refunds.addQuery('sys_created_on', '&gt;=', windowStart);
+            refunds.query();
+            var refundCount = refunds.getRowCount();
+            // Score: 100 if 0 refunds, decreases by 15 per refund, min 0
+            var refundScore = Math.max(0, 100 - (refundCount * 15));
+
+            // Signal 3: SLA Breach Count (from task_sla for cases tied to this store)
+            var slaCases = new GlideRecord('sn_customerservice_case');
+            slaCases.addQuery('x_2145749_qc_dark_store', storeSysId);
+            slaCases.addQuery('sys_created_on', '&gt;=', windowStart);
+            slaCases.query();
+            var slaBreachCount = 0;
+            while (slaCases.next()) {
+                var taskSla = new GlideRecord('task_sla');
+                taskSla.addQuery('task', slaCases.getUniqueValue());
+                taskSla.addQuery('has_breached', 'true');
+                taskSla.query();
+                slaBreachCount += taskSla.getRowCount();
+            }
+            // Score: 100 if 0 breaches, decreases by 20 per breach, min 0
+            var slaScore = Math.max(0, 100 - (slaBreachCount * 20));
+
+            // Signal 4: Equipment Downtime (from x_2145749_qc_equipment)
+            var totalEquipment = new GlideRecord('x_2145749_qc_equipment');
+            totalEquipment.addQuery('dark_store', storeSysId);
+            totalEquipment.query();
+            var totalEquipCount = totalEquipment.getRowCount();
+
+            var downEquipment = new GlideRecord('x_2145749_qc_equipment');
+            downEquipment.addQuery('dark_store', storeSysId);
+            downEquipment.addQuery('operational_status', '!=', 'operational');
+            downEquipment.query();
+            var downCount = downEquipment.getRowCount();
+
+            var equipmentScore = 100;
+            if (totalEquipCount &gt; 0) {
+                equipmentScore = Math.round(((totalEquipCount - downCount) / totalEquipCount) * 100);
+            }
+
+            // Signal 5: Delivery Partner Incident Count
+            var partnerIncidents = new GlideRecord('x_2145749_qc_partner_incident');
+            partnerIncidents.addQuery('dark_store', storeSysId);
+            partnerIncidents.addQuery('sys_created_on', '&gt;=', windowStart);
+            partnerIncidents.query();
+            var partnerIncidentCount = partnerIncidents.getRowCount();
+            // Score: 100 if 0 incidents, decreases by 12 per incident, min 0
+            var partnerIncidentScore = Math.max(0, 100 - (partnerIncidentCount * 12));
+
+            // Calculate composite score (0-100)
+            var compositeScore = Math.round(
+                (complaintScore * WEIGHT_COMPLAINTS) +
+                (refundScore * WEIGHT_REFUNDS) +
+                (slaScore * WEIGHT_SLA) +
+                (equipmentScore * WEIGHT_EQUIPMENT) +
+                (partnerIncidentScore * WEIGHT_PARTNER_INCIDENTS)
+            );
+
+            // Determine band
+            var band = 'red';
+            if (compositeScore &gt;= GREEN_THRESHOLD) {
+                band = 'green';
+            } else if (compositeScore &gt;= YELLOW_THRESHOLD) {
+                band = 'yellow';
+            }
+
+            // Insert new PulseScore snapshot (never overwrite, always insert new)
+            var snapshot = new GlideRecord('x_2145749_qc_pulse_score');
+            snapshot.initialize();
+            snapshot.setValue('dark_store', storeSysId);
+            snapshot.setValue('score', compositeScore);
+            snapshot.setValue('band', band);
+            snapshot.setValue('snapshot_time', new GlideDateTime().getValue());
+            snapshot.setValue('complaint_volume_score', complaintScore);
+            snapshot.setValue('partner_incident_score', partnerIncidentScore);
+            snapshot.setValue('equipment_uptime_score', equipmentScore);
+            snapshot.setValue('sla_compliance_score', slaScore);
+            snapshot.setValue('refund_fraud_score', refundScore);
+            snapshot.setValue('open_complaint_count', complaintCount);
+            if (zoneSysId) {
+                snapshot.setValue('zone', zoneSysId);
+            }
+            snapshot.insert();
+
+            // Update the Dark Store record
+            stores.setValue('pulse_score', compositeScore);
+            stores.setValue('pulse_score_band', band);
+            stores.update();
+
+            // Check for band transition to Red
+            if (band === 'red' &amp;&amp; previousBand !== 'red' &amp;&amp; previousBand !== '') {
+                gs.info('PulseScore Recalculation: Store ' + storeName + ' transitioned to RED band (score: ' + compositeScore + '). Sending notification.');
+
+                // Notify ops_leadership role group
+                gs.eventQueue('x_2145749_qc.pulse_score_red_alert', stores,
+                    'Store: ' + storeName + ', Score: ' + compositeScore + ', Band: RED',
+                    'x_2145749_qc.ops_leadership');
+
+                // Notify the store manager
+                var managerSysId = stores.getValue('manager');
+                if (managerSysId) {
+                    var manager = new GlideRecord('sys_user');
+                    if (manager.get(managerSysId)) {
+                        gs.eventQueue('x_2145749_qc.pulse_score_red_alert', stores,
+                            'Store: ' + storeName + ', Score: ' + compositeScore + ', Band: RED',
+                            manager.getValue('email'));
+                    }
+                }
+            }
+
+            gs.info('PulseScore Recalculation: Store ' + storeName + ' - Score: ' + compositeScore + ', Band: ' + band +
+                ' (Complaints: ' + complaintScore + ', Refunds: ' + refundScore +
+                ', SLA: ' + slaScore + ', Equipment: ' + equipmentScore +
+                ', Partner Incidents: ' + partnerIncidentScore + ')');
+
+        } catch (e) {
+            // Error handling: keep prior score unchanged, log error
+            gs.error('PulseScore Recalculation: Error calculating score for store ' + storeName + ': ' + e.message + '. Keeping prior score unchanged.');
+        }
+    }
+
+    gs.info('PulseScore Recalculation: Calculation cycle complete');
+})();</value>
+        <variable display_value="Script">71aa7f6647032200b4fad7527c9a719b</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_step_ext_output_29d87fe1b1b44e9fa11647a1610dcd30^id=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7^id=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_hub_step_ext_input action="delete_multiple" query="model=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_hub_step_ext_output action="delete_multiple" query="model=29d87fe1b1b44e9fa11647a1610dcd30^sys_idNOT IN412572cca52b486dba2c7c7195251b39"/>
+    <sys_hub_step_ext_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=string,uiTypeLabel=String</attributes>
+        <audit>false</audit>
+        <calculation/>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>completed</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>result</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>result</label>
+        <mandatory>false</mandatory>
+        <max_length>8000</max_length>
+        <model display_value="Calculate PulseScores">29d87fe1b1b44e9fa11647a1610dcd30</model>
+        <model_id>29d87fe1b1b44e9fa11647a1610dcd30</model_id>
+        <model_table>sys_hub_step_instance</model_table>
+        <name>var__m_sys_hub_step_ext_output_29d87fe1b1b44e9fa11647a1610dcd30</name>
+        <next_element/>
+        <order/>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_step_ext_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>412572cca52b486dba2c7c7195251b39</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier/>
+        <virtual>false</virtual>
+        <virtual_type/>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_step_ext_output>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=29d87fe1b1b44e9fa11647a1610dcd30"/>
+    <sys_hub_action_input action="delete_multiple" query="model=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_hub_action_output action="delete_multiple" query="model=4e04606bd5534142bc84ebf225490e51^sys_idNOT IN392772def471403780ac3406a4e4f73c,82ef73b4a6c84c92bec2d7280aef9af1,863b297d6559442e83307e9b45830d32"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=string,uiTypeLabel=String,uiUniqueId=4e04606bd5534142bc84ebf225490e51-result</attributes>
+        <audit>false</audit>
+        <calculation/>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>result</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Execution Result</label>
+        <mandatory>false</mandatory>
+        <max_length>8000</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</model>
+        <model_id>4e04606bd5534142bc84ebf225490e51</model_id>
+        <model_table>sys_hub_action_type_definition</model_table>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <next_element/>
+        <order>1</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>392772def471403780ac3406a4e4f73c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier/>
+        <virtual>false</virtual>
+        <virtual_type/>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=392772def471403780ac3406a4e4f73c"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=392772def471403780ac3406a4e4f73c"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,action_error_output=true,uiType=object,uiTypeLabel=Object,uiUniqueId=4e04606bd5534142bc84ebf225490e51-action-status,co_type_name=FDACTIONSTATUS</attributes>
+        <audit>false</audit>
+        <calculation/>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>__action_status__</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Action Status</label>
+        <mandatory>false</mandatory>
+        <max_length>65000</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</model>
+        <model_id>4e04606bd5534142bc84ebf225490e51</model_id>
+        <model_table>sys_hub_action_type_definition</model_table>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <next_element/>
+        <order>1</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>82ef73b4a6c84c92bec2d7280aef9af1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier/>
+        <virtual>false</virtual>
+        <virtual_type/>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=82ef73b4a6c84c92bec2d7280aef9af1"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=82ef73b4a6c84c92bec2d7280aef9af1"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,action_error_output=true,uiType=boolean,uiTypeLabel=True/False,uiUniqueId=4e04606bd5534142bc84ebf225490e51-action-error,visible_in_ui=false</attributes>
+        <audit>false</audit>
+        <calculation/>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>true</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>__dont_treat_as_error__</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="">boolean</internal_type>
+        <label>Don't Treat as Error</label>
+        <mandatory>false</mandatory>
+        <max_length>40</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</model>
+        <model_id>4e04606bd5534142bc84ebf225490e51</model_id>
+        <model_table>sys_hub_action_type_definition</model_table>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <next_element/>
+        <order>2</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-31 13:35:08</sys_created_on>
+        <sys_id>863b297d6559442e83307e9b45830d32</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-31 13:35:08</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier/>
+        <virtual>false</virtual>
+        <virtual_type/>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=863b297d6559442e83307e9b45830d32"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=863b297d6559442e83307e9b45830d32"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_hub_action_status_metadata action="delete_multiple" query="action_type_id=4e04606bd5534142bc84ebf225490e51"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_4e04606bd5534142bc84ebf225490e51"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>__dont_treat_as_error__</element>
+        <help/>
+        <hint/>
+        <label>Don't Treat as Error</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <plural>Don't Treat as Errors</plural>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 19:48:28</sys_created_on>
+        <sys_id>32fc75e8c3a6c310f35b3fac05013131</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Don't Treat as Error</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51___dont_treat_as_error___en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 19:48:28</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>result</element>
+        <help/>
+        <hint/>
+        <label>Execution Result</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <plural>Execution Results</plural>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 19:48:28</sys_created_on>
+        <sys_id>32fc75e8c3a6c310f35b3fac05013137</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Execution Result</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51_result_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 19:48:28</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>__action_status__</element>
+        <help/>
+        <hint/>
+        <label>Action Status</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51</name>
+        <plural>Action Status</plural>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 19:48:28</sys_created_on>
+        <sys_id>72fc75e8c3a6c310f35b3fac0501312b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Action Status</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51___action_status___en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 19:48:28</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_output_4e04606bd5534142bc84ebf225490e51"/>
+    <sys_hub_action_plan action="delete_multiple" query="action_id=4e04606bd5534142bc84ebf225490e51^sys_idNOT IN9d680bc8932647101ff0f40bdd03d672"/>
+    <sys_hub_action_plan action="INSERT_OR_UPDATE">
+        <action_id display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</action_id>
+        <plan>{"@class":"com.snc.process_flow.engine.serialization.plan_data.ChunkingPlanData","chunk_data":{"table":"sys_hub_action_plan","id":"9d680bc8932647101ff0f40bdd03d672","name":"plan","plan_signature":null},"plan_data":"CHUNKING_PLAN"}</plan>
+        <snapshot>0e436b80932a47101ff0f40bdd03d697</snapshot>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:49</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9d680bc8932647101ff0f40bdd03d672</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:22:17</sys_updated_on>
+    </sys_hub_action_plan>
+    <sys_hub_action_type_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <action_status/>
+        <action_template/>
+        <annotation/>
+        <attributes>{}</attributes>
+        <authored_on_release_version>-1</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category display_value="">x_2145749_qc</category>
+        <copied_from/>
+        <copied_from_name/>
+        <description>Calculates composite PulseScore (0-100) for all active Dark Stores from 5 trailing-24-hour signals: complaint volume, refund rate, SLA breaches, equipment downtime, and delivery partner incidents. Creates snapshot records and notifies on Red band transitions.</description>
+        <flow_priority/>
+        <internal_name>pulsescore_recalculation__calculate_store_scores</internal_name>
+        <label_cache>[]</label_cache>
+        <master>true</master>
+        <name>PulseScore Recalculation - Calculate Store Scores</name>
+        <natlang/>
+        <outputs/>
+        <parent_action display_value="PulseScore Recalculation - Calculate Store Scores">4e04606bd5534142bc84ebf225490e51</parent_action>
+        <sys_class_name>sys_hub_action_type_snapshot</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:45</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a468c7c8932647101ff0f40bdd03d6c9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:45</sys_updated_on>
+        <system_level>false</system_level>
+        <type/>
+    </sys_hub_action_type_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_variable_value action="delete_multiple" query="document_key=a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_type_snapshot</document>
+        <document_key>a468c7c8932647101ff0f40bdd03d6c9</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>59680bc8932647101ff0f40bdd03d65b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+        <value>{"version":"1.0","complexObject":{"code":{"$cv":{"$c":"java.lang.String","$v":""}},"message":{"$cv":{"$c":"java.lang.String","$v":""}}},"serializationFormat":"JSON","complexObjectSchema":{"FlowDesigner:FDACTIONSTATUS":{"code":"Integer","code.$field_facets":{"SimpleMapFacet":"{\"uiTypeLabel\":\"Integer\",\"read_only\":\"false\",\"hint\":\"\",\"uiType\":\"integer\",\"default_value\":\"\",\"label\":\"Code\",\"action_error_output\":\"true\",\"mandatory\":\"false\",\"order\":\"1\",\"max_length\":\"40\"}"},"message":"String","message.$field_facets":{"SimpleMapFacet":"{\"uiTypeLabel\":\"String\",\"read_only\":\"false\",\"hint\":\"\",\"uiType\":\"string\",\"default_value\":\"\",\"label\":\"Message\",\"action_error_output\":\"true\",\"mandatory\":\"false\",\"order\":\"2\",\"max_length\":\"4000\"}"}},"FlowDesigner:FDACTIONSTATUS.$type_facets":{"SimpleMapFacet":"{\"default_value\":\"\",\"label\":\"Action Status\",\"action_error_output\":\"true\",\"mandatory\":\"false\",\"uiUniqueId\":\"4adfb7bc-9d67-498d-88d0-8d6c3d584fed\",\"uiTypeLabel\":\"Object\",\"co_type_name\":\"FDACTIONSTATUS\",\"element_mapping_provider\":\"com.glide.flow_design.action.data.FlowDesignVariableMapper\",\"read_only\":\"false\",\"hint\":null,\"uiType\":\"object\",\"order\":\"1\",\"max_length\":\"65000\"}"}}}</value>
+        <variable display_value="Action Status">41680bc8932647101ff0f40bdd03d637</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9^id=a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_hub_step_instance action="delete_multiple" query="action=a468c7c8932647101ff0f40bdd03d6c9^sys_idNOT INbc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_hub_step_instance action="INSERT_OR_UPDATE">
+        <action display_value="PulseScore Recalculation - Calculate Store Scores">a468c7c8932647101ff0f40bdd03d6c9</action>
+        <cid>29d87fe1-b1b4-4e9f-a116-47a1610dcd30</cid>
+        <error_handling_type>1</error_handling_type>
+        <extended_inputs/>
+        <extended_outputs/>
+        <icon/>
+        <inputs/>
+        <label>Calculate PulseScores</label>
+        <order>1</order>
+        <outputs/>
+        <section/>
+        <step_type display_value="Script">106afb6647032200b4fad7527c9a71e7</step_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:46</sys_created_on>
+        <sys_id>bc68c7c8932647101ff0f40bdd03d6f1</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:12:36</sys_updated_on>
+    </sys_hub_step_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_step_instance</document>
+        <document_key>bc68c7c8932647101ff0f40bdd03d6f1</document_key>
+        <order>600</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:47</sys_created_on>
+        <sys_id>4d680bc8932647101ff0f40bdd03d61c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:12:36</sys_updated_on>
+        <value>(function() {
+    // PulseScore Recalculation Script
+    // Runs every 15 minutes to calculate composite health scores for Dark Stores
+
+    var WEIGHT_COMPLAINTS = 0.25;
+    var WEIGHT_REFUNDS = 0.20;
+    var WEIGHT_SLA = 0.20;
+    var WEIGHT_EQUIPMENT = 0.15;
+    var WEIGHT_PARTNER_INCIDENTS = 0.20;
+
+    var GREEN_THRESHOLD = 80;
+    var YELLOW_THRESHOLD = 50;
+
+    gs.info('PulseScore Recalculation: Starting calculation cycle');
+
+    // Query all active Dark Store records
+    var stores = new GlideRecord('x_2145749_qc_dark_store');
+    stores.addQuery('status', 'active');
+    stores.query();
+
+    while (stores.next()) {
+        var storeSysId = stores.getUniqueValue();
+        var storeName = stores.getValue('store_name');
+        var zoneSysId = stores.getValue('zone');
+        var previousBand = stores.getValue('pulse_score_band') || '';
+
+        try {
+            // Calculate trailing 24-hour window
+            var twentyFourHoursAgo = new GlideDateTime();
+            twentyFourHoursAgo.addSeconds(-86400);
+            var windowStart = twentyFourHoursAgo.getValue();
+
+            // Signal 1: Complaint Volume (from sn_customerservice_case)
+            var complaints = new GlideRecord('sn_customerservice_case');
+            complaints.addQuery('x_2145749_qc_dark_store', storeSysId);
+            complaints.addQuery('sys_created_on', '&gt;=', windowStart);
+            complaints.query();
+            var complaintCount = complaints.getRowCount();
+            // Score: 100 if 0 complaints, decreases by 10 per complaint, min 0
+            var complaintScore = Math.max(0, 100 - (complaintCount * 10));
+
+            // Signal 2: Refund Rate (from x_2145749_qc_refund_request via case.dark_store)
+            var refunds = new GlideRecord('x_2145749_qc_refund_request');
+            refunds.addQuery('case.x_2145749_qc_dark_store', storeSysId);
+            refunds.addQuery('sys_created_on', '&gt;=', windowStart);
+            refunds.query();
+            var refundCount = refunds.getRowCount();
+            // Score: 100 if 0 refunds, decreases by 15 per refund, min 0
+            var refundScore = Math.max(0, 100 - (refundCount * 15));
+
+            // Signal 3: SLA Breach Count (from task_sla for cases tied to this store)
+            var slaCases = new GlideRecord('sn_customerservice_case');
+            slaCases.addQuery('x_2145749_qc_dark_store', storeSysId);
+            slaCases.addQuery('sys_created_on', '&gt;=', windowStart);
+            slaCases.query();
+            var slaBreachCount = 0;
+            while (slaCases.next()) {
+                var taskSla = new GlideRecord('task_sla');
+                taskSla.addQuery('task', slaCases.getUniqueValue());
+                taskSla.addQuery('has_breached', 'true');
+                taskSla.query();
+                slaBreachCount += taskSla.getRowCount();
+            }
+            // Score: 100 if 0 breaches, decreases by 20 per breach, min 0
+            var slaScore = Math.max(0, 100 - (slaBreachCount * 20));
+
+            // Signal 4: Equipment Downtime (from x_2145749_qc_equipment)
+            var totalEquipment = new GlideRecord('x_2145749_qc_equipment');
+            totalEquipment.addQuery('dark_store', storeSysId);
+            totalEquipment.query();
+            var totalEquipCount = totalEquipment.getRowCount();
+
+            var downEquipment = new GlideRecord('x_2145749_qc_equipment');
+            downEquipment.addQuery('dark_store', storeSysId);
+            downEquipment.addQuery('operational_status', '!=', 'operational');
+            downEquipment.query();
+            var downCount = downEquipment.getRowCount();
+
+            var equipmentScore = 100;
+            if (totalEquipCount &gt; 0) {
+                equipmentScore = Math.round(((totalEquipCount - downCount) / totalEquipCount) * 100);
+            }
+
+            // Signal 5: Delivery Partner Incident Count
+            var partnerIncidents = new GlideRecord('x_2145749_qc_partner_incident');
+            partnerIncidents.addQuery('dark_store', storeSysId);
+            partnerIncidents.addQuery('sys_created_on', '&gt;=', windowStart);
+            partnerIncidents.query();
+            var partnerIncidentCount = partnerIncidents.getRowCount();
+            // Score: 100 if 0 incidents, decreases by 12 per incident, min 0
+            var partnerIncidentScore = Math.max(0, 100 - (partnerIncidentCount * 12));
+
+            // Calculate composite score (0-100)
+            var compositeScore = Math.round(
+                (complaintScore * WEIGHT_COMPLAINTS) +
+                (refundScore * WEIGHT_REFUNDS) +
+                (slaScore * WEIGHT_SLA) +
+                (equipmentScore * WEIGHT_EQUIPMENT) +
+                (partnerIncidentScore * WEIGHT_PARTNER_INCIDENTS)
+            );
+
+            // Determine band
+            var band = 'red';
+            if (compositeScore &gt;= GREEN_THRESHOLD) {
+                band = 'green';
+            } else if (compositeScore &gt;= YELLOW_THRESHOLD) {
+                band = 'yellow';
+            }
+
+            // Insert new PulseScore snapshot (never overwrite, always insert new)
+            var snapshot = new GlideRecord('x_2145749_qc_pulse_score');
+            snapshot.initialize();
+            snapshot.setValue('dark_store', storeSysId);
+            snapshot.setValue('score', compositeScore);
+            snapshot.setValue('band', band);
+            snapshot.setValue('snapshot_time', new GlideDateTime().getValue());
+            snapshot.setValue('complaint_volume_score', complaintScore);
+            snapshot.setValue('partner_incident_score', partnerIncidentScore);
+            snapshot.setValue('equipment_uptime_score', equipmentScore);
+            snapshot.setValue('sla_compliance_score', slaScore);
+            snapshot.setValue('refund_fraud_score', refundScore);
+            snapshot.setValue('open_complaint_count', complaintCount);
+            if (zoneSysId) {
+                snapshot.setValue('zone', zoneSysId);
+            }
+            snapshot.insert();
+
+            // Update the Dark Store record
+            stores.setValue('pulse_score', compositeScore);
+            stores.setValue('pulse_score_band', band);
+            stores.update();
+
+            // Check for band transition to Red
+            if (band === 'red' &amp;&amp; previousBand !== 'red' &amp;&amp; previousBand !== '') {
+                gs.info('PulseScore Recalculation: Store ' + storeName + ' transitioned to RED band (score: ' + compositeScore + '). Sending notification.');
+
+                // Notify ops_leadership role group
+                gs.eventQueue('x_2145749_qc.pulse_score_red_alert', stores,
+                    'Store: ' + storeName + ', Score: ' + compositeScore + ', Band: RED',
+                    'x_2145749_qc.ops_leadership');
+
+                // Notify the store manager
+                var managerSysId = stores.getValue('manager');
+                if (managerSysId) {
+                    var manager = new GlideRecord('sys_user');
+                    if (manager.get(managerSysId)) {
+                        gs.eventQueue('x_2145749_qc.pulse_score_red_alert', stores,
+                            'Store: ' + storeName + ', Score: ' + compositeScore + ', Band: RED',
+                            manager.getValue('email'));
+                    }
+                }
+            }
+
+            gs.info('PulseScore Recalculation: Store ' + storeName + ' - Score: ' + compositeScore + ', Band: ' + band +
+                ' (Complaints: ' + complaintScore + ', Refunds: ' + refundScore +
+                ', SLA: ' + slaScore + ', Equipment: ' + equipmentScore +
+                ', Partner Incidents: ' + partnerIncidentScore + ')');
+
+        } catch (e) {
+            // Error handling: keep prior score unchanged, log error
+            gs.error('PulseScore Recalculation: Error calculating score for store ' + storeName + ': ' + e.message + '. Keeping prior score unchanged.');
+        }
+    }
+
+    gs.info('PulseScore Recalculation: Calculation cycle complete');
+})();</value>
+        <variable display_value="Script">71aa7f6647032200b4fad7527c9a719b</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_step_ext_output_bc68c7c8932647101ff0f40bdd03d6f1^id=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7^id=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_hub_step_ext_input action="delete_multiple" query="model=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_hub_step_ext_output action="delete_multiple" query="model=bc68c7c8932647101ff0f40bdd03d6f1^sys_idNOT IN7868c7c8932647101ff0f40bdd03d6fa"/>
+    <sys_hub_step_ext_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=string,uiTypeLabel=String</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>completed</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>result</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>result</label>
+        <mandatory>false</mandatory>
+        <max_length>8000</max_length>
+        <model display_value="Calculate PulseScores">bc68c7c8932647101ff0f40bdd03d6f1</model>
+        <model_id>bc68c7c8932647101ff0f40bdd03d6f1</model_id>
+        <model_table>sys_hub_step_instance</model_table>
+        <name>var__m_sys_hub_step_ext_output_bc68c7c8932647101ff0f40bdd03d6f1</name>
+        <next_element/>
+        <order>0</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_step_ext_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:46</sys_created_on>
+        <sys_id>7868c7c8932647101ff0f40bdd03d6fa</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:22:16</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_step_ext_output>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=bc68c7c8932647101ff0f40bdd03d6f1"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>result</element>
+        <help/>
+        <hint/>
+        <label>result</label>
+        <language>en</language>
+        <name>var__m_sys_hub_step_ext_output_bc68c7c8932647101ff0f40bdd03d6f1</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:47</sys_created_on>
+        <sys_id>93fcb5e8c3a6c310f35b3fac05013177</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>result</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_step_ext_output_bc68c7c8932647101ff0f40bdd03d6f1_result_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:47</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_hub_action_input action="delete_multiple" query="model=a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_hub_action_output action="delete_multiple" query="model=a468c7c8932647101ff0f40bdd03d6c9^sys_idNOT IN09680bc8932647101ff0f40bdd03d64a,0d680bc8932647101ff0f40bdd03d62e,41680bc8932647101ff0f40bdd03d637"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>action_error_output=true,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=boolean,uiTypeLabel=True/False,uiUniqueId=4e04606bd5534142bc84ebf225490e51-action-error,visible_in_ui=false</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>true</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>__dont_treat_as_error__</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="">boolean</internal_type>
+        <label>Don't Treat as Error</label>
+        <mandatory>false</mandatory>
+        <max_length>40</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">a468c7c8932647101ff0f40bdd03d6c9</model>
+        <model_id>a468c7c8932647101ff0f40bdd03d6c9</model_id>
+        <model_table>sys_hub_action_type_snapshot</model_table>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <next_element/>
+        <order>2</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>09680bc8932647101ff0f40bdd03d64a</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:22:16</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=09680bc8932647101ff0f40bdd03d64a"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=09680bc8932647101ff0f40bdd03d64a"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=string,uiTypeLabel=String,uiUniqueId=4e04606bd5534142bc84ebf225490e51-result</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>result</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Execution Result</label>
+        <mandatory>false</mandatory>
+        <max_length>8000</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">a468c7c8932647101ff0f40bdd03d6c9</model>
+        <model_id>a468c7c8932647101ff0f40bdd03d6c9</model_id>
+        <model_table>sys_hub_action_type_snapshot</model_table>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <next_element/>
+        <order>1</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:47</sys_created_on>
+        <sys_id>0d680bc8932647101ff0f40bdd03d62e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:47</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=0d680bc8932647101ff0f40bdd03d62e"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=0d680bc8932647101ff0f40bdd03d62e"/>
+    <sys_hub_action_output action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>action_error_output=true,co_type_name=FDACTIONSTATUS,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=object,uiTypeLabel=Object,uiUniqueId=4e04606bd5534142bc84ebf225490e51-action-status</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>__action_status__</element>
+        <element_prototype/>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_link/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Action Status</label>
+        <mandatory>false</mandatory>
+        <max_length>65000</max_length>
+        <model display_value="PulseScore Recalculation - Calculate Store Scores">a468c7c8932647101ff0f40bdd03d6c9</model>
+        <model_id>a468c7c8932647101ff0f40bdd03d6c9</model_id>
+        <model_table>sys_hub_action_type_snapshot</model_table>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <next_element/>
+        <order>1</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_action_output</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>41680bc8932647101ff0f40bdd03d637</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_action_output>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=41680bc8932647101ff0f40bdd03d637"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=41680bc8932647101ff0f40bdd03d637"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_hub_action_status_metadata action="delete_multiple" query="action_type_id=a468c7c8932647101ff0f40bdd03d6c9^sys_idNOT IN11680bc8932647101ff0f40bdd03d65e"/>
+    <sys_hub_action_status_metadata action="INSERT_OR_UPDATE">
+        <action_type_id display_value="PulseScore Recalculation - Calculate Store Scores">a468c7c8932647101ff0f40bdd03d6c9</action_type_id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>11680bc8932647101ff0f40bdd03d65e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+    </sys_hub_action_status_metadata>
+    <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=11680bc8932647101ff0f40bdd03d65e"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>result</element>
+        <help/>
+        <hint/>
+        <label>Execution Result</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>7efc75e8c3a6c310f35b3fac05013161</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Execution Result</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9_result_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>__action_status__</element>
+        <help/>
+        <hint/>
+        <label>Action Status</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>fefc75e8c3a6c310f35b3fac0501313c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Action Status</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9___action_status___en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>__dont_treat_as_error__</element>
+        <help/>
+        <hint/>
+        <label>Don't Treat as Error</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:48</sys_created_on>
+        <sys_id>fefc75e8c3a6c310f35b3fac0501315b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Don't Treat as Error</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9___dont_treat_as_error___en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:48</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_output_a468c7c8932647101ff0f40bdd03d6c9"/>
+    <sys_hub_action_type_definition action="UPDATE">
+        <sys_id>4e04606bd5534142bc84ebf225490e51</sys_id>
+        <latest_snapshot>a468c7c8932647101ff0f40bdd03d6c9</latest_snapshot>
+        <compiler_build>glide-australia-02-11-2026__patch3-05-25-2026_06-12-2026_1106.zip</compiler_build>
+    </sys_hub_action_type_definition>
+</record_update>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description>Creates all demo data for the Quick Commerce Ops Platform. Run this script on any fresh instance to populate stores, zones, partners, equipment, issues, incidents, cases, refunds, and pulse scores. Safe to re-run - it cleans existing data first.</description>
+        <name>QC Platform - Seed Demo Data</name>
+        <record_for_rollback>false</record_for_rollback>
+        <script><![CDATA[(function seedDemoData() {
+    try {
+        gs.info('=== QC Platform: Starting Demo Data Seed ===');
+
+        // ============================================================
+        // STEP 0: Clean up existing seed data (makes re-run safe)
+        // ============================================================
+        var tablesToClean = [
+            'x_2145749_qc_pulse_score',
+            'x_2145749_qc_store_issue',
+            'x_2145749_qc_partner_incident',
+            'x_2145749_qc_equipment',
+            'x_2145749_qc_refund_request',
+            'x_2145749_qc_delivery_partner',
+            'x_2145749_qc_dark_store',
+            'x_2145749_qc_delivery_zone'
+        ];
+
+        for (var t = 0; t < tablesToClean.length; t++) {
+            var delGr = new GlideRecord(tablesToClean[t]);
+            delGr.deleteMultiple();
+            gs.info('Cleaned table: ' + tablesToClean[t]);
+        }
+
+        // Clean cases linked to our stores
+        var caseDel = new GlideRecord('sn_customerservice_case');
+        caseDel.addNotNullQuery('x_2145749_qc_dark_store');
+        caseDel.query();
+        var caseCount = 0;
+        while (caseDel.next()) {
+            caseDel.deleteRecord();
+            caseCount++;
+        }
+        gs.info('Cleaned ' + caseCount + ' linked customer service cases');
+
+        // ============================================================
+        // STEP 1: Create Delivery Zones (24 zones across 9 cities)
+        // ============================================================
+        gs.info('--- Creating Delivery Zones ---');
+
+        var zoneData = [
+            { zone_name: 'Koramangala', zone_code: 'BLR-KOR', city: 'Bangalore' },
+            { zone_name: 'Whitefield', zone_code: 'BLR-WTF', city: 'Bangalore' },
+            { zone_name: 'Indiranagar', zone_code: 'BLR-IND', city: 'Bangalore' },
+            { zone_name: 'Madhapur', zone_code: 'HYD-MDP', city: 'Hyderabad' },
+            { zone_name: 'Gachibowli', zone_code: 'HYD-GCB', city: 'Hyderabad' },
+            { zone_name: 'Hitech City', zone_code: 'HYD-HTC', city: 'Hyderabad' },
+            { zone_name: 'Andheri West', zone_code: 'MUM-ANW', city: 'Mumbai' },
+            { zone_name: 'Bandra Kurla Complex', zone_code: 'MUM-BKC', city: 'Mumbai' },
+            { zone_name: 'Powai', zone_code: 'MUM-PWI', city: 'Mumbai' },
+            { zone_name: 'Dwarka', zone_code: 'DEL-DWK', city: 'Delhi' },
+            { zone_name: 'Rohini', zone_code: 'DEL-RHN', city: 'Delhi' },
+            { zone_name: 'Saket', zone_code: 'DEL-SKT', city: 'Delhi' },
+            { zone_name: 'T Nagar', zone_code: 'CHN-TNG', city: 'Chennai' },
+            { zone_name: 'Adyar', zone_code: 'CHN-ADY', city: 'Chennai' },
+            { zone_name: 'New Town', zone_code: 'KOL-NTW', city: 'Kolkata' },
+            { zone_name: 'Park Street', zone_code: 'KOL-PKS', city: 'Kolkata' },
+            { zone_name: 'Salt Lake', zone_code: 'KOL-SLK', city: 'Kolkata' },
+            { zone_name: 'Kothrud', zone_code: 'PUN-KTH', city: 'Pune' },
+            { zone_name: 'Hinjewadi', zone_code: 'PUN-HNJ', city: 'Pune' },
+            { zone_name: 'Viman Nagar', zone_code: 'PUN-VMN', city: 'Pune' },
+            { zone_name: 'Satellite', zone_code: 'AHM-SGH', city: 'Ahmedabad' },
+            { zone_name: 'Navrangpura', zone_code: 'AHM-NVR', city: 'Ahmedabad' },
+            { zone_name: 'Malviya Nagar', zone_code: 'JAI-MLV', city: 'Jaipur' },
+            { zone_name: 'Vaishali Nagar', zone_code: 'JAI-VSN', city: 'Jaipur' }
+        ];
+
+        var zoneSysIds = {};
+        for (var z = 0; z < zoneData.length; z++) {
+            var zoneGr = new GlideRecord('x_2145749_qc_delivery_zone');
+            zoneGr.initialize();
+            zoneGr.setValue('zone_name', zoneData[z].zone_name);
+            zoneGr.setValue('zone_code', zoneData[z].zone_code);
+            zoneGr.setValue('city', zoneData[z].city);
+            zoneGr.setValue('active', true);
+            var zoneSysId = zoneGr.insert();
+            zoneSysIds[zoneData[z].zone_code] = zoneSysId.toString();
+        }
+        gs.info('Created ' + zoneData.length + ' delivery zones');
+
+        // ============================================================
+        // STEP 2: Create Dark Stores (~80 stores)
+        // ============================================================
+        gs.info('--- Creating Dark Stores ---');
+
+        // Helper to get a zone sys_id for a city
+        function getZoneForCity(city, index) {
+            var cityZones = [];
+            for (var zk in zoneSysIds) {
+                if (zk.indexOf(city) === 0) {
+                    cityZones.push(zoneSysIds[zk]);
+                }
+            }
+            if (cityZones.length === 0) return '';
+            return cityZones[index % cityZones.length];
+        }
+
+        // Hero stores with specific health profiles
+        var heroStores = [
+            { store_name: 'QC Koramangala Hub', store_code: 'BLR-KOR-H01', city: 'Bangalore', zoneCode: 'BLR-KOR', status: 'active', daily_order_volume: 1100, pulse_score: 72, pulse_score_band: 'amber', target_delivery_minutes: 10 },
+            { store_name: 'QC Madhapur Prime', store_code: 'HYD-MDP-H01', city: 'Hyderabad', zoneCode: 'HYD-MDP', status: 'active', daily_order_volume: 950, pulse_score: 92, pulse_score_band: 'green', target_delivery_minutes: 9 },
+            { store_name: 'QC Andheri Express', store_code: 'MUM-ANW-H01', city: 'Mumbai', zoneCode: 'MUM-ANW', status: 'active', daily_order_volume: 1200, pulse_score: 68, pulse_score_band: 'amber', target_delivery_minutes: 12 },
+            { store_name: 'QC Dwarka Central', store_code: 'DEL-DWK-H01', city: 'Delhi', zoneCode: 'DEL-DWK', status: 'active', daily_order_volume: 800, pulse_score: 55, pulse_score_band: 'red', target_delivery_minutes: 14 },
+            { store_name: 'QC T Nagar Quick', store_code: 'CHN-TNG-H01', city: 'Chennai', zoneCode: 'CHN-TNG', status: 'active', daily_order_volume: 700, pulse_score: 74, pulse_score_band: 'amber', target_delivery_minutes: 11 },
+            { store_name: 'QC New Town Rapid', store_code: 'KOL-NTW-H01', city: 'Kolkata', zoneCode: 'KOL-NTW', status: 'active', daily_order_volume: 650, pulse_score: 58, pulse_score_band: 'red', target_delivery_minutes: 15 },
+            { store_name: 'QC Kothrud Swift', store_code: 'PUN-KTH-H01', city: 'Pune', zoneCode: 'PUN-KTH', status: 'active', daily_order_volume: 880, pulse_score: 95, pulse_score_band: 'green', target_delivery_minutes: 8 }
+        ];
+
+        var storeSysIds = [];
+        var storeCities = [];
+
+        for (var h = 0; h < heroStores.length; h++) {
+            var heroGr = new GlideRecord('x_2145749_qc_dark_store');
+            heroGr.initialize();
+            heroGr.setValue('store_name', heroStores[h].store_name);
+            heroGr.setValue('store_code', heroStores[h].store_code);
+            heroGr.setValue('city', heroStores[h].city);
+            heroGr.setValue('zone', zoneSysIds[heroStores[h].zoneCode]);
+            heroGr.setValue('status', heroStores[h].status);
+            heroGr.setValue('daily_order_volume', heroStores[h].daily_order_volume);
+            heroGr.setValue('pulse_score', heroStores[h].pulse_score);
+            heroGr.setValue('pulse_score_band', heroStores[h].pulse_score_band);
+            heroGr.setValue('target_delivery_minutes', heroStores[h].target_delivery_minutes);
+            var heroId = heroGr.insert();
+            storeSysIds.push(heroId.toString());
+            storeCities.push(heroStores[h].city);
+        }
+
+        // Tier-1 stores across cities
+        var cityConfigs = [
+            { city: 'Bangalore', prefix: 'BLR', neighborhoods: ['HSR Layout', 'Jayanagar', 'Electronic City', 'Marathahalli', 'JP Nagar', 'BTM Layout', 'Hebbal', 'Yelahanka', 'Bannerghatta'] },
+            { city: 'Hyderabad', prefix: 'HYD', neighborhoods: ['Kukatpally', 'Secunderabad', 'Jubilee Hills', 'Banjara Hills', 'LB Nagar', 'Ameerpet', 'Kondapur', 'Miyapur'] },
+            { city: 'Mumbai', prefix: 'MUM', neighborhoods: ['Malad', 'Goregaon', 'Thane', 'Vashi', 'Juhu', 'Dadar', 'Worli', 'Lower Parel', 'Kandivali'] },
+            { city: 'Delhi', prefix: 'DEL', neighborhoods: ['Janakpuri', 'Pitampura', 'Lajpat Nagar', 'Karol Bagh', 'Connaught Place', 'Vasant Kunj', 'Mayur Vihar', 'Nehru Place', 'Greater Kailash'] },
+            { city: 'Chennai', prefix: 'CHN', neighborhoods: ['Velachery', 'Anna Nagar', 'Tambaram', 'Porur', 'Mylapore', 'Chromepet', 'Sholinganallur', 'Guindy', 'Nungambakkam'] },
+            { city: 'Kolkata', prefix: 'KOL', neighborhoods: ['Howrah', 'Dum Dum', 'Jadavpur', 'Ballygunge', 'Behala', 'Baranagar', 'Lake Town', 'Gariahat'] },
+            { city: 'Pune', prefix: 'PUN', neighborhoods: ['Wakad', 'Baner', 'Hadapsar', 'Aundh', 'Magarpatta', 'Pimpri', 'Viman Nagar', 'Kalyani Nagar', 'Shivaji Nagar'] },
+            { city: 'Ahmedabad', prefix: 'AHM', neighborhoods: ['Prahlad Nagar', 'SG Highway', 'Vastrapur', 'Maninagar', 'Bopal', 'Chandkheda', 'Gota', 'Thaltej'] },
+            { city: 'Jaipur', prefix: 'JAI', neighborhoods: ['C Scheme', 'Mansarovar', 'Jagatpura', 'Tonk Road', 'Raja Park', 'Sodala', 'Vidyadhar Nagar', 'Sitapura'] }
+        ];
+
+        var statuses = ['active', 'active', 'active', 'active', 'active', 'active', 'operational', 'operational', 'maintenance'];
+        var bands = ['green', 'green', 'green', 'amber', 'amber', 'red'];
+
+        for (var c = 0; c < cityConfigs.length; c++) {
+            var cfg = cityConfigs[c];
+            var neighborhoodCount = cfg.neighborhoods.length;
+            for (var n = 0; n < neighborhoodCount; n++) {
+                var storeGr = new GlideRecord('x_2145749_qc_dark_store');
+                storeGr.initialize();
+                var storeName = 'QC ' + cfg.neighborhoods[n];
+                var storeCode = cfg.prefix + '-' + String(n + 1).padStart(3, '0');
+                var score = 60 + Math.floor(Math.random() * 38);
+                var band = score >= 85 ? 'green' : (score >= 70 ? 'amber' : 'red');
+                var volume = 200 + Math.floor(Math.random() * 1000);
+                var targetMin = 8 + Math.floor(Math.random() * 7);
+
+                storeGr.setValue('store_name', storeName);
+                storeGr.setValue('store_code', storeCode);
+                storeGr.setValue('city', cfg.city);
+                storeGr.setValue('zone', getZoneForCity(cfg.prefix, n));
+                storeGr.setValue('status', statuses[n % statuses.length]);
+                storeGr.setValue('daily_order_volume', volume);
+                storeGr.setValue('pulse_score', score);
+                storeGr.setValue('pulse_score_band', band);
+                storeGr.setValue('target_delivery_minutes', targetMin);
+                var storeId = storeGr.insert();
+                storeSysIds.push(storeId.toString());
+                storeCities.push(cfg.city);
+            }
+        }
+        gs.info('Created ' + storeSysIds.length + ' dark stores (7 hero + tier-1)');
+
+        // ============================================================
+        // STEP 3: Create Delivery Partners (12 partners)
+        // ============================================================
+        gs.info('--- Creating Delivery Partners ---');
+
+        var partnerData = [
+            { name: 'Rajesh Kumar', phone: '+91-9876543210', vehicle: 'bike', status: 'active', zoneCode: 'BLR-KOR' },
+            { name: 'Amit Sharma', phone: '+91-9812345678', vehicle: 'scooter', status: 'active', zoneCode: 'BLR-WTF' },
+            { name: 'Vikram Singh', phone: '+91-9723456789', vehicle: 'bike', status: 'active', zoneCode: 'DEL-DWK' },
+            { name: 'Suresh Patel', phone: '+91-9634567890', vehicle: 'van', status: 'active', zoneCode: 'MUM-ANW' },
+            { name: 'Sanjay Gupta', phone: '+91-9545678901', vehicle: 'bike', status: 'suspended', zoneCode: 'DEL-RHN' },
+            { name: 'Ravi Verma', phone: '+91-9456789012', vehicle: 'scooter', status: 'active', zoneCode: 'HYD-MDP' },
+            { name: 'Deepak Yadav', phone: '+91-9367890123', vehicle: 'bike', status: 'active', zoneCode: 'KOL-NTW' },
+            { name: 'Manoj Tiwari', phone: '+91-9278901234', vehicle: 'scooter', status: 'active', zoneCode: 'CHN-TNG' },
+            { name: 'Karthik Raman', phone: '+91-9189012345', vehicle: 'bike', status: 'inactive', zoneCode: 'CHN-ADY' },
+            { name: 'Arjun Nair', phone: '+91-9090123456', vehicle: 'van', status: 'active', zoneCode: 'PUN-KTH' },
+            { name: 'Mohammed Irfan', phone: '+91-9901234567', vehicle: 'bike', status: 'active', zoneCode: 'HYD-GCB' },
+            { name: 'Pradeep Das', phone: '+91-9812345098', vehicle: 'scooter', status: 'active', zoneCode: 'KOL-PKS' }
+        ];
+
+        var partnerSysIds = [];
+        var currentUserId = gs.getUserID();
+
+        for (var p = 0; p < partnerData.length; p++) {
+            var partnerGr = new GlideRecord('x_2145749_qc_delivery_partner');
+            partnerGr.initialize();
+            partnerGr.setValue('partner_name', partnerData[p].name);
+            partnerGr.setValue('phone', partnerData[p].phone);
+            partnerGr.setValue('vehicle_type', partnerData[p].vehicle);
+            partnerGr.setValue('status', partnerData[p].status);
+            partnerGr.setValue('user', currentUserId);
+            partnerGr.setValue('home_zone', zoneSysIds[partnerData[p].zoneCode] || '');
+            var partnerId = partnerGr.insert();
+            partnerSysIds.push(partnerId.toString());
+        }
+        gs.info('Created ' + partnerSysIds.length + ' delivery partners');
+
+        // ============================================================
+        // STEP 4: Create Equipment (~28 items)
+        // ============================================================
+        gs.info('--- Creating Equipment ---');
+
+        var equipTypes = ['chiller', 'freezer', 'packing_station', 'barcode_scanner', 'generator'];
+        var equipStatuses = ['operational', 'operational', 'operational', 'degraded', 'down', 'maintenance'];
+        var equipCities = ['BLR', 'HYD', 'MUM', 'DEL', 'CHN', 'KOL', 'PUN'];
+        var equipCount = 0;
+
+        for (var ec = 0; ec < equipCities.length; ec++) {
+            var typesForCity = equipTypes.slice(0, 4);
+            if (ec % 3 === 0) typesForCity.push('generator');
+
+            for (var et = 0; et < typesForCity.length; et++) {
+                var eqGr = new GlideRecord('x_2145749_qc_equipment');
+                eqGr.initialize();
+                var assetTag = 'EQ-' + equipCities[ec] + '-' + typesForCity[et].toUpperCase().substring(0, 5) + '-' + String(et + 1).padStart(3, '0');
+                eqGr.setValue('asset_tag', assetTag);
+                eqGr.setValue('equipment_type', typesForCity[et]);
+                // Assign to a store in this city
+                var cityStoreIdx = 0;
+                for (var si = 0; si < storeCities.length; si++) {
+                    if (storeCities[si].substring(0, 3).toUpperCase() === equipCities[ec]) {
+                        cityStoreIdx = si;
+                        break;
+                    }
+                }
+                eqGr.setValue('dark_store', storeSysIds[(cityStoreIdx + et) % storeSysIds.length]);
+                eqGr.setValue('operational_status', equipStatuses[(ec + et) % equipStatuses.length]);
+                var installDate = new GlideDateTime();
+                installDate.addDaysLocalTime(-1 * (90 + Math.floor(Math.random() * 270)));
+                eqGr.setValue('install_date', installDate);
+                eqGr.insert();
+                equipCount++;
+            }
+        }
+        gs.info('Created ' + equipCount + ' equipment items');
+
+        // ============================================================
+        // STEP 5: Create Store Issues (~22 issues)
+        // ============================================================
+        gs.info('--- Creating Store Issues ---');
+
+        var issueCategories = ['inventory_discrepancy', 'stockout', 'equipment_failure', 'picker_performance', 'delivery_delay'];
+        var issueSeverities = ['critical', 'high', 'medium', 'low'];
+        var issueStates = ['open', 'new', 'in_progress', 'resolved'];
+
+        var issueDescriptions = [
+            'Inventory count mismatch detected during morning audit - system shows 45 units but physical count is 32',
+            'Multiple SKUs out of stock affecting customer orders in peak hours',
+            'Walk-in freezer temperature fluctuating beyond safe limits',
+            'Picker completion rate dropped below 80% target for 3 consecutive shifts',
+            'Average delivery time exceeded 15 minutes for last 50 orders',
+            'Barcode scanner malfunction causing delays in order processing',
+            'Discrepancy in dairy section - possible spoilage not reflected in system',
+            'Generator backup failure during power outage affected cold storage',
+            'New picker team struggling with layout - average pick time 4.2 minutes',
+            'Delivery bottleneck at loading dock during evening rush',
+            'Chiller unit showing degraded performance - temperature rising slowly',
+            'Stock received but not updated in system for 6 hours',
+            'Missing items reported by 8 customers in last shift',
+            'Packing station conveyor belt jamming intermittently',
+            'Partner wait time at store exceeding 5 minutes average',
+            'Frozen foods section temperature alarm triggered twice today',
+            'Inventory variance of 12% detected in beverages category',
+            'Critical stockout on top-10 selling items during weekend',
+            'Equipment calibration overdue on 3 barcode scanners',
+            'Picker assignment algorithm not distributing orders evenly',
+            'Delivery route optimization failing for zone boundary orders',
+            'Systematic 5-unit variance in snacks aisle for past week'
+        ];
+
+        var issueCount = 22;
+        for (var i = 0; i < issueCount; i++) {
+            var issueGr = new GlideRecord('x_2145749_qc_store_issue');
+            issueGr.initialize();
+            issueGr.setValue('dark_store', storeSysIds[i % storeSysIds.length]);
+            issueGr.setValue('issue_category', issueCategories[i % issueCategories.length]);
+            issueGr.setValue('severity', issueSeverities[i % issueSeverities.length]);
+            issueGr.setValue('state', issueStates[i % issueStates.length]);
+            issueGr.setValue('description', issueDescriptions[i % issueDescriptions.length]);
+            issueGr.setValue('quantity_variance', Math.floor(Math.random() * 50));
+            issueGr.setValue('affects_pulse_score', i % 3 !== 0 ? 'true' : 'false');
+            var reportedAt = new GlideDateTime();
+            reportedAt.addDaysLocalTime(-1 * Math.floor(Math.random() * 14));
+            issueGr.setValue('reported_at', reportedAt);
+            issueGr.insert();
+        }
+        gs.info('Created ' + issueCount + ' store issues');
+
+        // ============================================================
+        // STEP 6: Create Partner Incidents (~18 incidents)
+        // ============================================================
+        gs.info('--- Creating Partner Incidents ---');
+
+        var incidentTypes = ['order_not_ready', 'wrong_items', 'customer_unreachable', 'vehicle_breakdown', 'app_issue', 'harassment', 'unsafe_conditions', 'other'];
+        var incidentSeverities = ['critical', 'high', 'medium', 'low'];
+        var incidentStates = ['new', 'open', 'resolved', 'closed'];
+
+        var incidentDescriptions = [
+            'Order not packed when partner arrived - waited 12 minutes',
+            'Wrong items given to partner - customer refused delivery',
+            'Customer not reachable at delivery address after 3 call attempts',
+            'Bike chain broke during delivery, order delayed by 25 minutes',
+            'App crashed during navigation, lost delivery route',
+            'Verbal abuse from store staff during peak hours',
+            'Wet floor in loading area without warning signs - near slip',
+            'System assigned order to wrong zone partner',
+            'Multiple items missing from sealed bag, customer complained',
+            'Partner vehicle tyre puncture on delivery route',
+            'Store security did not allow entry without prior notification',
+            'App GPS not updating, showing wrong partner location to customer',
+            'Aggressive dog at customer premises, unable to deliver',
+            'Store packing team gave items for wrong order number',
+            'Temperature-sensitive items left out too long before handover',
+            'Partner waited 20 minutes for order, no communication from store',
+            'Customer dispute about delivery time, demanded compensation',
+            'Loading dock access blocked by parked vehicles'
+        ];
+
+        var incidentCount = 18;
+        for (var ic = 0; ic < incidentCount; ic++) {
+            var incGr = new GlideRecord('x_2145749_qc_partner_incident');
+            incGr.initialize();
+            incGr.setValue('partner', partnerSysIds[ic % partnerSysIds.length]);
+            incGr.setValue('dark_store', storeSysIds[ic % storeSysIds.length]);
+            incGr.setValue('incident_type', incidentTypes[ic % incidentTypes.length]);
+            incGr.setValue('severity', incidentSeverities[ic % incidentSeverities.length]);
+            incGr.setValue('state', incidentStates[ic % incidentStates.length]);
+            incGr.setValue('description', incidentDescriptions[ic]);
+            incGr.setValue('order_number', 'ORD-' + String(1000000 + ic));
+            incGr.setValue('reported_by', currentUserId);
+            var incReportedAt = new GlideDateTime();
+            incReportedAt.addDaysLocalTime(-1 * Math.floor(Math.random() * 21));
+            incGr.setValue('reported_at', incReportedAt);
+            incGr.insert();
+        }
+        gs.info('Created ' + incidentCount + ' partner incidents');
+
+        // ============================================================
+        // STEP 7: Create Customer Service Cases (~100 cases)
+        // ============================================================
+        gs.info('--- Creating Customer Service Cases ---');
+
+        var caseDescriptions = [
+            'Order arrived with damaged packaging and items inside were crushed',
+            'Received wrong items - ordered fruits but got vegetables',
+            'Delivery was 45 minutes late, food items became warm',
+            'Missing 3 items from my order but full amount charged',
+            'Delivered to wrong address despite correct address in app',
+            'Quality of vegetables was very poor - wilted and old',
+            'Order cancelled but refund not received after 5 days',
+            'Delivery partner was rude and threw the package',
+            'Received expired products - milk past expiry by 2 days',
+            'Double charged for single order, need immediate refund',
+            'Packaging was torn, items fell out during delivery',
+            'Ordered ice cream, arrived completely melted',
+            'App showed delivery complete but never received order',
+            'Partial delivery - only 5 of 12 items received',
+            'Received someone elses order entirely',
+            'Product quality not matching app photos at all',
+            'Delivery slot missed, no notification or update',
+            'Allergen items included despite explicit notes',
+            'Frozen items delivered thawed, safety concern',
+            'Repeated issues with same store, third complaint this week'
+        ];
+
+        var resolutionTypes = ['refund', 'replacement', 'credit', 'cancel', 'resolved'];
+        var casesCreated = 0;
+        var caseSysIds = [];
+
+        for (var cs = 0; cs < 100; cs++) {
+            var caseGr = new GlideRecord('sn_customerservice_case');
+            caseGr.initialize();
+            caseGr.setValue('short_description', caseDescriptions[cs % caseDescriptions.length].substring(0, 80));
+            caseGr.setValue('description', caseDescriptions[cs % caseDescriptions.length]);
+
+            // Mix: 60% resolved, 25% in_progress, 15% new
+            var stateVal;
+            if (cs < 60) {
+                stateVal = '3'; // Resolved
+            } else if (cs < 85) {
+                stateVal = '2'; // In Progress
+            } else {
+                stateVal = '1'; // New
+            }
+            caseGr.setValue('state', stateVal);
+            caseGr.setValue('priority', String(1 + (cs % 4)));
+            caseGr.setValue('x_2145749_qc_dark_store', storeSysIds[cs % storeSysIds.length]);
+            caseGr.setValue('x_2145749_qc_auto_resolved', cs % 5 === 0 ? 'true' : 'false');
+            var orderValue = 150 + Math.floor(Math.random() * 650);
+            caseGr.setValue('x_2145749_qc_order_value', orderValue);
+            caseGr.setValue('x_2145749_qc_resolution_type', resolutionTypes[cs % resolutionTypes.length]);
+            var caseId = caseGr.insert();
+            caseSysIds.push(caseId.toString());
+            casesCreated++;
+        }
+        gs.info('Created ' + casesCreated + ' customer service cases');
+
+        // ============================================================
+        // STEP 8: Create Refund Requests (~30 refunds)
+        // ============================================================
+        gs.info('--- Creating Refund Requests ---');
+
+        var refundTypes = ['damaged_item', 'missing_item', 'wrong_item', 'late_delivery', 'quality_issue'];
+        var refundDecisions = ['approved', 'approved', 'approved', 'denied', 'pending'];
+        var refundCount = 30;
+
+        for (var r = 0; r < refundCount; r++) {
+            var refGr = new GlideRecord('x_2145749_qc_refund_request');
+            refGr.initialize();
+            refGr.setValue('order_number', 'ORD-' + String(2000000 + r));
+            refGr.setValue('request_type', refundTypes[r % refundTypes.length]);
+            var amtReq = 100 + Math.floor(Math.random() * 1900);
+            refGr.setValue('amount_requested', amtReq);
+            var decision = refundDecisions[r % refundDecisions.length];
+            var amtApproved = decision === 'approved' ? Math.floor(amtReq * (0.5 + Math.random() * 0.5)) : 0;
+            refGr.setValue('amount_approved', amtApproved);
+            refGr.setValue('decision', decision);
+            var isFraud = r % 5 === 0;
+            refGr.setValue('fraud_flagged', isFraud ? 'true' : 'false');
+            refGr.setValue('fraud_risk_score', isFraud ? (60 + Math.floor(Math.random() * 40)) : Math.floor(Math.random() * 30));
+            refGr.setValue('customer', currentUserId);
+            refGr.setValue('case', caseSysIds[r % caseSysIds.length]);
+            var claimTs = new GlideDateTime();
+            claimTs.addDaysLocalTime(-1 * Math.floor(Math.random() * 30));
+            refGr.setValue('claim_timestamp', claimTs);
+            var orderTs = new GlideDateTime();
+            orderTs.addDaysLocalTime(-1 * (Math.floor(Math.random() * 30) + 1));
+            refGr.setValue('order_timestamp', orderTs);
+            var notes = decision === 'approved' ? 'Verified claim, refund processed' : (decision === 'denied' ? 'Claim does not match delivery records' : 'Under review');
+            refGr.setValue('decision_notes', notes);
+            refGr.insert();
+        }
+        gs.info('Created ' + refundCount + ' refund requests');
+
+        // ============================================================
+        // STEP 9: Create Pulse Scores (one per store)
+        // ============================================================
+        gs.info('--- Creating Pulse Scores ---');
+
+        var pulseCount = 0;
+        for (var ps = 0; ps < storeSysIds.length; ps++) {
+            var pulseGr = new GlideRecord('x_2145749_qc_pulse_score');
+            pulseGr.initialize();
+            pulseGr.setValue('dark_store', storeSysIds[ps]);
+
+            // Determine score - reuse store scores for hero stores
+            var pulseScore;
+            if (ps < heroStores.length) {
+                pulseScore = heroStores[ps].pulse_score;
+            } else {
+                pulseScore = 60 + Math.floor(Math.random() * 38);
+            }
+            var pulseBand = pulseScore >= 85 ? 'green' : (pulseScore >= 70 ? 'amber' : 'red');
+
+            pulseGr.setValue('score', pulseScore);
+            pulseGr.setValue('band', pulseBand);
+            var snapTime = new GlideDateTime();
+            snapTime.addDaysLocalTime(-1 * Math.floor(Math.random() * 3));
+            pulseGr.setValue('snapshot_time', snapTime);
+            pulseGr.setValue('sla_compliance_score', 75 + Math.floor(Math.random() * 25));
+            pulseGr.setValue('inventory_accuracy_score', 80 + Math.floor(Math.random() * 20));
+            pulseGr.setValue('equipment_uptime_score', 70 + Math.floor(Math.random() * 30));
+            pulseGr.setValue('partner_incident_score', 75 + Math.floor(Math.random() * 25));
+            pulseGr.setValue('refund_fraud_score', 80 + Math.floor(Math.random() * 20));
+            pulseGr.setValue('complaint_volume_score', 60 + Math.floor(Math.random() * 40));
+            pulseGr.setValue('complaint_severity_score', 70 + Math.floor(Math.random() * 30));
+            pulseGr.setValue('open_complaint_count', Math.floor(Math.random() * 8));
+            pulseGr.setValue('open_store_issue_count', Math.floor(Math.random() * 5));
+            pulseGr.insert();
+            pulseCount++;
+        }
+        gs.info('Created ' + pulseCount + ' pulse scores');
+
+        // ============================================================
+        gs.info('=== QC Platform: Demo Data Seed COMPLETE ===');
+        gs.info('Summary: ' + zoneData.length + ' zones, ' + storeSysIds.length + ' stores, ' + partnerSysIds.length + ' partners, ' + equipCount + ' equipment, ' + issueCount + ' issues, ' + incidentCount + ' incidents, ' + casesCreated + ' cases, ' + refundCount + ' refunds, ' + pulseCount + ' pulse scores');
+
+    } catch (e) {
+        gs.error('QC Platform Seed Data ERROR: ' + e.message);
+    }
+})();
+]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-04 01:07:21</sys_created_on>
+        <sys_id>c3fb5728c3a20710f35b3fac050131e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QC Platform - Seed Demo Data</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_fix_</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-04 01:07:21</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

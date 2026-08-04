@@ -9,7 +9,7 @@
         <includes_roles/>
         <name>x_2145749_quick_co99.user</name>
         <scoped_admin>false</scoped_admin>
-        <suffix/>
+        <suffix>x_2145749_quick_co99.user</suffix>
         <sys_class_name>sys_user_role</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 17:21:17</sys_created_on>
