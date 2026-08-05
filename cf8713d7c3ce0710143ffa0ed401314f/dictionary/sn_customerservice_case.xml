@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element attributes="enforce_dot_walk_cross_scope_access=true,timeFromCreateToActivate=23000" db_object_id="77146b13c3424710143ffa0ed4013138" label="Sn Customerservice Case" max_length="40" name="sn_customerservice_case" type="collection">
-        <element label="Dark Store" max_length="32" name="x_2145749_qc_dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
-        <element label="Delivery Partner" max_length="32" name="x_2145749_qc_delivery_partner" reference="x_2145749_qc_delivery_partner" type="reference"/>
+        <element label="Fraud Review Required" max_length="40" name="x_2145749_qc_fraud_review_required" type="boolean"/>
+        <element label="Order Number" max_length="40" name="x_2145749_qc_order_number" type="string"/>
         <element attributes="scale=2" label="Order Value" max_length="20" name="x_2145749_qc_order_value" type="decimal"/>
-        <element label="Auto-Resolved by Flow" max_length="40" name="x_2145749_qc_auto_resolved" type="boolean"/>
         <element default="pending" label="Resolution Type" max_length="40" name="x_2145749_qc_resolution_type" type="choice">
             <choice>
-                <element inactive_on_update="false" label="No Action - Not Substantiated" sequence="6" value="no_action"/>
                 <element inactive_on_update="false" label="Partial Refund" sequence="3" value="partial_refund"/>
+                <element inactive_on_update="false" label="Reorder Dispatched" sequence="4" value="reorder"/>
                 <element inactive_on_update="false" label="Goodwill Credit" sequence="5" value="goodwill_credit"/>
                 <element inactive_on_update="false" label="Pending" sequence="1" value="pending"/>
-                <element inactive_on_update="false" label="Reorder Dispatched" sequence="4" value="reorder"/>
                 <element inactive_on_update="false" label="Full Refund" sequence="2" value="full_refund"/>
+                <element inactive_on_update="false" label="No Action - Not Substantiated" sequence="6" value="no_action"/>
             </choice>
         </element>
-        <element label="Order Number" max_length="40" name="x_2145749_qc_order_number" type="string"/>
-        <element label="Fraud Review Required" max_length="40" name="x_2145749_qc_fraud_review_required" type="boolean"/>
         <element label="Delivery Zone" max_length="32" name="x_2145749_qc_zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
         <element label="Complaint Type" max_length="40" name="x_2145749_qc_complaint_type" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Other" sequence="9" value="other"/>
-                <element inactive_on_update="false" label="Missing Items" sequence="2" value="missing_items"/>
-                <element inactive_on_update="false" label="Product Quality Issue" sequence="6" value="quality_issue"/>
-                <element inactive_on_update="false" label="Overcharge / Billing Issue" sequence="5" value="overcharge"/>
-                <element inactive_on_update="false" label="App / Technical Issue" sequence="8" value="app_technical"/>
-                <element inactive_on_update="false" label="Late Delivery" sequence="1" value="late_delivery"/>
                 <element inactive_on_update="false" label="Delivery Partner Behavior" sequence="7" value="partner_behavior"/>
-                <element inactive_on_update="false" label="Damaged / Spoiled Items" sequence="4" value="damaged_items"/>
                 <element inactive_on_update="false" label="Wrong Items" sequence="3" value="wrong_items"/>
+                <element inactive_on_update="false" label="Damaged / Spoiled Items" sequence="4" value="damaged_items"/>
+                <element inactive_on_update="false" label="App / Technical Issue" sequence="8" value="app_technical"/>
+                <element inactive_on_update="false" label="Overcharge / Billing Issue" sequence="5" value="overcharge"/>
+                <element inactive_on_update="false" label="Late Delivery" sequence="1" value="late_delivery"/>
+                <element inactive_on_update="false" label="Other" sequence="9" value="other"/>
+                <element inactive_on_update="false" label="Product Quality Issue" sequence="6" value="quality_issue"/>
+                <element inactive_on_update="false" label="Missing Items" sequence="2" value="missing_items"/>
             </choice>
         </element>
+        <element label="Dark Store" max_length="32" name="x_2145749_qc_dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
+        <element label="Auto-Resolved by Flow" max_length="40" name="x_2145749_qc_auto_resolved" type="boolean"/>
+        <element label="Delivery Partner" max_length="32" name="x_2145749_qc_delivery_partner" reference="x_2145749_qc_delivery_partner" type="reference"/>
         <index name="index">
             <element name="x_2145749_qc_dark_store"/>
         </index>
         <index name="index2">
-            <element name="x_2145749_qc_delivery_partner"/>
+            <element name="x_2145749_qc_zone"/>
         </index>
         <index name="index3">
-            <element name="x_2145749_qc_zone"/>
+            <element name="x_2145749_qc_delivery_partner"/>
         </index>
     </element>
 </database>
