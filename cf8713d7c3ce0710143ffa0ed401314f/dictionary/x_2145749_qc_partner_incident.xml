@@ -1,50 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element audit="true" db_object_id="cb14e713c3424710143ffa0ed4013155" label="Delivery Partner Incident" max_length="40" name="x_2145749_qc_partner_incident" type="collection">
-        <element label="Resolution Notes" max_length="4000" name="resolution_notes" type="multi_two_lines"/>
-        <element label="Delivery Partner" mandatory="true" max_length="32" name="partner" reference="x_2145749_qc_delivery_partner" type="reference"/>
-        <element display="true" label="Number" max_length="40" name="number" read_only="true" read_only_option="instance_configured" type="string"/>
-        <element label="Incident Type" mandatory="true" max_length="40" name="incident_type" type="choice">
-            <choice>
-                <element inactive_on_update="false" label="Vehicle Breakdown" sequence="7" value="vehicle_breakdown"/>
-                <element inactive_on_update="false" label="Unsafe Store Conditions" sequence="3" value="unsafe_store_conditions"/>
-                <element inactive_on_update="false" label="Harassment or Safety Concern" sequence="6" value="harassment_safety"/>
-                <element inactive_on_update="false" label="Wrong Items Packed" sequence="2" value="wrong_items_packed"/>
-                <element inactive_on_update="false" label="App / Navigation Issue" sequence="5" value="app_navigation_issue"/>
-                <element inactive_on_update="false" label="Order Not Ready at Pickup" sequence="1" value="order_not_ready"/>
-                <element inactive_on_update="false" label="Other" sequence="8" value="other"/>
-                <element inactive_on_update="false" label="Customer Unreachable / Unavailable" sequence="4" value="customer_unreachable"/>
-            </choice>
-        </element>
-        <element label="Reported By" mandatory="true" max_length="32" name="reported_by" reference="sys_user" reference_qual="javascript:gs.hasRole('x_2145749_qc.delivery_partner')" type="reference" use_reference_qualifier="advanced"/>
-        <element label="Description" max_length="4000" name="description" type="multi_two_lines"/>
-        <element label="Related Order Number" max_length="40" name="order_number" type="string"/>
         <element default="new" label="State" max_length="40" name="state" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Resolved" sequence="4" value="resolved"/>
-                <element inactive_on_update="false" label="New" sequence="1" value="new"/>
                 <element inactive_on_update="false" label="Routed to Store Manager" sequence="3" value="routed_to_store"/>
                 <element inactive_on_update="false" label="Acknowledged" sequence="2" value="acknowledged"/>
+                <element inactive_on_update="false" label="New" sequence="1" value="new"/>
                 <element inactive_on_update="false" label="Closed" sequence="5" value="closed"/>
             </choice>
         </element>
+        <element label="Resolution Notes" max_length="4000" name="resolution_notes" type="multi_two_lines"/>
         <element label="Reported At" max_length="40" name="reported_at" type="glide_date_time"/>
-        <element default="medium" label="Severity" max_length="40" name="severity" type="choice">
+        <element label="Delivery Partner" mandatory="true" max_length="32" name="partner" reference="x_2145749_qc_delivery_partner" type="reference"/>
+        <element label="Incident Type" mandatory="true" max_length="40" name="incident_type" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Urgent - Safety" sequence="4" value="urgent"/>
-                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
-                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
-                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
+                <element inactive_on_update="false" label="Other" sequence="8" value="other"/>
+                <element inactive_on_update="false" label="Customer Unreachable / Unavailable" sequence="4" value="customer_unreachable"/>
+                <element inactive_on_update="false" label="Unsafe Store Conditions" sequence="3" value="unsafe_store_conditions"/>
+                <element inactive_on_update="false" label="Vehicle Breakdown" sequence="7" value="vehicle_breakdown"/>
+                <element inactive_on_update="false" label="Harassment or Safety Concern" sequence="6" value="harassment_safety"/>
+                <element inactive_on_update="false" label="Wrong Items Packed" sequence="2" value="wrong_items_packed"/>
+                <element inactive_on_update="false" label="Order Not Ready at Pickup" sequence="1" value="order_not_ready"/>
+                <element inactive_on_update="false" label="App / Navigation Issue" sequence="5" value="app_navigation_issue"/>
             </choice>
         </element>
+        <element default="medium" label="Severity" max_length="40" name="severity" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
+                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
+                <element inactive_on_update="false" label="Urgent - Safety" sequence="4" value="urgent"/>
+                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
+            </choice>
+        </element>
+        <element label="Description" max_length="4000" name="description" type="multi_two_lines"/>
+        <element display="true" label="Number" max_length="40" name="number" read_only="true" read_only_option="instance_configured" type="string"/>
+        <element label="Related Order Number" max_length="40" name="order_number" type="string"/>
         <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
         <index name="index">
             <element name="dark_store"/>
         </index>
         <index name="index2">
             <element name="partner"/>
-        </index>
-        <index name="index3">
-            <element name="reported_by"/>
         </index>
     </element>
 </database>
