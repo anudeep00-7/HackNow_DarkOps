@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Create Store Issue</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var method = request.httpMethod;
+    try {
+        var body;
+        if (method === 'GET') {
+            body = getList(request.queryParams);
+        } else if (method === 'POST') {
+            body = createIssue(request.body.data);
+        } else {
+            response.setStatus(405);
+            return { success: false, error: 'Method not allowed' };
+        }
+        response.setStatus(body.success ? 200 : 400);
+        return body;
+    } catch (e) {
+        response.setStatus(500);
+        return { success: false, error: e.message };
+    }
+
+    function getList(qp) {
+        var gr = new GlideRecord('x_2145749_qc_store_issue');
+        if (qp.store) gr.addQuery('dark_store', qp.store);
+        if (qp.state) gr.addQuery('state', qp.state);
+        gr.orderByDesc('sys_created_on');
+        var limit = parseInt(qp.limit, 10) || 50;
+        var offset = parseInt(qp.offset, 10) || 0;
+        gr.chooseWindow(offset, offset + limit);
+        gr.query();
+        var results = [];
+        while (gr.next()) {
+            results.push(toObj(gr));
+        }
+        return { success: true, result: results };
+    }
+
+    function createIssue(data) {
+        if (!data || !data.store || !data.issue_category) {
+            return { success: false, error: 'store and issue_category are required' };
+        }
+        var gr = new GlideRecord('x_2145749_qc_store_issue');
+        gr.initialize();
+        gr.dark_store = data.store;
+        gr.issue_category = data.issue_category;
+        gr.description = data.description || '';
+        gr.state = 'open';
+        gr.affects_pulse_score = true;
+        var sysId = gr.insert();
+        if (!sysId) {
+            return { success: false, error: 'Insert failed' };
+        }
+        gr.get(sysId);
+        return { success: true, result: toObj(gr) };
+    }
+
+    function toObj(gr) {
+        return {
+            sys_id: gr.getUniqueValue(),
+            store: gr.dark_store.getDisplayValue(),
+            issue_category: gr.issue_category.toString(),
+            description: gr.description.toString(),
+            state: gr.state.toString(),
+            severity: gr.severity.toString(),
+            created: gr.sys_created_on.toString()
+        };
+    }
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/qc_ops_api/opsissue</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/opsissue</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Create a new store issue (feeds Module 10 FSM equipment dispatch)</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:41</sys_created_on>
+        <sys_id>c7ba6cdc0b1a4ca28b6cd345575f8f8e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Store Issue</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_c7ba6cdc0b1a4ca28b6cd345575f8f8e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:41</sys_updated_on>
+        <web_service_definition display_value="Quick Commerce Ops API">b9b3fd9e62e14c1faaa0577d1181af8a</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

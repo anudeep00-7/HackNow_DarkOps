@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_generative_ai_config">
     <sys_generative_ai_config action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <additional_configurations/>
         <ai_suggested>false</ai_suggested>
         <definition>49f19e61d05a4fd8857158340cf5ccbf</definition>
@@ -33,7 +33,7 @@ Order value: '{{order_value}}'
         <provider_company/>
         <request_tokens>4000</request_tokens>
         <show_in_prompt_library>false</show_in_prompt_library>
-        <state>draft</state>
+        <state>published</state>
         <structured_output_enabled>false</structured_output_enabled>
         <structured_output_schema/>
         <sys_class_name>sys_generative_ai_config</sys_class_name>
@@ -50,7 +50,7 @@ Order value: '{{order_value}}'
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_generative_ai_config_1766556dc3d04f41b54dda8d5e523b3f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-18 18:15:09</sys_updated_on>
+        <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
         <temperature>0.2</temperature>
         <thinking_tokens/>
         <version>1</version>

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope) {
+  var c = this;
+  c.tab = 'issue';
+  c.stores = [];
+  c.selectedStore = null;
+  c.issueForm = {};
+  c.equipForm = {};
+  c.equipmentList = [];
+  c.issueSubmitted = false;
+  c.equipSubmitted = false;
+
+  c.server.get({ action: 'get_my_stores' }).then(function(response) {
+    c.stores = response.data.stores || [];
+    if (c.stores.length > 0) {
+      c.selectedStore = c.stores[0].sys_id;
+      c.loadEquipment();
+    }
+  });
+
+  c.onStoreChange = function() {
+    c.loadEquipment();
+  };
+
+  c.loadEquipment = function() {
+    c.server.get({ action: 'get_equipment', dark_store: c.selectedStore }).then(function(response) {
+      c.equipmentList = response.data.equipment || [];
+    });
+  };
+
+  c.submitIssue = function() {
+    c.issueError = null;
+    c.issueSubmitting = true;
+    c.server.get({
+      action: 'create_issue',
+      dark_store: c.selectedStore,
+      issue_category: c.issueForm.issue_category,
+      severity: c.issueForm.severity,
+      description: c.issueForm.description
+    }).then(function(response) {
+      c.issueSubmitting = false;
+      if (response.data.success) {
+        c.issueResult = response.data.result;
+        c.issueSubmitted = true;
+      } else {
+        c.issueError = response.data.error || 'Could not log issue.';
+      }
+    }, function() {
+      c.issueSubmitting = false;
+      c.issueError = 'Could not reach the server.';
+    });
+  };
+
+  c.resetIssue = function() {
+    c.issueForm = {};
+    c.issueSubmitted = false;
+  };
+
+  c.submitEquipment = function() {
+    c.equipError = null;
+    c.equipSubmitting = true;
+    c.server.get({
+      action: 'report_equipment_breakdown',
+      dark_store: c.selectedStore,
+      equipment_id: c.equipForm.equipment_id,
+      description: c.equipForm.description
+    }).then(function(response) {
+      c.equipSubmitting = false;
+      if (response.data.success) {
+        c.equipResult = response.data.result;
+        c.equipSubmitted = true;
+      } else {
+        c.equipError = response.data.error || 'Could not report breakdown.';
+      }
+    }, function() {
+      c.equipSubmitting = false;
+      c.equipError = 'Could not reach the server.';
+    });
+  };
+
+  c.resetEquip = function() {
+    c.equipForm = {};
+    c.equipSubmitted = false;
+    c.loadEquipment();
+  };
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.qcops-store-ops .panel-heading h3 { margin: 0 0 10px; }
+.qcops-store-ops .nav-tabs { margin-top: 10px; }
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Lets dark store managers log operational issues and report equipment breakdowns.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>qcops-store-manager-ops</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+}]]></link>
+        <name>Store Manager Operations</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_2145749_qc.dark_store_manager</roles>
+        <script><![CDATA[(function() {
+  if (!input) return;
+
+  function getMyStores() {
+    var gr = new GlideRecord('x_2145749_qc_dark_store');
+    gr.addQuery('manager', gs.getUserID());
+    gr.orderBy('store_name');
+    gr.setLimit(50);
+    gr.query();
+    var stores = [];
+    while (gr.next()) {
+      stores.push({ sys_id: gr.getUniqueValue() + '', store_name: gr.getValue('store_name') + '' });
+    }
+    return stores;
+  }
+
+  if (input.action === 'get_my_stores') {
+    data.stores = getMyStores();
+    return;
+  }
+
+  if (input.action === 'get_equipment') {
+    var eqGr = new GlideRecord('x_2145749_qc_equipment');
+    eqGr.addQuery('dark_store', input.dark_store);
+    eqGr.setLimit(100);
+    eqGr.query();
+    var equipment = [];
+    while (eqGr.next()) {
+      equipment.push({
+        sys_id: eqGr.getUniqueValue() + '',
+        equipment_type: eqGr.getValue('equipment_type') + '',
+        asset_tag: eqGr.getValue('asset_tag') + ''
+      });
+    }
+    data.equipment = equipment;
+    return;
+  }
+
+  if (input.action === 'create_issue') {
+    if (!input.dark_store || !input.issue_category || !input.severity || !input.description) {
+      data.success = false;
+      data.error = 'All fields are required.';
+      return;
+    }
+    var gr = new GlideRecord('x_2145749_qc_store_issue');
+    gr.initialize();
+    gr.setValue('dark_store', input.dark_store);
+    gr.setValue('issue_category', input.issue_category);
+    gr.setValue('severity', input.severity);
+    gr.setValue('description', input.description);
+    gr.setValue('state', 'open');
+    gr.setValue('affects_pulse_score', true);
+    var sysId = gr.insert();
+    if (!sysId) {
+      data.success = false;
+      data.error = 'Could not create issue.';
+      return;
+    }
+    data.success = true;
+    data.result = { sys_id: sysId + '', number: gr.getValue('number') + '' };
+    return;
+  }
+
+  if (input.action === 'report_equipment_breakdown') {
+    if (!input.dark_store || !input.equipment_id || !input.description) {
+      data.success = false;
+      data.error = 'Equipment and description are required.';
+      return;
+    }
+    // 1. Mark equipment as down
+    var eqGr = new GlideRecord('x_2145749_qc_equipment');
+    if (!eqGr.get(input.equipment_id)) {
+      data.success = false;
+      data.error = 'Equipment record not found.';
+      return;
+    }
+    eqGr.setValue('operational_status', 'down');
+    eqGr.update();
+
+    // 2. Auto-create linked store_issue
+    var issueGr = new GlideRecord('x_2145749_qc_store_issue');
+    issueGr.initialize();
+    issueGr.setValue('dark_store', input.dark_store);
+    issueGr.setValue('equipment', input.equipment_id);
+    issueGr.setValue('issue_category', 'equipment_breakdown');
+    issueGr.setValue('severity', 'high');
+    issueGr.setValue('description', input.description);
+    issueGr.setValue('state', 'open');
+    issueGr.setValue('affects_pulse_score', true);
+    var issueSysId = issueGr.insert();
+    if (!issueSysId) {
+      data.success = false;
+      data.error = 'Equipment marked down, but issue creation failed.';
+      return;
+    }
+    data.success = true;
+    data.result = { sys_id: issueSysId + '', number: issueGr.getValue('number') + '' };
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 20:36:50</sys_created_on>
+        <sys_id>4cde9c478c4e4ac6b0939805b7cf70b2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Store Manager Operations</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sp_widget_4cde9c478c4e4ac6b0939805b7cf70b2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 20:36:50</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default qcops-store-ops">
+  <div class="panel-heading">
+    <h3>Store Operations</h3>
+    <ul class="nav nav-tabs">
+      <li ng-class="{active: c.tab === 'issue'}"><a href ng-click="c.tab = 'issue'">Log an Issue</a></li>
+      <li ng-class="{active: c.tab === 'equipment'}"><a href ng-click="c.tab = 'equipment'">Report Equipment Breakdown</a></li>
+    </ul>
+  </div>
+  <div class="panel-body">
+
+    <div class="form-group" ng-if="c.stores.length > 1">
+      <label>Store</label>
+      <select class="form-control" ng-model="c.selectedStore" ng-change="c.onStoreChange()">
+        <option ng-repeat="s in c.stores track by s.sys_id" value="{{s.sys_id}}">{{s.store_name}}</option>
+      </select>
+    </div>
+    <div ng-if="c.stores.length === 1" class="text-muted">
+      Store: <strong>{{c.stores[0].store_name}}</strong>
+    </div>
+    <div ng-if="c.stores.length === 0" class="alert alert-warning">
+      No store is currently assigned to your account.
+    </div>
+
+    <!-- Log an Issue tab -->
+    <div ng-if="c.tab === 'issue' && c.stores.length > 0">
+      <div ng-if="c.issueSubmitted" class="alert alert-success">
+        Issue {{c.issueResult.number}} logged.
+        <button class="btn btn-default btn-sm" ng-click="c.resetIssue()">Log another</button>
+      </div>
+      <form ng-if="!c.issueSubmitted" ng-submit="c.submitIssue()">
+        <div class="form-group">
+          <label>Issue Category *</label>
+          <select class="form-control" ng-model="c.issueForm.issue_category" required>
+            <option value="">-- Select --</option>
+            <option value="inventory_discrepancy">Inventory Discrepancy</option>
+            <option value="equipment_breakdown">Equipment Breakdown</option>
+            <option value="picker_performance">Picker Performance</option>
+            <option value="stockout">Frequent Stockout</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Severity *</label>
+          <select class="form-control" ng-model="c.issueForm.severity" required>
+            <option value="">-- Select --</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Description *</label>
+          <textarea class="form-control" rows="3" ng-model="c.issueForm.description" required></textarea>
+        </div>
+        <div ng-if="c.issueError" class="alert alert-danger">{{c.issueError}}</div>
+        <button type="submit" class="btn btn-primary" ng-disabled="c.issueSubmitting">Log Issue</button>
+      </form>
+    </div>
+
+    <!-- Equipment Breakdown tab -->
+    <div ng-if="c.tab === 'equipment' && c.stores.length > 0">
+      <div ng-if="c.equipSubmitted" class="alert alert-success">
+        Equipment marked down and issue {{c.equipResult.number}} created.
+        <button class="btn btn-default btn-sm" ng-click="c.resetEquip()">Report another</button>
+      </div>
+      <form ng-if="!c.equipSubmitted" ng-submit="c.submitEquipment()">
+        <div class="form-group">
+          <label>Equipment *</label>
+          <select class="form-control" ng-model="c.equipForm.equipment_id" required>
+            <option value="">-- Select equipment --</option>
+            <option ng-repeat="e in c.equipmentList track by e.sys_id" value="{{e.sys_id}}">{{e.equipment_type}} ({{e.asset_tag}})</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What happened? *</label>
+          <textarea class="form-control" rows="3" ng-model="c.equipForm.description" required
+                    placeholder="e.g. Freezer unit stopped cooling, temperature alarm triggered"></textarea>
+        </div>
+        <div ng-if="c.equipError" class="alert alert-danger">{{c.equipError}}</div>
+        <button type="submit" class="btn btn-danger" ng-disabled="c.equipSubmitting">Mark as Down &amp; Log Issue</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

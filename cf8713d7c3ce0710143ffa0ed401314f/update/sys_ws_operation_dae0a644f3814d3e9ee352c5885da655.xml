@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Create Refund Request</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var method = request.httpMethod;
+    try {
+        var body;
+        if (method === 'GET') {
+            body = getList(request.queryParams);
+        } else if (method === 'POST') {
+            body = createRefund(request.body.data);
+        } else {
+            response.setStatus(405);
+            return { success: false, error: 'Method not allowed' };
+        }
+        response.setStatus(body.success ? 200 : 400);
+        return body;
+    } catch (e) {
+        response.setStatus(500);
+        return { success: false, error: e.message };
+    }
+
+    function getList(qp) {
+        var gr = new GlideRecord('x_2145749_qc_refund_request');
+        if (qp.decision) gr.addQuery('decision', qp.decision);
+        if (qp.case) gr.addQuery('case', qp.case);
+        gr.orderByDesc('sys_created_on');
+        var limit = parseInt(qp.limit, 10) || 50;
+        var offset = parseInt(qp.offset, 10) || 0;
+        gr.chooseWindow(offset, offset + limit);
+        gr.query();
+        var results = [];
+        while (gr.next()) {
+            results.push(toObj(gr));
+        }
+        return { success: true, result: results };
+    }
+
+    function createRefund(data) {
+        if (!data || !data.case || !data.amount) {
+            return { success: false, error: 'case and amount are required' };
+        }
+        var gr = new GlideRecord('x_2145749_qc_refund_request');
+        gr.initialize();
+        gr.setValue('case', data.case);
+        gr.amount_requested = data.amount;
+        gr.request_type = data.request_type || 'refund';
+        gr.order_number = data.order_number || '';
+        gr.customer = data.customer || gs.getUserID();
+        // decision is intentionally left unset - existing ARE flows set it on insert/update
+        var sysId = gr.insert();
+        if (!sysId) {
+            return { success: false, error: 'Insert failed' };
+        }
+        gr.get(sysId);
+        return { success: true, result: toObj(gr) };
+    }
+
+    function toObj(gr) {
+        var fraud = null;
+        var fg = new GlideRecord('x_2145749_qc_fraud_flag');
+        fg.addQuery('refund_request', gr.getUniqueValue());
+        fg.query();
+        if (fg.next()) {
+            fraud = {
+                risk_weight: fg.risk_weight.toString(),
+                rule_name: fg.rule_name.toString(),
+                details: fg.details.toString()
+            };
+        }
+        return {
+            sys_id: gr.getUniqueValue(),
+            case: gr.getValue('case') ? gr.getDisplayValue('case') : '',
+            amount_requested: gr.amount_requested.toString(),
+            amount_approved: gr.amount_approved ? gr.amount_approved.toString() : null,
+            decision: gr.decision.toString(),
+            fraud_flag: fraud,
+            created: gr.sys_created_on.toString()
+        };
+    }
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/qc_ops_api/refund</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/refund</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Create a new refund request (triggers FraudDetectionEngine/ARE flows)</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:41</sys_created_on>
+        <sys_id>dae0a644f3814d3e9ee352c5885da655</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Refund Request</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_dae0a644f3814d3e9ee352c5885da655</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:41</sys_updated_on>
+        <web_service_definition display_value="Quick Commerce Ops API">b9b3fd9e62e14c1faaa0577d1181af8a</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

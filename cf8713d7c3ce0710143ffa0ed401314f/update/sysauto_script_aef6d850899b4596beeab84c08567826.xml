@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <advanced>true</advanced>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_run_end/>
+        <entered_run_start/>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <max_drift/>
+        <name>Test Trigger SLA Breach Flow</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <repeat_every/>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_daysofweek/>
+        <run_end/>
+        <run_month>1</run_month>
+        <run_period>1970-01-01 00:05:00</run_period>
+        <run_start>2026-08-02 12:21:59</run_start>
+        <run_time>1970-01-01 00:00:00</run_time>
+        <run_type>periodically</run_type>
+        <run_weekinmonth>1</run_weekinmonth>
+        <script><![CDATA[(function () {
+  // Update task_sla percentage to 85% to trigger the SLA Breach Early Warning flow
+  var gr = new GlideRecord('task_sla');
+  if (gr.get('7979574c93a647101ff0f40bdd03d619')) {
+    // First reset to 50 to clear any previous state
+    gr.percentage = 50;
+    gr.update();
+    gs.info('SLA trigger test: Reset percentage to 50');
+
+    // Now set to 85 to trigger the flow (condition: percentage>=80^active=true^has_breached=false)
+    gr.percentage = 85;
+    gr.update();
+    gs.info('SLA trigger test: Set percentage to 85 - flow should trigger');
+  } else {
+    gs.error('SLA trigger test: Could not find task_sla record 7979574c93a647101ff0f40bdd03d619');
+  }
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 12:19:41</sys_created_on>
+        <sys_id>aef6d850899b4596beeab84c08567826</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Test Trigger SLA Breach Flow</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sysauto_script_aef6d850899b4596beeab84c08567826</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 12:53:32</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope) {
+  var c = this;
+  c.form = {};
+  c.submitted = false;
+  c.submitting = false;
+  c.error = null;
+  c.stores = [];
+
+  c.server.get({ action: 'get_stores' }).then(function(response) {
+    c.stores = response.data.stores || [];
+  });
+
+  c.submit = function() {
+    c.error = null;
+    c.submitting = true;
+    c.server.get({
+      action: 'create_complaint',
+      order_number: c.form.order_number,
+      complaint_type: c.form.complaint_type,
+      order_value: c.form.order_value,
+      dark_store: c.form.dark_store,
+      description: c.form.description,
+      contact_phone: c.form.contact_phone
+    }).then(function(response) {
+      c.submitting = false;
+      if (response.data.success) {
+        c.result = response.data.result;
+        c.submitted = true;
+      } else {
+        c.error = response.data.error || 'Something went wrong. Please try again.';
+      }
+    }, function() {
+      c.submitting = false;
+      c.error = 'Could not reach the server. Please try again.';
+    });
+  };
+
+  c.reset = function() {
+    c.form = {};
+    c.submitted = false;
+    c.error = null;
+  };
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.qcops-complaint-form .panel-heading h3 { margin: 0; }
+.qcops-complaint-form .form-group label { font-weight: 600; }
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>qcops-customer-complaint-form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+}]]></link>
+        <name>Customer Complaint Submission</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  if (input) {
+    if (input.action === 'get_stores') {
+      var storeGr = new GlideRecord('x_2145749_qc_dark_store');
+      storeGr.addQuery('status', 'active');
+      storeGr.orderBy('store_name');
+      storeGr.setLimit(200);
+      storeGr.query();
+      var stores = [];
+      while (storeGr.next()) {
+        stores.push({ sys_id: storeGr.getUniqueValue() + '', store_name: storeGr.getValue('store_name') + '' });
+      }
+      data.stores = stores;
+      return;
+    }
+
+    if (input.action === 'create_complaint') {
+      if (!input.order_number || !input.complaint_type || !input.description) {
+        data.success = false;
+        data.error = 'Order number, issue type, and description are required.';
+        return;
+      }
+      var gr = new GlideRecord('sn_customerservice_case');
+      gr.initialize();
+      gr.setValue('short_description', input.complaint_type + ' - Order #' + input.order_number);
+      gr.setValue('description', input.description);
+      gr.setValue('x_2145749_qc_order_number', input.order_number);
+      gr.setValue('x_2145749_qc_complaint_type', input.complaint_type);
+      if (input.order_value) gr.setValue('x_2145749_qc_order_value', input.order_value);
+      if (input.dark_store) gr.setValue('x_2145749_qc_dark_store', input.dark_store);
+      gr.setValue('contact', gs.getUserID());
+
+      // Priority derivation from order value (no business rule exists for this)
+      var v = parseFloat(input.order_value) || 0;
+      if (v >= 1000) {
+        gr.setValue('priority', '1');
+      } else if (v >= 300) {
+        gr.setValue('priority', '2');
+      } else {
+        gr.setValue('priority', '3');
+      }
+
+      var sysId = gr.insert();
+      if (!sysId) {
+        data.success = false;
+        data.error = 'Could not create your case. Please try again.';
+        return;
+      }
+      data.success = true;
+      data.result = { sys_id: sysId + '', number: gr.getValue('number') + '' };
+    }
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 20:36:50</sys_created_on>
+        <sys_id>5446b913f50848b89b8c5a81012f0cd7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Customer Complaint Submission</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sp_widget_5446b913f50848b89b8c5a81012f0cd7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 20:36:50</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default qcops-complaint-form">
+  <div class="panel-heading">
+    <h3>Report an Order Issue</h3>
+  </div>
+  <div class="panel-body">
+
+    <div ng-if="c.submitted" class="alert alert-success">
+      <strong>Thanks — your case {{c.result.number}} has been created.</strong>
+      <p>Our team will follow up shortly. You can reference case number <strong>{{c.result.number}}</strong> if you contact support again.</p>
+      <button class="btn btn-default" ng-click="c.reset()">Submit another complaint</button>
+    </div>
+
+    <form ng-if="!c.submitted" name="complaintForm" ng-submit="c.submit()">
+      <div class="form-group">
+        <label>Order Number *</label>
+        <input type="text" class="form-control" ng-model="c.form.order_number" required>
+      </div>
+      <div class="form-group">
+        <label>What went wrong? *</label>
+        <select class="form-control" ng-model="c.form.complaint_type" required>
+          <option value="">-- Select an issue type --</option>
+          <option value="late_delivery">Delivery was very late</option>
+          <option value="missing_items">Item(s) missing from my order</option>
+          <option value="wrong_items">Wrong item received</option>
+          <option value="damaged_items">Item arrived damaged / spoiled</option>
+          <option value="overcharge">Overcharge / Billing issue</option>
+          <option value="quality_issue">Product quality issue</option>
+          <option value="partner_behavior">Delivery partner behavior</option>
+          <option value="app_technical">App / Technical issue</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Order Value (₹)</label>
+        <input type="number" class="form-control" ng-model="c.form.order_value" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Which store was this from? (optional)</label>
+        <select class="form-control" ng-model="c.form.dark_store">
+          <option value="">-- Not sure / skip --</option>
+          <option ng-repeat="s in c.stores track by s.sys_id" value="{{s.sys_id}}">{{s.store_name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us more *</label>
+        <textarea class="form-control" rows="4" ng-model="c.form.description" required
+                  placeholder="Describe what happened..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Your contact number (optional)</label>
+        <input type="text" class="form-control" ng-model="c.form.contact_phone">
+      </div>
+      <div ng-if="c.error" class="alert alert-danger">{{c.error}}</div>
+      <button type="submit" class="btn btn-primary" ng-disabled="complaintForm.$invalid || c.submitting">
+        <span ng-if="!c.submitting">Submit Complaint</span>
+        <span ng-if="c.submitting">Submitting...</span>
+      </button>
+    </form>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="5f14e713c3424710143ffa0ed40131e4" label="Refund Fraud Flag" max_length="40" name="x_2145749_qc_fraud_flag" type="collection">
+        <element label="Details" max_length="4000" name="details" type="multi_two_lines"/>
+        <element label="Refund Request" mandatory="true" max_length="32" name="refund_request" reference="x_2145749_qc_refund_request" type="reference"/>
         <element display="true" label="Rule Triggered" mandatory="true" max_length="40" name="rule_name" type="choice">
             <choice>
+                <element inactive_on_update="false" label="High Value Claim - New Customer" sequence="4" value="high_value_new_customer"/>
                 <element inactive_on_update="false" label="Claim/Delivery Timestamp Mismatch" sequence="3" value="timestamp_mismatch"/>
                 <element inactive_on_update="false" label="Repeat Claims - Same Address" sequence="2" value="repeat_claim_address"/>
-                <element inactive_on_update="false" label="Claim Velocity Threshold Exceeded" sequence="5" value="velocity_threshold"/>
                 <element inactive_on_update="false" label="Repeat Claims - Same Customer" sequence="1" value="repeat_claim_customer"/>
-                <element inactive_on_update="false" label="High Value Claim - New Customer" sequence="4" value="high_value_new_customer"/>
+                <element inactive_on_update="false" label="Claim Velocity Threshold Exceeded" sequence="5" value="velocity_threshold"/>
             </choice>
         </element>
         <element attributes="scale=1" label="Risk Weight Contributed" max_length="20" name="risk_weight" type="decimal"/>
-        <element label="Details" max_length="4000" name="details" type="multi_two_lines"/>
-        <element label="Refund Request" mandatory="true" max_length="32" name="refund_request" reference="x_2145749_qc_refund_request" type="reference"/>
         <index name="index">
             <element name="refund_request"/>
         </index>

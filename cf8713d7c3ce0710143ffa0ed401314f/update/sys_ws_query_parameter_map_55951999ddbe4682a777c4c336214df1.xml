@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter_map">
+    <sys_ws_query_parameter_map action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ws_query_parameter_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:42</sys_created_on>
+        <sys_id>55951999ddbe4682a777c4c336214df1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>e4d33ee953e04ccfbcb46d3561f39c29</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_query_parameter_map_55951999ddbe4682a777c4c336214df1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:42</sys_updated_on>
+        <web_service_operation display_value="Get Partner Incidents List">1dd7fbc990e444669481603bfb49b066</web_service_operation>
+        <web_service_query_parameter display_value="partner">e4d33ee953e04ccfbcb46d3561f39c29</web_service_query_parameter>
+    </sys_ws_query_parameter_map>
+</record_update>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sn_customerservice_case</collection>
+        <condition/>
+        <description>After a new sn_customerservice_case is inserted, calls CaseTriageEngine to invoke the "Order Complaint Triage Assistant" GenAI skill and writes back:
+  • x_2145749_qc_ai_urgency_score  — always set (1-10 integer)
+  • x_2145749_qc_complaint_type    — set ONLY if currently empty
+  • x_2145749_qc_needs_manual_review — set to true when AI cannot confidently classify
+
+Runs asynchronously (when=async) so Case creation is not blocked by the LLM call latency. Uses a separate GlideRecord update to write the AI fields back to the saved record.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>AI Triage on Case Insert</name>
+        <order>900</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function runAITriageOnCaseInsert(current, previous) {
+
+    // -----------------------------------------------------------------------
+    // Guard: Only process if there is something useful for the LLM to read.
+    // A case with no short_description AND no description gives the model
+    // nothing to work with and wastes an LLM call.
+    // -----------------------------------------------------------------------
+    var hasDescription = !gs.nil(current.getValue('short_description')) ||
+                         !gs.nil(current.getValue('description'));
+    if (!hasDescription) {
+        gs.info('x_2145749_qc AI Triage: Case ' + current.getUniqueValue() +
+                ' has no description — skipping triage.');
+        return;
+    }
+
+    // -----------------------------------------------------------------------
+    // Call the engine
+    // -----------------------------------------------------------------------
+    var engine = new x_2145749_qc.CaseTriageEngine();
+    var result = engine.triage(current);
+
+    if (!result.success) {
+        gs.error('x_2145749_qc AI Triage: Case ' + current.getUniqueValue() +
+                 ' — triage failed: ' + result.error);
+        // Even on failure we set needs_manual_review so agents know
+        // the automation did not complete.
+        var failGr = new GlideRecord('sn_customerservice_case');
+        if (failGr.get(current.getUniqueValue())) {
+            failGr.setValue('x_2145749_qc_needs_manual_review', true);
+            failGr.setWorkflow(false);  // suppress further business rules on this update
+            failGr.update();
+        }
+        return;
+    }
+
+    // -----------------------------------------------------------------------
+    // Fetch the newly-inserted case record to apply updates.
+    // We use a fresh GlideRecord rather than writing to current because
+    // this Business Rule runs async (when=async) — current is the snapshot
+    // at insert time, so updates must be persisted via a separate .update().
+    // -----------------------------------------------------------------------
+    var caseGr = new GlideRecord('sn_customerservice_case');
+    if (!caseGr.get(current.getUniqueValue())) {
+        gs.error('x_2145749_qc AI Triage: Could not retrieve Case ' +
+                 current.getUniqueValue() + ' for write-back.');
+        return;
+    }
+
+    var changed = false;
+
+    // -----------------------------------------------------------------------
+    // 3.3 — Always write the urgency score (AI assessment, not human input)
+    // -----------------------------------------------------------------------
+    if (result.urgency_score !== null) {
+        caseGr.setValue('x_2145749_qc_ai_urgency_score', parseInt(result.urgency_score, 10));
+        changed = true;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3.4 — Write complaint_type ONLY if it is currently empty.
+    //        If a human already selected a category on the form, respect it.
+    // -----------------------------------------------------------------------
+    var existingCategory = caseGr.getValue('x_2145749_qc_complaint_type');
+    if (gs.nil(existingCategory) && result.category) {
+        caseGr.setValue('x_2145749_qc_complaint_type', result.category);
+        changed = true;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3.5 — Set needs_manual_review flag when confidence is low.
+    //        Only set to true; never clear a flag an agent may have set.
+    // -----------------------------------------------------------------------
+    if (result.needs_manual_review) {
+        caseGr.setValue('x_2145749_qc_needs_manual_review', true);
+        changed = true;
+    }
+
+    // -----------------------------------------------------------------------
+    // Append a system work note summarising what the AI did, so agents have
+    // full visibility.  This is appended, never overwritten.
+    // -----------------------------------------------------------------------
+    var noteLines = [
+        '=== AI Triage (Order Complaint Triage Assistant) ===',
+        'Suggested Category : ' + (result.category || 'n/a'),
+        'Urgency Score      : ' + (result.urgency_score !== null ? result.urgency_score + ' / 10' : 'n/a'),
+        'Manual Review Flag : ' + (result.needs_manual_review ? 'YES — ' + result.confidence_note : 'No'),
+        'Category Applied   : ' + (gs.nil(existingCategory) ? 'Yes (field was empty)' : 'No (existing value "' + existingCategory + '" preserved)')
+    ];
+    caseGr.work_notes = noteLines.join('\n');
+    changed = true;
+
+    if (changed) {
+        caseGr.setWorkflow(false);   // suppress re-triggering other BRs on this admin update
+        caseGr.update();
+        gs.info('x_2145749_qc AI Triage: Case ' + current.getUniqueValue() +
+                ' updated — urgency=' + result.urgency_score +
+                ', category=' + result.category +
+                ', manual_review=' + result.needs_manual_review);
+    }
+
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 00:54:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d4e5f60718293041c5d6e7f8a9b0c1d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AI Triage on Case Insert</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_d4e5f60718293041c5d6e7f8a9b0c1d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=d4e5f60718293041c5d6e7f8a9b0c1d2"/>
+</record_update>

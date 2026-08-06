@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Service Management Basics" source="com.snc.service">bb743a738c5503100a22deb6dd2b4e18</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 12:21:26</sys_created_on>
+        <sys_id>8c8952fb9312c3101ff0f40bdd03d681</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 12:21:26</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

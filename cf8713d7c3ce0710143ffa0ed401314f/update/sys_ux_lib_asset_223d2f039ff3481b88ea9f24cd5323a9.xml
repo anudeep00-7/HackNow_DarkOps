@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_lib_asset">
+    <sys_ux_lib_asset action="INSERT_OR_UPDATE">
+        <bundled_asset>false</bundled_asset>
+        <category>component</category>
+        <checksum>d9fae6ddcd915d907c1c7e6320541288</checksum>
+        <config_option/>
+        <content>/*__ESM_BODY_START__*/window.process={};function insertStyle(css,tagName="style"){if(css&amp;&amp;"u"&gt;typeof window){if("style"===tagName){let style=document.createElement("style");style.setAttribute("type","text/css"),style.innerHTML=css,document.head.appendChild(style)}else if("link"===tagName){let link=document.createElement("link");link.setAttribute("rel","stylesheet"),link.setAttribute("href",css),document.head.appendChild(link)}return css}}export{insertStyle as i};
+//# sourceMappingURL=____insertStyle.js.map.jsdbx
+</content>
+        <content_meta/>
+        <dependencies/>
+        <device_type/>
+        <es_module>true</es_module>
+        <is_attachment>false</is_attachment>
+        <mime_type>application/javascript</mime_type>
+        <name>x_2145749_qc/____insertStyle</name>
+        <sys_class_name>sys_ux_lib_asset</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 11:39:18</sys_created_on>
+        <sys_id>223d2f039ff3481b88ea9f24cd5323a9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_2145749_qc/____insertStyle</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ux_lib_asset_223d2f039ff3481b88ea9f24cd5323a9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 11:39:18</sys_updated_on>
+    </sys_ux_lib_asset>
+</record_update>

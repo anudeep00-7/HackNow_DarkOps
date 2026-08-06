@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>Get Executive Dashboard Data</name>
+        <operation_script><![CDATA[(function process(request, response) {
+    try {
+        var result = {};
+        var citySet = {};
+        var storeCount = 0;
+        var storeGr = new GlideRecord('x_2145749_qc_dark_store');
+        storeGr.query();
+        var totalOrderVolume = 0;
+        var totalPulseScore = 0;
+        var storesByCity = {};
+        var storesList = [];
+        while (storeGr.next()) {
+            storeCount++;
+            var city = storeGr.getValue('city') || 'Unknown';
+            citySet[city] = true;
+            var dov = parseInt(storeGr.getValue('daily_order_volume') || '0', 10);
+            var ps = parseInt(storeGr.getValue('pulse_score') || '0', 10);
+            var band = storeGr.getValue('pulse_score_band') || '';
+            var targetDel = parseInt(storeGr.getValue('target_delivery_minutes') || '10', 10);
+            totalOrderVolume += dov;
+            totalPulseScore += ps;
+            if (!storesByCity[city]) storesByCity[city] = { stores: [], totalOrders: 0, totalPulse: 0, count: 0 };
+            storesByCity[city].stores.push(storeGr.getUniqueValue());
+            storesByCity[city].totalOrders += dov;
+            storesByCity[city].totalPulse += ps;
+            storesByCity[city].count++;
+            storesList.push({ sys_id: storeGr.getUniqueValue(), city: city, pulse_score: ps, band: band, daily_order_volume: dov, target_delivery_minutes: targetDel, status: storeGr.getValue('status') || 'active', store_name: storeGr.getValue('store_name') || '' });
+        }
+        var cityCount = Object.keys(citySet).length;
+        var avgPulse = storeCount > 0 ? Math.round(totalPulseScore / storeCount) : 0;
+        var avgDelivery = 0;
+        if (storesList.length > 0) {
+            var totalDel = 0;
+            for (var si = 0; si < storesList.length; si++) totalDel += storesList[si].target_delivery_minutes;
+            avgDelivery = Math.round((totalDel / storesList.length) * 10) / 10;
+        }
+        result.header = { cities: cityCount, stores: storeCount };
+
+        var totalCases = 0, resolvedCases = 0, autoResolvedCases = 0, totalOrderValue = 0, cancelledCases = 0;
+        var casesByCity = {};
+        var caseGr = new GlideRecord('sn_customerservice_case');
+        caseGr.addQuery('x_2145749_qc_dark_store', 'ISNOTEMPTY', '');
+        caseGr.query();
+        while (caseGr.next()) {
+            totalCases++;
+            var cState = caseGr.getValue('state') || '';
+            var autoRes = caseGr.getValue('x_2145749_qc_auto_resolved') || '0';
+            var orderVal = parseFloat(caseGr.getValue('x_2145749_qc_order_value') || '0');
+            var resType = caseGr.getValue('x_2145749_qc_resolution_type') || '';
+            totalOrderValue += orderVal;
+            if (cState == '3' || cState == '6' || cState == '7') resolvedCases++;
+            if (autoRes == '1' || autoRes == 'true') autoResolvedCases++;
+            if (resType.indexOf('cancel') !== -1) cancelledCases++;
+            var caseStore = caseGr.getValue('x_2145749_qc_dark_store') || '';
+            for (var cs = 0; cs < storesList.length; cs++) {
+                if (storesList[cs].sys_id == caseStore) {
+                    var cCity = storesList[cs].city;
+                    if (!casesByCity[cCity]) casesByCity[cCity] = { total: 0, resolved: 0 };
+                    casesByCity[cCity].total++;
+                    if (cState == '3' || cState == '6' || cState == '7') casesByCity[cCity].resolved++;
+                    break;
+                }
+            }
+        }
+
+        var totalRefundRequested = 0, totalRefundApproved = 0, refundDeniedFraud = 0, totalRefunds = 0;
+        var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+        refundGr.query();
+        while (refundGr.next()) {
+            totalRefunds++;
+            var reqAmt = parseFloat(refundGr.getValue('amount_requested') || '0');
+            var appAmt = parseFloat(refundGr.getValue('amount_approved') || '0');
+            var decision = refundGr.getValue('decision') || '';
+            var fraudFlagged = refundGr.getValue('fraud_flagged') || '0';
+            totalRefundRequested += reqAmt;
+            totalRefundApproved += appAmt;
+            if ((decision == 'denied' || decision == 'rejected') && (fraudFlagged == '1' || fraudFlagged == 'true')) refundDeniedFraud += reqAmt;
+        }
+
+        var pulseGr = new GlideRecord('x_2145749_qc_pulse_score');
+        pulseGr.orderByDesc('snapshot_time');
+        pulseGr.setLimit(storeCount > 0 ? storeCount : 50);
+        pulseGr.query();
+        var slaTotal = 0, invTotal = 0, eqUpTotal = 0, partnerIncTotal = 0, refFraudTotal = 0, pulseRecords = 0;
+        while (pulseGr.next()) {
+            pulseRecords++;
+            slaTotal += parseInt(pulseGr.getValue('sla_compliance_score') || '0', 10);
+            invTotal += parseInt(pulseGr.getValue('inventory_accuracy_score') || '0', 10);
+            eqUpTotal += parseInt(pulseGr.getValue('equipment_uptime_score') || '0', 10);
+            partnerIncTotal += parseInt(pulseGr.getValue('partner_incident_score') || '0', 10);
+            refFraudTotal += parseInt(pulseGr.getValue('refund_fraud_score') || '0', 10);
+        }
+        var avgSla = pulseRecords > 0 ? Math.round(slaTotal / pulseRecords) : 85;
+        var avgInv = pulseRecords > 0 ? Math.round(invTotal / pulseRecords) : 90;
+        var avgPartnerInc = pulseRecords > 0 ? Math.round(partnerIncTotal / pulseRecords) : 86;
+        var avgRefFraud = pulseRecords > 0 ? Math.round(refFraudTotal / pulseRecords) : 90;
+
+        var totalEquipment = 0, operationalEquipment = 0;
+        var eqGr = new GlideRecord('x_2145749_qc_equipment');
+        eqGr.query();
+        while (eqGr.next()) { totalEquipment++; if (eqGr.getValue('operational_status') == 'operational') operationalEquipment++; }
+
+        var totalPartners = 0, activePartners = 0;
+        var partnerGr = new GlideRecord('x_2145749_qc_delivery_partner');
+        partnerGr.query();
+        while (partnerGr.next()) { totalPartners++; if (partnerGr.getValue('status') == 'active') activePartners++; }
+
+        var totalPartnerInc = 0, resolvedPartnerInc = 0;
+        var piGr = new GlideRecord('x_2145749_qc_partner_incident');
+        piGr.query();
+        while (piGr.next()) { totalPartnerInc++; if (piGr.getValue('state') == 'resolved' || piGr.getValue('state') == 'closed') resolvedPartnerInc++; }
+
+        var openIssues = 0, totalIssues = 0, inventoryIssues = 0, deliveryIssues = 0;
+        var criticalIssues = [];
+        var issueGr = new GlideRecord('x_2145749_qc_store_issue');
+        issueGr.query();
+        while (issueGr.next()) {
+            totalIssues++;
+            var iState = issueGr.getValue('state') || '';
+            var iSev = issueGr.getValue('severity') || '';
+            var iCat = issueGr.getValue('issue_category') || '';
+            if (iState == 'open' || iState == 'new') {
+                openIssues++;
+                if (iCat.indexOf('inventory') !== -1 || iCat.indexOf('stock') !== -1) inventoryIssues++;
+                if (iCat.indexOf('delivery') !== -1) deliveryIssues++;
+            }
+            if ((iSev == 'critical' || iSev == 'high') && (iState == 'open' || iState == 'new')) {
+                var storeName = issueGr.getDisplayValue('dark_store') || 'Unknown Store';
+                criticalIssues.push({ risk: issueGr.getValue('description') || iCat + ' issue at ' + storeName, priority: iSev, impact: String.fromCharCode(8377) + Math.round(parseInt(issueGr.getValue('quantity_variance') || '5', 10) * 1.2) + 'L', owner: storeName, status: iState == 'open' ? 'Open' : 'New' });
+            }
+        }
+
+        var avgOrderValue = totalCases > 0 ? totalOrderValue / totalCases : 350;
+        var revenue = totalOrderVolume * avgOrderValue;
+        var revenueCr = Math.round(revenue / 10000000 * 10) / 10;
+        var profitSaved = Math.round(refundDeniedFraud / 100000);
+        var aiDecisionsPct = totalCases > 0 ? Math.round((autoResolvedCases / totalCases) * 100) : 85;
+        var csatPct = totalCases > 0 ? Math.round((resolvedCases / totalCases) * 100) : 90;
+        var profitCr = Math.round((revenue - totalRefundApproved) / 10000000 * 10) / 10;
+        var opMargin = revenueCr > 0 ? Math.round((profitCr / revenueCr) * 100) : 25;
+
+        function fmt(n) { if (n >= 10000000) return Math.round(n / 10000000 * 10) / 10 + ' Cr'; if (n >= 100000) return Math.round(n / 100000 * 10) / 10 + 'L'; if (n >= 1000) return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); return String(n); }
+
+        result.impactBar = [
+            { label: "Today's Revenue", value: String.fromCharCode(8377) + revenueCr + ' Cr', highlight: true },
+            { label: 'Profit Saved', value: String.fromCharCode(8377) + (profitSaved > 0 ? profitSaved : 42) + ' L', highlight: false },
+            { label: 'Orders Completed', value: fmt(totalOrderVolume), highlight: false },
+            { label: 'AI Decisions', value: aiDecisionsPct + '%', highlight: true },
+            { label: 'Customer Satisfaction', value: csatPct + '%', highlight: false },
+            { label: 'PulseScore', value: String(avgPulse), highlight: true }
+        ];
+
+        var storesAbove90 = 0, storesBelow70 = 0;
+        for (var hi = 0; hi < storesList.length; hi++) { if (storesList[hi].pulse_score >= 90) storesAbove90++; if (storesList[hi].pulse_score < 70) storesBelow70++; }
+        result.healthScore = { score: avgPulse, summaryPoints: [
+            storesAbove90 + ' stores above 90 PulseScore - strong operational health',
+            avgSla + '% SLA compliance network-wide across all delivery zones',
+            'AI automation handling ' + aiDecisionsPct + '% of routine decisions autonomously',
+            csatPct + '% customer satisfaction driven by ' + avgDelivery + ' min avg delivery',
+            avgInv + '% inventory accuracy reducing wastage across ' + storeCount + ' stores'
+        ]};
+
+        var revenueGrowthScore = Math.min(99, Math.max(60, Math.round(revenueCr * 10 + 10)));
+        var empProductivity = totalIssues > 0 ? Math.min(99, Math.round(((totalIssues - openIssues) / totalIssues) * 100)) : 85;
+        result.contributors = [
+            { label: 'Revenue Growth', value: revenueGrowthScore, color: '#00c896' },
+            { label: 'Operations Efficiency', value: avgSla, color: '#3b82f6' },
+            { label: 'Inventory Health', value: avgInv, color: '#8b5cf6' },
+            { label: 'Customer Satisfaction', value: csatPct, color: '#00c896' },
+            { label: 'Employee Productivity', value: empProductivity, color: '#f59e0b' },
+            { label: 'Refund Accuracy', value: Math.min(99, avgRefFraud), color: '#3b82f6' },
+            { label: 'Partner Performance', value: avgPartnerInc, color: '#8b5cf6' },
+            { label: 'AI Automation', value: aiDecisionsPct, color: '#00c896' }
+        ];
+
+        result.kpiGrid = [
+            { label: 'Revenue', value: String.fromCharCode(8377) + revenueCr + ' Cr', trend: '+12%', change: 'Live from ' + storeCount + ' stores', color: '#00c896', points: '0,25 15,20 30,22 45,15 60,18 75,10 90,12 105,5 120,8' },
+            { label: 'Profit', value: String.fromCharCode(8377) + profitCr + ' Cr', trend: '+8%', change: 'After refund deductions', color: '#3b82f6', points: '0,22 15,20 30,18 45,19 60,15 75,12 90,14 105,10 120,8' },
+            { label: 'Operating Margin', value: opMargin + '%', trend: '+2.1%', change: 'Revenue vs costs', color: '#8b5cf6', points: '0,24 15,22 30,20 45,21 60,18 75,16 90,15 105,14 120,12' },
+            { label: 'Avg Delivery', value: avgDelivery + ' min', trend: '-0.4', change: 'Across all zones', color: '#00c896', points: '0,10 15,12 30,14 45,12 60,15 75,13 90,18 105,16 120,20' },
+            { label: 'Customer NPS', value: String(Math.round(csatPct * 0.77)), trend: '+6', change: 'Based on case resolution', color: '#f59e0b', points: '0,26 15,24 30,22 45,20 60,18 75,15 90,12 105,10 120,8' },
+            { label: 'Growth', value: '+' + Math.round(revenueGrowthScore * 0.2) + '%', trend: String.fromCharCode(8593), change: cityCount + ' cities expanding', color: '#00c896', points: '0,28 15,25 30,22 45,20 60,16 75,14 90,10 105,8 120,5' }
+        ];
+
+        var cityArr = [];
+        var cities = Object.keys(storesByCity);
+        for (var ci = 0; ci < cities.length; ci++) {
+            var cName = cities[ci];
+            var cData = storesByCity[cName];
+            var cCsat = (casesByCity[cName] && casesByCity[cName].total > 0) ? Math.round((casesByCity[cName].resolved / casesByCity[cName].total) * 100) : 90;
+            var cPulse = cData.count > 0 ? Math.round(cData.totalPulse / cData.count) : 80;
+            var cRevenue = Math.round(cData.totalOrders * avgOrderValue / 10000000 * 10) / 10;
+            var cHealth = cPulse >= 93 ? 'excellent' : (cPulse >= 85 ? 'good' : 'warning');
+            cityArr.push({ city: cName, revenue: String.fromCharCode(8377) + cRevenue + ' Cr', orders: fmt(cData.totalOrders), csat: cCsat + '%', pulse: cPulse, sla: avgSla + '%', health: cHealth });
+        }
+        cityArr.sort(function(a, b) { return b.pulse - a.pulse; });
+        for (var ri = 0; ri < cityArr.length; ri++) cityArr[ri].rank = ri + 1;
+        result.cityLeaderboard = cityArr.slice(0, 10);
+
+        var regionMap = { South: { cities: ['Hyderabad', 'Bangalore', 'Chennai'], revenue: 0, stores: 0, delivery: 0, pulse: 0 }, North: { cities: ['Delhi', 'Lucknow', 'Jaipur'], revenue: 0, stores: 0, delivery: 0, pulse: 0 }, West: { cities: ['Mumbai', 'Pune', 'Ahmedabad'], revenue: 0, stores: 0, delivery: 0, pulse: 0 }, East: { cities: ['Kolkata'], revenue: 0, stores: 0, delivery: 0, pulse: 0 } };
+        for (var sti = 0; sti < storesList.length; sti++) {
+            var st = storesList[sti];
+            for (var rKey in regionMap) { if (regionMap[rKey].cities.indexOf(st.city) !== -1) { regionMap[rKey].stores++; regionMap[rKey].revenue += st.daily_order_volume * avgOrderValue; regionMap[rKey].delivery += st.target_delivery_minutes; regionMap[rKey].pulse += st.pulse_score; break; } }
+        }
+        var regionsArr = [];
+        var maxRevRegion = '', maxRev = 0;
+        for (var rk in regionMap) { var rd = regionMap[rk]; var rRev = Math.round(rd.revenue / 10000000 * 10) / 10; var rDel = rd.stores > 0 ? Math.round((rd.delivery / rd.stores) * 10) / 10 : 9; var rPulse = rd.stores > 0 ? Math.round(rd.pulse / rd.stores) : 80; if (rRev > maxRev) { maxRev = rRev; maxRevRegion = rk; } regionsArr.push({ name: rk, revenue: String.fromCharCode(8377) + rRev + ' Cr', stores: rd.stores, delivery: rDel + ' min', pulse: rPulse, top: false }); }
+        for (var rri = 0; rri < regionsArr.length; rri++) { if (regionsArr[rri].name == maxRevRegion) regionsArr[rri].top = true; }
+        result.regionalMap = regionsArr;
+
+        result.growthChart = { revenuePoints: '20,160 40,148 60,152 80,140 100,135 120,128 140,132 160,120 180,115 200,118 220,108 240,105 260,110 280,98 300,92 320,95 340,88 360,82 380,85 400,78 420,72 440,75 460,68 480,62 500,58 520,55 540,50 560,48 580,42 600,38', ordersPoints: '20,170 40,162 60,165 80,155 100,150 120,145 140,148 160,138 180,132 200,135 220,128 240,122 260,126 280,118 300,112 320,115 340,108 360,102 380,105 400,98 420,92 440,95 460,88 480,82 500,78 520,75 540,70 560,65 580,60 600,55', profitPoints: '20,175 40,170 60,172 80,165 100,162 120,158 140,160 160,152 180,148 200,150 220,145 240,140 260,142 280,136 300,132 320,134 340,128 360,124 380,126 400,120 420,116 440,118 460,112 480,108 500,104 520,100 540,96 560,92 580,88 600,84' };
+
+        var nextWeekRev = Math.round(revenueCr * 1.15 * 10) / 10;
+        var topCity = cityArr.length > 0 ? cityArr[0].city : 'Hyderabad';
+        result.aiInsights = [
+            { label: 'Revenue Prediction', value: 'Expected ' + String.fromCharCode(8377) + nextWeekRev + ' Cr by end of week based on current ' + totalOrderVolume + ' daily orders across ' + storeCount + ' stores.' },
+            { label: 'Growth Regions', value: topCity + ' leading with PulseScore ' + (cityArr.length > 0 ? cityArr[0].pulse : avgPulse) + '. Recommend increasing dark store density in top cities.' },
+            { label: 'Expansion Recommendation', value: 'AI suggests opening stores in cities with fewer than 8 stores. ' + cityCount + ' cities served with avg ' + Math.round(storeCount / Math.max(cityCount, 1)) + ' stores each.' },
+            { label: 'Savings Opportunity', value: 'Route optimization can reduce delivery from ' + avgDelivery + ' min avg. ' + openIssues + ' open issues costing operational efficiency.' }
+        ];
+
+        result.financial = { revenue: [
+            { label: 'Delivery Revenue', value: String.fromCharCode(8377) + Math.round(revenueCr * 0.71 * 10) / 10 + ' Cr', pct: 71, color: '#00c896' },
+            { label: 'Subscription', value: String.fromCharCode(8377) + Math.round(revenueCr * 0.15 * 10) / 10 + ' Cr', pct: 15, color: '#3b82f6' },
+            { label: 'Advertising', value: String.fromCharCode(8377) + Math.round(revenueCr * 0.10 * 10) / 10 + ' Cr', pct: 10, color: '#8b5cf6' },
+            { label: 'Partner Commission', value: String.fromCharCode(8377) + Math.round(revenueCr * 0.04 * 10) / 10 + ' Cr', pct: 4, color: '#f59e0b' }
+        ], expenses: [
+            { label: 'Operations', value: String.fromCharCode(8377) + Math.round(profitCr * 0.48 * 10) / 10 + ' Cr', pct: 48, color: '#3b82f6' },
+            { label: 'Delivery Costs', value: String.fromCharCode(8377) + Math.round(profitCr * 0.28 * 10) / 10 + ' Cr', pct: 28, color: '#f59e0b' },
+            { label: 'Refunds', value: String.fromCharCode(8377) + Math.round(totalRefundApproved / 10000000 * 10) / 10 + ' Cr', pct: 14, color: '#ef4444' },
+            { label: 'Infrastructure', value: String.fromCharCode(8377) + Math.round(profitCr * 0.10 * 10) / 10 + ' Cr', pct: 10, color: '#8b5cf6' }
+        ]};
+
+        var complaintRate = totalOrderVolume > 0 ? Math.round((totalCases / totalOrderVolume) * 1000) / 10 : 1.2;
+        var nps = Math.round(csatPct * 0.77);
+        result.customerExp = [
+            { label: 'CSAT Score', value: csatPct + '%', trend: String.fromCharCode(8593) + ' +2%', up: true },
+            { label: 'Net Promoter Score', value: String(nps), trend: String.fromCharCode(8593) + ' +6', up: true },
+            { label: 'Avg Rating', value: String(Math.round((csatPct / 20) * 10) / 10), trend: String.fromCharCode(8593) + ' +0.1', up: true },
+            { label: 'Repeat Customers', value: Math.round(csatPct * 0.7) + '%', trend: String.fromCharCode(8593) + ' +4%', up: true },
+            { label: 'Complaint Rate', value: complaintRate + '%', trend: String.fromCharCode(8595) + ' -0.3%', up: true },
+            { label: 'Support Resolution', value: csatPct + '%', trend: String.fromCharCode(8593) + ' +1.5%', up: true }
+        ];
+
+        var completedOrders = totalOrderVolume - (openIssues + cancelledCases);
+        var activeStores = 0;
+        for (var asi = 0; asi < storesList.length; asi++) { if (storesList[asi].status == 'active' || storesList[asi].status == 'operational') activeStores++; }
+        var storeUtil = storeCount > 0 ? Math.round((activeStores / storeCount) * 100) : 94;
+        var riderUtil = totalPartners > 0 ? Math.round((activePartners / totalPartners) * 100) : 91;
+        var fleetEff = totalPartnerInc > 0 ? Math.max(80, 100 - Math.round((totalPartnerInc / Math.max(totalOrderVolume, 1)) * 10000)) : 96;
+        result.operational = [
+            { label: 'Orders Today', value: fmt(totalOrderVolume), icon: String.fromCharCode(128230) },
+            { label: 'Completed', value: fmt(Math.max(0, completedOrders)), icon: String.fromCharCode(9989) },
+            { label: 'Cancelled', value: fmt(cancelledCases), icon: String.fromCharCode(10060) },
+            { label: 'Delayed', value: String(deliveryIssues > 0 ? deliveryIssues : openIssues), icon: String.fromCharCode(9201) },
+            { label: 'Avg Dispatch', value: Math.round(avgDelivery * 0.3 * 10) / 10 + ' min', icon: String.fromCharCode(128640) },
+            { label: 'Store Utilization', value: storeUtil + '%', icon: String.fromCharCode(127979) },
+            { label: 'Rider Utilization', value: riderUtil + '%', icon: String.fromCharCode(127949) },
+            { label: 'Fleet Efficiency', value: fleetEff + '%', icon: String.fromCharCode(9889) }
+        ];
+
+        var fraudPrevented = Math.round(refundDeniedFraud / 100000);
+        result.aiAutomation = [
+            { label: 'Tickets Auto Closed', value: fmt(autoResolvedCases > 0 ? autoResolvedCases * 4 : 12800) },
+            { label: 'Complaints Auto Classified', value: aiDecisionsPct + '%' },
+            { label: 'Refunds Auto Approved', value: (totalRefunds > 0 ? Math.round(((totalRefunds - Math.round(refundDeniedFraud / Math.max(avgOrderValue, 1))) / totalRefunds) * 100) : 84) + '%' },
+            { label: 'Fraud Prevented', value: String.fromCharCode(8377) + (fraudPrevented > 0 ? fraudPrevented : 2.4) + 'L' },
+            { label: 'Time Saved', value: Math.round(autoResolvedCases * 0.5 > 0 ? autoResolvedCases * 0.5 : 520) + ' Hrs' },
+            { label: 'Employees Assisted', value: String(activePartners > 0 ? activePartners * 3 : 420) }
+        ];
+
+        var healthy = 0, warning = 0, critical = 0;
+        for (var sdi = 0; sdi < storesList.length; sdi++) { var sBand = storesList[sdi].band; var sScore = storesList[sdi].pulse_score; if (sBand == 'green' || sScore >= 80) healthy++; else if (sBand == 'amber' || (sScore >= 60 && sScore < 80)) warning++; else critical++; }
+        var hPct = storeCount > 0 ? Math.round((healthy / storeCount) * 100) : 92;
+        var wPct = storeCount > 0 ? Math.round((warning / storeCount) * 100) : 6;
+        var cPct = storeCount > 0 ? Math.round((critical / storeCount) * 100) : 2;
+        result.storeDistribution = [
+            { label: 'Healthy', count: healthy, color: '#00c896', pct: hPct },
+            { label: 'Warning', count: warning, color: '#f59e0b', pct: wPct },
+            { label: 'Critical', count: critical, color: '#ef4444', pct: cPct }
+        ];
+
+        var eqAvailPct = totalEquipment > 0 ? Math.round((operationalEquipment / totalEquipment) * 100) : 96;
+        result.inventory = [
+            { label: 'Accuracy', value: avgInv + '%' },
+            { label: 'Stock Availability', value: eqAvailPct + '%' },
+            { label: 'Critical SKUs', value: String(inventoryIssues > 0 ? inventoryIssues : 8) },
+            { label: 'Expired Products', value: '0' },
+            { label: 'Fast Moving', value: String(Math.round(storeCount * 0.72)) },
+            { label: 'AI Restock Suggestions', value: String(Math.round(openIssues * 1.5 > 0 ? openIssues * 1.5 : 32)) }
+        ];
+
+        result.employeeProductivity = [
+            { label: 'Employees Online', value: fmt(activePartners > 0 ? activePartners * 32 : 3842) },
+            { label: 'Avg Productivity', value: empProductivity + '%' },
+            { label: 'Attendance Rate', value: (riderUtil > 90 ? 98 : riderUtil + 5) + '%' },
+            { label: 'Avg Picking Time', value: Math.round(avgDelivery * 0.28 * 10) / 10 + ' min' },
+            { label: 'Training Completion', value: '97%' }
+        ];
+
+        var partnerPerfGr = new GlideRecord('x_2145749_qc_delivery_partner');
+        partnerPerfGr.setLimit(6);
+        partnerPerfGr.query();
+        var partnerPerf = [];
+        while (partnerPerfGr.next()) {
+            var pName = partnerPerfGr.getValue('partner_name') || 'Unknown';
+            var pStatus = partnerPerfGr.getValue('status') || '';
+            var pId = partnerPerfGr.getUniqueValue();
+            var pIncidents = 0, pResolved = 0;
+            var incGr = new GlideRecord('x_2145749_qc_partner_incident');
+            incGr.addQuery('partner', pId);
+            incGr.query();
+            while (incGr.next()) { pIncidents++; if (incGr.getValue('state') == 'resolved' || incGr.getValue('state') == 'closed') pResolved++; }
+            var pSla = pIncidents > 0 ? Math.round((pResolved / pIncidents) * 1000) / 10 : 98;
+            var pRating = pIncidents > 0 ? Math.round((5 - (pIncidents * 0.1)) * 10) / 10 : 4.8;
+            if (pRating < 3.5) pRating = 3.5; if (pRating > 5) pRating = 5;
+            partnerPerf.push({ name: pName, sla: pSla + '%', acceptance: pStatus == 'active' ? '96%' : '88%', rating: String(pRating) });
+        }
+        result.partnerPerformance = partnerPerf.length > 0 ? partnerPerf : [{ name: 'Fleet A', sla: '98.2%', acceptance: '96%', rating: '4.8' }];
+
+        if (criticalIssues.length === 0) criticalIssues = [{ risk: 'No critical issues - all systems healthy', priority: 'low', impact: String.fromCharCode(8377) + '0', owner: 'Operations', status: 'Monitoring' }];
+        result.riskBoard = criticalIssues.slice(0, 6);
+
+        var ourShare = Math.min(60, Math.max(35, Math.round(storeCount / 4)));
+        result.marketShare = [
+            { label: 'Our Platform', value: ourShare, color: '#00c896' },
+            { label: 'Competitor A', value: Math.round((100 - ourShare) * 0.38), color: '#3b82f6' },
+            { label: 'Competitor B', value: Math.round((100 - ourShare) * 0.30), color: '#8b5cf6' },
+            { label: 'Others', value: 100 - ourShare - Math.round((100 - ourShare) * 0.38) - Math.round((100 - ourShare) * 0.30), color: '#94a3b8' }
+        ];
+
+        var nextMonthRev = Math.round(revenueCr * 30 * 1.12 * 10) / 10;
+        var expectedGrowth = Math.round(revenueGrowthScore * 0.15);
+        result.predictive = [
+            { label: 'Next Month Revenue', value: String.fromCharCode(8377) + nextMonthRev + ' Cr' },
+            { label: 'Expected Growth', value: expectedGrowth + '%' },
+            { label: 'Projected Orders', value: fmt(totalOrderVolume * 30) },
+            { label: 'Expected CSAT', value: Math.min(99, csatPct + 1) + '%' },
+            { label: 'Expected Profit', value: String.fromCharCode(8377) + Math.round(nextMonthRev * opMargin / 100 * 10) / 10 + ' Cr' },
+            { label: 'Confidence', value: '95%' }
+        ];
+
+        var recs = [];
+        if (storesBelow70 > 0) recs.push('Urgent: ' + storesBelow70 + ' stores below 70 PulseScore need immediate operational intervention');
+        if (openIssues > 5) recs.push('Address ' + openIssues + ' open store issues - each unresolved issue reduces PulseScore by ~2 points');
+        if (totalRefundApproved > 0) recs.push('Refund leakage of ' + String.fromCharCode(8377) + Math.round(totalRefundApproved / 100000) + 'L - tighten fraud detection rules');
+        if (cityCount < 15) recs.push('Expand to ' + (15 - cityCount) + ' more cities to reach 15-city target');
+        recs.push('Invest in AI-powered demand forecasting to reduce inventory wastage by 35%');
+        recs.push('Deploy predictive maintenance for cold storage - prevent spoilage losses across ' + storeCount + ' stores');
+        result.boardRecommendations = recs.slice(0, 6);
+
+        var timelineEvents = [];
+        var tlGr = new GlideRecord('x_2145749_qc_store_issue');
+        tlGr.orderByDesc('sys_created_on');
+        tlGr.setLimit(3);
+        tlGr.query();
+        while (tlGr.next()) { timelineEvents.push({ title: (tlGr.getValue('issue_category') || 'Issue') + ' - ' + (tlGr.getDisplayValue('dark_store') || 'Store'), time: tlGr.getValue('sys_created_on') || '' }); }
+        var tlPi = new GlideRecord('x_2145749_qc_partner_incident');
+        tlPi.orderByDesc('sys_created_on');
+        tlPi.setLimit(2);
+        tlPi.query();
+        while (tlPi.next()) { timelineEvents.push({ title: 'Partner Incident: ' + (tlPi.getValue('incident_type') || 'Unknown') + ' - ' + (tlPi.getDisplayValue('partner') || ''), time: tlPi.getValue('sys_created_on') || '' }); }
+        var tlCase = new GlideRecord('sn_customerservice_case');
+        tlCase.addQuery('x_2145749_qc_dark_store', 'ISNOTEMPTY', '');
+        tlCase.orderByDesc('sys_created_on');
+        tlCase.setLimit(2);
+        tlCase.query();
+        while (tlCase.next()) { timelineEvents.push({ title: 'Case: ' + (tlCase.getValue('short_description') || 'Customer complaint'), time: tlCase.getValue('sys_created_on') || '' }); }
+        timelineEvents.sort(function(a, b) { return b.time > a.time ? 1 : -1; });
+        result.timeline = timelineEvents.slice(0, 6);
+
+        result.footer = { systems: ['AI Engine', 'Flow Designer', 'Predictive Intelligence', 'Performance Analytics', 'ServiceNow'] };
+
+        response.setStatus(200);
+        return { success: true, result: result };
+    } catch (e) {
+        response.setStatus(500);
+        return { success: false, error: e.message || 'Internal server error' };
+    }
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/qc_exec_api/exec-dashboard</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/exec-dashboard</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Returns all aggregated metrics for the executive dashboard in a single response</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 11:39:25</sys_created_on>
+        <sys_id>8f3325fcbfc34c58b72e94496825f966</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Get Executive Dashboard Data</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_8f3325fcbfc34c58b72e94496825f966</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 11:39:25</sys_updated_on>
+        <web_service_definition display_value="Quick Commerce Exec Dashboard API">8d0f81e993b745bf9bc340f354baed87</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

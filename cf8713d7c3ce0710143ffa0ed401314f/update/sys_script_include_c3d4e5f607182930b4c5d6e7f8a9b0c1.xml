@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.CaseTriageEngine</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Invokes the "Order Complaint Triage Assistant" GenAI prompt config (sys_id 1766556dc3d04f41b54dda8d5e523b3f) for a given sn_customerservice_case record, parses the free-text output, and returns a structured result containing: the suggested complaint category, an urgency score (1-10), and a needs_manual_review flag.
+
+Confidence signal: The GenAI config uses unstructured text output (structured_output_enabled=false), so there is no native confidence percentage. As a proxy this engine treats the response as LOW CONFIDENCE — and sets needs_manual_review=true — when the output text does not contain one of the nine recognised category keywords. This is documented in the returned object's confidence_note field.
+
+Called by: the "AI Triage on Case Insert" Business Rule (sys_script).
+</description>
+        <mobile_callable>false</mobile_callable>
+        <name>CaseTriageEngine</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var CaseTriageEngine = Class.create();
+CaseTriageEngine.prototype = {
+
+    // ----- Constants --------------------------------------------------------
+
+    /**
+     * sys_id of the sys_generative_ai_config record "Order Complaint Triage
+     * Assistant" (Triage, llm_generic_small_v2, temp=0.2).
+     */
+    GEN_AI_CONFIG_SYS_ID: '1766556dc3d04f41b54dda8d5e523b3f',
+
+    /**
+     * Recognised x_2145749_qc_complaint_type choice values mapped to the
+     * keywords the LLM is instructed to output in "Suggested Category:".
+     * Any output that does not match is treated as low-confidence.
+     */
+    CATEGORY_MAP: {
+        'late_delivery':    'late_delivery',
+        'missing_items':    'missing_items',
+        'wrong_items':      'wrong_items',
+        'damaged_items':    'damaged_items',
+        'overcharge':       'overcharge',
+        'quality_issue':    'quality_issue',
+        'partner_behavior': 'partner_behavior',
+        'app_technical':    'app_technical',
+        'other':            'other'
+    },
+
+    /**
+     * Base urgency scores (1-10) per category.  "other" and unrecognised
+     * categories default to 5 (medium).  The score is bumped +1 when the
+     * review flag fires, capped at 10.
+     */
+    URGENCY_BASE: {
+        'late_delivery':    7,
+        'missing_items':    6,
+        'wrong_items':      7,
+        'damaged_items':    8,
+        'overcharge':       6,
+        'quality_issue':    5,
+        'partner_behavior': 9,
+        'app_technical':    3,
+        'other':            4
+    },
+
+    // ----- Public API -------------------------------------------------------
+
+    initialize: function () {},
+
+    /**
+     * Main entry point.  Pass the Case GlideRecord (current record from a
+     * business rule or a freshly-fetched GlideRecord).
+     *
+     * @param {GlideRecord} caseGr  sn_customerservice_case record
+     * @returns {Object}
+     *   {
+     *     success:             {Boolean},
+     *     category:            {String|null}  – choice value for x_2145749_qc_complaint_type
+     *     urgency_score:       {Number}       – integer 1-10
+     *     needs_manual_review: {Boolean}
+     *     confidence_note:     {String}       – human-readable explanation
+     *     raw_output:          {String}       – verbatim GenAI text
+     *     error:               {String}       – populated only when success=false
+     *   }
+     */
+    triage: function (caseGr) {
+        try {
+            var inputs = this._buildInputs(caseGr);
+            var rawOutput = this._callGenAI(inputs);
+
+            if (!rawOutput) {
+                return this._errorResult('GenAI skill returned no output — check that the sys_generative_ai_config is active and the LLM service is reachable.');
+            }
+
+            return this._parseOutput(rawOutput);
+        } catch (e) {
+            gs.error('x_2145749_qc CaseTriageEngine.triage: ' + e.message + ' | stack: ' + e.stack);
+            return this._errorResult(e.message);
+        }
+    },
+
+    // ----- Private helpers --------------------------------------------------
+
+    /**
+     * Builds the template variable map matching the prompt's {{placeholders}}.
+     * Prompt template expects: short_description, complaint_details, order_value.
+     */
+    _buildInputs: function (caseGr) {
+        return {
+            short_description: caseGr.getValue('short_description') || '',
+            complaint_details: caseGr.getValue('description') || '',
+            order_value:       String(caseGr.getValue('x_2145749_qc_order_value') || '0')
+        };
+    },
+
+    /**
+     * Calls the GenAI config via the sn_genai.GenerativeAIController API
+     * (available in Xanadu / Yokohama+).  Falls back to a direct prompt
+     * string substitution + raw LLM call if the controller is unavailable,
+     * so the Business Rule degrades gracefully rather than throwing.
+     *
+     * @param {Object} inputs  key→value map for prompt template variables
+     * @returns {String|null}  LLM response text, or null on failure
+     */
+    _callGenAI: function (inputs) {
+        // --- Primary path: GenerativeAIController (Xanadu+) -----------------
+        if (typeof sn_genai !== 'undefined' && sn_genai.GenerativeAIController) {
+            try {
+                var controller = new sn_genai.GenerativeAIController();
+                var response   = controller.execute(this.GEN_AI_CONFIG_SYS_ID, inputs);
+                // The response object shape varies by release; try common
+                // output property names.
+                if (response) {
+                    return response.output  ||
+                           response.content ||
+                           response.text    ||
+                           (typeof response.toString === 'function' ? response.toString() : null);
+                }
+            } catch (e1) {
+                gs.warn('x_2145749_qc CaseTriageEngine._callGenAI (GenerativeAIController) failed: ' + e1.message + ' — trying GlideGenerativeAI fallback.');
+            }
+        }
+
+        // --- Fallback path: GlideGenerativeAI (older releases) --------------
+        if (typeof GlideGenerativeAI !== 'undefined') {
+            try {
+                var promptConfigGr = new GlideRecord('sys_generative_ai_config');
+                if (!promptConfigGr.get(this.GEN_AI_CONFIG_SYS_ID)) {
+                    gs.error('x_2145749_qc CaseTriageEngine: sys_generative_ai_config ' + this.GEN_AI_CONFIG_SYS_ID + ' not found.');
+                    return null;
+                }
+                // Substitute template variables into the prompt text
+                var promptText = promptConfigGr.getValue('prompt');
+                for (var key in inputs) {
+                    if (inputs.hasOwnProperty(key)) {
+                        promptText = promptText.replace(new RegExp('\\{\\{' + key + '\\}\\}', 'g'), inputs[key]);
+                    }
+                }
+                var glideAI = GlideGenerativeAI.getInstance();
+                var result  = glideAI.generateText(promptText);
+                return result ? String(result) : null;
+            } catch (e2) {
+                gs.warn('x_2145749_qc CaseTriageEngine._callGenAI (GlideGenerativeAI fallback) failed: ' + e2.message);
+            }
+        }
+
+        gs.error('x_2145749_qc CaseTriageEngine._callGenAI: No GenAI API available on this instance.');
+        return null;
+    },
+
+    /**
+     * Parses the free-text LLM output.
+     *
+     * Expected format (from the prompt):
+     *   **Suggested Category:** late_delivery
+     *   **Review Flag:** None | Suggest fraud review
+     *   **Recommended Resolution:** ...
+     *
+     * Confidence proxy: if the "Suggested Category" line does not contain a
+     * recognised keyword, the result is marked needs_manual_review=true and
+     * category defaults to "other".  This is the closest thing available to a
+     * confidence threshold given that structured_output_enabled=false on the
+     * current prompt config.
+     */
+    _parseOutput: function (text) {
+        var category           = null;
+        var needsManualReview  = false;
+        var confidenceNote     = '';
+
+        // --- Extract Suggested Category ------------------------------------
+        // Match: **Suggested Category:** <value>  (case-insensitive, optional spaces)
+        var catMatch = text.match(/\*\*Suggested\s+Category:\*\*\s*([a-z_]+)/i);
+        if (catMatch) {
+            var raw = catMatch[1].trim().toLowerCase();
+            if (this.CATEGORY_MAP.hasOwnProperty(raw)) {
+                category       = this.CATEGORY_MAP[raw];
+                confidenceNote = 'Category "' + raw + '" recognised in GenAI output.';
+            } else {
+                // Keyword present but not in our list → low confidence
+                category           = 'other';
+                needsManualReview  = true;
+                confidenceNote     = 'GenAI returned unrecognised category token "' + raw + '"; defaulted to "other" and flagged for manual review. (No native confidence score — this is a keyword-match proxy.)';
+            }
+        } else {
+            // No category line found at all → definitely low confidence
+            category           = 'other';
+            needsManualReview  = true;
+            confidenceNote     = 'GenAI output did not contain a "**Suggested Category:**" line. Cannot classify. Flagged for manual review. (No native confidence score — this is a keyword-match proxy.)';
+        }
+
+        // --- Extract Review Flag -------------------------------------------
+        // "Suggest fraud review" in the Review Flag line → also mark manual
+        var reviewMatch = text.match(/\*\*Review\s+Flag:\*\*\s*(.+?)(?:\r?\n|$)/i);
+        if (reviewMatch && /fraud|review/i.test(reviewMatch[1])) {
+            needsManualReview = true;
+            confidenceNote   += ' | AI flagged potential fraud/review pattern.';
+        }
+
+        // --- Derive urgency score ------------------------------------------
+        var urgencyScore = this._deriveUrgencyScore(category, needsManualReview);
+
+        return {
+            success:             true,
+            category:            category,
+            urgency_score:       urgencyScore,
+            needs_manual_review: needsManualReview,
+            confidence_note:     confidenceNote,
+            raw_output:          text,
+            error:               null
+        };
+    },
+
+    /**
+     * Maps complaint category → base urgency integer 1-10.
+     * Bumps by 1 when the review flag is set (pattern signal from AI).
+     */
+    _deriveUrgencyScore: function (category, needsManualReview) {
+        var base = this.URGENCY_BASE.hasOwnProperty(category)
+                   ? this.URGENCY_BASE[category]
+                   : 5;
+        if (needsManualReview) {
+            base = Math.min(base + 1, 10);
+        }
+        return base;
+    },
+
+    /** Helper: build a uniform failure result object. */
+    _errorResult: function (msg) {
+        return {
+            success:             false,
+            category:            null,
+            urgency_score:       null,
+            needs_manual_review: true,
+            confidence_note:     '',
+            raw_output:          '',
+            error:               msg
+        };
+    },
+
+    type: 'CaseTriageEngine'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 00:54:33</sys_created_on>
+        <sys_id>c3d4e5f607182930b4c5d6e7f8a9b0c1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CaseTriageEngine</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_c3d4e5f607182930b4c5d6e7f8a9b0c1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

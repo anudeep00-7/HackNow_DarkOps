@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sn_nowassist_skill_config_status">
     <sn_nowassist_skill_config_status action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <in_mobile_active>false</in_mobile_active>
         <in_mobile_roles/>
-        <in_product_active>false</in_product_active>
+        <in_product_active>true</in_product_active>
         <in_product_roles/>
         <skill_config display_value="Order Complaint Triage Assistant">2142a5f074b445788d60e151abfe3ee5</skill_config>
         <sys_class_name>sn_nowassist_skill_config_status</sys_class_name>
@@ -19,6 +19,6 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sn_nowassist_skill_config_status_1dbc4b6af3844b6aa9757efe5f071123</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-18 18:15:06</sys_updated_on>
+        <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
     </sn_nowassist_skill_config_status>
 </record_update>

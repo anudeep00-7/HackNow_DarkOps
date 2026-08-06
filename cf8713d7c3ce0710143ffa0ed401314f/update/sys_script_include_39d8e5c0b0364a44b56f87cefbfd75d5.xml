@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.StoreAssignmentUtil</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Reusable utility for Store Manager to Dark Store relationship. Derives all assignments from Dark Store.manager (single source of truth). Provides methods for querying assignments, validating roles, and retrieving store details for personalized dashboards.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>StoreAssignmentUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[/**
+ * StoreAssignmentUtil
+ *
+ * Single source of truth:
+ * Dark Store.manager -> sys_user
+ *
+ * Provides reusable methods for dashboards, UI Pages,
+ * Business Rules, Script Includes and GlideAjax calls.
+ */
+
+var StoreAssignmentUtil = Class.create()
+StoreAssignmentUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    initialize: function () {},
+
+    /**
+     * Returns the sys_id of the Dark Store assigned to the user.
+     */
+    getAssignedStore: function (userSysId) {
+        var userId = userSysId || this.getParameter('sysparm_user_sys_id')
+
+        if (!userId) return null
+
+        var storeGR = new GlideRecord('x_2145749_qc_dark_store')
+        storeGR.addQuery('manager', userId)
+        storeGR.query()
+
+        if (storeGR.next()) return storeGR.getUniqueValue()
+
+        return null
+    },
+
+    /**
+     * Returns the Store Manager sys_id for a Dark Store.
+     */
+    getStoreManager: function (storeSysId) {
+        var storeId = storeSysId || this.getParameter('sysparm_store_sys_id')
+
+        if (!storeId) return null
+
+        var storeGR = new GlideRecord('x_2145749_qc_dark_store')
+
+        if (storeGR.get(storeId)) return storeGR.getValue('manager')
+
+        return null
+    },
+
+    /**
+     * Returns true if the user has the dark_store_manager role.
+     */
+    isStoreManager: function (userSysId) {
+        var userId = userSysId || this.getParameter('sysparm_user_sys_id')
+
+        if (!userId) return false
+
+        var roleGR = new GlideRecord('sys_user_has_role')
+        roleGR.addQuery('user', userId)
+        roleGR.addQuery('role.name', 'x_2145749_qc.dark_store_manager')
+        roleGR.addQuery('state', 'active')
+        roleGR.setLimit(1)
+        roleGR.query()
+
+        return roleGR.hasNext()
+    },
+
+    /**
+     * Returns true if this manager owns a Dark Store.
+     */
+    hasAssignedStore: function (userSysId) {
+        return this.getAssignedStore(userSysId) !== null
+    },
+
+    /**
+     * Returns complete store information for dashboards.
+     *
+     * Returns JSON.
+     */
+    getStoreDetails: function (userSysId) {
+        var userId = userSysId || this.getParameter('sysparm_user_sys_id') || gs.getUserID()
+
+        var storeId = this.getAssignedStore(userId)
+
+        if (!storeId) {
+            return JSON.stringify({
+                assigned: false,
+                message: 'No Dark Store has been assigned to your account.',
+            })
+        }
+
+        var storeGR = new GlideRecord('x_2145749_qc_dark_store')
+
+        if (!storeGR.get(storeId)) {
+            return JSON.stringify({
+                assigned: false,
+                message: 'Assigned Dark Store record not found.',
+            })
+        }
+
+        return JSON.stringify({
+            assigned: true,
+
+            store_sys_id: storeGR.getUniqueValue(),
+
+            store_name: storeGR.getDisplayValue('store_name'),
+
+            store_code: storeGR.getValue('store_code'),
+
+            city: storeGR.getValue('city'),
+
+            zone: storeGR.getDisplayValue('zone'),
+
+            status: storeGR.getValue('status'),
+
+            pulse_score: storeGR.getValue('pulse_score'),
+
+            pulse_score_band: storeGR.getValue('pulse_score_band'),
+
+            daily_order_volume: storeGR.getValue('daily_order_volume'),
+
+            manager_sys_id: storeGR.getValue('manager'),
+
+            manager_name: storeGR.getDisplayValue('manager'),
+        })
+    },
+
+    type: 'StoreAssignmentUtil',
+})
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-02 10:24:44</sys_created_on>
+        <sys_id>39d8e5c0b0364a44b56f87cefbfd75d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>StoreAssignmentUtil</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_39d8e5c0b0364a44b56f87cefbfd75d5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-02 10:24:44</sys_updated_on>
+    </sys_script_include>
+</record_update>

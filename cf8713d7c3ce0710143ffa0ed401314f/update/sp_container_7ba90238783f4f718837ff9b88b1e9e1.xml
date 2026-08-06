@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <aria_label/>
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Home Main Container</name>
+        <order>1</order>
+        <semantic_tag/>
+        <sp_page display_value="qcops_home">fd88cb8f713349f9bef5e6de4e740199</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 20:40:40</sys_created_on>
+        <sys_id>7ba90238783f4f718837ff9b88b1e9e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Home Main Container</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sp_container_7ba90238783f4f718837ff9b88b1e9e1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 20:40:40</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+</record_update>

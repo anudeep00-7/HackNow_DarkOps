@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>Get PulseScore History</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var method = request.httpMethod;
+    try {
+        if (method !== 'GET') {
+            response.setStatus(405);
+            return { success: false, error: 'Method not allowed' };
+        }
+        var storeId = request.pathParams.store_id;
+        if (!storeId) {
+            response.setStatus(400);
+            return { success: false, error: 'store_id is required' };
+        }
+        var isHistory = request.pathParams.sub === 'history';
+        var body = isHistory ? getHistory(storeId, request.queryParams) : getLatest(storeId);
+        response.setStatus(body.success ? 200 : 400);
+        return body;
+    } catch (e) {
+        response.setStatus(500);
+        return { success: false, error: e.message };
+    }
+
+    function getLatest(storeId) {
+        var gr = new GlideRecord('x_2145749_qc_pulse_score');
+        gr.addQuery('dark_store', storeId);
+        gr.orderByDesc('snapshot_time');
+        gr.setLimit(1);
+        gr.query();
+        if (!gr.next()) {
+            return { success: false, error: 'No PulseScore snapshot for this store yet' };
+        }
+        return { success: true, result: toObj(gr) };
+    }
+
+    function getHistory(storeId, qp) {
+        var gr = new GlideRecord('x_2145749_qc_pulse_score');
+        gr.addQuery('dark_store', storeId);
+        gr.orderByDesc('snapshot_time');
+        var limit = parseInt(qp.limit, 10) || 30;
+        gr.setLimit(limit);
+        gr.query();
+        var results = [];
+        while (gr.next()) {
+            results.push(toObj(gr));
+        }
+        return { success: true, result: results };
+    }
+
+    function toObj(gr) {
+        var breakdown = null;
+        try {
+            breakdown = JSON.parse(gr.breakdown.toString());
+        } catch (e) {
+            breakdown = gr.breakdown.toString();
+        }
+        return {
+            sys_id: gr.getUniqueValue(),
+            store: gr.dark_store.getDisplayValue(),
+            score: gr.score.toString(),
+            band: gr.band.toString(),
+            breakdown: breakdown,
+            open_complaint_count: gr.open_complaint_count.toString(),
+            open_store_issue_count: gr.open_store_issue_count.toString(),
+            as_of: gr.snapshot_time.toString()
+        };
+    }
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/qc_ops_api/pulsescore/{store_id}/{sub}</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/pulsescore/{store_id}/{sub}</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Get PulseScore snapshot history for a store (sub=history)</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:41</sys_created_on>
+        <sys_id>cfcecd3fbee249fe8c83a69494f18f34</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Get PulseScore History</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_cfcecd3fbee249fe8c83a69494f18f34</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:41</sys_updated_on>
+        <web_service_definition display_value="Quick Commerce Ops API">b9b3fd9e62e14c1faaa0577d1181af8a</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

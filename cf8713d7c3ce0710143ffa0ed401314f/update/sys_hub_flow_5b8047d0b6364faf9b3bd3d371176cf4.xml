@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>false</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes/>
+        <authored_on_release_version/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <compiler_build/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <display_name_after_preview/>
+        <flow_priority>MEDIUM</flow_priority>
+        <generation_source>fluent</generation_source>
+        <internal_name/>
+        <label_cache>[{"name":"Updated_1.current.sys_id","label":"Trigger - Record Updated➛task_sla Record➛Sys Id","type":"string","base_type":"string","usedInstances":{"b1b3bc70-86ec-4586-bded-d2365bbd3548":["log_message"]},"attributes":{}},{"name":"Updated_1.current.percentage","label":"Trigger - Record Updated➛task_sla Record➛Percentage","type":"string","base_type":"string","usedInstances":{"b1b3bc70-86ec-4586-bded-d2365bbd3548":["log_message"]},"attributes":{}},{"name":"Updated_1.current.task","label":"Trigger - Record Updated➛task_sla Record➛Task","type":"string","base_type":"string","usedInstances":{"b1b3bc70-86ec-4586-bded-d2365bbd3548":["log_message"]},"attributes":{}}]</label_cache>
+        <latest_snapshot/>
+        <master_snapshot/>
+        <master_snapshot_digest/>
+        <name>SLA Breach Risk Escalation</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id/>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>draft</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 20:38:51</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>5b8047d0b6364faf9b3bd3d371176cf4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SLA Breach Risk Escalation</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_hub_flow_5b8047d0b6364faf9b3bd3d371176cf4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 20:38:51</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_variable_value action="delete_multiple" query="document_key=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=5b8047d0b6364faf9b3bd3d371176cf4^sys_idNOT INc2ef38cc41d84b3db4e3c3f96aac56ca"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="SLA Breach Risk Escalation">5b8047d0b6364faf9b3bd3d371176cf4</flow>
+        <generation_source/>
+        <name>Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 20:38:51</sys_created_on>
+        <sys_id>c2ef38cc41d84b3db4e3c3f96aac56ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 20:38:51</sys_updated_on>
+        <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAAA71X32vbMBD+V4SeNsigexuBDrZ1hUC3wtpuD2UVinW2RZVTJp2TmpL/fcg/UttxmrRx+hRyku6+++476Xz7yMnpJAE3QU8SI7jK/UTxMecjbuQUDB/zazk1wEdcI4FDaa7zOfAxp2AWKGdhTcEcUAFSeTRKrY7gQnvi49u/Iz6TqCRZl/MxuQxG3DoFjo8/npyMeOGi8sdHfCFNVv7398IbGbxrPzcy/7115VyDqVD7yOk5fYlIL4CPY2k8BDzaKAdYoplLJ2dAAcAjp55sOojaRKxWo31Y+5Uh+5MCshsPjhVUbFCYGK1AmHJtfwqrpHo4dBmKZQooMg+udlwTuknk/gQWPhpZ7ia0ldtz8J4lTBI5Pc0IfHAt1SKwHTAEGfHVS2txBd5rG36JNCabFSlZ31GNRx7XDBbHZcnViMcXVcBLNDkLUWPrynwmTxtrFOHAZCaTqhLxFRiIKGRXkR7f+Oa/H9r7ALo0hMzXMNCi2AfKT4sfjotkailthq8jf7WUtkiQqLbB8QfieXG3+LUcFu00Ov3Sth5+6azVth3QHhIerkdiY5dsgoe3hcR8QwTBt0YmMWeRRYIHGlB2sXWQOJuh2ha3vWMotcvo/vmwTzvYOwWxzAy9f0N5BxhCY1PZTchdffesHUflT7j69Tecpi+RfX+gIFrFigfcHy7vAkSn4BZZlDkHSMXVBnVMqmMOJvVg2Yxu8iaEenR5K51ZFHXGDa3VUDsy65iPo7A2op2KGEZw3ywqTeWL2tVYveQHmvWiRqya8Dm4CJBkAp9PP53cpdKLqQMZpaBOC0935Ut7Wim4U5hXHh+ggE1yevLr47ddsaVE8oKskEqJhrt1s86sAnPW4L2qptA4z8jzVaMqwmJj/M88iEbBgr9XfQMMNnT2va7WFS9rGKwHvGssgrBx7zipY1YRAIpNc0YpsNgaY5cakwLHkJce2lCULpgzy9ASc28C53XfYJujZVm9Tue1jEccLDuYdgl1uGf4utx1uPgz1P8yEFEqMSnf1VoN59axcFmxcgsrtwzaDVHn0yoa0j0swOUbCQUjy+ZK0pCxpFnK3G80to6LhqqmCJOH1sJSCm/ROvWV7MlJgiRvdE1NTqdvOubhO6cHUp+sV6u//wFkIVyRTBMAAA==</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=5b8047d0b6364faf9b3bd3d371176cf4^sys_idNOT INb1b3bc7086ec4586bdedd2365bbd3548"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Log">5bc1bcc6531003003bf1d9109ec587d4</action_type>
+        <action_type_parent display_value="">5bc1bcc6531003003bf1d9109ec587d4</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot/>
+        <display_text/>
+        <flow display_value="SLA Breach Risk Escalation">5b8047d0b6364faf9b3bd3d371176cf4</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-01 20:38:51</sys_created_on>
+        <sys_id>b1b3bc7086ec4586bdedd2365bbd3548</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-01 20:38:51</sys_updated_on>
+        <ui_id>b1b3bc70-86ec-4586-bded-d2365bbd3548</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAAA9WRMWvDQAyF/8oh6GYMXb0lc+nQ0i6hGHEn2yLnu0NSXIy5/x6cqaEZunZ975MeejptkHAm6CDmsY+0UIQGFoyXXftGSdBAYC0R1897Vb1wsYM3Xgi6AaNSAwUFZzIS6Dawtey8nzJ7glqbu7CZVHGkH3HvLwd3FEI/uTfWc+cM9dxrRLdtHyWgUeifW38RoWStrtpzqNWxOrSHSCHxlAxHqvXJDVluGx+iu1Fr616z8bC6XLSPhIFEJy5OcqTbPM8zBUYjh2aUjHNqfzf0fw/581PVhNMItX5dASRj7mNDAgAA</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=b1b3bc7086ec4586bdedd2365bbd3548"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=5b8047d0b6364faf9b3bd3d371176cf4"/>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=5b8047d0b6364faf9b3bd3d371176cf4"/>
+</record_update>

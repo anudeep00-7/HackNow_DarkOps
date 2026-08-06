@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sn_nowassist_skill_config">
     <sn_nowassist_skill_config action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <description><![CDATA[Suggests a category and drafts a resolution recommendation for an order complaint case, for agent review.]]></description>
         <edited_in_nask>false</edited_in_nask>
-        <in_product_active>false</in_product_active>
+        <in_product_active>true</in_product_active>
         <in_product_roles/>
         <internal_name>order_complaint_triage_assistant.2142a5f074b445788d60e151abfe3ee5</internal_name>
         <is_template>false</is_template>
@@ -14,7 +14,7 @@
         <skill_family display_value="Other">a5efaf1c93764210aa5730f16489186d</skill_family>
         <skill_id>324b60b075c74ab7816639a79d22890a</skill_id>
         <skill_table>sys_one_extend_capability</skill_table>
-        <state>0</state>
+        <state>1</state>
         <success_message/>
         <sys_class_name>sn_nowassist_skill_config</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -29,7 +29,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sn_nowassist_skill_config_2142a5f074b445788d60e151abfe3ee5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-18 18:15:06</sys_updated_on>
+        <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
     </sn_nowassist_skill_config>
     <sys_translated_text action="delete_multiple" query="documentkey=2142a5f074b445788d60e151abfe3ee5"/>
 </record_update>

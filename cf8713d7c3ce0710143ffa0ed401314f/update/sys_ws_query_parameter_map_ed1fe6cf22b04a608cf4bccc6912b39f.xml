@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter_map">
+    <sys_ws_query_parameter_map action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ws_query_parameter_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 03:33:42</sys_created_on>
+        <sys_id>ed1fe6cf22b04a608cf4bccc6912b39f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>924a487df2484455be87ef32bbcd8f33</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_query_parameter_map_ed1fe6cf22b04a608cf4bccc6912b39f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 03:33:42</sys_updated_on>
+        <web_service_operation display_value="Get Complaints List">1807366aaef5407b9ef3f5ce38648895</web_service_operation>
+        <web_service_query_parameter display_value="priority">924a487df2484455be87ef32bbcd8f33</web_service_query_parameter>
+    </sys_ws_query_parameter_map>
+</record_update>
