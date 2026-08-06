@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="48246b13c3424710143ffa0ed4013195" label="Delivery Zone" max_length="40" name="x_2145749_qc_delivery_zone" type="collection">
-        <element label="Zone Code" max_length="20" name="zone_code" type="string"/>
         <element label="City" mandatory="true" max_length="100" name="city" type="string"/>
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element display="true" label="Zone Name" mandatory="true" max_length="100" name="zone_name" type="string"/>
+        <element label="Zone Code" max_length="20" name="zone_code" type="string"/>
     </element>
 </database>

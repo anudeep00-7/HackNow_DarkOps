@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_id</element>
-            <list_id display_value="sn_customerservice_case" element="NULL" name="sn_customerservice_case" parent="NULL" relationship="NULL" sys_domain="global" view="7c10f2738c1103100a22deb6dd2b4e04">935c2393c3824710143ffa0ed40131af</list_id>
+            <list_id display_value="sn_customerservice_case" element="NULL" name="sn_customerservice_case" parent="NULL" relationship="NULL" sys_domain="global" view="4308d271082003100a22e9371c04a404">935c2393c3824710143ffa0ed40131af</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -40,7 +40,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-07-18 18:50:49</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">7c10f2738c1103100a22deb6dd2b4e04</view>
+            <view display_value="Reference List" name="sys_ref_list">4308d271082003100a22e9371c04a404</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>
