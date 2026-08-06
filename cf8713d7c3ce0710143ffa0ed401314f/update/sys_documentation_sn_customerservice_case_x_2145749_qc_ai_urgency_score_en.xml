@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="x_2145749_qc_ai_urgency_score" label="AI Urgency Score" language="en" table="sn_customerservice_case">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>x_2145749_qc_ai_urgency_score</element>
+            <help>Auto-populated on Case creation by the AI Triage Business Rule. Value 1-10 where 10 is the highest urgency. Based on the complaint category and pattern signals returned by the Order Complaint Triage Assistant GenAI skill.</help>
+            <hint>Auto-set by AI triage on case creation (1 = low, 10 = critical)</hint>
+            <label>AI Urgency Score</label>
+            <language>en</language>
+            <name>sn_customerservice_case</name>
+            <plural>AI Urgency Scores</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-02 00:54:33</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>AI Urgency Score</sys_name>
+            <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+            <sys_update_name>sys_documentation_sn_customerservice_case_x_2145749_qc_ai_urgency_score_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-02 00:54:33</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
