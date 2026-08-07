@@ -5,7 +5,6 @@
         <edited_in_nask>false</edited_in_nask>
         <in_product_active>false</in_product_active>
         <in_product_roles/>
-        <internal_name>order_complaint_triage_assistant.2142a5f074b445788d60e151abfe3ee5</internal_name>
         <is_template>false</is_template>
         <name>Order Complaint Triage Assistant</name>
         <nap_skill_applicability display_value="Order Complaint Triage Assistant">2b42329cae044a919ee128885ecfc036</nap_skill_applicability>

@@ -34,7 +34,6 @@
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
-        <read_only_option/>
         <read_roles/>
         <reference display_value="" name="x_2145749_qc_partner_incident">x_2145749_qc_partner_incident</reference>
         <reference_cascade_rule/>

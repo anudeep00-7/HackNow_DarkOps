@@ -17,7 +17,6 @@
         <menu/>
         <name>Quick Commerce Ops Platform</name>
         <package_json display_value="x_2145749_qc/qc-ops-platform/0.0.1/package.json" path="x_2145749_qc/qc-ops-platform/0.0.1/package.json">x_2145749_qc/qc-ops-platform/0.0.1/package.json</package_json>
-        <package_resolver_version>1.0.0</package_resolver_version>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
