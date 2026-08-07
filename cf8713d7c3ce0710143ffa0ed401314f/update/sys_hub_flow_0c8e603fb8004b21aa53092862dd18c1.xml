@@ -5,7 +5,7 @@
         <active>true</active>
         <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
-        <attributes>timeFromCreateToActivate=1669790000</attributes>
+        <attributes>timeFromCreateToActivate=1690247000</attributes>
         <authored_on_release_version/>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
@@ -23,7 +23,7 @@
         <natlang/>
         <outputs/>
         <pre_compiled>false</pre_compiled>
-        <remote_trigger_id>edf5cf21932ec310af17f6718bba1085</remote_trigger_id>
+        <remote_trigger_id>9bf3943593a60710af17f6718bba104c</remote_trigger_id>
         <run_as>system</run_as>
         <run_with_roles/>
         <sc_callable>false</sc_callable>
@@ -37,7 +37,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0c8e603fb8004b21aa53092862dd18c1</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>Delivery Partner Incident - Urgent Safety Escalation</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -45,7 +45,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_hub_flow_0c8e603fb8004b21aa53092862dd18c1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:05:03</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:58</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
@@ -69,15 +69,15 @@
         <run_when_user_setting>any</run_when_user_setting>
         <sys_class_name>sys_flow_record_trigger</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-07 02:05:03</sys_created_on>
+        <sys_created_on>2026-08-07 07:45:58</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>edf5cf21932ec310af17f6718bba1085</sys_id>
+        <sys_id>9bf3943593a60710af17f6718bba104c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_overrides/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:05:03</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:58</sys_updated_on>
         <table>x_2145749_qc_partner_incident</table>
         <trigger_definition/>
     </sys_flow_record_trigger>
@@ -88,14 +88,14 @@
         <identifier_type>flow</identifier_type>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-07 02:05:03</sys_created_on>
-        <sys_id>e9f5cf21932ec310af17f6718bba1086</sys_id>
+        <sys_created_on>2026-08-07 07:45:58</sys_created_on>
+        <sys_id>97f3943593a60710af17f6718bba104d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:05:03</sys_updated_on>
-        <trigger display_value="">edf5cf21932ec310af17f6718bba1085</trigger>
+        <sys_updated_on>2026-08-07 07:45:58</sys_updated_on>
+        <trigger display_value="">9bf3943593a60710af17f6718bba104c</trigger>
     </sys_trigger_runner_mapping>
-    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=0c8e603fb8004b21aa53092862dd18c1^sys_idNOT INe9f5cf21932ec310af17f6718bba1086"/>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=0c8e603fb8004b21aa53092862dd18c1^sys_idNOT IN97f3943593a60710af17f6718bba104d"/>
     <sys_hub_flow_stage action="delete_multiple" query="flow=0c8e603fb8004b21aa53092862dd18c1"/>
     <sys_flow_cat_variable_model action="delete_multiple" query="id=0c8e603fb8004b21aa53092862dd18c1"/>
     <sys_hub_flow_input action="delete_multiple" query="model=0c8e603fb8004b21aa53092862dd18c1^sys_idNOT IN4944ef53c3424710143ffa0ed40131ed,85442393c3424710143ffa0ed4013119,f5bff6e193eac310af17f6718bba1005"/>
@@ -368,10 +368,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:15:09</sys_created_on>
         <sys_id>561983df36304a6c8c7d97dd65c781e2</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:04:59</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:56</sys_updated_on>
         <trigger_definition display_value="Created or Updated">a45d9180c32222002841b63b12d3aea7</trigger_definition>
         <trigger_inputs>H4sIAAAAAAAA/+1Y227cNhD9FUJPLbAFnCZFUb+1TQ0YSBsgdtuH1BC45EhLhEtuyNGuVcP/nqEuu1xdUrle5QL4yRY55pyZOWeG9Nu7BJ3Kc3CXxiM3Aq5KfymT8yRZJJovQdOv13ypgb6VQXCG6+tyA7SMYTk1fB32JGzASDBY/6lYWSXglfL0/fZmkay5kRytK5NzdAUskszZ9TWsN5ojnZVx7WnROgkuOX92drZIqnMbJ3TglusifN+m3z978cOPL35K34t0wx0acKkyQlW+CYfydGb510RzsVJaOjA1SjIgrxgw3PWi7wDCgSQ0+Ak93GJIh9yHFiWgWXHA5Wujy8jk1qt/ofr7wkMapbSxyK5WdvcGMiDEAi6Uqdw1m9oKrvdfHKmuywLBUyz39/vEXCjQTXm9cGqDPwtU27YE94spfHhTGPbasN+aGFmVId8nSE2C/yDHHUUF74sQUBV51pYu8ISMs1eRV2uYKBxFj4zyydosM2wRZJdrnkPths7VIDAqQvanj79+V94rk0exj0Cp9vtYdBkDaonxGAg3Q0SZKhVXmNSadE+9g2ha/B1xtMsTRDBa8lHf2OHAl6qNhMtt4LlsKTeDWDJtd+zSnFoh3JRdUlaelCF1lExYcnaLs6liycW73NnCyDEUBwv2jYSMFxq/nU+k1sHH4RxbfE6ZBkQ0hiKJHiWzo9OjvYliPVBu0O2TOutU/WqNVKjskDbbLf+g680D2SAiAC0XPGzBKSz/Kc7OnsvC5YNXmxGrCfyIgx6AgQPxz8aP5jb4f+mx4wZ9ijblUqYR4v31YW0l6JdR9RpOkAw2BfrkPqotTbD9Be/0Q+DvFRh2BdRIbPiJGBrKiSdCdRiv8UVNMBSDVV3BOkadzVFn2Bu2mGZrzIYuBlOA/WHNd58S19LiqjcqCMcvtH6UoHDVHAH32DvnoyfJjliV+j2btsexdQdJvTpxhIwQdtz501DpJK+SWqXZns5zTU/QVNd7p58uFQ8iaN2iUUJd673lTJ8vD+RKHO7HHOJACp64EpI301gYeihQowuPhFCX2TqsNZDabLDhq4w1yaHX5LJkuALCpOmCSidXqOZ7zhsbRn0X2kvLaIO5TwLuNH2/ElW/+dfl7mi5XnywnMf7fsf5U/M/pO+6tjq1jK0RnduTeOw/nMZFwvWOl76nXZJGUEnzTy9aID6YmgHz4AivnKPudUGdq1pkxUYGpczluTCKllOx4iYH34PAxYrVJqw2+ZwtoX3VeHRkmZdRN+iF0WkMvf2JPeJA8nEMX0tTmN4Dbj4An4DRojIZAAA=</trigger_inputs>
         <trigger_outputs/>
@@ -394,10 +394,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-07 01:36:58</sys_created_on>
         <sys_id>4462b30d61e848f0831dafd232046c13</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:04:59</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:56</sys_updated_on>
         <ui_id>4462b30d-61e8-48f0-831d-afd232046c13</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+2UXW/aMBSG/wryNYoSAqxwN8GQJm2t1m7cdJ3l2CdgyXFS26EwxH/fcRJCRLu2F71YpXGFz5ff9/hRbvdEswzIlDiWKKDVoU82TJU+uKWDaDj6MJzQe04LZpwGQ6XmUoB2WCekLRTbLV9ZjiGc78CQ6Z7wtVTCgCbT27s+kQL7k5EIo0k05nEUx4MwHFwMo2QcJ9FAxAz4BEcoloDC0u9eLp6fUu92xZOxL93e3mWdyI3wekZhn8DWgRaASlKmLPRJxrRgLjc7MnWmxIABJq602rUVa4nGpoT42q2Vv/Hei9DXpYDWONS59kibhdXhdM4cu8HJ3JWmKeXrXHKw9VIEpKxUbtaN1QVXhZO5rlsqn013rspMX9Y7Ie2A4/tgpLQoAgrv0ytvbKQ36/zh+qhyIXW1kyapcs5Ue2LOGZmUzuvZE1CQ4SCasaKQekULk29k1YxasmCl8BCkKn/AS61c6YBxLzzAtbJggfF5FV4yI72LrzgGmw99Ynd2ppi1Jy+4RHpfeiW1s8YDrdfgW7iRhfuIF2ygkXvot3wb4PjUHbb3+xk+pwPRy03vRyH8XxoFvDS4BHc4PMb7FQQP4TmCIeoQfH0UdC6wwVfkvKx2K8UZv/Mm0/s8PwEcvRnAw/cEcG3r3fPb+Va9SHIFsO2QbB2y+7MMwxhFoldP8q9P3x4D/PfCl7gOB89yDR2uFxKUsCeuW7nHzzJkhb+Z1vLPPs1Nsrdski3db4Z3NA6r33/I/z3I7/4A7D10b5AIAAA=</values>
@@ -418,10 +418,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-07 01:36:58</sys_created_on>
         <sys_id>655a8cf39ad14992a02ecf5245a7a043</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:04:59</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:56</sys_updated_on>
         <ui_id>655a8cf3-9ad1-4992-a02e-cf5245a7a043</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+1Y32/bNhD+Vwg9u578O87TsrjZArTpEKftQ1EIFHmKuVKiQlJxPCP/+44SbSu24cTJArhbnmIdj6fvjt/HO+XbPMhoCsFxYGksISofGsEtlYUz3kXtVrc36A6jGxblVNsMdCQyJjhkFv24MLmksy9PdEcTxregg+N5wCZCcg1ZcPzteyMQHPe3hkdhP066dBB22p0wPGoPh3FnmIRHg2HY4l0MIWkMEl2vHFx83obezvKttg/1veSiWlCaOzytRgB3FjIOCCSh0kAjSGnGqVV6trRooPxTJtFgdYHPE4F5YcAJEEv1NViigWFEYj28lN4Z8TeiOQrd7gQwYebABbXHyJexMicjaukY4zNbaO/KJkowMFWpOCS0kPa0bqscPuVWqKzaUiGoditZpNlFValgGWBxamgpDIKA3KXvEvLZJuOJml4uUJ6JrKyUX5SKUbl8otZqERfW4ZkHICHFQFFK81xk11Gu1a0oNyOWtHkt8aGZSDXFlxpxnTUpc8CbWG3aPEP7qDR/oVq4LD5iGNyMJDGRYVrki9zKlwf3jcDMzKmkxqxyxOJGN4VDWGXsc4uq8rgtZaATfPEt+DTuG0s1TCmyNKX6RwQpFbImidYm7R0XnsDusN+P437cG3RW7B6yhA/ipE8HrFNj93nGZMGBfF3AWDF9E5mne6yUBJqtcx2x/XJW1mnJ9faeXPcGT/aKZMQqgsciZ4SSJSRntKiFEhn+opYIQwzWvUmuFBE+q9qOBpmpgqSFsehmceWBjJp1BXUPV0GeAN462sqOn0JiryElOolMEf8FzNZU9Pny9/cXV2RME7Az8t5gotThOybz+SkyzwInSpPPOXc/o1aTFVo7HmVFGoO+v99U4b8R8jEJ9/iuBgWsJuHxMudtdfCaNXik2fWaZMcLo5drf7dcq060odZa5wkPVzn/c2HEis9qqjjJSIHXX4aXYcXixexEJtSQGCDDizFX2lE5djcvB4mh9Yz4YYsgLdDlphAaDBFpClwg2wmWCKO4NMmf2CQMoNOtgKn3N7nCv0t3OWtuyuugsD2mU7pTp0m7ptPfqiPYOBOv0IlN5Zo+/7j6+GGlzsHzmulSnv1er9N/0+eLZ8N8yttcqzz3uZVt9zVkW40mNdXubi/bWtUTGNzdyWDGH3wKlSPT5QLXOk7PZK5YUVZe8DVCj/wKOR+teB2+aEg8MUYxp1dTGwinwk7wYtgy23XaDxVQ+2bcpoTz1fIBKKJqwHsIIhkD1WxyJkC6o67mj2BdKAwvQx2t0dMPk4fS5Gqf2E9pd1bVZKNy865qJb9iT2A/EHgKmkETFzYl84j3o4Pb7v8s0Lqc1IN2UGLeZ1zrvI1rB9AO3PSRipIQr9cKkB6MPet65zv5CGGNj6enD/hYvnAfPnZfOKC8EfKnImT8TEa2dn/a9usj8xol47052Xvj5H+ck9//AfKlbd9aGAAA</values>
@@ -534,7 +534,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5d442393c3424710143ffa0ed4013165</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name/>
         <sys_overrides/>
         <sys_package/>
@@ -542,7 +542,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:05:02</sys_updated_on>
+        <sys_updated_on>2026-08-07 07:45:57</sys_updated_on>
         <type>flow</type>
         <version>2</version>
     </sys_hub_flow_snapshot>
@@ -983,12 +983,12 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>1d442393c3424710143ffa0ed4013197</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_overrides/>
         <sys_scope/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-07 02:05:03</sys_updated_on>
-        <trigger display_value="">edf5cf21932ec310af17f6718bba1085</trigger>
+        <sys_updated_on>2026-08-07 07:45:58</sys_updated_on>
+        <trigger display_value="">9bf3943593a60710af17f6718bba104c</trigger>
     </sys_flow_trigger_plan>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=0c8e603fb8004b21aa53092862dd18c1"/>
 </record_update>
