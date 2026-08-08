@@ -17,8 +17,16 @@
         <element label="Fraud Review Required" max_length="40" name="x_2145749_qc_fraud_review_required" type="boolean"/>
         <element hint="Checked when AI triage could not confidently classify this complaint" label="Needs Manual Review" max_length="40" name="x_2145749_qc_needs_manual_review" type="boolean"/>
         <element label="Auto-Resolved by Flow" max_length="40" name="x_2145749_qc_auto_resolved" type="boolean"/>
+        <element label="AI Urgency Level" max_length="40" name="x_2145749_qc_ai_urgency_level" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
+                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
+                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
+                <element inactive_on_update="false" label="Critical" sequence="4" value="critical"/>
+            </choice>
+        </element>
         <element label="Delivery Zone" max_length="32" name="x_2145749_qc_zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
-        <element attributes="min_value=1;max_value=10" hint="Auto-set by AI triage on case creation (1 = low, 10 = critical)" label="AI Urgency Score" max_length="40" name="x_2145749_qc_ai_urgency_score" type="integer"/>
+        <element hint="Auto-set by AI triage on case creation (1 = low, 10 = critical)" label="AI Urgency Score" max_length="40" name="x_2145749_qc_ai_urgency_score" type="integer"/>
         <element label="Delivery Partner" max_length="32" name="x_2145749_qc_delivery_partner" reference="x_2145749_qc_delivery_partner" type="reference"/>
         <element label="Order Number" max_length="40" name="x_2145749_qc_order_number" type="string"/>
         <element attributes="scale=2" label="Order Value" max_length="20" name="x_2145749_qc_order_value" type="decimal"/>
@@ -32,6 +40,7 @@
                 <element inactive_on_update="false" label="Partial Refund" sequence="3" value="partial_refund"/>
             </choice>
         </element>
+        <element label="AI Urgency Reason" max_length="4000" name="x_2145749_qc_ai_urgency_reason" type="string"/>
         <index name="index">
             <element name="x_2145749_qc_zone"/>
         </index>

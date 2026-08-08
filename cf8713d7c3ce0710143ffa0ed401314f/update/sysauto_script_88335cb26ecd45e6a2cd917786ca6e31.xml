@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <advanced>false</advanced>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_run_end/>
+        <entered_run_start/>
+        <entered_time/>
+        <max_drift/>
+        <name>AI NLP Test - Seed Test Cases</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <repeat_every/>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_daysofweek/>
+        <run_end/>
+        <run_month/>
+        <run_period/>
+        <run_start>2026-08-08 18:06:00</run_start>
+        <run_time>1970-01-01 00:00:00</run_time>
+        <run_type>once</run_type>
+        <run_weekinmonth/>
+        <script><![CDATA[(function() {
+    gs.info('AI NLP Test: Creating test complaint cases...');
+
+    var testCases = [
+        { short_desc: 'My order arrived 45 minutes late and two items were missing', desc: 'I placed order DRK-2024-5501 at 6pm and it arrived at 6:45pm. Additionally, the bread and milk were not in the bag.' },
+        { short_desc: 'One of the products I received was slightly damaged', desc: 'The packaging on the cereal box was crushed and torn. Contents seem okay though.' },
+        { short_desc: 'My order has been delayed for over an hour and this has happened three times this week', desc: 'Order DRK-2024-5502. This is the third time this week my delivery is extremely late. Completely unreliable service.' },
+        { short_desc: 'I was charged twice for the same order', desc: 'Order DRK-2024-5503. My bank statement shows two charges of Rs 847 for the same order placed yesterday.' },
+        { short_desc: 'There is a serious safety issue at the store', desc: 'Customers are being exposed to a dangerous condition. The floor near the entrance is extremely slippery and there are no warning signs. Someone could get injured.' },
+        { short_desc: 'The packaging was slightly messy but everything arrived correctly', desc: 'Just wanted to note that the bag was a bit wet on the outside but all items were present and in good condition.' },
+        { short_desc: 'The food arrived spoiled and my family became sick', desc: 'Order DRK-2024-5504. The chicken was clearly expired and smelled terrible. My family ate some before noticing and two people got sick with nausea and vomiting.' },
+        { short_desc: 'This is absolutely unacceptable - order over two hours late', desc: 'Order DRK-2024-5505. My order is over 2 hours late and this has ruined an important dinner event I was hosting. This is the worst experience I have ever had.' },
+        { short_desc: 'Payment failed several times and was charged without confirmation', desc: 'Order DRK-2024-5506. My payment failed 3 times in the app but I was charged the amount without receiving any order confirmation. This is a significant amount of money.' },
+        { short_desc: 'Everything was fine with my order - Thank you', desc: 'Just wanted to say the delivery was quick and all items were fresh. Great service today.' }
+    ];
+
+    for (var i = 0; i < testCases.length; i++) {
+        var gr = new GlideRecord('sn_customerservice_case');
+        gr.initialize();
+        gr.setValue('short_description', testCases[i].short_desc);
+        gr.setValue('description', testCases[i].desc);
+        gr.insert();
+        gs.info('AI NLP Test: Created case ' + (i + 1) + ' - ' + gr.getValue('number') + ' - ' + gr.getUniqueValue());
+    }
+
+    gs.info('AI NLP Test: All 10 test cases created successfully.');
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-08 17:51:10</sys_created_on>
+        <sys_id>88335cb26ecd45e6a2cd917786ca6e31</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AI NLP Test - Seed Test Cases</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sysauto_script_88335cb26ecd45e6a2cd917786ca6e31</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-08 17:51:10</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
