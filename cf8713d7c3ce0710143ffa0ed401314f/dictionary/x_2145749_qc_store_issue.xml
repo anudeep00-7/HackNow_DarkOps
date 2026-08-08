@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element audit="true" db_object_id="2f142b13c3424710143ffa0ed4013182" label="Dark Store Operational Issue" max_length="40" name="x_2145749_qc_store_issue" type="collection">
-        <element label="Equipment (if applicable)" max_length="32" name="equipment" reference="x_2145749_qc_equipment" type="reference"/>
-        <element label="Description" max_length="4000" name="description" type="multi_two_lines"/>
-        <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
-        <element label="SKU Affected" max_length="100" name="sku_affected" type="string"/>
-        <element display="true" label="Number" max_length="40" name="number" read_only="true" type="string"/>
-        <element label="Source Delivery Partner Incident" max_length="32" name="source_partner_incident" reference="x_2145749_qc_partner_incident" type="reference"/>
-        <element label="Quantity Variance" max_length="40" name="quantity_variance" type="integer"/>
-        <element default="open" label="State" max_length="40" name="state" type="choice">
-            <choice>
-                <element inactive_on_update="false" label="Resolved" sequence="4" value="resolved"/>
-                <element inactive_on_update="false" label="Open" sequence="1" value="open"/>
-                <element inactive_on_update="false" label="Pending FSM Dispatch" sequence="3" value="pending_fsm_dispatch"/>
-                <element inactive_on_update="false" label="In Progress" sequence="2" value="in_progress"/>
-                <element inactive_on_update="false" label="Closed" sequence="5" value="closed"/>
-            </choice>
-        </element>
-        <element label="FSM Work Order" max_length="32" name="fsm_work_order" reference="wm_order" type="reference"/>
-        <element label="Picker (if applicable)" max_length="32" name="picker" reference="sys_user" type="reference"/>
-        <element default="medium" label="Severity" max_length="40" name="severity" type="choice">
-            <choice>
-                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
-                <element inactive_on_update="false" label="Critical" sequence="4" value="critical"/>
-                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
-                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
-            </choice>
-        </element>
-        <element label="Reported At" max_length="40" name="reported_at" type="glide_date_time"/>
         <element label="Issue Category" mandatory="true" max_length="40" name="issue_category" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Other" sequence="5" value="other"/>
+                <element inactive_on_update="false" label="Inventory Discrepancy" sequence="1" value="inventory_discrepancy"/>
                 <element inactive_on_update="false" label="Frequent Stockout" sequence="4" value="stockout"/>
                 <element inactive_on_update="false" label="Picker Performance" sequence="3" value="picker_performance"/>
                 <element inactive_on_update="false" label="Equipment Breakdown" sequence="2" value="equipment_breakdown"/>
-                <element inactive_on_update="false" label="Other" sequence="5" value="other"/>
-                <element inactive_on_update="false" label="Inventory Discrepancy" sequence="1" value="inventory_discrepancy"/>
             </choice>
         </element>
+        <element label="Source Delivery Partner Incident" max_length="32" name="source_partner_incident" reference="x_2145749_qc_partner_incident" type="reference"/>
+        <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
+        <element label="Quantity Variance" max_length="40" name="quantity_variance" type="integer"/>
+        <element label="Picker (if applicable)" max_length="32" name="picker" reference="sys_user" type="reference"/>
         <element default="true" label="Affects PulseScore" max_length="40" name="affects_pulse_score" type="boolean"/>
+        <element label="SKU Affected" max_length="100" name="sku_affected" type="string"/>
+        <element default="open" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="In Progress" sequence="2" value="in_progress"/>
+                <element inactive_on_update="false" label="Closed" sequence="5" value="closed"/>
+                <element inactive_on_update="false" label="Open" sequence="1" value="open"/>
+                <element inactive_on_update="false" label="Resolved" sequence="4" value="resolved"/>
+                <element inactive_on_update="false" label="Pending FSM Dispatch" sequence="3" value="pending_fsm_dispatch"/>
+            </choice>
+        </element>
+        <element default="medium" label="Severity" max_length="40" name="severity" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
+                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
+                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
+                <element inactive_on_update="false" label="Critical" sequence="4" value="critical"/>
+            </choice>
+        </element>
+        <element label="Equipment (if applicable)" max_length="32" name="equipment" reference="x_2145749_qc_equipment" type="reference"/>
+        <element label="FSM Work Order" max_length="32" name="fsm_work_order" reference="wm_order" type="reference"/>
+        <element label="Reported At" max_length="40" name="reported_at" type="glide_date_time"/>
+        <element label="Description" max_length="4000" name="description" type="multi_two_lines"/>
+        <element display="true" label="Number" max_length="40" name="number" read_only="true" read_only_option="instance_configured" type="string"/>
         <index name="index">
             <element name="dark_store"/>
         </index>

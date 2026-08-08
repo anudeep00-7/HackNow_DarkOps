@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
     <sysauto_script action="INSERT_OR_UPDATE">
-        <active>true</active>
+        <active>false</active>
         <advanced>false</advanced>
         <business_calendar/>
         <condition/>
@@ -11,18 +11,18 @@
         <max_drift/>
         <name>Calculate PulseScore for All Active Dark Stores</name>
         <offset/>
-        <offset_type/>
+        <offset_type>0</offset_type>
         <repeat_every/>
         <run_as/>
         <run_as_tz/>
-        <run_dayofmonth/>
-        <run_dayofweek/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
         <run_daysofweek/>
         <run_end/>
         <run_month/>
         <run_period>1970-01-01 01:00:00</run_period>
-        <run_start/>
-        <run_time/>
+        <run_start>2026-08-08 05:40:51</run_start>
+        <run_time>1970-01-01 00:00:00</run_time>
         <run_type>periodically</run_type>
         <run_weekinmonth/>
         <script><![CDATA[var calc = new x_2145749_qc.PulseScoreCalculator();

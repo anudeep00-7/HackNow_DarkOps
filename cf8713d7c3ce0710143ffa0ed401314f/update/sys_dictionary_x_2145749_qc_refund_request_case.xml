@@ -34,6 +34,7 @@
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference display_value="" name="sn_customerservice_case">sn_customerservice_case</reference>
         <reference_cascade_rule/>

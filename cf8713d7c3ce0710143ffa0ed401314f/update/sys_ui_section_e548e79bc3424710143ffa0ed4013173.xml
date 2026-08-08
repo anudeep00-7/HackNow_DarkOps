@@ -1,63 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_ui_section caption="" section_id="e548e79bc3424710143ffa0ed4013173" sys_domain="global" table="x_2145749_qc_delivery_zone" version="3" view="">
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>zone_name</element>
-            <position>0</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-07-18 18:32:58</sys_created_on>
-            <sys_id>7148ab9bc3424710143ffa0ed4013111</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_2145749_qc_delivery_zone" sys_domain="global" view="Default view">e548e79bc3424710143ffa0ed4013173</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-07-18 18:32:58</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>zone_code</element>
-            <position>1</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-07-18 18:32:58</sys_created_on>
-            <sys_id>b948ab9bc3424710143ffa0ed4013112</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_2145749_qc_delivery_zone" sys_domain="global" view="Default view">e548e79bc3424710143ffa0ed4013173</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-07-18 18:32:58</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>city</element>
-            <position>2</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-07-18 18:32:58</sys_created_on>
-            <sys_id>7548ab9bc3424710143ffa0ed4013113</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_2145749_qc_delivery_zone" sys_domain="global" view="Default view">e548e79bc3424710143ffa0ed4013173</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-07-18 18:32:58</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>active</element>
-            <position>3</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-07-18 18:32:58</sys_created_on>
-            <sys_id>3148ab9bc3424710143ffa0ed4013114</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_2145749_qc_delivery_zone" sys_domain="global" view="Default view">e548e79bc3424710143ffa0ed4013173</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-07-18 18:32:58</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
+    <sys_ui_section caption="Delivery Zone Details" section_id="e548e79bc3424710143ffa0ed4013173" sys_domain="global" table="x_2145749_qc_delivery_zone" version="3" view="">
         <sys_ui_section action="INSERT_OR_UPDATE">
-            <caption/>
+            <caption>Delivery Zone Details</caption>
             <header>false</header>
             <name>x_2145749_qc_delivery_zone</name>
             <roles/>
