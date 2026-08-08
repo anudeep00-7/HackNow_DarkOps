@@ -4,8 +4,8 @@
         <element label="Refund Request" mandatory="true" max_length="32" name="refund_request" reference="x_2145749_qc_refund_request" type="reference"/>
         <element display="true" label="Rule Triggered" mandatory="true" max_length="40" name="rule_name" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Repeat Claims - Same Customer" sequence="1" value="repeat_claim_customer"/>
                 <element inactive_on_update="false" label="Claim Velocity Threshold Exceeded" sequence="5" value="velocity_threshold"/>
+                <element inactive_on_update="false" label="Repeat Claims - Same Customer" sequence="1" value="repeat_claim_customer"/>
                 <element inactive_on_update="false" label="High Value Claim - New Customer" sequence="4" value="high_value_new_customer"/>
                 <element inactive_on_update="false" label="Claim/Delivery Timestamp Mismatch" sequence="3" value="timestamp_mismatch"/>
                 <element inactive_on_update="false" label="Repeat Claims - Same Address" sequence="2" value="repeat_claim_address"/>
