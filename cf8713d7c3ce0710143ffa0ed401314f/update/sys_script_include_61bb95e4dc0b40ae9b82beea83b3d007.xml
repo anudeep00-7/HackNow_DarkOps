@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.ComplaintNLPEngine</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>NLP-based text analysis engine for customer complaint classification and urgency scoring with tokenization, n-gram extraction, weighted keyword matching, and multi-signal urgency computation.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>ComplaintNLPEngine</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ComplaintNLPEngine = Class.create();
+ComplaintNLPEngine.prototype = {
+    initialize: function () {
+        this.CATEGORY_KEYWORDS = {
+            late_delivery: {
+                words: ['late', 'delay', 'delayed', 'slow', 'waiting', 'hour', 'hours'],
+                phrases: ['minutes late', 'not arrived', 'taking too long', 'still waiting', 'has not arrived', 'never arrived', 'not delivered', 'delivery late', 'extremely late', 'very late']
+            },
+            missing_items: {
+                words: ['missing', 'incomplete'],
+                phrases: ['not received', 'didnt get', 'did not get', 'items missing', 'incomplete order', 'not in the bag', 'item missing', 'missing from', 'left out', 'forgot my']
+            },
+            wrong_items: {
+                words: ['wrong', 'incorrect', 'mix-up', 'mixup'],
+                phrases: ['different product', 'not what i ordered', 'wrong item', 'wrong order', 'sent me the wrong', 'gave me the wrong', 'received wrong']
+            },
+            damaged_items: {
+                words: ['damaged', 'broken', 'spoiled', 'expired', 'rotten', 'crushed', 'dented', 'leaking', 'torn', 'smashed'],
+                phrases: ['fell apart', 'came broken', 'was damaged', 'package damaged', 'items damaged', 'food spoiled']
+            },
+            overcharge: {
+                words: ['overcharged', 'billing', 'refund'],
+                phrases: ['charged twice', 'double charge', 'payment issue', 'extra charge', 'wrong amount', 'charged more', 'billing issue', 'incorrect charge', 'significant amount']
+            },
+            quality_issue: {
+                words: ['quality', 'stale', 'tasteless', 'bland', 'undercooked', 'overcooked', 'raw'],
+                phrases: ['bad taste', 'not fresh', 'poor quality', 'low quality', 'tastes bad', 'tastes off', 'quality issue', 'substandard']
+            },
+            partner_behavior: {
+                words: ['rude', 'driver', 'unprofessional', 'aggressive', 'threatening', 'disrespectful'],
+                phrases: ['delivery person', 'delivery partner', 'delivery guy', 'delivery boy', 'bad behavior', 'bad behaviour', 'was rude', 'was aggressive']
+            },
+            app_technical: {
+                words: ['app', 'crash', 'error', 'glitch', 'loading', 'technical', 'login', 'bug', 'frozen', 'stuck'],
+                phrases: ['app crashed', 'app crash', 'wont load', 'not loading', 'keeps crashing', 'technical issue', 'login issue', 'cant login', 'cannot login', 'app error']
+            }
+        };
+
+        this.URGENCY_SIGNALS = {
+            safety: {
+                weight: 35,
+                words: ['safety', 'dangerous', 'hazard', 'toxic', 'injury', 'injured', 'poisonous'],
+                phrases: ['health risk', 'allergic reaction', 'allergic', 'contaminated', 'safety concern', 'safety hazard', 'unsafe']
+            },
+            health_food_safety: {
+                weight: 30,
+                words: ['expired', 'mold', 'moldy', 'contaminated', 'sick', 'vomiting', 'nausea'],
+                phrases: ['food poisoning', 'got sick', 'fell sick', 'child sick', 'child ate', 'made me sick', 'health issue']
+            },
+            repeated_issue: {
+                weight: 25,
+                words: [],
+                phrases: ['again', 'third time', 'multiple times', 'every time', 'keeps happening', 'not the first time', 'happened before', 'second time', 'fourth time', 'happening repeatedly', 'once again']
+            },
+            severe_delay: {
+                weight: 20,
+                words: [],
+                phrases: ['over an hour', 'over 1 hour', '2 hours', '3 hours', '4 hours', 'extremely late', 'never arrived', 'still not arrived', 'been waiting for hours']
+            },
+            financial_impact: {
+                weight: 15,
+                words: [],
+                phrases: ['charged twice', 'significant amount', 'large order', 'expensive order', 'big order', 'double charged', 'lot of money']
+            },
+            damage: {
+                weight: 12,
+                words: ['damaged', 'broken', 'spoiled', 'crushed', 'destroyed'],
+                phrases: []
+            },
+            missing: {
+                weight: 12,
+                words: ['missing'],
+                phrases: ['not received', 'didnt receive', 'never got']
+            },
+            emotional_intensity: {
+                weight: 10,
+                words: ['unacceptable', 'disgusting', 'furious', 'terrible', 'worst', 'horrible', 'outraged', 'livid', 'appalling', 'atrocious', 'ridiculous', 'pathetic', 'infuriating'],
+                phrases: ['worst experience', 'never again', 'absolutely disgusting', 'completely unacceptable']
+            },
+            moderate_delay: {
+                weight: 10,
+                words: ['late', 'delayed', 'waiting'],
+                phrases: ['took long', 'took too long']
+            }
+        };
+    },
+
+    /**
+     * Main analysis entry point
+     * @param {string} text - The complaint text to analyze
+     * @returns {object} - Analysis results with category, score, level, and reason
+     */
+    analyze: function (text) {
+        if (!text || typeof text !== 'string' || text.trim().length === 0) {
+            return {
+                category: '',
+                score: 0,
+                level: 'low',
+                reason: 'No complaint text provided for analysis.'
+            };
+        }
+
+        var normalizedText = this._normalizeText(text);
+        var tokens = this._tokenize(normalizedText);
+        var bigrams = this._generateNgrams(tokens, 2);
+        var trigrams = this._generateNgrams(tokens, 3);
+
+        var categoryResult = this._classifyCategory(normalizedText, tokens, bigrams, trigrams);
+        var urgencyResult = this._computeUrgency(normalizedText, tokens, bigrams, trigrams);
+
+        return {
+            category: categoryResult.category,
+            categoryConfidence: categoryResult.confidence,
+            score: urgencyResult.score,
+            level: urgencyResult.level,
+            reason: urgencyResult.reason
+        };
+    },
+
+    /**
+     * Normalize text for analysis
+     */
+    _normalizeText: function (text) {
+        return text.toLowerCase()
+            .replace(/[''']/g, '')
+            .replace(/[^\w\s]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    },
+
+    /**
+     * Tokenize normalized text into words
+     */
+    _tokenize: function (text) {
+        return text.split(' ').filter(function (word) {
+            return word.length > 0;
+        });
+    },
+
+    /**
+     * Generate n-grams from tokens
+     */
+    _generateNgrams: function (tokens, n) {
+        var ngrams = [];
+        for (var i = 0; i <= tokens.length - n; i++) {
+            var ngram = '';
+            for (var j = 0; j < n; j++) {
+                if (j > 0) ngram += ' ';
+                ngram += tokens[i + j];
+            }
+            ngrams.push(ngram);
+        }
+        return ngrams;
+    },
+
+    /**
+     * Classify the complaint category based on keyword/phrase matching
+     */
+    _classifyCategory: function (normalizedText, tokens, bigrams, trigrams) {
+        var scores = {};
+        var allNgrams = bigrams.concat(trigrams);
+
+        for (var category in this.CATEGORY_KEYWORDS) {
+            var config = this.CATEGORY_KEYWORDS[category];
+            var score = 0;
+
+            // Score individual word matches
+            for (var i = 0; i < config.words.length; i++) {
+                var word = config.words[i];
+                for (var t = 0; t < tokens.length; t++) {
+                    if (tokens[t] === word) {
+                        score += 2;
+                    }
+                }
+            }
+
+            // Score phrase matches (higher weight)
+            for (var p = 0; p < config.phrases.length; p++) {
+                var phrase = config.phrases[p];
+                if (normalizedText.indexOf(phrase) !== -1) {
+                    score += 5;
+                }
+            }
+
+            // Score n-gram matches
+            for (var ng = 0; ng < allNgrams.length; ng++) {
+                for (var pw = 0; pw < config.phrases.length; pw++) {
+                    if (allNgrams[ng] === config.phrases[pw]) {
+                        score += 3;
+                    }
+                }
+            }
+
+            if (score > 0) {
+                scores[category] = score;
+            }
+        }
+
+        // Find best match
+        var bestCategory = 'other';
+        var bestScore = 0;
+        for (var cat in scores) {
+            if (scores[cat] > bestScore) {
+                bestScore = scores[cat];
+                bestCategory = cat;
+            }
+        }
+
+        // Calculate confidence (0-1)
+        var totalScore = 0;
+        for (var c in scores) {
+            totalScore += scores[c];
+        }
+        var confidence = totalScore > 0 ? bestScore / totalScore : 0;
+
+        return {
+            category: bestCategory,
+            confidence: Math.round(confidence * 100) / 100,
+            allScores: scores
+        };
+    },
+
+    /**
+     * Compute urgency score and determine level from text signals
+     */
+    _computeUrgency: function (normalizedText, tokens, bigrams, trigrams) {
+        var totalScore = 15; // Base score for any valid complaint
+        var detectedSignals = [];
+        var allNgrams = bigrams.concat(trigrams);
+
+        for (var signalType in this.URGENCY_SIGNALS) {
+            var signal = this.URGENCY_SIGNALS[signalType];
+            var signalDetected = false;
+
+            // Check word matches
+            for (var w = 0; w < signal.words.length; w++) {
+                for (var t = 0; t < tokens.length; t++) {
+                    if (tokens[t] === signal.words[w]) {
+                        signalDetected = true;
+                        break;
+                    }
+                }
+                if (signalDetected) break;
+            }
+
+            // Check phrase matches
+            if (!signalDetected) {
+                for (var p = 0; p < signal.phrases.length; p++) {
+                    if (normalizedText.indexOf(signal.phrases[p]) !== -1) {
+                        signalDetected = true;
+                        break;
+                    }
+                }
+            }
+
+            // Check n-gram matches
+            if (!signalDetected) {
+                for (var ng = 0; ng < allNgrams.length; ng++) {
+                    for (var sp = 0; sp < signal.phrases.length; sp++) {
+                        if (allNgrams[ng] === signal.phrases[sp]) {
+                            signalDetected = true;
+                            break;
+                        }
+                    }
+                    if (signalDetected) break;
+                }
+            }
+
+            if (signalDetected) {
+                totalScore += signal.weight;
+                detectedSignals.push({
+                    type: signalType,
+                    weight: signal.weight
+                });
+            }
+        }
+
+        // Cap at 100
+        if (totalScore > 100) {
+            totalScore = 100;
+        }
+
+        // Determine level
+        var level;
+        if (totalScore >= 80) {
+            level = 'critical';
+        } else if (totalScore >= 60) {
+            level = 'high';
+        } else if (totalScore >= 30) {
+            level = 'medium';
+        } else {
+            level = 'low';
+        }
+
+        // Generate human-readable reason
+        var reason = this._generateReason(detectedSignals, totalScore, level);
+
+        return {
+            score: totalScore,
+            level: level,
+            reason: reason,
+            signals: detectedSignals
+        };
+    },
+
+    /**
+     * Generate a human-readable explanation of the urgency assessment
+     */
+    _generateReason: function (signals, score, level) {
+        if (signals.length === 0) {
+            return 'Base urgency assessment. No specific escalation signals detected in the complaint text.';
+        }
+
+        var signalLabels = {
+            safety: 'safety concern detected',
+            health_food_safety: 'health/food safety risk identified',
+            repeated_issue: 'recurring/repeated issue reported',
+            severe_delay: 'severe delivery delay reported',
+            financial_impact: 'significant financial impact mentioned',
+            damage: 'item damage reported',
+            missing: 'missing items reported',
+            emotional_intensity: 'high emotional distress expressed',
+            moderate_delay: 'delivery delay mentioned'
+        };
+
+        var parts = [];
+        // Sort signals by weight (highest first)
+        signals.sort(function (a, b) {
+            return b.weight - a.weight;
+        });
+
+        for (var i = 0; i < signals.length; i++) {
+            var label = signalLabels[signals[i].type] || signals[i].type;
+            parts.push(label + ' (+' + signals[i].weight + ')');
+        }
+
+        var levelLabel = level.charAt(0).toUpperCase() + level.slice(1);
+        var reason = 'Urgency ' + levelLabel + ' (score: ' + score + '/100). Signals: ' + parts.join('; ') + '. Base score: 15.';
+
+        return reason;
+    },
+
+    type: 'ComplaintNLPEngine'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-08 17:46:38</sys_created_on>
+        <sys_id>61bb95e4dc0b40ae9b82beea83b3d007</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ComplaintNLPEngine</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_61bb95e4dc0b40ae9b82beea83b3d007</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-08 17:46:38</sys_updated_on>
+    </sys_script_include>
+</record_update>
