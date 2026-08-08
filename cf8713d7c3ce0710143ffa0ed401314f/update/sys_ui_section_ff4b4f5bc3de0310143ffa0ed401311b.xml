@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="Equipment Details" section_id="ff4b4f5bc3de0310143ffa0ed401311b" sys_domain="global" table="x_2145749_qc_equipment" version="3" view="">
         <sys_ui_section action="INSERT_OR_UPDATE">
-            <caption>Equipment Details</caption>
+            <caption/>
             <header>false</header>
             <name>x_2145749_qc_equipment</name>
             <roles/>

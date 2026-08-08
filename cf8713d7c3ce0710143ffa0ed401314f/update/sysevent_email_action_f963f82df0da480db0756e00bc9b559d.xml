@@ -49,7 +49,7 @@
         <order>100</order>
         <push_message_only>false</push_message_only>
         <recipient_fields/>
-        <recipient_groups name="QC Ops Safety Escalation Team">db0f3b6e86434e19bc6d0623605d9a3b</recipient_groups>
+        <recipient_groups>db0f3b6e86434e19bc6d0623605d9a3b</recipient_groups>
         <recipient_users/>
         <reply_to/>
         <send_self>false</send_self>

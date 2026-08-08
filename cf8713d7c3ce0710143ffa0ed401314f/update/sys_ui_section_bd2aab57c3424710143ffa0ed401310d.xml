@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="Complaint Case Details" section_id="bd2aab57c3424710143ffa0ed401310d" sys_domain="global" table="sn_customerservice_case" version="3" view="">
         <sys_ui_section action="INSERT_OR_UPDATE">
-            <caption>Complaint Case Details</caption>
+            <caption/>
             <header>false</header>
             <name>sn_customerservice_case</name>
             <roles/>

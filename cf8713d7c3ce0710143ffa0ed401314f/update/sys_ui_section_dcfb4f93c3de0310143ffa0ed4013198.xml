@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="Delivery Partner Details" section_id="dcfb4f93c3de0310143ffa0ed4013198" sys_domain="global" table="x_2145749_qc_delivery_partner" version="3" view="">
         <sys_ui_section action="INSERT_OR_UPDATE">
-            <caption>Delivery Partner Details</caption>
+            <caption/>
             <header>false</header>
             <name>x_2145749_qc_delivery_partner</name>
             <roles/>
