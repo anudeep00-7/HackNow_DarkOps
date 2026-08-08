@@ -6,6 +6,8 @@
                 <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
                 <element inactive_on_update="false" label="Closed" sequence="4" value="closed"/>
                 <element inactive_on_update="false" label="Paused - Not Fulfilling" sequence="3" value="paused"/>
+                <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
+                <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
             </choice>
         </element>
         <element display="true" label="Store Name" mandatory="true" max_length="100" name="store_name" type="string"/>

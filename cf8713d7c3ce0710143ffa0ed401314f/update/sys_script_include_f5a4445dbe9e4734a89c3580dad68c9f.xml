@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.VaAgentUtils</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Shared agentic utility logic for DarkOps complaint resolution. Provides prediction, status lookup, escalation assessment, and case creation methods used by REST API tools and VA topics.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>VaAgentUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var VaAgentUtils = Class.create();
+VaAgentUtils.prototype = {
+    initialize: function() {},
+
+    AUTO_APPROVE_CEILING: 500, // Verify against live "Auto-Approve Low-Risk Refunds" flow condition
+
+    /**
+     * Predicts likely resolution path WITHOUT creating any record.
+     * Used for the live "here's what will probably happen" message before submission.
+     * @param {number|string} orderValue - The order value amount
+     * @param {string} complaintType - The complaint type choice value
+     * @param {string} userId - The sys_id of the requesting user
+     * @returns {object} {likely: string, message: string}
+     */
+    predictResolution: function(orderValue, complaintType, userId) {
+        var value = parseFloat(orderValue) || 0;
+        var recentClaimCount = this._countRecentClaims(userId);
+
+        if (recentClaimCount >= 3) {
+            return {
+                likely: 'manual_review',
+                message: 'Since you have had a few recent claims, this one will go to manual review rather than auto-resolving. Someone will follow up soon.',
+                recentClaims: recentClaimCount
+            };
+        }
+        if (value > 0 && value <= this.AUTO_APPROVE_CEILING) {
+            return {
+                likely: 'auto_approved',
+                message: 'Based on the order value, this is likely to auto-resolve quickly - usually within a few minutes.'
+            };
+        }
+        if (value > this.AUTO_APPROVE_CEILING) {
+            return {
+                likely: 'escalated',
+                message: 'Since this order value is above our auto-approval threshold, this will be reviewed by our team rather than auto-resolved - usually within a few hours.'
+            };
+        }
+        return {
+            likely: 'unknown',
+            message: "We'll get this logged and our team will take a look."
+        };
+    },
+
+    /**
+     * Counts refund requests created by this user in the last 30 days.
+     * @param {string} userId - sys_id of the user
+     * @returns {number}
+     */
+    _countRecentClaims: function(userId) {
+        var gr = new GlideRecord('x_2145749_qc_refund_request');
+        gr.addQuery('customer', userId);
+        var thirtyDaysAgo = new GlideDateTime();
+        thirtyDaysAgo.addDaysUTC(-30);
+        gr.addQuery('sys_created_on', '>=', thirtyDaysAgo);
+        gr.query();
+        return gr.getRowCount();
+    },
+
+    /**
+     * Looks up a case by number and returns a plain-language status summary.
+     * This is the "reasoning over existing data" capability.
+     * @param {string} caseNumber - The case number (e.g. "CS0012345")
+     * @returns {object} {found: boolean, message: string, state?: string, decision?: string}
+     */
+    getCaseStatusSummary: function(caseNumber) {
+        var gr = new GlideRecord('sn_customerservice_case');
+        gr.addQuery('number', caseNumber);
+        gr.query();
+        if (!gr.next()) {
+            return { found: false, message: 'I could not find a case with that number. Please double-check it.' };
+        }
+
+        var state = gr.getValue('state');
+        var complaintType = gr.getDisplayValue('x_2145749_qc_complaint_type');
+        var autoResolved = gr.getValue('x_2145749_qc_auto_resolved');
+        var orderNumber = gr.getValue('x_2145749_qc_order_number');
+
+        // Check for linked refund request
+        var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+        refundGr.addQuery('case', gr.getUniqueValue());
+        refundGr.query();
+        var decision = null;
+        var amountRequested = null;
+        if (refundGr.next()) {
+            decision = refundGr.getDisplayValue('decision');
+            amountRequested = refundGr.getValue('amount_requested');
+        }
+
+        var summary = 'Case ' + caseNumber + ' (' + complaintType + ') is currently ' + gr.getDisplayValue('state') + '.';
+        if (orderNumber) {
+            summary += ' Order: ' + orderNumber + '.';
+        }
+        if (decision) {
+            summary += ' Refund status: ' + decision + '.';
+            if (amountRequested) {
+                summary += ' Amount: ₹' + amountRequested + '.';
+            }
+        }
+        if (autoResolved == 'true') {
+            summary += ' This was automatically resolved.';
+        }
+
+        return {
+            found: true,
+            message: summary,
+            state: state,
+            decision: decision,
+            autoResolved: (autoResolved == 'true'),
+            complaintType: complaintType,
+            orderNumber: orderNumber
+        };
+    },
+
+    /**
+     * Checks whether free-text language suggests this needs a human,
+     * not automated handling - the "knows when to hand off" behavior.
+     * @param {string} text - The user's description text
+     * @returns {object} {needsEscalation: boolean, reason: string}
+     */
+    needsHumanEscalation: function(text) {
+        if (!text) return { needsEscalation: false, reason: '' };
+        var lower = text.toLowerCase();
+        var escalationSignals = [
+            { keyword: 'lawyer', reason: 'Legal action mentioned' },
+            { keyword: 'legal action', reason: 'Legal action mentioned' },
+            { keyword: 'never again', reason: 'Strong dissatisfaction expressed' },
+            { keyword: 'scam', reason: 'Fraud allegation' },
+            { keyword: 'fraud', reason: 'Fraud allegation' },
+            { keyword: 'police', reason: 'Law enforcement mentioned' },
+            { keyword: 'unacceptable', reason: 'Strong dissatisfaction expressed' },
+            { keyword: 'third time', reason: 'Repeated issue pattern' },
+            { keyword: 'again and again', reason: 'Repeated issue pattern' },
+            { keyword: 'speak to someone', reason: 'Explicit human request' },
+            { keyword: 'talk to a person', reason: 'Explicit human request' },
+            { keyword: 'talk to a human', reason: 'Explicit human request' },
+            { keyword: 'safety concern', reason: 'Safety issue reported' },
+            { keyword: 'unsafe', reason: 'Safety issue reported' }
+        ];
+        for (var i = 0; i < escalationSignals.length; i++) {
+            if (lower.indexOf(escalationSignals[i].keyword) !== -1) {
+                return { needsEscalation: true, reason: escalationSignals[i].reason };
+            }
+        }
+        return { needsEscalation: false, reason: '' };
+    },
+
+    /**
+     * Creates a complaint case and optionally a linked refund request.
+     * Only called after prediction + user confirmation.
+     * @param {object} params - {orderNumber, complaintType, description, orderValue, isEscalated, userId}
+     * @returns {object} {success: boolean, caseNumber: string, caseSysId: string, refundCreated: boolean}
+     */
+    createComplaintCase: function(params) {
+        var refundDrivenTypes = ['missing_items', 'wrong_items', 'damaged_items', 'quality_issue', 'overcharge'];
+        var isEscalated = (params.isEscalated === true || params.isEscalated === 'true');
+
+        var gr = new GlideRecord('sn_customerservice_case');
+        gr.initialize();
+        gr.setValue('short_description', params.complaintType + ' - Order #' + params.orderNumber);
+        gr.setValue('description', params.description || '');
+        gr.setValue('x_2145749_qc_order_number', params.orderNumber);
+        gr.setValue('x_2145749_qc_complaint_type', params.complaintType);
+        if (params.orderValue) {
+            gr.setValue('x_2145749_qc_order_value', params.orderValue);
+        }
+        gr.setValue('contact', params.userId || gs.getUserID());
+        if (isEscalated) {
+            gr.setValue('priority', '1');
+        }
+        var caseId = gr.insert();
+
+        if (!caseId) {
+            return { success: false, message: 'Failed to create case record.' };
+        }
+
+        var caseNumber = gr.getValue('number');
+        var refundCreated = false;
+
+        // Create linked refund request if complaint type is refund-driven
+        if (refundDrivenTypes.indexOf(params.complaintType) !== -1 && params.orderValue) {
+            var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+            refundGr.initialize();
+            refundGr.setValue('case', caseId);
+            refundGr.setValue('request_type', 'refund');
+            refundGr.setValue('order_number', params.orderNumber);
+            refundGr.setValue('amount_requested', params.orderValue);
+            refundGr.setValue('customer', params.userId || gs.getUserID());
+            refundGr.insert();
+            refundCreated = true;
+        }
+
+        return {
+            success: true,
+            caseNumber: caseNumber,
+            caseSysId: caseId,
+            refundCreated: refundCreated,
+            isEscalated: isEscalated
+        };
+    },
+
+    type: 'VaAgentUtils'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 15:56:41</sys_created_on>
+        <sys_id>f5a4445dbe9e4734a89c3580dad68c9f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>VaAgentUtils</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_f5a4445dbe9e4734a89c3580dad68c9f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 15:56:41</sys_updated_on>
+    </sys_script_include>
+</record_update>

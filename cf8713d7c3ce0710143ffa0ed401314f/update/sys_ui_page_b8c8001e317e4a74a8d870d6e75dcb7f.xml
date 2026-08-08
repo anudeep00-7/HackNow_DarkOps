@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script/>
+        <description>DarkOps Refund Request Form</description>
+        <direct>true</direct>
+        <endpoint>x_2145749_qc_refund_form.do</endpoint>
+        <html><![CDATA[
+<html class="-polaris">
+  <head>
+    <title>DarkOps - Refund Request</title>
+    <!-- @sdk:now-ux-globals -->
+    <style>.do-wrap{max-width:740px;margin:0 auto;padding:40px 24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .do-wrap *{box-sizing:border-box}
+  .do-back{color:#a855f7;text-decoration:none;font-size:.875rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;margin-bottom:28px;transition:color .2s}
+  .do-back:hover{color:#6366f1}
+  .do-hdr{text-align:center;margin-bottom:36px}
+  .do-hdr h1{font-size:1.8rem;font-weight:800;color:#a855f7;margin-bottom:6px}
+  .do-hdr p{color:#64748b;font-size:.95rem;margin:0}
+  .do-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 32px;margin-bottom:32px}
+  .do-section-hdr{font-size:.85rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.05em;margin-bottom:20px;padding-left:12px;border-left:3px solid #6366f1}
+  .do-fg{margin-bottom:20px}
+  .do-fg:last-child{margin-bottom:0}
+  .do-fg label{display:block;font-size:.75rem;font-weight:600;color:#475569;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .do-fg .req{color:#ef4444}
+  .do-fc{width:100%;padding:11px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;color:#1e293b;font-size:.9rem;font-family:inherit;outline:none;transition:border .2s,box-shadow .2s}
+  .do-fc:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.12)}
+  select.do-fc{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;background-color:#fff}
+  .do-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .do-ref-wrap{position:relative}
+  .do-ref-st{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.75rem;font-weight:600}
+  .do-ref-st.look{color:#f59e0b}
+  .do-ref-st.found{color:#10b981}
+  .do-ref-st.nope{color:#ef4444}
+  .do-case-card{display:none;margin-top:10px;padding:12px 16px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:10px;font-size:.82rem;color:#475569;line-height:1.6}
+  .do-case-card.visible{display:block}
+  .do-case-card strong{color:#6366f1;font-weight:700}
+  .do-case-chip{background:#e0e7ff;color:#4338ca;padding:2px 8px;border-radius:4px;font-weight:600;font-size:.75rem;display:inline-block}
+  .do-hint{font-size:.72rem;color:#94a3b8;margin-top:6px;font-style:italic}
+  .do-threshold{font-size:.75rem;margin-top:6px;font-weight:500;display:none}
+  .do-threshold.green{display:block;color:#059669}
+  .do-threshold.amber{display:block;color:#d97706}
+  .do-btn{width:100%;padding:14px;background:linear-gradient(135deg,#a855f7,#6366f1);color:#fff;border:none;border-radius:50px;font-size:1rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;box-shadow:0 4px 18px rgba(168,85,247,.25);margin-top:12px}
+  .do-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 24px rgba(168,85,247,.35)}
+  .do-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+  .do-spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:dospin .6s linear infinite;margin-right:8px;vertical-align:middle}
+  @keyframes dospin{to{transform:rotate(360deg)}}
+  /* Result section - read-only decision display (shown after submit) */
+  .do-result{display:none;margin-top:32px}
+  .do-result.visible{display:block}
+  .do-result-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 32px;text-align:center}
+  .do-result-badge{display:inline-block;padding:10px 24px;border-radius:50px;font-size:.9rem;font-weight:700;margin-bottom:16px}
+  .do-result-badge.approved{background:#059669;color:#fff;border:2px solid #059669}
+  .do-result-badge.escalated{background:#d97706;color:#fff;border:2px solid #d97706}
+  .do-result-msg{font-size:.95rem;color:#1e293b;line-height:1.6;margin-bottom:16px}
+  .do-result-ref{font-size:.85rem;color:#64748b}
+  .do-result-ref a{color:#6366f1;font-weight:600;text-decoration:none}
+  .do-result-ref a:hover{text-decoration:underline}
+  .do-result-newbtn{display:inline-block;margin-top:20px;padding:10px 24px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:50px;color:#6366f1;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
+  .do-result-newbtn:hover{background:#e0e7ff;border-color:#c7d2fe}
+  /* Error message */
+  .do-msg{margin-top:20px;padding:16px 18px;border-radius:10px;display:none;gap:10px;align-items:flex-start}
+  .do-msg.err{display:flex;background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+  @media(max-width:600px){.do-grid{grid-template-columns:1fr}.do-section{padding:20px}}</style>
+  </head>
+  <body>
+    <div class="do-wrap">
+      <a href="x_2145749_qc_darkops_home.do" class="do-back">$[AMP]#8592; Back to DarkOps Home</a>
+      <div class="do-hdr">
+        <h1>$[AMP]#128176; Refund Request</h1>
+        <p>Submit a refund, replacement, or credit request linked to a case</p>
+      </div>
+      <!-- SUBMISSION FORM (customer inputs only) -->
+      <form id="doForm" autocomplete="off">
+        <div class="do-section">
+          <div class="do-section-hdr">Reference</div>
+          <div class="do-fg">
+            <label>Case Reference
+              <span class="req">*</span>
+            </label>
+            <div class="do-ref-wrap">
+              <input type="text" class="do-fc" id="doCaseNum" placeholder="e.g. CS0001234"></input>
+              <span class="do-ref-st" id="doRefSt"></span>
+            </div>
+            <p class="do-hint">Type a case number $[AMP]#8212; we'll look it up automatically</p>
+            <input type="hidden" id="doCaseSysId"></input>
+            <div class="do-case-card" id="doCaseCard"></div>
+          </div>
+        </div>
+        <div class="do-section">
+          <div class="do-section-hdr">Request</div>
+          <div class="do-grid">
+            <div class="do-fg">
+              <label>Order Number
+                <span class="req">*</span>
+              </label>
+              <input type="text" class="do-fc" id="doONum" placeholder="e.g. ORD-2024-78541"></input>
+            </div>
+            <div class="do-fg">
+              <label>Request Type
+                <span class="req">*</span>
+              </label>
+              <select class="do-fc" id="doRType">
+                <option value="">-- Select --</option>
+                <option value="refund">Refund</option>
+                <option value="replacement">Replacement</option>
+                <option value="credit">Credit</option>
+              </select>
+            </div>
+          </div>
+          <div class="do-fg">
+            <label>Amount Requested ($[AMP]#8377;)
+              <span class="req">*</span>
+            </label>
+            <input type="number" class="do-fc" id="doAmt" placeholder="e.g. 450" min="0" step="0.01"></input>
+            <div class="do-threshold" id="doAmtHint"></div>
+          </div>
+        </div>
+        <button type="submit" class="do-btn" id="doSub" disabled="disabled">Submit Refund Request</button>
+      </form>
+      <!-- READ-ONLY RESULT (shown after server decides) -->
+      <div class="do-result" id="doResult">
+        <div class="do-result-card">
+          <div class="do-result-badge" id="doResultBadge"></div>
+          <div class="do-result-msg" id="doResultMsg"></div>
+          <div class="do-result-ref" id="doResultRef"></div>
+          <a href="#" class="do-result-newbtn" id="doNewBtn">Submit Another Request</a>
+        </div>
+      </div>
+      <!-- Error message -->
+      <div class="do-msg" id="doMsg">
+        <span id="doMi"></span>
+        <div id="doMt"></div>
+      </div>
+    </div>
+    <script type="text/javascript">var caseNumEl=document.getElementById('doCaseNum'),caseSysIdEl=document.getElementById('doCaseSysId');
+  var refStEl=document.getElementById('doRefSt'),caseCard=document.getElementById('doCaseCard');
+  var oNumEl=document.getElementById('doONum'),rTypeEl=document.getElementById('doRType');
+  var amtEl=document.getElementById('doAmt'),amtHint=document.getElementById('doAmtHint');
+  var form=document.getElementById('doForm'),sub=document.getElementById('doSub');
+  var msg=document.getElementById('doMsg'),mi=document.getElementById('doMi'),mt=document.getElementById('doMt');
+  var result=document.getElementById('doResult'),resultBadge=document.getElementById('doResultBadge');
+  var resultMsg=document.getElementById('doResultMsg'),resultRef=document.getElementById('doResultRef');
+  var newBtn=document.getElementById('doNewBtn');
+  var timer=null;
+
+  /* Case reference auto-lookup */
+  caseNumEl.oninput=function(){
+    var v=caseNumEl.value.trim();
+    if(timer)clearTimeout(timer);caseSysIdEl.value='';caseCard.className='do-case-card';caseCard.innerHTML='';
+    if(!v){refStEl.textContent='';refStEl.className='do-ref-st';checkReady();return}
+    refStEl.textContent='...';refStEl.className='do-ref-st look';
+    timer=setTimeout(function(){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','/api/now/table/sn_customerservice_case?sysparm_query=number='+encodeURIComponent(v)+'&sysparm_fields=sys_id,number,short_description,x_2145749_qc_order_number,x_2145749_qc_order_value,x_2145749_qc_complaint_type&sysparm_limit=1');
+      xhr.setRequestHeader('Accept','application/json');
+      xhr.setRequestHeader('X-UserToken',window.g_ck);
+      xhr.onload=function(){
+        if(xhr.status===200){
+          var res=JSON.parse(xhr.responseText).result;
+          if(res&&res.length>0){
+            var c=res[0];caseSysIdEl.value=c.sys_id;
+            refStEl.textContent='\u2713 Found';refStEl.className='do-ref-st found';
+            var typeLabels={missing_items:'Missing Items',wrong_items:'Wrong Items',damaged_items:'Damaged Items',quality_issue:'Quality Issue',overcharge:'Overcharge',partner_behavior:'Partner Behavior',app_technical:'App/Technical',late_delivery:'Late Delivery',other:'Other'};
+            var html='<strong>'+c.number+'</strong>';
+            if(c.x_2145749_qc_complaint_type)html+=' &middot; <span class="do-case-chip">'+(typeLabels[c.x_2145749_qc_complaint_type]||c.x_2145749_qc_complaint_type)+'</span>';
+            if(c.x_2145749_qc_order_number)html+=' &middot; Order '+c.x_2145749_qc_order_number;
+            if(c.x_2145749_qc_order_value)html+=' &middot; &#8377;'+c.x_2145749_qc_order_value;
+            if(c.short_description)html+='<br><span style="color:#64748b;font-size:.78rem">'+c.short_description+'</span>';
+            caseCard.innerHTML=html;caseCard.className='do-case-card visible';
+          }else{refStEl.textContent='\u2717 Not found';refStEl.className='do-ref-st nope'}
+        }else{refStEl.textContent='\u2717 Error';refStEl.className='do-ref-st nope'}
+        checkReady();
+      };
+      xhr.onerror=function(){refStEl.textContent='\u2717 Error';refStEl.className='do-ref-st nope';checkReady()};
+      xhr.send();
+    },600);
+    checkReady();
+  };
+
+  /* Amount threshold hint */
+  amtEl.oninput=function(){
+    var v=parseFloat(amtEl.value);
+    if(!amtEl.value||isNaN(v)){amtHint.className='do-threshold';checkReady();return}
+    if(v<=500){amtHint.textContent='\u2713 Likely auto-approved (fast resolution)';amtHint.className='do-threshold green'}
+    else{amtHint.textContent='\u26A0 Will be reviewed by team';amtHint.className='do-threshold amber'}
+    checkReady();
+  };
+
+  oNumEl.oninput=function(){checkReady()};
+  rTypeEl.onchange=function(){checkReady()};
+
+  /* Validate required fields — only customer-legitimate inputs */
+  function checkReady(){sub.disabled=!(caseSysIdEl.value&&oNumEl.value.trim()&&rTypeEl.value&&amtEl.value)}
+
+  /* Error display */
+  function showErr(html){msg.className='do-msg err';mi.textContent='\u274C';mt.innerHTML=html}
+
+  /* Submit — sends ONLY customer data, NO decision/fraud/notes */
+  form.onsubmit=function(e){
+    e.preventDefault();
+    var caseSysId=caseSysIdEl.value,oNum=oNumEl.value.trim();
+    var rType=rTypeEl.value,amt=amtEl.value;
+    if(!caseSysId){showErr('Please enter a valid case number (must show \u2713 Found).');return}
+    if(!oNum||!rType||!amt){showErr('Please fill in all required fields.');return}
+    sub.disabled=true;sub.innerHTML='<span class="do-spin"></span> Processing...';msg.className='do-msg';
+
+    // SECURITY: Only send customer-legitimate fields. Decision, fraud flag,
+    // and notes are NEVER sent — they are computed server-side.
+    var body={case_id:caseSysId,order_number:oNum,request_type:rType,amount_requested:amt};
+
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST','/api/x_2145749_qc/v1/refund_decision/submit');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.setRequestHeader('Accept','application/json');
+    xhr.setRequestHeader('X-UserToken',window.g_ck);
+    xhr.onload=function(){
+      sub.disabled=false;sub.textContent='Submit Refund Request';
+      if(xhr.status>=200&&xhr.status<300){
+        var r=JSON.parse(xhr.responseText).result;
+        // Hide the form, show read-only result
+        form.style.display='none';
+        result.className='do-result visible';
+        // Set badge
+        if(r.decision==='auto_approved'){
+          resultBadge.textContent='\u2705 '+r.decision_label;
+          resultBadge.className='do-result-badge approved';
+        }else{
+          resultBadge.textContent='\u26A0\uFE0F '+r.decision_label;
+          resultBadge.className='do-result-badge escalated';
+        }
+        resultMsg.textContent=r.message;
+        resultRef.innerHTML='Reference: <strong>'+r.number+'</strong> &mdash; <a href="/x_2145749_qc_refund_request.do?sys_id='+r.sys_id+'" target="_blank">View Details \u2192</a>';
+      }else{
+        var err='';
+        try{var errBody=JSON.parse(xhr.responseText);err=errBody.error?errBody.error.message:(errBody.result?errBody.result.error:'HTTP '+xhr.status)}catch(x){err='HTTP '+xhr.status}
+        showErr('<strong>Failed:</strong> '+err);
+      }
+    };
+    xhr.onerror=function(){sub.disabled=false;sub.textContent='Submit Refund Request';showErr('Network error.')};
+    xhr.send(JSON.stringify(body));
+  };
+
+  /* "Submit Another" resets the form view */
+  newBtn.onclick=function(e){
+    e.preventDefault();
+    form.style.display='';
+    result.className='do-result';
+    form.reset();refStEl.textContent='';refStEl.className='do-ref-st';
+    caseCard.className='do-case-card';caseCard.innerHTML='';amtHint.className='do-threshold';
+    checkReady();
+  };
+
+  checkReady();</script>
+  </body>
+</html>]]></html>
+        <name>refund_form</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 16:29:12</sys_created_on>
+        <sys_id>b8c8001e317e4a74a8d870d6e75dcb7f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>refund_form</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ui_page_b8c8001e317e4a74a8d870d6e75dcb7f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 16:29:12</sys_updated_on>
+    </sys_ui_page>
+</record_update>

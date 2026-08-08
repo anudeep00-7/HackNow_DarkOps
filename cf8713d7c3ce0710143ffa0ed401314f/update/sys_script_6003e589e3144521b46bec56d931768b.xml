@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sn_customerservice_case</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="sn_customerservice_case">descriptionISNOTEMPTY^x_2145749_qc_ai_urgency_scoreISEMPTY<item endquery="false" field="x_2145749_qc_ai_urgency_score" goto="false" newquery="false" operator="ISEMPTY" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>AI Triage on Case Creation</name>
+        <order>200</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+    try {
+        var description = current.getValue('description') || '';
+        if (!description) {
+            return;
+        }
+
+        var engine = new x_2145749_qc.ComplaintTriageEngine();
+        var orderValue = parseFloat(current.getValue('x_2145749_qc_order_value')) || 0;
+        var result = engine.triage(description, orderValue);
+
+        // Set urgency score
+        current.setValue('x_2145749_qc_ai_urgency_score', result.urgency_score);
+
+        // Set sentiment
+        current.setValue('x_2145749_qc_ai_sentiment', result.sentiment);
+
+        // Handle complaint_type: if user already set it, only override with a work_note
+        var existingType = current.getValue('x_2145749_qc_complaint_type');
+        if (!existingType || existingType === '') {
+            // No user-provided type, set it from engine
+            current.setValue('x_2145749_qc_complaint_type', result.complaint_type);
+        } else if (existingType !== result.complaint_type) {
+            // User set a type that differs from AI detection - log suggestion
+            current.work_notes = '[AI Triage] Detected complaint type: "' + result.complaint_type +
+                '" differs from user-selected: "' + existingType +
+                '". Review may be warranted.';
+        }
+
+        // Update the record (after insert, we need an explicit update)
+        current.update();
+
+    } catch (e) {
+        // Don't block case creation if triage fails
+        gs.error('ComplaintTriageEngine: AI triage failed for case ' +
+            current.getUniqueValue() + ' - ' + e.message);
+    }
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-08 08:59:54</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6003e589e3144521b46bec56d931768b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AI Triage on Case Creation</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_6003e589e3144521b46bec56d931768b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-08 08:59:54</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=6003e589e3144521b46bec56d931768b"/>
+</record_update>
