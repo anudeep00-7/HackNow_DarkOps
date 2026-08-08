@@ -42,13 +42,13 @@
         </element>
         <element label="AI Urgency Reason" max_length="4000" name="x_2145749_qc_ai_urgency_reason" type="string"/>
         <index name="index">
-            <element name="x_2145749_qc_dark_store"/>
+            <element name="x_2145749_qc_zone"/>
         </index>
         <index name="index2">
             <element name="x_2145749_qc_delivery_partner"/>
         </index>
         <index name="index3">
-            <element name="x_2145749_qc_zone"/>
+            <element name="x_2145749_qc_dark_store"/>
         </index>
     </element>
 </database>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri>/api/x_2145749_qc/refund_decision/submit</default_operation_uri>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Submit Refund Request</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var body = request.body.data;
+
+    // Validate required fields (only customer-legitimate inputs)
+    if (!body.case_id && !body.case_number) {
+        response.setStatus(400);
+        response.setBody({ success: false, error: 'Either case_id or case_number is required' });
+        return;
+    }
+    if (!body.amount_requested && body.amount_requested !== 0) {
+        response.setStatus(400);
+        response.setBody({ success: false, error: 'amount_requested is required' });
+        return;
+    }
+    if (!body.request_type) {
+        response.setStatus(400);
+        response.setBody({ success: false, error: 'request_type is required (refund, replacement, credit)' });
+        return;
+    }
+
+    // Resolve the case
+    var caseGr = new GlideRecord('sn_customerservice_case');
+    var caseFound = false;
+    if (body.case_id) {
+        caseFound = caseGr.get(body.case_id);
+    } else if (body.case_number) {
+        caseGr.addQuery('number', body.case_number);
+        caseGr.query();
+        caseFound = caseGr.next();
+    }
+
+    if (!caseFound) {
+        response.setStatus(404);
+        response.setBody({ success: false, error: 'Case not found' });
+        return;
+    }
+
+    var amountRequested = parseFloat(body.amount_requested);
+    var AUTO_APPROVE_THRESHOLD = 500;
+
+    // ===== SECURITY: NEVER trust client input for decision, fraud, or notes =====
+    // These are computed server-side only. Any values sent by the client are IGNORED.
+    // Fraud detection is done by checking the case's existing fraud_review_required flag
+    // and the FraudDetectionEngine business rule (fires after insert on refund_request).
+
+    // Check if the linked case already has a fraud flag from prior triage
+    var caseFraudFlagged = caseGr.getValue('x_2145749_qc_fraud_review_required') === '1' ||
+                           caseGr.getValue('x_2145749_qc_fraud_review_required') === 'true';
+
+    // Simple fraud heuristics the server applies (supplement to FraudDetectionEngine):
+    // - If the case was already flagged for fraud review
+    // - If amount exceeds 3x the recorded order value (potential inflation)
+    var orderValue = parseFloat(caseGr.getValue('x_2145749_qc_order_value')) || 0;
+    var suspiciousAmount = (orderValue > 0 && amountRequested > orderValue * 3);
+
+    var fraudFlagged = caseFraudFlagged || suspiciousAmount;
+
+    // Determine decision synchronously — server logic only, never from client
+    var decision = '';
+    var decisionNotes = '';
+    var amountApproved = 0;
+
+    if (!fraudFlagged && amountRequested <= AUTO_APPROVE_THRESHOLD) {
+        decision = 'auto_approved';
+        decisionNotes = 'Auto-approved: amount \u20b9' + amountRequested + ' within threshold (\u20b9' + AUTO_APPROVE_THRESHOLD + '), no fraud indicators.';
+        amountApproved = amountRequested;
+    } else {
+        decision = 'auto_escalated';
+        var reasons = [];
+        if (amountRequested > AUTO_APPROVE_THRESHOLD) {
+            reasons.push('amount \u20b9' + amountRequested + ' exceeds threshold \u20b9' + AUTO_APPROVE_THRESHOLD);
+        }
+        if (caseFraudFlagged) {
+            reasons.push('case flagged for fraud review');
+        }
+        if (suspiciousAmount) {
+            reasons.push('requested amount exceeds 3x order value');
+        }
+        decisionNotes = 'Auto-escalated: ' + reasons.join(', ') + '. Requires manual review.';
+        amountApproved = 0;
+    }
+
+    // Create the refund request record WITH decision already set
+    // Decision and fraud_flagged are NEVER from client input
+    var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+    refundGr.initialize();
+    refundGr.setValue('case', caseGr.getUniqueValue());
+    refundGr.setValue('order_number', body.order_number || caseGr.getValue('x_2145749_qc_order_number') || '');
+    refundGr.setValue('request_type', body.request_type);
+    refundGr.setValue('amount_requested', amountRequested);
+    refundGr.setValue('amount_approved', amountApproved);
+    refundGr.setValue('decision', decision);
+    refundGr.setValue('decision_notes', decisionNotes);
+    refundGr.setValue('fraud_flagged', fraudFlagged);
+    refundGr.setValue('customer', gs.getUserID());
+
+    var refundSysId = refundGr.insert();
+
+    if (!refundSysId) {
+        response.setStatus(500);
+        response.setBody({ success: false, error: 'Failed to create refund request record' });
+        return;
+    }
+
+    // Retrieve the generated number
+    var createdGr = new GlideRecord('x_2145749_qc_refund_request');
+    createdGr.get(refundSysId);
+    var refundNumber = createdGr.getValue('number') || '';
+
+    // Build decision label for UI display
+    var decisionLabels = {
+        'auto_approved': 'Auto-Approved',
+        'auto_escalated': 'Escalated for Review'
+    };
+
+    var message = '';
+    if (decision === 'auto_approved') {
+        message = 'Your refund of \u20b9' + amountRequested + ' has been automatically approved. Refund reference: ' + refundNumber;
+    } else {
+        message = 'Your refund request has been escalated for manual review. Reference: ' + refundNumber + '. A team member will review within 24 hours.';
+    }
+
+    response.setStatus(201);
+    response.setBody({
+        success: true,
+        number: refundNumber,
+        sys_id: refundSysId,
+        decision: decision,
+        decision_label: decisionLabels[decision] || decision,
+        amount_approved: amountApproved,
+        message: message
+    });
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/v1/refund_decision/submit</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/submit</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Creates refund request with instant auto-approve/escalate decision. Body: { case</short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-08 08:59:57</sys_created_on>
+        <sys_id>c3fb1b605e824625a5997c10da46ca67</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Submit Refund Request</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_c3fb1b605e824625a5997c10da46ca67</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-08 08:59:57</sys_updated_on>
+        <web_service_definition display_value="Refund Decision API">df3c9f2bf4134757bea1228ed9ebac62</web_service_definition>
+        <web_service_version display_value="v1">fd636b493eeb44bc934caf5ef631de3c</web_service_version>
+    </sys_ws_operation>
+</record_update>
