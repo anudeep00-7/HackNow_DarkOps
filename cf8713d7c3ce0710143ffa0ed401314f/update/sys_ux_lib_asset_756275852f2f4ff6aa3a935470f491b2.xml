@@ -9,7 +9,6 @@
 </content>
         <content_meta/>
         <dependencies/>
-        <device_type/>
         <es_module>true</es_module>
         <is_attachment>false</is_attachment>
         <mime_type>application/javascript</mime_type>
