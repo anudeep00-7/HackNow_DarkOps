@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
     <sys_app_module action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <application display_value="Quick Commerce Ops">3d01de71a94f4c7ba9f499cc0e03044f</application>
         <assessment/>
         <device_type/>
@@ -10,8 +10,8 @@
         <image/>
         <link_type>DIRECT</link_type>
         <map_page/>
-        <mobile_title/>
-        <mobile_view_name/>
+        <mobile_title>Executive Analytics Center</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
         <name/>
         <order>45</order>
         <override_menu_roles>false</override_menu_roles>
@@ -27,7 +27,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f61bacf9765f4a88a369933ab24476c4</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Executive Analytics Center</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -35,7 +35,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_app_module_f61bacf9765f4a88a369933ab24476c4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-30 21:27:20</sys_updated_on>
+        <sys_updated_on>2026-08-07 16:14:09</sys_updated_on>
         <timeline_page/>
         <title>Executive Analytics Center</title>
         <uncancelable>false</uncancelable>
