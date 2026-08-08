@@ -15,6 +15,7 @@
                 <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
                 <element inactive_on_update="false" label="Paused - Not Fulfilling" sequence="3" value="paused"/>
                 <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
+                <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
             </choice>
         </element>
         <element label="Avg Daily Order Volume" max_length="40" name="daily_order_volume" type="integer"/>

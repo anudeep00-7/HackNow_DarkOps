@@ -27,7 +27,6 @@
         <element default="medium" label="Severity" max_length="40" name="severity" type="choice">
             <choice>
                 <element inactive_on_update="false" label="High" sequence="3" value="high"/>
-                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
                 <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
                 <element inactive_on_update="false" label="Critical" sequence="4" value="critical"/>
             </choice>

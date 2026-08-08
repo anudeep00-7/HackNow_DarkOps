@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_2145749_qc.ComplaintTriageEngine</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Rule-based NLP triage engine for complaint categorization. Analyzes text for complaint type, urgency score (1-10), and sentiment (-1/0/1) using keyword matching and intensity signals.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>ComplaintTriageEngine</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ComplaintTriageEngine = Class.create();
+ComplaintTriageEngine.prototype = {
+    initialize: function() {
+        // Keyword categorization map
+        this.CATEGORY_KEYWORDS = {
+            missing_items: ['missing', 'not delivered', "didn't receive", 'never arrived', 'package lost'],
+            wrong_items: ['wrong item', 'incorrect', 'different product', 'not what i ordered'],
+            damaged_items: ['damaged', 'broken', 'torn', 'crushed', 'dented', 'cracked'],
+            quality_issue: ['stale', 'expired', 'bad quality', 'rotten', 'spoiled', 'taste'],
+            overcharge: ['overcharged', 'extra charge', 'wrong price', 'charged more', 'billing'],
+            partner_behavior: ['rude', 'behavior', 'driver', 'delivery person', 'unprofessional'],
+            app_technical: ['app crash', 'glitch', 'error', 'not loading', 'bug', 'technical'],
+            late_delivery: ['late', 'delayed', 'took too long', 'waiting', 'hours late']
+        };
+
+        // Urgency booster words
+        this.URGENCY_BOOSTERS = ['urgent', 'immediately', 'asap', 'right now', 'unacceptable'];
+
+        // Profanity indicators (family-friendly approximations for detection)
+        this.PROFANITY_INDICATORS = ['wtf', 'damn', 'hell', 'crap', 'crap', 'ridiculous', 'disgusting', 'pathetic', 'worst'];
+
+        // Sentiment word lists
+        this.NEGATIVE_WORDS = ['terrible', 'horrible', 'awful', 'worst', 'hate', 'angry', 'furious',
+            'disgusting', 'unacceptable', 'pathetic', 'useless', 'waste', 'never again',
+            'disappointed', 'frustrating', 'annoying', 'ruined', 'scam', 'fraud', 'steal'];
+        this.POSITIVE_WORDS = ['thanks', 'thank you', 'appreciate', 'good', 'great', 'love',
+            'excellent', 'wonderful', 'happy', 'pleased', 'satisfied', 'helpful',
+            'resolved', 'fixed', 'perfect', 'amazing', 'quick', 'fast'];
+    },
+
+    /**
+     * Main triage method - analyzes complaint text and returns categorization
+     * @param {string} description - The complaint description text
+     * @param {number} [orderValue] - Optional order value for urgency calculation
+     * @returns {object} { complaint_type, urgency_score, sentiment }
+     */
+    triage: function(description, orderValue) {
+        if (!description || typeof description !== 'string') {
+            return {
+                complaint_type: 'other',
+                urgency_score: 5,
+                sentiment: 0
+            };
+        }
+
+        var complaintType = this._detectCategory(description);
+        var urgencyScore = this._calculateUrgency(description, orderValue);
+        var sentiment = this._analyzeSentiment(description);
+
+        return {
+            complaint_type: complaintType,
+            urgency_score: urgencyScore,
+            sentiment: sentiment
+        };
+    },
+
+    /**
+     * Detects the complaint category using keyword matching
+     * @param {string} text - Lowercased complaint text
+     * @returns {string} The detected complaint type
+     */
+    _detectCategory: function(text) {
+        var lowerText = text.toLowerCase();
+        var bestCategory = 'other';
+        var bestScore = 0;
+
+        for (var category in this.CATEGORY_KEYWORDS) {
+            var keywords = this.CATEGORY_KEYWORDS[category];
+            var score = 0;
+            for (var i = 0; i < keywords.length; i++) {
+                if (lowerText.indexOf(keywords[i]) !== -1) {
+                    score++;
+                }
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestCategory = category;
+            }
+        }
+
+        return bestCategory;
+    },
+
+    /**
+     * Calculates urgency score (1-10) based on multiple signals
+     * @param {string} text - The complaint description
+     * @param {number} [orderValue] - Optional order value
+     * @returns {number} Urgency score 1-10
+     */
+    _calculateUrgency: function(text, orderValue) {
+        var score = 5; // Base score
+        var lowerText = text.toLowerCase();
+
+        // Urgency booster words (+1 each)
+        for (var i = 0; i < this.URGENCY_BOOSTERS.length; i++) {
+            if (lowerText.indexOf(this.URGENCY_BOOSTERS[i]) !== -1) {
+                score += 1;
+            }
+        }
+
+        // Profanity indicators (+1 each, max 2)
+        var profanityCount = 0;
+        for (var p = 0; p < this.PROFANITY_INDICATORS.length; p++) {
+            if (lowerText.indexOf(this.PROFANITY_INDICATORS[p]) !== -1) {
+                profanityCount++;
+            }
+        }
+        score += Math.min(profanityCount, 2);
+
+        // Exclamation marks (each adds +0.5)
+        var exclamationCount = (text.match(/!/g) || []).length;
+        score += exclamationCount * 0.5;
+
+        // ALL CAPS words (each adds +0.3, check original text)
+        var words = text.split(/\s+/);
+        var capsCount = 0;
+        for (var w = 0; w < words.length; w++) {
+            if (words[w].length > 2 && words[w] === words[w].toUpperCase() && /[A-Z]/.test(words[w])) {
+                capsCount++;
+            }
+        }
+        score += capsCount * 0.3;
+
+        // High order value (>1000 adds +1)
+        if (orderValue && orderValue > 1000) {
+            score += 1;
+        }
+
+        // Money mentions in text (+0.5)
+        if (/(\$|₹|rs\.?|inr)\s*\d+/i.test(text) || /\d+\s*(rupees|dollars)/i.test(text)) {
+            score += 0.5;
+        }
+
+        // Clamp to 1-10 range
+        score = Math.round(Math.max(1, Math.min(10, score)));
+
+        return score;
+    },
+
+    /**
+     * Analyzes sentiment from positive/negative word ratios
+     * @param {string} text - The complaint description
+     * @returns {number} -1 (negative), 0 (neutral), 1 (positive)
+     */
+    _analyzeSentiment: function(text) {
+        var lowerText = text.toLowerCase();
+        var negativeCount = 0;
+        var positiveCount = 0;
+
+        for (var i = 0; i < this.NEGATIVE_WORDS.length; i++) {
+            if (lowerText.indexOf(this.NEGATIVE_WORDS[i]) !== -1) {
+                negativeCount++;
+            }
+        }
+
+        for (var j = 0; j < this.POSITIVE_WORDS.length; j++) {
+            if (lowerText.indexOf(this.POSITIVE_WORDS[j]) !== -1) {
+                positiveCount++;
+            }
+        }
+
+        // Determine sentiment
+        if (negativeCount > positiveCount && negativeCount >= 2) {
+            return -1;
+        } else if (positiveCount > negativeCount && positiveCount >= 2) {
+            return 1;
+        } else if (negativeCount > 0 && positiveCount === 0) {
+            return -1;
+        } else if (positiveCount > 0 && negativeCount === 0) {
+            return 1;
+        }
+
+        return 0; // Neutral
+    },
+
+    type: 'ComplaintTriageEngine'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-08 08:59:54</sys_created_on>
+        <sys_id>31cada5aedfc4b1d84073503c498fc7c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ComplaintTriageEngine</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_include_31cada5aedfc4b1d84073503c498fc7c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-08 08:59:54</sys_updated_on>
+    </sys_script_include>
+</record_update>

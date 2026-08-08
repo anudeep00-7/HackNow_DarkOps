@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri>/api/x_2145749_qc/darkops_agent/check_case_status/{case_number}</default_operation_uri>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>Check Case Status</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var caseNumber = request.pathParams.case_number;
+
+    if (!caseNumber) {
+        response.setStatus(400);
+        response.setBody({ error: 'case_number path parameter is required' });
+        return;
+    }
+
+    var utils = new x_2145749_qc.VaAgentUtils();
+    var result = utils.getCaseStatusSummary(caseNumber);
+
+    if (!result.found) {
+        response.setStatus(404);
+    } else {
+        response.setStatus(200);
+    }
+    response.setBody({ result: result });
+})(request, response)]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/v1/darkops_agent/check_case_status/{case_number}</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/check_case_status/{case_number}</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Looks up a case by number and returns a plain-language status summary including </short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 15:56:44</sys_created_on>
+        <sys_id>02de0125b48b4713bd0866a80aff9965</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Check Case Status</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_02de0125b48b4713bd0866a80aff9965</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 15:56:44</sys_updated_on>
+        <web_service_definition display_value="DarkOps Agent API">6a77d4bfb12f40539aa2d6d2fe23c405</web_service_definition>
+        <web_service_version display_value="v1">d1057d8cc93840bda97f2cef1402f469</web_service_version>
+    </sys_ws_operation>
+</record_update>
