@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script/>
+        <description>DarkOps Complaint Case Form</description>
+        <direct>true</direct>
+        <endpoint>x_2145749_qc_complaint_form.do</endpoint>
+        <html><![CDATA[
+<html class="-polaris">
+  <head>
+    <title>DarkOps - File Complaint</title>
+    <!-- @sdk:now-ux-globals -->
+    <style>.do-wrap{max-width:740px;margin:0 auto;padding:40px 24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .do-wrap *{box-sizing:border-box}
+  .do-back{color:#a855f7;text-decoration:none;font-size:.875rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;margin-bottom:28px;transition:color .2s}
+  .do-back:hover{color:#6366f1}
+  .do-hdr{text-align:center;margin-bottom:36px}
+  .do-hdr h1{font-size:1.8rem;font-weight:800;color:#a855f7;margin-bottom:6px}
+  .do-hdr p{color:#64748b;font-size:.95rem;margin:0}
+  .do-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 32px;margin-bottom:32px}
+  .do-section-hdr{font-size:.85rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.05em;margin-bottom:20px;padding-left:12px;border-left:3px solid #6366f1}
+  .do-fg{margin-bottom:20px}
+  .do-fg:last-child{margin-bottom:0}
+  .do-fg label{display:block;font-size:.75rem;font-weight:600;color:#475569;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .do-fg .req{color:#ef4444}
+  .do-fc{width:100%;padding:11px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;color:#1e293b;font-size:.9rem;font-family:inherit;outline:none;transition:border .2s,box-shadow .2s}
+  .do-fc:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.12)}
+  select.do-fc{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;background-color:#fff}
+  textarea.do-fc{resize:vertical;min-height:100px}
+  .do-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .do-preview{background:#f1f5f9;border:1px dashed #cbd5e1;border-radius:8px;padding:11px 14px;color:#94a3b8;font-size:.9rem;min-height:42px;transition:all .2s}
+  .do-preview.active{color:#1e293b;font-weight:500;border-color:#a855f7;background:#faf5ff}
+  .do-hint{font-size:.72rem;color:#94a3b8;margin-top:6px;font-style:italic}
+  .do-char-count{font-size:.72rem;color:#94a3b8;margin-top:6px;text-align:right}
+  .do-threshold{font-size:.75rem;margin-top:6px;font-weight:500;display:none}
+  .do-threshold.green{display:block;color:#059669}
+  .do-threshold.amber{display:block;color:#d97706}
+  .do-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+  .do-pill{padding:8px 16px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s;user-select:none;opacity:.6}
+  .do-pill:hover{opacity:.85;transform:translateY(-1px)}
+  .do-pill.selected{opacity:1;transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .do-pill[data-val="1"]{background:#fef2f2;color:#dc2626;border-color:#fecaca}
+  .do-pill[data-val="1"].selected{background:#dc2626;color:#fff;border-color:#dc2626}
+  .do-pill[data-val="2"]{background:#fff7ed;color:#ea580c;border-color:#fed7aa}
+  .do-pill[data-val="2"].selected{background:#ea580c;color:#fff;border-color:#ea580c}
+  .do-pill[data-val="3"]{background:#eff6ff;color:#2563eb;border-color:#bfdbfe}
+  .do-pill[data-val="3"].selected{background:#2563eb;color:#fff;border-color:#2563eb}
+  .do-pill[data-val="4"]{background:#f8fafc;color:#64748b;border-color:#e2e8f0}
+  .do-pill[data-val="4"].selected{background:#64748b;color:#fff;border-color:#64748b}
+  .do-btn{width:100%;padding:14px;background:linear-gradient(135deg,#a855f7,#6366f1);color:#fff;border:none;border-radius:50px;font-size:1rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;box-shadow:0 4px 18px rgba(168,85,247,.25);margin-top:12px}
+  .do-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 24px rgba(168,85,247,.35)}
+  .do-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+  .do-msg{margin-top:20px;padding:16px 18px;border-radius:10px;display:none;gap:10px;align-items:flex-start}
+  .do-msg.ok{display:flex;background:#ecfdf5;border:1px solid #a7f3d0;color:#059669}
+  .do-msg.err{display:flex;background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+  .do-msg a{color:inherit;font-weight:600}
+  .do-spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:dospin .6s linear infinite;margin-right:8px;vertical-align:middle}
+  @keyframes dospin{to{transform:rotate(360deg)}}
+  @media(max-width:600px){.do-grid{grid-template-columns:1fr}.do-section{padding:20px}.do-pills{gap:8px}.do-pill{padding:6px 12px;font-size:.75rem}}</style>
+  </head>
+  <body>
+    <div class="do-wrap">
+      <a href="x_2145749_qc_darkops_home.do" class="do-back">$[AMP]#8592; Back to DarkOps Home</a>
+      <div class="do-hdr">
+        <h1>$[AMP]#128680; File Complaint Case</h1>
+        <p>Report an issue with your order and we'll resolve it quickly</p>
+      </div>
+      <form id="doForm" autocomplete="off">
+        <div class="do-section">
+          <div class="do-section-hdr">What Happened</div>
+          <div class="do-fg">
+            <label>Complaint Type
+              <span class="req">*</span>
+            </label>
+            <select class="do-fc" id="doCType">
+              <option value="">-- Select type --</option>
+              <option value="missing_items">Missing Items</option>
+              <option value="wrong_items">Wrong Items Delivered</option>
+              <option value="damaged_items">Damaged Items</option>
+              <option value="quality_issue">Quality Issue</option>
+              <option value="overcharge">Overcharge</option>
+              <option value="partner_behavior">Partner Behavior</option>
+              <option value="app_technical">App / Technical Issue</option>
+              <option value="late_delivery">Late Delivery</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="do-grid">
+            <div class="do-fg">
+              <label>Order Number
+                <span class="req">*</span>
+              </label>
+              <input type="text" class="do-fc" id="doONum" placeholder="e.g. ORD-2024-78541"></input>
+            </div>
+            <div class="do-fg">
+              <label>Order Value ($[AMP]#8377;)</label>
+              <input type="number" class="do-fc" id="doOVal" placeholder="e.g. 450" min="0" step="0.01"></input>
+              <div class="do-threshold" id="doValHint"></div>
+            </div>
+          </div>
+        </div>
+        <div class="do-section">
+          <div class="do-section-hdr">Details</div>
+          <div class="do-fg">
+            <label>Description
+              <span class="req">*</span>
+            </label>
+            <textarea class="do-fc" id="doDesc" placeholder="Describe the issue in detail..." maxlength="500"></textarea>
+            <div class="do-char-count" id="doCharCount">0 / 500 characters</div>
+          </div>
+          <div class="do-fg">
+            <label>Short Description (auto-generated)</label>
+            <div class="do-preview" id="doSdPrev">Select type + enter order number...</div>
+            <p class="do-hint">Auto-generated from complaint type and order number</p>
+          </div>
+          <div class="do-fg">
+            <label>Priority
+              <span class="req">*</span>
+            </label>
+            <div class="do-pills" id="doPriPills">
+              <span class="do-pill" data-val="1">1 $[AMP]#8212; Critical</span>
+              <span class="do-pill" data-val="2">2 $[AMP]#8212; High</span>
+              <span class="do-pill selected" data-val="3">3 $[AMP]#8212; Moderate</span>
+              <span class="do-pill" data-val="4">4 $[AMP]#8212; Low</span>
+            </div>
+            <input type="hidden" id="doPri" value="3"></input>
+          </div>
+        </div>
+        <button type="submit" class="do-btn" id="doSub" disabled="disabled">Submit Complaint Case</button>
+      </form>
+      <div class="do-msg" id="doMsg">
+        <span id="doMi"></span>
+        <div id="doMt"></div>
+      </div>
+    </div>
+    <script type="text/javascript">var labels={missing_items:'Missing Items',wrong_items:'Wrong Items Delivered',damaged_items:'Damaged Items',quality_issue:'Quality Issue',overcharge:'Overcharge',partner_behavior:'Partner Behavior',app_technical:'App / Technical Issue',late_delivery:'Late Delivery',other:'Other'};
+  var cType=document.getElementById('doCType'),oNum=document.getElementById('doONum'),oVal=document.getElementById('doOVal');
+  var descEl=document.getElementById('doDesc'),charCount=document.getElementById('doCharCount');
+  var sdPrev=document.getElementById('doSdPrev'),priHidden=document.getElementById('doPri');
+  var valHint=document.getElementById('doValHint');
+  var form=document.getElementById('doForm'),sub=document.getElementById('doSub');
+  var msg=document.getElementById('doMsg'),mi=document.getElementById('doMi'),mt=document.getElementById('doMt');
+
+  function genSD(){var t=cType.value,o=oNum.value.trim();if(t&&o){sdPrev.textContent=labels[t]+' - Order '+o;sdPrev.className='do-preview active'}else if(t){sdPrev.textContent=labels[t]+' - (enter order number)';sdPrev.className='do-preview'}else{sdPrev.textContent='Select type + enter order number...';sdPrev.className='do-preview'}}
+  cType.onchange=function(){genSD();checkReady()};
+  oNum.oninput=function(){genSD();checkReady()};
+
+  descEl.oninput=function(){charCount.textContent=descEl.value.length+' / 500 characters';checkReady()};
+
+  oVal.oninput=function(){var v=parseFloat(oVal.value);if(!oVal.value||isNaN(v)){valHint.className='do-threshold';return}if(v<=500){valHint.textContent='\u2713 Likely auto-approved (fast resolution)';valHint.className='do-threshold green'}else{valHint.textContent='\u26A0 Will be reviewed by team';valHint.className='do-threshold amber'}};
+
+  var pills=document.querySelectorAll('#doPriPills .do-pill');
+  for(var i=0;i<pills.length;i++){pills[i].onclick=(function(pill){return function(){for(var j=0;j<pills.length;j++)pills[j].classList.remove('selected');pill.classList.add('selected');priHidden.value=pill.getAttribute('data-val');checkReady()}})(pills[i])}
+
+  function checkReady(){sub.disabled=!(cType.value&&oNum.value.trim()&&descEl.value.trim()&&priHidden.value)}
+
+  function show(type,html){msg.className='do-msg '+type;mi.textContent=type==='ok'?'\u2705':'\u274C';mt.innerHTML=html}
+
+  form.onsubmit=function(e){
+    e.preventDefault();
+    var type=cType.value,order=oNum.value.trim(),val=oVal.value;
+    var desc=descEl.value.trim(),pri=priHidden.value;
+    if(!type||!order||!desc||!pri){show('err','Please fill in all required fields.');return}
+    var sd=labels[type]+' - Order '+order;
+    sub.disabled=true;sub.innerHTML='<span class="do-spin"></span> Submitting...';msg.className='do-msg';
+    var body={short_description:sd,description:desc,priority:pri,x_2145749_qc_complaint_type:type,x_2145749_qc_order_number:order};
+    if(val)body.x_2145749_qc_order_value=val;
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST','/api/now/table/sn_customerservice_case');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.setRequestHeader('Accept','application/json');
+    xhr.setRequestHeader('X-UserToken',window.g_ck);
+    xhr.onload=function(){
+      sub.disabled=false;sub.textContent='Submit Complaint Case';
+      if(xhr.status>=200&&xhr.status<300){var r=JSON.parse(xhr.responseText).result;show('ok','<strong>Case created!</strong><br>Case: <strong>'+(r.number||r.sys_id)+'</strong><br><a href="/sn_customerservice_case.do?sys_id='+r.sys_id+'" target="_blank">View Case \u2192</a>');form.reset();sdPrev.textContent='Select type + enter order number...';sdPrev.className='do-preview';charCount.textContent='0 / 500 characters';valHint.className='do-threshold';for(var j=0;j<pills.length;j++)pills[j].classList.remove('selected');pills[2].classList.add('selected');priHidden.value='3';checkReady()}
+      else{var err='';try{err=JSON.parse(xhr.responseText).error.message}catch(x){err='HTTP '+xhr.status}show('err','<strong>Failed:</strong> '+err)}
+    };
+    xhr.onerror=function(){sub.disabled=false;sub.textContent='Submit Complaint Case';show('err','Network error.')};
+    xhr.send(JSON.stringify(body));
+  };
+  checkReady();</script>
+  </body>
+</html>]]></html>
+        <name>complaint_form</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 16:29:12</sys_created_on>
+        <sys_id>dca76dd7983f45a3b9656ba3d0bcb909</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>complaint_form</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ui_page_dca76dd7983f45a3b9656ba3d0bcb909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 16:29:12</sys_updated_on>
+    </sys_ui_page>
+</record_update>

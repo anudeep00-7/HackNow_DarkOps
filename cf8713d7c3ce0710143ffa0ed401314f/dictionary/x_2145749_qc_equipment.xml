@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="2b142b13c3424710143ffa0ed4013128" label="Dark Store Equipment" max_length="40" name="x_2145749_qc_equipment" type="collection">
-        <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
-        <element display="true" label="Asset Tag" mandatory="true" max_length="40" name="asset_tag" type="string"/>
         <element default="operational" label="Operational Status" max_length="40" name="operational_status" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
@@ -10,6 +8,7 @@
             </choice>
         </element>
         <element label="Install Date" max_length="40" name="install_date" type="glide_date_time"/>
+        <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
         <element label="Equipment Type" max_length="40" name="equipment_type" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Other" sequence="7" value="other"/>
@@ -21,6 +20,7 @@
                 <element inactive_on_update="false" label="Handheld Scanner" sequence="4" value="handheld_scanner"/>
             </choice>
         </element>
+        <element display="true" label="Asset Tag" mandatory="true" max_length="40" name="asset_tag" type="string"/>
         <index name="index">
             <element name="dark_store"/>
         </index>

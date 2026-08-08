@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri>/api/x_2145749_qc/darkops_agent/create_complaint_case</default_operation_uri>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Create Complaint Case</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    var body = request.body.data;
+
+    // Validate required fields
+    if (!body.order_number) {
+        response.setStatus(400);
+        response.setBody({ error: 'order_number is required' });
+        return;
+    }
+    if (!body.complaint_type) {
+        response.setStatus(400);
+        response.setBody({ error: 'complaint_type is required' });
+        return;
+    }
+
+    var validTypes = ['missing_items', 'wrong_items', 'damaged_items', 'quality_issue', 'overcharge', 'partner_behavior', 'app_technical', 'other', 'late_delivery'];
+    if (validTypes.indexOf(body.complaint_type) === -1) {
+        response.setStatus(400);
+        response.setBody({ error: 'Invalid complaint_type. Valid values: ' + validTypes.join(', ') });
+        return;
+    }
+
+    var utils = new x_2145749_qc.VaAgentUtils();
+    var result = utils.createComplaintCase({
+        orderNumber: body.order_number,
+        complaintType: body.complaint_type,
+        description: body.description || '',
+        orderValue: body.order_value || null,
+        isEscalated: body.is_escalated || false,
+        userId: body.user_id || gs.getUserID()
+    });
+
+    if (result.success) {
+        response.setStatus(201);
+    } else {
+        response.setStatus(500);
+    }
+    response.setBody({ result: result });
+})(request, response)]]></operation_script>
+        <operation_uri>/api/x_2145749_qc/v1/darkops_agent/create_complaint_case</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/create_complaint_case</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Creates a complaint case and optionally a linked refund request. Should only be </short_description>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-07 15:56:44</sys_created_on>
+        <sys_id>01f4f9db2e9a4db7b5d37cf9a4cfb3bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Complaint Case</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_ws_operation_01f4f9db2e9a4db7b5d37cf9a4cfb3bc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-07 15:56:44</sys_updated_on>
+        <web_service_definition display_value="DarkOps Agent API">6a77d4bfb12f40539aa2d6d2fe23c405</web_service_definition>
+        <web_service_version display_value="v1">d1057d8cc93840bda97f2cef1402f469</web_service_version>
+    </sys_ws_operation>
+</record_update>

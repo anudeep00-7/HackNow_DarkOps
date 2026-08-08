@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="9024ab13c3424710143ffa0ed401316c" label="PulseScore Snapshot" max_length="40" name="x_2145749_qc_pulse_score" type="collection">
-        <element attributes="scale=1" label="Complaint Severity Sub-Score" max_length="20" name="complaint_severity_score" type="decimal"/>
-        <element attributes="scale=1" label="Complaint Volume Sub-Score" max_length="20" name="complaint_volume_score" type="decimal"/>
         <element attributes="scale=1" label="Refund/Fraud Sub-Score" max_length="20" name="refund_fraud_score" type="decimal"/>
-        <element label="Delivery Zone" max_length="32" name="zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
-        <element attributes="scale=1" label="Equipment Uptime Sub-Score" max_length="20" name="equipment_uptime_score" type="decimal"/>
-        <element attributes="scale=1" label="Inventory Accuracy Sub-Score" max_length="20" name="inventory_accuracy_score" type="decimal"/>
+        <element attributes="scale=1" label="Partner Incident Sub-Score" max_length="20" name="partner_incident_score" type="decimal"/>
+        <element label="Open Complaints (24h)" max_length="40" name="open_complaint_count" type="integer"/>
         <element label="Score Breakdown (JSON)" max_length="4000" name="breakdown" type="json"/>
+        <element label="Delivery Zone" max_length="32" name="zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
         <element display="true" label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
+        <element attributes="scale=1" label="PulseScore" max_length="20" name="score" type="decimal"/>
+        <element attributes="scale=1" label="Equipment Uptime Sub-Score" max_length="20" name="equipment_uptime_score" type="decimal"/>
+        <element attributes="scale=1" label="Complaint Severity Sub-Score" max_length="20" name="complaint_severity_score" type="decimal"/>
         <element label="Open Store Issues" max_length="40" name="open_store_issue_count" type="integer"/>
+        <element label="Snapshot Time" max_length="40" name="snapshot_time" type="glide_date_time"/>
+        <element attributes="scale=1" label="Complaint Volume Sub-Score" max_length="20" name="complaint_volume_score" type="decimal"/>
+        <element attributes="scale=1" label="Inventory Accuracy Sub-Score" max_length="20" name="inventory_accuracy_score" type="decimal"/>
         <element label="Band" max_length="40" name="band" type="choice">
             <choice>
                 <element inactive_on_update="false" label="At Risk (40-59)" sequence="3" value="at_risk"/>
@@ -17,11 +21,7 @@
                 <element inactive_on_update="false" label="Critical (&lt;40)" sequence="4" value="critical"/>
             </choice>
         </element>
-        <element attributes="scale=1" label="Partner Incident Sub-Score" max_length="20" name="partner_incident_score" type="decimal"/>
-        <element attributes="scale=1" label="PulseScore" max_length="20" name="score" type="decimal"/>
-        <element label="Snapshot Time" max_length="40" name="snapshot_time" type="glide_date_time"/>
         <element attributes="scale=1" label="SLA Compliance Sub-Score" max_length="20" name="sla_compliance_score" type="decimal"/>
-        <element label="Open Complaints (24h)" max_length="40" name="open_complaint_count" type="integer"/>
         <index name="index">
             <element name="dark_store"/>
         </index>

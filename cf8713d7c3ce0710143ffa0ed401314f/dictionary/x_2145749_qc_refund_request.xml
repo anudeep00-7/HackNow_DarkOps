@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element audit="true" db_object_id="cc246b13c3424710143ffa0ed40131da" label="Refund / Reorder Request" max_length="40" name="x_2145749_qc_refund_request" type="collection">
-        <element label="Claim Timestamp" max_length="40" name="claim_timestamp" type="glide_date_time"/>
         <element label="Request Type" mandatory="true" max_length="40" name="request_type" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Refund + Reorder" sequence="3" value="refund_and_reorder"/>
@@ -8,25 +7,26 @@
                 <element inactive_on_update="false" label="Refund" sequence="1" value="refund"/>
             </choice>
         </element>
-        <element label="Fraud Flagged" max_length="40" name="fraud_flagged" type="boolean"/>
-        <element label="Order Timestamp" max_length="40" name="order_timestamp" type="glide_date_time"/>
-        <element label="Order Number" mandatory="true" max_length="40" name="order_number" type="string"/>
         <element display="true" label="Number" max_length="40" name="number" read_only="true" read_only_option="instance_configured" type="string"/>
-        <element label="Customer" mandatory="true" max_length="32" name="customer" reference="sys_user" type="reference"/>
-        <element attributes="scale=2" label="Amount Requested" max_length="20" name="amount_requested" type="decimal"/>
-        <element label="Decision Notes" max_length="4000" name="decision_notes" type="multi_two_lines"/>
-        <element label="Complaint Case" mandatory="true" max_length="32" name="case" reference="sn_customerservice_case" type="reference"/>
         <element attributes="scale=1" label="Fraud Risk Score" max_length="20" name="fraud_risk_score" type="decimal"/>
+        <element label="Complaint Case" mandatory="true" max_length="32" name="case" reference="sn_customerservice_case" type="reference"/>
+        <element label="Fraud Flagged" max_length="40" name="fraud_flagged" type="boolean"/>
+        <element label="Customer" mandatory="true" max_length="32" name="customer" reference="sys_user" type="reference"/>
         <element default="pending" label="Decision" max_length="40" name="decision" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Auto-Approved" sequence="2" value="auto_approved"/>
                 <element inactive_on_update="false" label="Manually Denied" sequence="5" value="manually_denied"/>
                 <element inactive_on_update="false" label="Pending" sequence="1" value="pending"/>
                 <element inactive_on_update="false" label="Manually Approved" sequence="4" value="manually_approved"/>
                 <element inactive_on_update="false" label="Escalated for Review" sequence="3" value="auto_escalated"/>
-                <element inactive_on_update="false" label="Auto-Approved" sequence="2" value="auto_approved"/>
             </choice>
         </element>
+        <element label="Order Timestamp" max_length="40" name="order_timestamp" type="glide_date_time"/>
+        <element attributes="scale=2" label="Amount Requested" max_length="20" name="amount_requested" type="decimal"/>
         <element attributes="scale=2" label="Amount Approved" max_length="20" name="amount_approved" type="decimal"/>
+        <element label="Decision Notes" max_length="4000" name="decision_notes" type="multi_two_lines"/>
+        <element label="Claim Timestamp" max_length="40" name="claim_timestamp" type="glide_date_time"/>
+        <element label="Order Number" mandatory="true" max_length="40" name="order_number" type="string"/>
         <index name="index">
             <element name="case"/>
         </index>
