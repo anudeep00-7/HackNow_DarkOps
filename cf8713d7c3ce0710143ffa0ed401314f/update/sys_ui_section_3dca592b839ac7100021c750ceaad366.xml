@@ -1,5 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="Partner Incident Details" section_id="3dca592b839ac7100021c750ceaad366" sys_domain="global" table="x_2145749_qc_partner_incident" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>8140045e83aa8b100a85e590ceaad371</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>8d40045e83aa8b100a85e590ceaad371</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>partner</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>4940045e83aa8b100a85e590ceaad372</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>0540045e83aa8b100a85e590ceaad373</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>incident_type</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>cd40045e83aa8b100a85e590ceaad373</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>8940045e83aa8b100a85e590ceaad374</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>resolution_notes</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>4540045e83aa8b100a85e590ceaad375</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>0140045e83aa8b100a85e590ceaad376</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>reported_at</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>c940045e83aa8b100a85e590ceaad376</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>severity</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>8540045e83aa8b100a85e590ceaad377</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>order_number</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>4140045e83aa8b100a85e590ceaad378</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>0d40045e83aa8b100a85e590ceaad378</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>dark_store</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>c540045e83aa8b100a85e590ceaad379</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>13</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>8140045e83aa8b100a85e590ceaad37a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>14</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>4d40045e83aa8b100a85e590ceaad37a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>15</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>0940045e83aa8b100a85e590ceaad37b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>reported_by</element>
+            <position>16</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-08 19:36:46</sys_created_on>
+            <sys_id>c140045e83aa8b100a85e590ceaad37c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Partner Incident Details" display_value="Partner Incident Details" name="x_2145749_qc_partner_incident" sys_domain="global" view="Default view">3dca592b839ac7100021c750ceaad366</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-08 19:36:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption>Partner Incident Details</caption>
             <header>false</header>
