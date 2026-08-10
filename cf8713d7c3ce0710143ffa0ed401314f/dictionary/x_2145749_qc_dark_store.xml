@@ -6,8 +6,6 @@
                 <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
                 <element inactive_on_update="false" label="Closed" sequence="4" value="closed"/>
                 <element inactive_on_update="false" label="Paused - Not Fulfilling" sequence="3" value="paused"/>
-                <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
-                <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
             </choice>
         </element>
         <element display="true" label="Store Name" mandatory="true" max_length="100" name="store_name" type="string"/>
@@ -15,10 +13,10 @@
         <element label="City" max_length="100" name="city" type="string"/>
         <element label="PulseScore Band" max_length="40" name="pulse_score_band" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Critical (&lt;40)" sequence="4" value="critical"/>
                 <element inactive_on_update="false" label="At Risk (40-59)" sequence="3" value="at_risk"/>
                 <element inactive_on_update="false" label="Watch (60-79)" sequence="2" value="watch"/>
                 <element inactive_on_update="false" label="Healthy (80-100)" sequence="1" value="healthy"/>
+                <element inactive_on_update="false" label="Critical (&lt;40)" sequence="4" value="critical"/>
             </choice>
         </element>
         <element label="Store Manager" max_length="32" name="manager" type="string"/>
