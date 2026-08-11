@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="210f8e448e4c4f14bc8ddae53ac6f697" sys_domain="global" table="x_2145749_qc_complaint" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>012243b903714be29fdb23e2697e4867</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2145749_qc_complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">210f8e448e4c4f14bc8ddae53ac6f697</sys_ui_form>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:07</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>47f542037b054c1eb45ad8649e12a480</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2145749_qc_complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">210f8e448e4c4f14bc8ddae53ac6f697</sys_ui_form>
+            <sys_ui_section caption="Customer &amp; Delivery" display_value="Customer &amp; Delivery" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">503003a63ae34720aeee1f52e8f2363e</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:07</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>edc28ae187834d1e8d4bfa3f9124158e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2145749_qc_complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">210f8e448e4c4f14bc8ddae53ac6f697</sys_ui_form>
+            <sys_ui_section caption="AI &amp; Risk" display_value="AI &amp; Risk" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">bb769da5aea441c08475d3bf1c550de3</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:07</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>462dbee573b945aa9999f165b93719f1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2145749_qc_complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">210f8e448e4c4f14bc8ddae53ac6f697</sys_ui_form>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:07</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_2145749_qc_complaint</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-10 17:43:48</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>210f8e448e4c4f14bc8ddae53ac6f697</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2145749_qc_complaint</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+            <sys_update_name>sys_ui_form_sections_210f8e448e4c4f14bc8ddae53ac6f697</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-10 17:43:48</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

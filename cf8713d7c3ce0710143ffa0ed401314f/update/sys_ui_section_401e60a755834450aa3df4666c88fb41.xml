@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Resolution" section_id="401e60a755834450aa3df4666c88fb41" sys_domain="global" table="x_2145749_qc_complaint" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>77d38887273e4a9b9d1de3cce0fbb613</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>resolution_type</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>4d5b903c447d4f2f88539e0673eed600</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>d1e574edf31a4e59bec46b0839a1404f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>assigned_to</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>19441423b2d04f7784416941c84bf6d4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>920cba254c5a4e3ea7016f746c8812a0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>priority</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>3734fe9fa36840d0b468515baa22be50</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>assignment_group</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>f999a76f7a664c27ba1941ea082fab83</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>0ab1e7e38a414705b9162abb2280e60b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>activity.xml</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>e051b61c41c64c0aae2ac5674164a9ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter display_value="Activities (filtered)">444ea5c6bf310100e628555b3f0739d6</sys_ui_formatter>
+            <sys_ui_section caption="Resolution" display_value="Resolution" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">401e60a755834450aa3df4666c88fb41</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>formatter</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Resolution</caption>
+            <header>false</header>
+            <name>x_2145749_qc_complaint</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-10 17:43:49</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>401e60a755834450aa3df4666c88fb41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2145749_qc_complaint</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+            <sys_update_name>sys_ui_section_401e60a755834450aa3df4666c88fb41</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-10 17:43:49</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>
