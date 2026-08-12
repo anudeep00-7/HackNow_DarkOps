@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <advanced>false</advanced>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_run_end/>
+        <entered_run_start/>
+        <entered_time/>
+        <max_drift/>
+        <name>QC Platform - Seed Demo Data</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <repeat_every/>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_daysofweek/>
+        <run_end/>
+        <run_month/>
+        <run_period/>
+        <run_start>2026-08-12 10:12:00</run_start>
+        <run_time>1970-01-01 00:00:00</run_time>
+        <run_type>once</run_type>
+        <run_weekinmonth/>
+        <script><![CDATA[(function () {
+  gs.info('QC Demo Data Seed: Starting...');
+
+  // ============================================================
+  // STEP 1: Create Delivery Zones
+  // ============================================================
+  var zones = [
+    { zone_name: 'Mumbai Central', zone_code: 'MUM-C', city: 'Mumbai', active: true },
+    { zone_name: 'Delhi NCR South', zone_code: 'DEL-S', city: 'Delhi', active: true },
+    { zone_name: 'Bangalore Koramangala', zone_code: 'BLR-K', city: 'Bangalore', active: true },
+    { zone_name: 'Hyderabad Hi-Tech City', zone_code: 'HYD-H', city: 'Hyderabad', active: true },
+    { zone_name: 'Chennai Anna Nagar', zone_code: 'CHN-A', city: 'Chennai', active: true }
+  ];
+
+  var zoneIds = {};
+  for (var z = 0; z < zones.length; z++) {
+    var zoneGr = new GlideRecord('x_2145749_qc_delivery_zone');
+    zoneGr.addQuery('zone_code', zones[z].zone_code);
+    zoneGr.query();
+    if (zoneGr.next()) {
+      zoneIds[zones[z].zone_code] = zoneGr.getUniqueValue();
+      gs.info('QC Demo Data Seed: Zone already exists: ' + zones[z].zone_name);
+    } else {
+      zoneGr.initialize();
+      zoneGr.setValue('zone_name', zones[z].zone_name);
+      zoneGr.setValue('zone_code', zones[z].zone_code);
+      zoneGr.setValue('city', zones[z].city);
+      zoneGr.setValue('active', zones[z].active);
+      var zid = zoneGr.insert();
+      zoneIds[zones[z].zone_code] = zid;
+      gs.info('QC Demo Data Seed: Created zone: ' + zones[z].zone_name + ' (' + zid + ')');
+    }
+  }
+
+  // ============================================================
+  // STEP 2: Create Dark Stores
+  // ============================================================
+  var stores = [
+    { store_name: 'BlinkMart Andheri West', store_code: 'BM-MUM-001', city: 'Mumbai', zone: 'MUM-C', address: '14 Link Road, Andheri West, Mumbai 400053', manager: 'Rajesh Sharma', status: 'active', target_delivery_minutes: 10, daily_order_volume: 1200 },
+    { store_name: 'BlinkMart Bandra East', store_code: 'BM-MUM-002', city: 'Mumbai', zone: 'MUM-C', address: '7 BKC Road, Bandra East, Mumbai 400051', manager: 'Priya Iyer', status: 'active', target_delivery_minutes: 12, daily_order_volume: 950 },
+    { store_name: 'BlinkMart Saket', store_code: 'BM-DEL-001', city: 'Delhi', zone: 'DEL-S', address: '22 Press Enclave Marg, Saket, Delhi 110017', manager: 'Amit Gupta', status: 'active', target_delivery_minutes: 10, daily_order_volume: 1500 },
+    { store_name: 'BlinkMart Hauz Khas', store_code: 'BM-DEL-002', city: 'Delhi', zone: 'DEL-S', address: '5 Aurobindo Marg, Hauz Khas, Delhi 110016', manager: 'Neha Verma', status: 'active', target_delivery_minutes: 11, daily_order_volume: 1100 },
+    { store_name: 'BlinkMart HSR Layout', store_code: 'BM-BLR-001', city: 'Bangalore', zone: 'BLR-K', address: '12th Main, HSR Layout Sector 2, Bangalore 560102', manager: 'Vikram Hegde', status: 'active', target_delivery_minutes: 9, daily_order_volume: 1800 },
+    { store_name: 'BlinkMart Indiranagar', store_code: 'BM-BLR-002', city: 'Bangalore', zone: 'BLR-K', address: '100 Feet Road, Indiranagar, Bangalore 560038', manager: 'Lakshmi Rao', status: 'active', target_delivery_minutes: 10, daily_order_volume: 1400 },
+    { store_name: 'BlinkMart Gachibowli', store_code: 'BM-HYD-001', city: 'Hyderabad', zone: 'HYD-H', address: 'Plot 42, ISB Road, Gachibowli, Hyderabad 500032', manager: 'Ravi Teja Reddy', status: 'active', target_delivery_minutes: 11, daily_order_volume: 900 },
+    { store_name: 'BlinkMart Mogappair', store_code: 'BM-CHN-001', city: 'Chennai', zone: 'CHN-A', address: '18 Golden Flats Road, Mogappair West, Chennai 600037', manager: 'Karthik Subramanian', status: 'active', target_delivery_minutes: 13, daily_order_volume: 750 }
+  ];
+
+  var storeIds = {};
+  for (var s = 0; s < stores.length; s++) {
+    var storeGr = new GlideRecord('x_2145749_qc_dark_store');
+    storeGr.addQuery('store_code', stores[s].store_code);
+    storeGr.query();
+    if (storeGr.next()) {
+      storeIds[stores[s].store_code] = storeGr.getUniqueValue();
+      gs.info('QC Demo Data Seed: Store already exists: ' + stores[s].store_name);
+    } else {
+      storeGr.initialize();
+      storeGr.setValue('store_name', stores[s].store_name);
+      storeGr.setValue('store_code', stores[s].store_code);
+      storeGr.setValue('city', stores[s].city);
+      storeGr.setValue('zone', zoneIds[stores[s].zone]);
+      storeGr.setValue('address', stores[s].address);
+      storeGr.setValue('manager', stores[s].manager);
+      storeGr.setValue('status', stores[s].status);
+      storeGr.setValue('target_delivery_minutes', stores[s].target_delivery_minutes);
+      storeGr.setValue('daily_order_volume', stores[s].daily_order_volume);
+      var sid = storeGr.insert();
+      storeIds[stores[s].store_code] = sid;
+      gs.info('QC Demo Data Seed: Created store: ' + stores[s].store_name + ' (' + sid + ')');
+    }
+  }
+
+  // ============================================================
+  // STEP 3: Create Delivery Partners
+  // ============================================================
+  var partners = [
+    { partner_name: 'Arjun Mehra', phone: '+91-9876543210', vehicle_type: 'motorcycle', status: 'active', zone: 'MUM-C' },
+    { partner_name: 'Suresh Yadav', phone: '+91-9876543211', vehicle_type: 'scooter', status: 'active', zone: 'DEL-S' },
+    { partner_name: 'Mohammed Irfan', phone: '+91-9876543212', vehicle_type: 'motorcycle', status: 'active', zone: 'BLR-K' },
+    { partner_name: 'Deepak Nair', phone: '+91-9876543213', vehicle_type: 'bicycle', status: 'active', zone: 'HYD-H' },
+    { partner_name: 'Ramesh Babu', phone: '+91-9876543214', vehicle_type: 'motorcycle', status: 'active', zone: 'CHN-A' },
+    { partner_name: 'Vijay Patil', phone: '+91-9876543215', vehicle_type: 'scooter', status: 'suspended', zone: 'MUM-C' }
+  ];
+
+  var partnerIds = {};
+  for (var p = 0; p < partners.length; p++) {
+    var partGr = new GlideRecord('x_2145749_qc_delivery_partner');
+    partGr.addQuery('partner_name', partners[p].partner_name);
+    partGr.query();
+    if (partGr.next()) {
+      partnerIds[partners[p].partner_name] = partGr.getUniqueValue();
+      gs.info('QC Demo Data Seed: Partner already exists: ' + partners[p].partner_name);
+    } else {
+      partGr.initialize();
+      partGr.setValue('partner_name', partners[p].partner_name);
+      partGr.setValue('phone', partners[p].phone);
+      partGr.setValue('vehicle_type', partners[p].vehicle_type);
+      partGr.setValue('status', partners[p].status);
+      partGr.setValue('home_zone', zoneIds[partners[p].zone]);
+      var pid = partGr.insert();
+      partnerIds[partners[p].partner_name] = pid;
+      gs.info('QC Demo Data Seed: Created partner: ' + partners[p].partner_name + ' (' + pid + ')');
+    }
+  }
+
+  // ============================================================
+  // STEP 4: Create QC Complaints (these trigger the flow)
+  // ============================================================
+  var complaints = [
+    {
+      short_description: 'Order arrived 45 minutes late - groceries left in sun',
+      description: 'I placed an urgent order for milk, bread and eggs at 8:15 AM for breakfast. The promised delivery was 10 minutes but it took 45 minutes. The milk was warm and the bread packaging was damaged from being in the delivery bag too long in the heat. This is completely unacceptable for a quick commerce service.',
+      complaint_type: 'late_delivery',
+      order_number: 'ORD-2026-MUM-78234',
+      order_value: 487.00,
+      dark_store: 'BM-MUM-001',
+      delivery_zone: 'MUM-C',
+      delivery_partner: 'Arjun Mehra',
+      ai_urgency_score: 4,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: '3 items missing from my weekly grocery order',
+      description: 'Ordered 15 items in my weekly grocery haul but only received 12. Missing: Amul butter 500g, Tata Salt 1kg, and Fortune sunflower oil 1L. The delivery partner said the bag was sealed and he cannot check. This has happened twice in the last month from the same store.',
+      complaint_type: 'missing_items',
+      order_number: 'ORD-2026-DEL-91456',
+      order_value: 2340.00,
+      dark_store: 'BM-DEL-001',
+      delivery_zone: 'DEL-S',
+      delivery_partner: 'Suresh Yadav',
+      ai_urgency_score: 6,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Received completely spoiled paneer and curd',
+      description: 'The paneer was yellowish and had a foul smell when I opened it. The curd container was bloated indicating bacterial growth. These are clear cold-chain failures. I have a toddler at home and almost fed her this food before noticing. This is a serious health hazard!',
+      complaint_type: 'damaged_items',
+      order_number: 'ORD-2026-BLR-44521',
+      order_value: 890.00,
+      dark_store: 'BM-BLR-001',
+      delivery_zone: 'BLR-K',
+      delivery_partner: 'Mohammed Irfan',
+      ai_urgency_score: 9,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: true,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Received someone else order entirely - wrong address delivery',
+      description: 'I ordered baby food and diapers but received what appears to be someone else party order - chips, soft drinks, and disposable plates. My order number is ORD-2026-HYD-33890 but the bag label shows a different order. Need my actual items urgently for my infant.',
+      complaint_type: 'wrong_items',
+      order_number: 'ORD-2026-HYD-33890',
+      order_value: 1560.00,
+      dark_store: 'BM-HYD-001',
+      delivery_zone: 'HYD-H',
+      delivery_partner: 'Deepak Nair',
+      ai_urgency_score: 8,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Charged twice for the same order - duplicate payment deducted',
+      description: 'My bank statement shows two deductions of Rs 1,245 for order ORD-2026-CHN-67234. I only placed one order and received one delivery. The app shows only one order but my bank clearly shows duplicate charge. Need immediate refund of the extra amount.',
+      complaint_type: 'quality_issue',
+      order_number: 'ORD-2026-CHN-67234',
+      order_value: 1245.00,
+      dark_store: 'BM-CHN-001',
+      delivery_zone: 'CHN-A',
+      delivery_partner: 'Ramesh Babu',
+      ai_urgency_score: 5,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Delivery partner was rude and threw package at my door',
+      description: 'The delivery partner rang my bell and when I took 30 seconds to open the door, he threw the bag at my doorstep and left without waiting. Two eggs broke and my tomatoes were squished. When I tried to call him back through the app, he did not respond. I have CCTV footage of the incident.',
+      complaint_type: 'damaged_items',
+      order_number: 'ORD-2026-MUM-82345',
+      order_value: 678.00,
+      dark_store: 'BM-MUM-002',
+      delivery_zone: 'MUM-C',
+      delivery_partner: 'Vijay Patil',
+      ai_urgency_score: 7,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: true,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Fruits received are clearly old and about to rot',
+      description: 'Ordered premium quality mangoes (Alphonso 1kg), bananas and pomegranate. The mangoes have dark spots and are overripe, bananas are almost black, and pomegranate was cracked open with dried seeds. Paid premium prices for premium fruits but received items that should have been discarded days ago.',
+      complaint_type: 'quality_issue',
+      order_number: 'ORD-2026-BLR-55672',
+      order_value: 1120.00,
+      dark_store: 'BM-BLR-002',
+      delivery_zone: 'BLR-K',
+      delivery_partner: 'Mohammed Irfan',
+      ai_urgency_score: 5,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'App crashed during payment - order placed but cannot track',
+      description: 'The app crashed right when I was completing payment. Rs 3,200 was deducted from my account but the order does not show in my order history. I cannot track delivery status. Customer care chat is not responding. I need to know if my order is coming or if I need to go buy groceries elsewhere.',
+      complaint_type: 'quality_issue',
+      order_number: 'ORD-2026-DEL-99881',
+      order_value: 3200.00,
+      dark_store: 'BM-DEL-002',
+      delivery_zone: 'DEL-S',
+      delivery_partner: 'Suresh Yadav',
+      ai_urgency_score: 6,
+      ai_sentiment: -1,
+      fraud_review_required: false,
+      needs_manual_review: false,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'Order never delivered - marked as delivered in app',
+      description: 'My order shows as delivered at 3:42 PM but I was home the entire afternoon and nobody came. No doorbell, no call, no message. The delivery photo shows a door that is NOT my door. Someone else got my groceries. This is the third time this month this has happened.',
+      complaint_type: 'not_delivered',
+      order_number: 'ORD-2026-MUM-71234',
+      order_value: 4500.00,
+      dark_store: 'BM-MUM-001',
+      delivery_zone: 'MUM-C',
+      delivery_partner: 'Arjun Mehra',
+      ai_urgency_score: 8,
+      ai_sentiment: -1,
+      fraud_review_required: true,
+      needs_manual_review: true,
+      resolution_type: 'pending'
+    },
+    {
+      short_description: 'High-value electronics order damaged and suspected fraud refund attempt',
+      description: 'Ordered a premium blender (Rs 8,500) and an air fryer (Rs 12,000). The blender box was open and the appliance has scratches - clearly a returned/used item. The air fryer box was sealed but when I opened it, the power cord was cut. This appears to be deliberate sabotage or a warehouse theft ring. I want full refund plus compensation for the 2-hour wait for this delivery.',
+      complaint_type: 'damaged_items',
+      order_number: 'ORD-2026-BLR-12890',
+      order_value: 20500.00,
+      dark_store: 'BM-BLR-001',
+      delivery_zone: 'BLR-K',
+      delivery_partner: 'Mohammed Irfan',
+      ai_urgency_score: 9,
+      ai_sentiment: -1,
+      fraud_review_required: true,
+      needs_manual_review: true,
+      resolution_type: 'pending'
+    }
+  ];
+
+  var complaintIds = [];
+  for (var c = 0; c < complaints.length; c++) {
+    var comp = complaints[c];
+    var cGr = new GlideRecord('x_2145749_qc_complaint');
+    cGr.initialize();
+    cGr.setValue('short_description', comp.short_description);
+    cGr.setValue('description', comp.description);
+    cGr.setValue('complaint_type', comp.complaint_type);
+    cGr.setValue('order_number', comp.order_number);
+    cGr.setValue('order_value', comp.order_value);
+    cGr.setValue('dark_store', storeIds[comp.dark_store]);
+    cGr.setValue('delivery_zone', zoneIds[comp.delivery_zone]);
+    cGr.setValue('delivery_partner', partnerIds[comp.delivery_partner]);
+    cGr.setValue('ai_urgency_score', comp.ai_urgency_score);
+    cGr.setValue('ai_sentiment', comp.ai_sentiment);
+    cGr.setValue('fraud_review_required', comp.fraud_review_required);
+    cGr.setValue('needs_manual_review', comp.needs_manual_review);
+    cGr.setValue('resolution_type', comp.resolution_type);
+    cGr.setValue('state', 1); // New
+    cGr.setValue('urgency', comp.ai_urgency_score > 7 ? 1 : (comp.ai_urgency_score > 4 ? 2 : 3));
+    cGr.setValue('impact', comp.order_value > 3000 ? 1 : (comp.order_value > 1000 ? 2 : 3));
+    var cid = cGr.insert();
+    complaintIds.push(cid);
+    gs.info('QC Demo Data Seed: Created complaint #' + (c + 1) + ': ' + comp.short_description.substring(0, 50) + '... (' + cid + ')');
+  }
+
+  gs.info('QC Demo Data Seed: Complete!');
+  gs.info('QC Demo Data Seed: Created ' + Object.keys(zoneIds).length + ' zones, ' + Object.keys(storeIds).length + ' stores, ' + Object.keys(partnerIds).length + ' partners, ' + complaintIds.length + ' complaints');
+  gs.info('QC Demo Data Seed: The complaint flow should now trigger to create Customer Service Cases automatically.');
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 10:09:40</sys_created_on>
+        <sys_id>8547e8d6b05a44719a8edb55e8b79c44</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QC Platform - Seed Demo Data</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sysauto_script_8547e8d6b05a44719a8edb55e8b79c44</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 10:09:40</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
