@@ -35,6 +35,7 @@
                 <element inactive_on_update="false" label="Missing Items" sequence="2" value="missing_items"/>
             </choice>
         </element>
+        <element label="AI Urgency Reason" max_length="4000" name="x_2145749_qc_ai_urgency_reason" type="string"/>
         <index name="index">
             <element name="x_2145749_qc_dark_store"/>
         </index>
