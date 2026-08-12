@@ -15,7 +15,9 @@
         <condition/>
         <description>Triggers on case creation to run NLP analysis on complaint text and enrich the case with AI-derived category, urgency score, level, and explanation.</description>
         <execute_function>false</execute_function>
-        <filter_condition table="sn_customerservice_case">short_descriptionISNOTEMPTY^ORdescriptionISNOTEMPTY</filter_condition>
+        <filter_condition table="sn_customerservice_case">short_descriptionISNOTEMPTY^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
         <name>AI Analyze Complaint</name>
@@ -29,9 +31,11 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
     try {
-        // Get the complaint text from short_description and/or description
+
+        // Get complaint text from short description and/or description
         var shortDesc = current.getValue('short_description') || '';
         var description = current.getValue('description') || '';
+
         var complaintText = shortDesc + ' ' + description;
         complaintText = complaintText.trim();
 
@@ -39,44 +43,114 @@
             return;
         }
 
-        // Instantiate and run the NLP engine
-        var engine = new x_2145749_qc.ComplaintNLPEngine();
-        var result = engine.analyze(complaintText);
+        // =========================================================
+        // 1. NLP ENGINE
+        // Handles:
+        // - Complaint Type
+        // - AI Urgency Score
+        // - AI Urgency Level
+        // - AI Urgency Reason
+        // =========================================================
 
-        // Prevent recursive triggers
+        var nlpEngine = new x_2145749_qc.ComplaintNLPEngine();
+        var nlpResult = nlpEngine.analyze(complaintText);
+
+        // Prevent recursive Business Rule execution
         current.setWorkflow(false);
 
-        // Only set complaint_type if it's currently empty
-        var currentType = current.getValue('x_2145749_qc_complaint_type');
-        if (!currentType && result.category && result.category !== 'other') {
-            current.setValue('x_2145749_qc_complaint_type', result.category);
+        // ---------------------------------------------------------
+        // Complaint Type
+        // ---------------------------------------------------------
+
+        var currentType = current.getValue(
+            'x_2145749_qc_complaint_type'
+        );
+
+        if (!currentType &&
+            nlpResult.category &&
+            nlpResult.category !== 'other') {
+
+            current.setValue(
+                'x_2145749_qc_complaint_type',
+                nlpResult.category
+            );
         }
 
-        // Always update AI urgency fields
-        current.setValue('x_2145749_qc_ai_urgency_score', result.score);
-        current.setValue('x_2145749_qc_ai_urgency_level', result.level);
-        current.setValue('x_2145749_qc_ai_urgency_reason', result.reason);
+        // ---------------------------------------------------------
+        // AI Urgency fields
+        // ---------------------------------------------------------
+
+        current.setValue(
+            'x_2145749_qc_ai_urgency_score',
+            nlpResult.score
+        );
+
+        current.setValue(
+            'x_2145749_qc_ai_urgency_level',
+            nlpResult.level
+        );
+
+        current.setValue(
+            'x_2145749_qc_ai_urgency_reason',
+            nlpResult.reason
+        );
+
+
+        // =========================================================
+        // 2. SENTIMENT
+        // Use ComplaintTriageEngine ONLY for sentiment.
+        // We do NOT use its urgency result.
+        // =========================================================
+
+        var sentimentEngine =
+            new x_2145749_qc.ComplaintTriageEngine();
+
+        var sentimentResult =
+            sentimentEngine.triage(complaintText, 0);
+
+        current.setValue(
+            'x_2145749_qc_ai_sentiment',
+            sentimentResult.sentiment
+        );
+
+
+        // =========================================================
+        // Save the case
+        // =========================================================
 
         current.update();
 
-        gs.debug('AI Analyze Complaint: Processed case ' + current.getUniqueValue() +
-            ' - Category: ' + result.category +
-            ', Score: ' + result.score +
-            ', Level: ' + result.level);
+        gs.debug(
+            'AI Analyze Complaint: Processed case ' +
+            current.getUniqueValue() +
+            ' - Category: ' +
+            nlpResult.category +
+            ', Score: ' +
+            nlpResult.score +
+            ', Level: ' +
+            nlpResult.level +
+            ', Sentiment: ' +
+            sentimentResult.sentiment
+        );
 
     } catch (e) {
-        gs.error('AI Analyze Complaint: Error processing case ' +
-            current.getUniqueValue() + ' - ' + e.message);
+
+        gs.error(
+            'AI Analyze Complaint: Error processing case ' +
+            current.getUniqueValue() +
+            ' - ' +
+            e.message
+        );
     }
-})(current, previous);
-]]></script>
+
+})(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-08 17:46:38</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>18d5a5adff494a889c266527780e0ac2</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>AI Analyze Complaint</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -84,7 +158,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_script_18d5a5adff494a889c266527780e0ac2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-08 17:46:38</sys_updated_on>
+        <sys_updated_on>2026-08-12 16:35:11</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

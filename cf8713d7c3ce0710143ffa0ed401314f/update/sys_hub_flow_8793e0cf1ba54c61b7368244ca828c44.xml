@@ -5,7 +5,7 @@
         <active>true</active>
         <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
-        <attributes>timeFromCreateToActivate=12712000</attributes>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,timeFromCreateToActivate=107753000,viewActivatedIn=naturalLanguage</attributes>
         <authored_on_release_version/>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
@@ -16,14 +16,14 @@
         <flow_priority>MEDIUM</flow_priority>
         <generation_source>fluent</generation_source>
         <internal_name>qc_complaint__create_customer_service_case</internal_name>
-        <label_cache>[{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}}]</label_cache>
+        <label_cache>[{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.short_description","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Short description","reference":"","reference_display":"Short description","type":"string","base_type":"string","parent_table_name":"x_2145749_qc_complaint","column_name":"short_description","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["short_description"]}}]</label_cache>
         <master_snapshot>ddde0d8b83e28b1002609b55eeaad36d</master_snapshot>
         <master_snapshot_digest/>
         <name>QC Complaint - Create Customer Service Case</name>
         <natlang/>
         <outputs/>
         <pre_compiled>false</pre_compiled>
-        <remote_trigger_id>df4ff9cf8362cb1002609b55eeaad376</remote_trigger_id>
+        <remote_trigger_id>a6d9a75783ee83100a85e590ceaad3ab</remote_trigger_id>
         <run_as>system</run_as>
         <run_with_roles/>
         <sc_callable>false</sc_callable>
@@ -37,7 +37,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8793e0cf1ba54c61b7368244ca828c44</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>QC Complaint - Create Customer Service Case</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -45,17 +45,18 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_hub_flow_8793e0cf1ba54c61b7368244ca828c44</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
-        <version_record>0a438e0b83a2cb1002609b55eeaad30c</version_record>
+        <version_record>c7d9a75783ee83100a85e590ceaad3fc</version_record>
     </sys_hub_flow>
     <sys_translated_text action="delete_multiple" query="documentkey=8793e0cf1ba54c61b7368244ca828c44"/>
     <sys_variable_value action="delete_multiple" query="document_key=8793e0cf1ba54c61b7368244ca828c44"/>
     <sys_flow_record_trigger action="INSERT_OR_UPDATE">
         <active>true</active>
-        <condition/>
+        <condition table="x_2145749_qc_complaint">^EQ<item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
         <name/>
         <on_delete>false</on_delete>
         <on_insert>true</on_insert>
@@ -68,15 +69,15 @@
         <run_when_user_setting>any</run_when_user_setting>
         <sys_class_name>sys_flow_record_trigger</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-11 12:47:13</sys_created_on>
+        <sys_created_on>2026-08-12 15:11:14</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>df4ff9cf8362cb1002609b55eeaad376</sys_id>
+        <sys_id>a6d9a75783ee83100a85e590ceaad3ab</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_overrides/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
         <table>x_2145749_qc_complaint</table>
         <trigger_definition/>
     </sys_flow_record_trigger>
@@ -87,14 +88,14 @@
         <identifier_type>flow</identifier_type>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-11 12:47:13</sys_created_on>
-        <sys_id>db4ff9cf8362cb1002609b55eeaad377</sys_id>
+        <sys_created_on>2026-08-12 15:11:14</sys_created_on>
+        <sys_id>6ed9a75783ee83100a85e590ceaad3ac</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
-        <trigger display_value="">df4ff9cf8362cb1002609b55eeaad376</trigger>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
+        <trigger display_value="">a6d9a75783ee83100a85e590ceaad3ab</trigger>
     </sys_trigger_runner_mapping>
-    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT INdb4ff9cf8362cb1002609b55eeaad377"/>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT IN6ed9a75783ee83100a85e590ceaad3ac"/>
     <sys_hub_flow_stage action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44"/>
     <sys_flow_cat_variable_model action="delete_multiple" query="id=8793e0cf1ba54c61b7368244ca828c44"/>
     <sys_hub_flow_input action="delete_multiple" query="model=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT IN60de498b83e28b1002609b55eeaad3ab,f0dec98b83e28b1002609b55eeaad32c"/>
@@ -102,7 +103,7 @@
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
-        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=8000,uiType=document_id</attributes>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id,uiTypeLabel=Document ID</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -162,14 +163,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:25</sys_created_on>
         <sys_id>60de498b83e28b1002609b55eeaad3ab</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 11:14:23</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:11</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -187,7 +188,7 @@
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
-        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name</attributes>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -247,14 +248,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:26</sys_created_on>
         <sys_id>f0dec98b83e28b1002609b55eeaad32c</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 09:15:26</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:11</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -282,12 +283,12 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:19</sys_created_on>
         <sys_id>ce9354bdd4224f11889adb7c0427b96a</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:11</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:12</sys_updated_on>
         <trigger_definition display_value="Created">798916a0c31322002841b63b12d3ae7c</trigger_definition>
-        <trigger_inputs>H4sIAAAAAAAA/+1XXW/TMBT9K1aeQCrShoYQewPGpEqDSduAh6mK3PimtXDtzr5pG6b+d67z0XppunWsAYT21Pijvufec45zc30boZWjEdi+dsh1Ape564voOIp6keJDUPR4xYcKaCw1gtVcXeVToGn007HmE78mYApagMbyr8nYyATOpKPx9aAXTbgWHI3No2O0GfSi1JrJFUymiiOdlXLlaNJYATY6Pjw46EXFuVUQOnDGVebHi/j14dGbt0fv4pskTow/gGB5ANLRc/7toX3JWCphQZe4ptxSHPRRbzfybUDAlrQrxIQXFugLIFbJBClXMxa4ONcqD7YsnPwJxf8zB3FQxGpHejk28wtIgRAncCp1Ea5aVCbhajXiSEwOMwRHuSyXq4qcSlAVoS6xcorvE5SzuujL3i4KuMg0O9fsU5UjKyrkNiVR0v6AHG4pK7jJfEJF5mnNmVcGbU7PgqhGsySzlD0yqierq8ywRpD2J3wEZRg6V0GCAQnpVxeOPkvnpB4FuW+BUqxvYlF5CKgWxlMgDNqEsqs5bKZjo+OV9NY2qfE3XFFP72CCrZRvjY0NDfyr3oi4mHmdi1pyHZjl+xg0uwSi2vhfRE/5nu0yNDhuSjQ1ln2gedb3kXgBvjDOF6NfhXMVtu4cpEkcch0wBOp5ZjXaLcA6w7ULJjrasv2DerLX56Sq2K3UNLsrhIbXq9kdrb5FsNuDP7s9cJ0yc9LLvg3Odb7hbx9JarJ0zhJDwRbYmVOGPPkxsibTYhuK9Q72QkDKM4Uvu3slGwv3w7m7428a1SOi2y/0aFjMplPDtR39upZca9hnd5al+mi0kFhe3U1v1kvuUZ8vj1RDEgCotbCpgN14D5NpOR5b8uqM9+or7ndpn3ONLkYTcyHiAPHqI2BiBKiTgJWKa5L3NEMXLQPOqA9dfaZ11MoVHUFHfVzbNU9NiL/iqei2swvVaIhN2toEyZRVxaHOf5gzHANhUnS90MkFqi4bR09oE9qJYbTA7B8Bt59GzSNp6dZKuhsXQDn5mF6tocgHgj+/D9rKVzhzw80jJQXEqlzb/4uh0EEArZW5KvpT3xit6d4XEFtK8B9qZfAL5NobIfgUAAA=</trigger_inputs>
+        <trigger_inputs>H4sIAAAAAAAA/+1X30/bMBD+V6w8bVKRYGKaxts2QKrEhgZse0AscuNLa821i31pyRD/+8750Zo0hQIN0zSeWp8d33d332efz68jtHI4BNvXDrlO4DR3fRHtRVEvUnwAiv6e8YECGkuNYDVXZ/kEyIzeHGs+9nMCJqAFaCw/TUZGJnAkHY3PL3rRmGvB0dg82kObQS9KrRmfwXiiONJeKVeOjMYKsNHezvZ2Lyr2rZzQhlOuMj++it/s7L59t/s+vkzixPgNCJYHIB39z7/fty4ZSSUs6BLXhFvyg97r9VK8DQjYEnaFmPDCFfoEiHkwQciVxQIXx1rlwZIrJ39D8X2ZseMJSqPLHGYO4iCt1Tfp6cjMTiAFiiGBQ6kLANWkMglX8xFHqu0gQ3AU3c3NPEeHElRVYpdYOcEPCcppXYab3jqcOMk0O9bsoIqaFTlzyyQpw7qHINcUFVxmPqBob2uHgqzL6MlCq9OjwK3RLMkshY+MUszqxDOsIaT9MR9C6Yc2VpBgUJf0mwtHn6VzUg+D4FdhKRYsg1F5iKgmy1MwXLSRZ13B2EzHRsdzOi6kU+NvKKU2ryGMlUVf6RsbLPh39BJxMfXcFzULOxDQjxFodgpUfON/ET0JNi2hgcFRk7Wpsewj2Vnfu+IF+kJMX4zeCm0VuA5VpYkwcuExROprz2q4K5B1B2wdULS3ZZtH9eQDYEbEit2cUNPbVGgcAJV1Tf2v4Oxq5y9HwF1HQKrMjBi0cdVznS+J3ruSmnSes8SQtyvsTj0DnvwaWpNpsQrGYgV7JSDlmcLXHV7exsLdeG6v+Jvq9YjoTAyFG2azKd9wbk0RL1jX6vZFsqsk+8loIbE84ZuCrafcg55DD+RHEgCo2fHz4OsyLdYjQxhPiwdsCe0ZyVA9FR/LhRnX6GI0MRciDmKYPyvGRoDaD0pVEYBUMMnQRTdBIeMCY9ned9QJFt1EV21g24VAHYy/DCjrtruT12iITdraQsmUVemhx8QgZzgCAqXoHKKtC1idNp6+pk1s+4bRBLPPgm4zfZ5H0tLslQVvnAql8SGtXoOU9zh/uTnWU3kh1yWJD5UUEKtybvNXSMGMAFprLSvv08U18qiLpTXcuxxiSwr+C/Zc/AGwbjp/hBUAAA==</trigger_inputs>
         <trigger_outputs/>
         <trigger_type>record_create</trigger_type>
         <updation_source/>
@@ -296,9 +297,9 @@
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
         <action_type_parent display_value="">2de05916c31332002841b63b12d3aee1</action_type_parent>
-        <attributes>timeFromCreateToActivate=8000</attributes>
+        <attributes/>
         <comment/>
-        <compiled_snapshot/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
         <display_text/>
         <flow display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</flow>
         <generation_source/>
@@ -308,13 +309,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:19</sys_created_on>
         <sys_id>0a93dfd0f9bd44d890b2450b7ff04266</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:11</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-08-12 15:20:24</sys_updated_on>
         <ui_id>0a93dfd0-f9bd-44d8-90b2-450b7ff04266</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOgWEnadbmNrTraWuxdeil6wRZohNhsuzqI60b5L+Psp3EdfNx6aVAcwlEPj49UiTM+yXRLAcyJY6lCmh9GJAFUz4YrabcW1fkYCyYheRAObMBIaQtFavujgJLZpDTgSHTJeFzqYQBTab3DwMiBUZOEohPz5MJHyWj0TCOh2fjJJ2M0mQoRgxgjBSKpaAQ+jtIxPMuxa4qd9q+d2NPrhtHYUTQEw8IPDvQAlBIxpSFAcmZFswVpiJTZzwaDDBxo1W1QcyldkhIAvbZyhe89iwOuAwwMw6Nb3OkbaUac3bJHLtFZu68aaF8XmC9bFMTARnzyl10bQ3gpnSy0E1InWYbXSif6+umJGRDsH4YtHiLIqAMeQblbRrZ7bx4+rVWeSV1XZLWqQrO1ObEnDMy9S7oWRJQkCMRzVlZSj2jpSkWsg5GLXk0U3iIMlU84aVWznTEeBAeYVlZdIX2y9p8x4wMWfxAGgxeDYit7IVi1m5zwSLSRx+UNJm1OdCmDCGEG1m6r3jBAlq5q8Gmpesutp12fqbDZHz6ZXxOHzlFsfgu+Jg09MkfH8cjsVxe4Hs7EDSJuDdYGhe9xq1Wf1+x1K1Etc9TMPs5uqjdDLXEYwQ1qB8vmPlHcfTMgfAt5k00KKydqSjOqdOHcugj+0wvhT6kYB0dYP1QJqlFkAx9tZ+ii9rB4M0MO7milh8sRR/ZZ8oM84IaWEh4wr9HLw2I/XQ74X1ODSAsDozGXm6x+xl3gPt8BixOfZiqI73bA76pmndFQ7Y4lOMrGHJ8+/n2A/A5Wp+j9Tla7zNaR1cmAfH53pUpSTsr05UEJex2Z9p8Etf7EoQJdND0f39nap0nd62z3ZuS99qbkklc/z7Q9tQk9+GXp86evGeNevgPgkas7xsMAAA=</values>
+        <values>H4sIAAAAAAAA/+1W30/bMBD+V5CfoyhpSwd9m0A8bSCNiRfGLMe+tNYcJ/hHoVT933dO0lLSpt2kSRMSfal8/u7zd+e7+O6XRAoyIeMUktPzdMyH6XA4SJLB2SjNxsMsHYghAxiRiGhWACIdyxTQehGROVM+GK2m3FtXFmAsmLnkQDmzASGkrRRb3B0F8plUwoAmk/uHiFTM4AkODJksO1t/qlexDBRCvwfBPfrdotpr+7Lte3LdbJRGBD1JRODZgRaAQnKmLESkYFowV5oFmTjj0WCAiRutFhvETGqHhCRgn618wWPPkoDLASPj0OxtlrTNW2POL5ljt8jMnTctlM9KzJ5tciIgZ165i21bA7ipnCx141KH2XqXyhf6ukkJ2RCsrwkt3qIIqEKcQXkbRn47K5++rVVeSV2npN1UJWdqs2LOGZl5F/QsCSgokIgWrKqkntLKlHNZO6OWIp4qXMS5Kp/wUCunOmY8CI8xrSy+Qvtlbb5jRoYoviINOq8iYhf2QjFrX2PBJNJHH5Q0kbUx0CYNwYUbWbnPeMAcWrmraN0IApLz3sJKs9dCqmvfbjXBMx2ko9NPo3P6yCkGhfeHl05DPf3wSTIUy+UF1oUDQdOYe4MpdPFb3Gr18w1LXXJU+yID08+xjdrPUEs8RlCDuv6CmV8UG9YccH/F7HiDwhybBcV+dvpQDF1kl+ml1IcUrL0DrOvKJLUIkqH++im2UXsYvJlixS+o5QdT0UV2mXLDvKAG5hKe8O/RSwOin24vvMupAYTFxtJY8y22n3EPuMtnwOLXIXTfkdrtAHey5l3ZkM0PxfgGhhx2VhoXvgJ1lyJ5v+sOdLXafXI+2vKjLT/a8v+35V8OeMff4fWAdyVBCbvnYV5PdxB62UHTSd0Jr908uWs32ykv/VdTXjpO6t87mvWa4N79qLc11fcMfQ+/AYdtmp//DAAA</values>
     </sys_hub_action_instance_v2>
     <sys_hub_alias_mapping action="delete_multiple" query="source_id=0a93dfd0f9bd44d890b2450b7ff04266"/>
     <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44"/>
@@ -384,7 +385,7 @@
         <description/>
         <flow_priority>MEDIUM</flow_priority>
         <internal_name>qc_complaint__create_customer_service_case</internal_name>
-        <label_cache>[{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}}]</label_cache>
+        <label_cache>[{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.short_description","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Short description","reference":"","reference_display":"Short description","type":"string","base_type":"string","parent_table_name":"x_2145749_qc_complaint","column_name":"short_description","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["short_description"]}}]</label_cache>
         <master>true</master>
         <name>QC Complaint - Create Customer Service Case</name>
         <natlang/>
@@ -401,7 +402,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ddde0d8b83e28b1002609b55eeaad36d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name/>
         <sys_overrides/>
         <sys_package/>
@@ -409,7 +410,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
         <type>flow</type>
         <version>2</version>
     </sys_hub_flow_snapshot>
@@ -434,7 +435,7 @@
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
-        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=8000,uiType=document_id</attributes>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -494,14 +495,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:28</sys_created_on>
         <sys_id>19de0d8b83e28b1002609b55eeaad3d5</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 11:14:26</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:13</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -579,14 +580,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:28</sys_created_on>
         <sys_id>59de4d8b83e28b1002609b55eeaad309</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 09:15:28</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:13</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -614,12 +615,12 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:29</sys_created_on>
         <sys_id>a1de4d8b83e28b1002609b55eeaad383</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_scope/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 09:15:29</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:13</sys_updated_on>
         <trigger_definition display_value="Created">798916a0c31322002841b63b12d3ae7c</trigger_definition>
-        <trigger_inputs>H4sIAAAAAAAA/+1XXW/TMBT9K1aeQCrShoYQewPGpEqDSduAh6mK3PimtXDtzr5pG6b+d67z0XppunWsAYT21Pijvufec45zc30boZWjEdi+dsh1Ape564voOIp6keJDUPR4xYcKaCw1gtVcXeVToGn007HmE78mYApagMbyr8nYyATOpKPx9aAXTbgWHI3No2O0GfSi1JrJFUymiiOdlXLlaNJYATY6Pjw46EXFuVUQOnDGVebHi/j14dGbt0fv4pskTow/gGB5ANLRc/7toX3JWCphQZe4ptxSHPRRbzfybUDAlrQrxIQXFugLIFbJBClXMxa4ONcqD7YsnPwJxf8zB3FQxGpHejk28wtIgRAncCp1Ea5aVCbhajXiSEwOMwRHuSyXq4qcSlAVoS6xcorvE5SzuujL3i4KuMg0O9fsU5UjKyrkNiVR0v6AHG4pK7jJfEJF5mnNmVcGbU7PgqhGsySzlD0yqierq8ywRpD2J3wEZRg6V0GCAQnpVxeOPkvnpB4FuW+BUqxvYlF5CKgWxlMgDNqEsqs5bKZjo+OV9NY2qfE3XFFP72CCrZRvjY0NDfyr3oi4mHmdi1pyHZjl+xg0uwSi2vhfRE/5nu0yNDhuSjQ1ln2gedb3kXgBvjDOF6NfhXMVtu4cpEkcch0wBOp5ZjXaLcA6w7ULJjrasv2DerLX56Sq2K3UNLsrhIbXq9kdrb5FsNuDP7s9cJ0yc9LLvg3Odb7hbx9JarJ0zhJDwRbYmVOGPPkxsibTYhuK9Q72QkDKM4Uvu3slGwv3w7m7428a1SOi2y/0aFjMplPDtR39upZca9hnd5al+mi0kFhe3U1v1kvuUZ8vj1RDEgCotbCpgN14D5NpOR5b8uqM9+or7ndpn3ONLkYTcyHiAPHqI2BiBKiTgJWKa5L3NEMXLQPOqA9dfaZ11MoVHUFHfVzbNU9NiL/iqei2swvVaIhN2toEyZRVxaHOf5gzHANhUnS90MkFqi4bR09oE9qJYbTA7B8Bt59GzSNp6dZKuhsXQDn5mF6tocgHgj+/D9rKVzhzw80jJQXEqlzb/4uh0EEArZW5KvpT3xit6d4XEFtK8B9qZfAL5NobIfgUAAA=</trigger_inputs>
+        <trigger_inputs>H4sIAAAAAAAA/+1X30/bMBD+V6w8bVKRYGKaxts2QKrEhgZse0AscuNLa821i31pyRD/+8750Zo0hQIN0zSeWp8d33d332efz68jtHI4BNvXDrlO4DR3fRHtRVEvUnwAiv6e8YECGkuNYDVXZ/kEyIzeHGs+9nMCJqAFaCw/TUZGJnAkHY3PL3rRmGvB0dg82kObQS9KrRmfwXiiONJeKVeOjMYKsNHezvZ2Lyr2rZzQhlOuMj++it/s7L59t/s+vkzixPgNCJYHIB39z7/fty4ZSSUs6BLXhFvyg97r9VK8DQjYEnaFmPDCFfoEiHkwQciVxQIXx1rlwZIrJ39D8X2ZseMJSqPLHGYO4iCt1Tfp6cjMTiAFiiGBQ6kLANWkMglX8xFHqu0gQ3AU3c3NPEeHElRVYpdYOcEPCcppXYab3jqcOMk0O9bsoIqaFTlzyyQpw7qHINcUFVxmPqBob2uHgqzL6MlCq9OjwK3RLMkshY+MUszqxDOsIaT9MR9C6Yc2VpBgUJf0mwtHn6VzUg+D4FdhKRYsg1F5iKgmy1MwXLSRZ13B2EzHRsdzOi6kU+NvKKU2ryGMlUVf6RsbLPh39BJxMfXcFzULOxDQjxFodgpUfON/ET0JNi2hgcFRk7Wpsewj2Vnfu+IF+kJMX4zeCm0VuA5VpYkwcuExROprz2q4K5B1B2wdULS3ZZtH9eQDYEbEit2cUNPbVGgcAJV1Tf2v4Oxq5y9HwF1HQKrMjBi0cdVznS+J3ruSmnSes8SQtyvsTj0DnvwaWpNpsQrGYgV7JSDlmcLXHV7exsLdeG6v+Jvq9YjoTAyFG2azKd9wbk0RL1jX6vZFsqsk+8loIbE84ZuCrafcg55DD+RHEgCo2fHz4OsyLdYjQxhPiwdsCe0ZyVA9FR/LhRnX6GI0MRciDmKYPyvGRoDaD0pVEYBUMMnQRTdBIeMCY9ned9QJFt1EV21g24VAHYy/DCjrtruT12iITdraQsmUVemhx8QgZzgCAqXoHKKtC1idNp6+pk1s+4bRBLPPgm4zfZ5H0tLslQVvnAql8SGtXoOU9zh/uTnWU3kh1yWJD5UUEKtybvNXSMGMAFprLSvv08U18qiLpTXcuxxiSwr+C/Zc/AGwbjp/hBUAAA==</trigger_inputs>
         <trigger_outputs/>
         <trigger_type>record_create</trigger_type>
         <updation_source/>
@@ -628,7 +629,7 @@
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
         <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
-        <attributes>timeFromCreateToActivate=8000</attributes>
+        <attributes/>
         <comment/>
         <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
         <display_text/>
@@ -640,13 +641,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:29</sys_created_on>
         <sys_id>61de4d8b83e28b1002609b55eeaad367</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 11:14:27</sys_updated_on>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
         <ui_id>0a93dfd0-f9bd-44d8-90b2-450b7ff04266</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOgWEnadbmNrTraWuxdeil6wRZohNhsuzqI60b5L+Psp3EdfNx6aVAcwlEPj49UiTM+yXRLAcyJY6lCmh9GJAFUz4YrabcW1fkYCyYheRAObMBIaQtFavujgJLZpDTgSHTJeFzqYQBTab3DwMiBUZOEohPz5MJHyWj0TCOh2fjJJ2M0mQoRgxgjBSKpaAQ+jtIxPMuxa4qd9q+d2NPrhtHYUTQEw8IPDvQAlBIxpSFAcmZFswVpiJTZzwaDDBxo1W1QcyldkhIAvbZyhe89iwOuAwwMw6Nb3OkbaUac3bJHLtFZu68aaF8XmC9bFMTARnzyl10bQ3gpnSy0E1InWYbXSif6+umJGRDsH4YtHiLIqAMeQblbRrZ7bx4+rVWeSV1XZLWqQrO1ObEnDMy9S7oWRJQkCMRzVlZSj2jpSkWsg5GLXk0U3iIMlU84aVWznTEeBAeYVlZdIX2y9p8x4wMWfxAGgxeDYit7IVi1m5zwSLSRx+UNJm1OdCmDCGEG1m6r3jBAlq5q8Gmpesutp12fqbDZHz6ZXxOHzlFsfgu+Jg09MkfH8cjsVxe4Hs7EDSJuDdYGhe9xq1Wf1+x1K1Etc9TMPs5uqjdDLXEYwQ1qB8vmPlHcfTMgfAt5k00KKydqSjOqdOHcugj+0wvhT6kYB0dYP1QJqlFkAx9tZ+ii9rB4M0MO7milh8sRR/ZZ8oM84IaWEh4wr9HLw2I/XQ74X1ODSAsDozGXm6x+xl3gPt8BixOfZiqI73bA76pmndFQ7Y4lOMrGHJ8+/n2A/A5Wp+j9Tla7zNaR1cmAfH53pUpSTsr05UEJex2Z9p8Etf7EoQJdND0f39nap0nd62z3ZuS99qbkklc/z7Q9tQk9+GXp86evGeNevgPgkas7xsMAAA=</values>
+        <values>H4sIAAAAAAAA/+1W30/bMBD+V5CfoyhpSwd9m0A8bSCNiRfGLMe+tNYcJ/hHoVT933dO0lLSpt2kSRMSfal8/u7zd+e7+O6XRAoyIeMUktPzdMyH6XA4SJLB2SjNxsMsHYghAxiRiGhWACIdyxTQehGROVM+GK2m3FtXFmAsmLnkQDmzASGkrRRb3B0F8plUwoAmk/uHiFTM4AkODJksO1t/qlexDBRCvwfBPfrdotpr+7Lte3LdbJRGBD1JRODZgRaAQnKmLESkYFowV5oFmTjj0WCAiRutFhvETGqHhCRgn618wWPPkoDLASPj0OxtlrTNW2POL5ljt8jMnTctlM9KzJ5tciIgZ165i21bA7ipnCx141KH2XqXyhf6ukkJ2RCsrwkt3qIIqEKcQXkbRn47K5++rVVeSV2npN1UJWdqs2LOGZl5F/QsCSgokIgWrKqkntLKlHNZO6OWIp4qXMS5Kp/wUCunOmY8CI8xrSy+Qvtlbb5jRoYoviINOq8iYhf2QjFrX2PBJNJHH5Q0kbUx0CYNwYUbWbnPeMAcWrmraN0IApLz3sJKs9dCqmvfbjXBMx2ko9NPo3P6yCkGhfeHl05DPf3wSTIUy+UF1oUDQdOYe4MpdPFb3Gr18w1LXXJU+yID08+xjdrPUEs8RlCDuv6CmV8UG9YccH/F7HiDwhybBcV+dvpQDF1kl+ml1IcUrL0DrOvKJLUIkqH++im2UXsYvJlixS+o5QdT0UV2mXLDvKAG5hKe8O/RSwOin24vvMupAYTFxtJY8y22n3EPuMtnwOLXIXTfkdrtAHey5l3ZkM0PxfgGhhx2VhoXvgJ1lyJ5v+sOdLXafXI+2vKjLT/a8v+35V8OeMff4fWAdyVBCbvnYV5PdxB62UHTSd0Jr908uWs32ykv/VdTXjpO6t87mvWa4N79qLc11fcMfQ+/AYdtmp//DAAA</values>
     </sys_hub_action_instance_v2>
     <sys_hub_alias_mapping action="delete_multiple" query="source_id=61de4d8b83e28b1002609b55eeaad367"/>
     <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d"/>
@@ -704,26 +705,26 @@
     <sys_hub_flow action="UPDATE">
         <sys_id>8793e0cf1ba54c61b7368244ca828c44</sys_id>
         <latest_snapshot>ddde0d8b83e28b1002609b55eeaad36d</latest_snapshot>
-        <compiler_build/>
+        <compiler_build>glide-australia-02-11-2026__patch3-05-25-2026_06-12-2026_1106.zip</compiler_build>
         <version_record/>
     </sys_hub_flow>
     <sys_flow_trigger_plan action="delete_multiple" query="plan_id=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT INa9de4d8b83e28b1002609b55eeaad3e9"/>
     <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
         <binding_strategy>com.snc.process_flow.engine.binding.OncePerRecord</binding_strategy>
-        <plan/>
+        <plan>{"@class":"com.snc.process_flow.engine.serialization.plan_data.ChunkingPlanData","chunk_data":{"table":"sys_flow_trigger_plan","id":"a9de4d8b83e28b1002609b55eeaad3e9","name":"plan","plan_signature":null},"plan_data":"CHUNKING_PLAN"}</plan>
         <plan_id>8793e0cf1ba54c61b7368244ca828c44</plan_id>
-        <snapshot>ddde0d8b83e28b1002609b55eeaad36d</snapshot>
+        <snapshot>b0fb6b5b83ee83100a85e590ceaad3b9</snapshot>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-11 09:15:29</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a9de4d8b83e28b1002609b55eeaad3e9</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_overrides/>
         <sys_scope/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
-        <trigger display_value="">df4ff9cf8362cb1002609b55eeaad376</trigger>
+        <sys_updated_on>2026-08-12 15:11:14</sys_updated_on>
+        <trigger display_value="">a6d9a75783ee83100a85e590ceaad3ab</trigger>
     </sys_flow_trigger_plan>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=8793e0cf1ba54c61b7368244ca828c44"/>
 </record_update>
