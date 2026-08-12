@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="table_name" label="Table Name" language="en" table="var__m_sys_hub_flow_input_6c9810b102914c18ac856dc78361e1df">
+    <sys_documentation element="current" label="Record" language="en" table="var__m_sys_hub_flow_input_6c9810b102914c18ac856dc78361e1df">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>table_name</element>
+            <element>current</element>
             <help/>
             <hint/>
-            <label>Table Name</label>
+            <label>Record</label>
             <language>en</language>
             <name>var__m_sys_hub_flow_input_6c9810b102914c18ac856dc78361e1df</name>
             <plural/>

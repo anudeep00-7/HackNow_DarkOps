@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="2b142b13c3424710143ffa0ed4013128" label="Dark Store Equipment" max_length="40" name="x_2145749_qc_equipment" type="collection">
+        <element display="true" label="Asset Tag" mandatory="true" max_length="40" name="asset_tag" type="string"/>
         <element label="Equipment Type" max_length="40" name="equipment_type" type="choice">
             <choice>
                 <element inactive_on_update="false" label="POS Terminal" sequence="6" value="pos_terminal"/>
                 <element inactive_on_update="false" label="Freezer" sequence="2" value="freezer"/>
                 <element inactive_on_update="false" label="Backup Generator" sequence="5" value="generator"/>
-                <element inactive_on_update="false" label="Handheld Scanner" sequence="4" value="handheld_scanner"/>
                 <element inactive_on_update="false" label="Chiller / Refrigeration" sequence="1" value="chiller"/>
+                <element inactive_on_update="false" label="Handheld Scanner" sequence="4" value="handheld_scanner"/>
                 <element inactive_on_update="false" label="Packing Station" sequence="3" value="packing_station"/>
                 <element inactive_on_update="false" label="Other" sequence="7" value="other"/>
             </choice>
         </element>
+        <element label="Install Date" max_length="40" name="install_date" type="glide_date_time"/>
         <element default="operational" label="Operational Status" max_length="40" name="operational_status" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Down" sequence="3" value="down"/>
                 <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
                 <element inactive_on_update="false" label="Operational" sequence="1" value="operational"/>
+                <element inactive_on_update="false" label="Down" sequence="3" value="down"/>
             </choice>
         </element>
-        <element label="Install Date" max_length="40" name="install_date" type="glide_date_time"/>
         <element label="Dark Store" mandatory="true" max_length="32" name="dark_store" reference="x_2145749_qc_dark_store" type="reference"/>
-        <element display="true" label="Asset Tag" mandatory="true" max_length="40" name="asset_tag" type="string"/>
         <index name="index">
             <element name="dark_store"/>
         </index>
