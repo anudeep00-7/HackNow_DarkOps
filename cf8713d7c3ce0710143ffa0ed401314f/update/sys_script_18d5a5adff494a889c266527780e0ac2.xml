@@ -15,7 +15,9 @@
         <condition/>
         <description>Triggers on case creation to run NLP analysis on complaint text and enrich the case with AI-derived category, urgency score, level, and explanation.</description>
         <execute_function>false</execute_function>
-        <filter_condition table="sn_customerservice_case">short_descriptionISNOTEMPTY^ORdescriptionISNOTEMPTY</filter_condition>
+        <filter_condition table="sn_customerservice_case">short_descriptionISNOTEMPTY^ORdescriptionISNOTEMPTY<item endquery="false" field="short_description" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="description" goto="false" newquery="false" operator="ISNOTEMPTY" or="true" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
         <name>AI Analyze Complaint</name>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="current" label="Record" language="en" table="var__m_sys_hub_flow_input_e2b7f30f83404bf6abaf5ea290c501ad">
+    <sys_documentation element="table_name" label="Table Name" language="en" table="var__m_sys_hub_flow_input_e2b7f30f83404bf6abaf5ea290c501ad">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>current</element>
+            <element>table_name</element>
             <help/>
             <hint/>
-            <label>Record</label>
+            <label>Table Name</label>
             <language>en</language>
             <name>var__m_sys_hub_flow_input_e2b7f30f83404bf6abaf5ea290c501ad</name>
             <plural/>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-07-18 18:15:32</sys_created_on>
+            <sys_id>85333e13ed6603107f449d7ebd92553b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Record</sys_name>
             <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>

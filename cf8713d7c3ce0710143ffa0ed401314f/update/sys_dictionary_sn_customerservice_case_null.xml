@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="" table="sn_customerservice_case">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="" extends="task" table="sn_customerservice_case">
         <active>true</active>
         <array>false</array>
         <attributes>enforce_dot_walk_cross_scope_access=true,timeFromCreateToActivate=23000</attributes>
@@ -48,6 +48,7 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:14:48</sys_created_on>
+        <sys_id>f91cc2f8899647107f44eb0fc4edbda6</sys_id>
         <sys_name>sn_customerservice_case</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>

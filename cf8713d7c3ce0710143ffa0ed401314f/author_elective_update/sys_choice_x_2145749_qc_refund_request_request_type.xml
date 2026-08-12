@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-07-18 18:14:50</sys_created_on>
+            <sys_id>6c13badfed2603107f449d7ebd9255eb</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>request_type</sys_name>
             <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2026-07-18 18:15:08</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>43b37a17ed6603107f449d7ebd925580</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-07-18 18:15:08</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2026-07-18 18:15:08</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>43b37a17ed6603107f449d7ebd925581</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-07-18 18:15:08</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2026-07-18 18:15:08</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>43b37a17ed6603107f449d7ebd925582</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-07-18 18:15:08</sys_updated_on>

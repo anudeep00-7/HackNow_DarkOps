@@ -31,7 +31,7 @@ Order value: '{{order_value}}'
 **Recommended Resolution:** [recommendation with one-line justification]</prompt>
         <prompt_template_role/>
         <provider_company/>
-        <request_tokens>4000</request_tokens>
+        <request_tokens>32018</request_tokens>
         <show_in_prompt_library>false</show_in_prompt_library>
         <state>draft</state>
         <structured_output_enabled>false</structured_output_enabled>

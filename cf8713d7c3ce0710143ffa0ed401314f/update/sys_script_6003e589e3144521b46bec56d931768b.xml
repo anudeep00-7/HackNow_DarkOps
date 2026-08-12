@@ -15,7 +15,8 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="sn_customerservice_case">descriptionISNOTEMPTY^x_2145749_qc_ai_urgency_scoreISEMPTY<item endquery="false" field="x_2145749_qc_ai_urgency_score" goto="false" newquery="false" operator="ISEMPTY" or="false" value=""/>
+        <filter_condition table="sn_customerservice_case">descriptionISNOTEMPTY^x_2145749_qc_ai_urgency_scoreISEMPTY<item endquery="false" field="description" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="x_2145749_qc_ai_urgency_score" goto="false" newquery="false" operator="ISEMPTY" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>

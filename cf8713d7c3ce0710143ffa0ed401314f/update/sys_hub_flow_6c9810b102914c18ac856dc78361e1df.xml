@@ -45,7 +45,7 @@
         <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_hub_flow_6c9810b102914c18ac856dc78361e1df</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-08 11:33:27</sys_updated_on>
+        <sys_updated_on>2026-08-12 11:13:37</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
@@ -358,7 +358,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:15:30</sys_created_on>
-        <sys_id>6a923c462fee83109cfc4c707fa4e336</sys_id>
+        <sys_id>3833fa13ed6603107f449d7ebd9255f2</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -381,7 +381,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:15:30</sys_created_on>
-        <sys_id>e6923c462fee83109cfc4c707fa4e330</sys_id>
+        <sys_id>f833fa13ed6603107f449d7ebd9255e1</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Table Name</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -714,7 +714,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:15:31</sys_created_on>
-        <sys_id>1192b8462fee83109cfc4c707fa4e3ac</sys_id>
+        <sys_id>1033fa13ed6603107f449d7ebd925551</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -737,7 +737,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-07-18 18:15:31</sys_created_on>
-        <sys_id>2192b8462fee83109cfc4c707fa4e3cb</sys_id>
+        <sys_id>5433fa13ed6603107f449d7ebd925555</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Table Name</sys_name>
         <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
