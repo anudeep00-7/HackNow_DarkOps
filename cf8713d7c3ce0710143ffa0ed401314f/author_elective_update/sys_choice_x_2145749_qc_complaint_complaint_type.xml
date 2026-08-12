@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2026-08-10 17:43:40</sys_created_on>
+            <sys_id>dc7e9e1b836683100a85e590ceaad354</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>complaint_type</sys_name>
             <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>8bced21f836683100a85e590ceaad33f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>cfced21f836683100a85e590ceaad35a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>07ced21f836683100a85e590ceaad376</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>
@@ -86,6 +90,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>4bced21f836683100a85e590ceaad391</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>
@@ -105,6 +110,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>8fced21f836683100a85e590ceaad3ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>
@@ -124,6 +130,7 @@
             <sys_created_on>2026-08-11 12:46:57</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>53ced21f836683100a85e590ceaad3e1</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2026-08-11 12:46:57</sys_updated_on>

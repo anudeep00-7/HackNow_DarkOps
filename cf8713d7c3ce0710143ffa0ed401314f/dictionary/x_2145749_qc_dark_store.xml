@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="7e14a713c3424710143ffa0ed4013176" label="Dark Store" max_length="40" name="x_2145749_qc_dark_store" type="collection">
+        <element label="Store Code" mandatory="true" max_length="20" name="store_code" type="string"/>
+        <element label="PulseScore Band" max_length="40" name="pulse_score_band" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Watch (60-79)" sequence="2" value="watch"/>
+                <element inactive_on_update="false" label="Healthy (80-100)" sequence="1" value="healthy"/>
+                <element inactive_on_update="false" label="Critical (&lt;40)" sequence="4" value="critical"/>
+                <element inactive_on_update="false" label="At Risk (40-59)" sequence="3" value="at_risk"/>
+            </choice>
+        </element>
+        <element label="Delivery Zone" mandatory="true" max_length="32" name="zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
+        <element display="true" label="Store Name" mandatory="true" max_length="100" name="store_name" type="string"/>
+        <element attributes="scale=1" label="PulseScore" max_length="5" name="pulse_score" type="decimal"/>
+        <element label="Store Manager" max_length="32" name="manager" type="string"/>
         <element default="active" label="Operational Status" max_length="40" name="status" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
                 <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
                 <element inactive_on_update="false" label="Closed" sequence="4" value="closed"/>
                 <element inactive_on_update="false" label="Paused - Not Fulfilling" sequence="3" value="paused"/>
                 <element inactive_on_update="false" label="Degraded" sequence="2" value="degraded"/>
-                <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
             </choice>
         </element>
-        <element display="true" label="Store Name" mandatory="true" max_length="100" name="store_name" type="string"/>
         <element label="Avg Daily Order Volume" max_length="40" name="daily_order_volume" type="integer"/>
-        <element label="City" max_length="100" name="city" type="string"/>
-        <element label="PulseScore Band" max_length="40" name="pulse_score_band" type="choice">
-            <choice>
-                <element inactive_on_update="false" label="Critical (&lt;40)" sequence="4" value="critical"/>
-                <element inactive_on_update="false" label="At Risk (40-59)" sequence="3" value="at_risk"/>
-                <element inactive_on_update="false" label="Watch (60-79)" sequence="2" value="watch"/>
-                <element inactive_on_update="false" label="Healthy (80-100)" sequence="1" value="healthy"/>
-            </choice>
-        </element>
-        <element label="Store Manager" max_length="32" name="manager" type="string"/>
-        <element attributes="scale=1" label="PulseScore" max_length="5" name="pulse_score" type="decimal"/>
         <element label="Address" max_length="255" name="address" type="string"/>
-        <element default="10" label="Target Delivery Time (min)" max_length="40" name="target_delivery_minutes" type="integer"/>
-        <element label="Delivery Zone" mandatory="true" max_length="32" name="zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
         <element label="PulseScore Stale" max_length="40" name="pulse_score_updated" type="boolean"/>
-        <element label="Store Code" mandatory="true" max_length="20" name="store_code" type="string"/>
+        <element label="City" max_length="100" name="city" type="string"/>
+        <element default="10" label="Target Delivery Time (min)" max_length="40" name="target_delivery_minutes" type="integer"/>
         <index name="index">
             <element name="manager"/>
         </index>

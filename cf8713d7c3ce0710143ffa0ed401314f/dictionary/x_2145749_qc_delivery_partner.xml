@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="0314a713c3424710143ffa0ed40131ee" label="Delivery Partner" max_length="40" name="x_2145749_qc_delivery_partner" type="collection">
-        <element label="Phone" max_length="20" name="phone" type="string"/>
-        <element label="Portal User" max_length="32" name="user" reference="sys_user" type="reference"/>
         <element label="Home Zone" max_length="32" name="home_zone" reference="x_2145749_qc_delivery_zone" type="reference"/>
         <element label="Vehicle Type" max_length="40" name="vehicle_type" type="choice">
             <choice>
+                <element inactive_on_update="false" label="On Foot" sequence="4" value="on_foot"/>
                 <element inactive_on_update="false" label="Bicycle" sequence="3" value="bicycle"/>
                 <element inactive_on_update="false" label="Scooter" sequence="2" value="scooter"/>
                 <element inactive_on_update="false" label="Bike" sequence="1" value="bike"/>
-                <element inactive_on_update="false" label="On Foot" sequence="4" value="on_foot"/>
             </choice>
         </element>
         <element default="active" label="Status" max_length="40" name="status" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Offboarded" sequence="3" value="offboarded"/>
                 <element inactive_on_update="false" label="Suspended" sequence="2" value="suspended"/>
                 <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
-                <element inactive_on_update="false" label="Offboarded" sequence="3" value="offboarded"/>
             </choice>
         </element>
+        <element label="Phone" max_length="20" name="phone" type="string"/>
+        <element label="Portal User" max_length="32" name="user" reference="sys_user" type="reference"/>
         <element display="true" label="Partner Name" mandatory="true" max_length="100" name="partner_name" type="string"/>
         <index name="index">
             <element name="home_zone"/>

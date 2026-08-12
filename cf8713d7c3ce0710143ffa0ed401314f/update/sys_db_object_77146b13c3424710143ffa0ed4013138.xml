@@ -16,7 +16,7 @@
         <label>Sn Customerservice Case</label>
         <live_feed_enabled>false</live_feed_enabled>
         <name>sn_customerservice_case</name>
-        <number_ref display_value="CS">3f64b4d2c312310015519f2974d3ae7a</number_ref>
+        <number_ref display_value="">3f64b4d2c312310015519f2974d3ae7a</number_ref>
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
