@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Complaint" section_id="3827aa1e3830438dbdb72be786b372d9" sys_domain="global" table="x_2145749_qc_complaint" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>6a0f56d8bd9a446799f054684f00c4f7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>01fd44f5e0eb4dc7a599c208100f6580</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>complaint_type</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>614be4fbbe274e049ca91557aaedd24a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>order_number</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>213fd9be90a645d3850a56ea3dbe6c89</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>96613b6eb1bd44a2af6480c2860d89c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>short_description</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>4c82fecc672d458d88667bead47f120f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>order_value</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>7a13f6ebfa664fcf9ec375fd9ad83150</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>09c25dd61dbb49f5bf1873325795f869</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-11 12:47:08</sys_created_on>
+            <sys_id>138e7e4e0ab8445ca59b84ec34e9023a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint" display_value="Complaint" name="x_2145749_qc_complaint" sys_domain="global" view="Default view">3827aa1e3830438dbdb72be786b372d9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-11 12:47:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Complaint</caption>
+            <header>false</header>
+            <name>x_2145749_qc_complaint</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-10 17:43:49</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3827aa1e3830438dbdb72be786b372d9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2145749_qc_complaint</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+            <sys_update_name>sys_ui_section_3827aa1e3830438dbdb72be786b372d9</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-10 17:43:49</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>timeFromCreateToActivate=12712000</attributes>
+        <authored_on_release_version/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <display_name_after_preview/>
+        <flow_priority>MEDIUM</flow_priority>
+        <generation_source>fluent</generation_source>
+        <internal_name>qc_complaint__create_customer_service_case</internal_name>
+        <label_cache>[{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}}]</label_cache>
+        <master_snapshot>ddde0d8b83e28b1002609b55eeaad36d</master_snapshot>
+        <master_snapshot_digest/>
+        <name>QC Complaint - Create Customer Service Case</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>df4ff9cf8362cb1002609b55eeaad376</remote_trigger_id>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8793e0cf1ba54c61b7368244ca828c44</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>QC Complaint - Create Customer Service Case</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_hub_flow_8793e0cf1ba54c61b7368244ca828c44</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record>0a438e0b83a2cb1002609b55eeaad30c</version_record>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_variable_value action="delete_multiple" query="document_key=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_flow_record_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <name/>
+        <on_delete>false</on_delete>
+        <on_insert>true</on_insert>
+        <on_update>false</on_update>
+        <published_version/>
+        <run_flow_in>background</run_flow_in>
+        <run_on_extended>false</run_on_extended>
+        <run_when_setting>both</run_when_setting>
+        <run_when_user_list/>
+        <run_when_user_setting>any</run_when_user_setting>
+        <sys_class_name>sys_flow_record_trigger</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 12:47:13</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>df4ff9cf8362cb1002609b55eeaad376</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <table>x_2145749_qc_complaint</table>
+        <trigger_definition/>
+    </sys_flow_record_trigger>
+    <sys_trigger_runner_mapping action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <data>{"run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any","run_on_extended":"false"}</data>
+        <identifier>8793e0cf1ba54c61b7368244ca828c44</identifier>
+        <identifier_type>flow</identifier_type>
+        <runner>FDTriggerRunner</runner>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 12:47:13</sys_created_on>
+        <sys_id>db4ff9cf8362cb1002609b55eeaad377</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <trigger display_value="">df4ff9cf8362cb1002609b55eeaad376</trigger>
+    </sys_trigger_runner_mapping>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT INdb4ff9cf8362cb1002609b55eeaad377"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT IN60de498b83e28b1002609b55eeaad3ab,f0dec98b83e28b1002609b55eeaad32c"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=8000,uiType=document_id</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</model>
+        <model_id>8793e0cf1ba54c61b7368244ca828c44</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_8793e0cf1ba54c61b7368244ca828c44</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:25</sys_created_on>
+        <sys_id>60de498b83e28b1002609b55eeaad3ab</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 11:14:23</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=60de498b83e28b1002609b55eeaad3ab"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</model>
+        <model_id>8793e0cf1ba54c61b7368244ca828c44</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_8793e0cf1ba54c61b7368244ca828c44</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:26</sys_created_on>
+        <sys_id>f0dec98b83e28b1002609b55eeaad32c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:26</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=f0dec98b83e28b1002609b55eeaad32c"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT INce9354bdd4224f11889adb7c0427b96a"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</flow>
+        <generation_source/>
+        <name>Created</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:19</sys_created_on>
+        <sys_id>ce9354bdd4224f11889adb7c0427b96a</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:11</sys_updated_on>
+        <trigger_definition display_value="Created">798916a0c31322002841b63b12d3ae7c</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/+1XXW/TMBT9K1aeQCrShoYQewPGpEqDSduAh6mK3PimtXDtzr5pG6b+d67z0XppunWsAYT21Pijvufec45zc30boZWjEdi+dsh1Ape564voOIp6keJDUPR4xYcKaCw1gtVcXeVToGn007HmE78mYApagMbyr8nYyATOpKPx9aAXTbgWHI3No2O0GfSi1JrJFUymiiOdlXLlaNJYATY6Pjw46EXFuVUQOnDGVebHi/j14dGbt0fv4pskTow/gGB5ANLRc/7toX3JWCphQZe4ptxSHPRRbzfybUDAlrQrxIQXFugLIFbJBClXMxa4ONcqD7YsnPwJxf8zB3FQxGpHejk28wtIgRAncCp1Ea5aVCbhajXiSEwOMwRHuSyXq4qcSlAVoS6xcorvE5SzuujL3i4KuMg0O9fsU5UjKyrkNiVR0v6AHG4pK7jJfEJF5mnNmVcGbU7PgqhGsySzlD0yqierq8ywRpD2J3wEZRg6V0GCAQnpVxeOPkvnpB4FuW+BUqxvYlF5CKgWxlMgDNqEsqs5bKZjo+OV9NY2qfE3XFFP72CCrZRvjY0NDfyr3oi4mHmdi1pyHZjl+xg0uwSi2vhfRE/5nu0yNDhuSjQ1ln2gedb3kXgBvjDOF6NfhXMVtu4cpEkcch0wBOp5ZjXaLcA6w7ULJjrasv2DerLX56Sq2K3UNLsrhIbXq9kdrb5FsNuDP7s9cJ0yc9LLvg3Odb7hbx9JarJ0zhJDwRbYmVOGPPkxsibTYhuK9Q72QkDKM4Uvu3slGwv3w7m7428a1SOi2y/0aFjMplPDtR39upZca9hnd5al+mi0kFhe3U1v1kvuUZ8vj1RDEgCotbCpgN14D5NpOR5b8uqM9+or7ndpn3ONLkYTcyHiAPHqI2BiBKiTgJWKa5L3NEMXLQPOqA9dfaZ11MoVHUFHfVzbNU9NiL/iqei2swvVaIhN2toEyZRVxaHOf5gzHANhUnS90MkFqi4bR09oE9qJYbTA7B8Bt59GzSNp6dZKuhsXQDn5mF6tocgHgj+/D9rKVzhzw80jJQXEqlzb/4uh0EEArZW5KvpT3xit6d4XEFtK8B9qZfAL5NobIfgUAAA=</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_create</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT IN0a93dfd0f9bd44d890b2450b7ff04266"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="">2de05916c31332002841b63b12d3aee1</action_type_parent>
+        <attributes>timeFromCreateToActivate=8000</attributes>
+        <comment/>
+        <compiled_snapshot/>
+        <display_text/>
+        <flow display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:19</sys_created_on>
+        <sys_id>0a93dfd0f9bd44d890b2450b7ff04266</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:11</sys_updated_on>
+        <ui_id>0a93dfd0-f9bd-44d8-90b2-450b7ff04266</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOgWEnadbmNrTraWuxdeil6wRZohNhsuzqI60b5L+Psp3EdfNx6aVAcwlEPj49UiTM+yXRLAcyJY6lCmh9GJAFUz4YrabcW1fkYCyYheRAObMBIaQtFavujgJLZpDTgSHTJeFzqYQBTab3DwMiBUZOEohPz5MJHyWj0TCOh2fjJJ2M0mQoRgxgjBSKpaAQ+jtIxPMuxa4qd9q+d2NPrhtHYUTQEw8IPDvQAlBIxpSFAcmZFswVpiJTZzwaDDBxo1W1QcyldkhIAvbZyhe89iwOuAwwMw6Nb3OkbaUac3bJHLtFZu68aaF8XmC9bFMTARnzyl10bQ3gpnSy0E1InWYbXSif6+umJGRDsH4YtHiLIqAMeQblbRrZ7bx4+rVWeSV1XZLWqQrO1ObEnDMy9S7oWRJQkCMRzVlZSj2jpSkWsg5GLXk0U3iIMlU84aVWznTEeBAeYVlZdIX2y9p8x4wMWfxAGgxeDYit7IVi1m5zwSLSRx+UNJm1OdCmDCGEG1m6r3jBAlq5q8Gmpesutp12fqbDZHz6ZXxOHzlFsfgu+Jg09MkfH8cjsVxe4Hs7EDSJuDdYGhe9xq1Wf1+x1K1Etc9TMPs5uqjdDLXEYwQ1qB8vmPlHcfTMgfAt5k00KKydqSjOqdOHcugj+0wvhT6kYB0dYP1QJqlFkAx9tZ+ii9rB4M0MO7milh8sRR/ZZ8oM84IaWEh4wr9HLw2I/XQ74X1ODSAsDozGXm6x+xl3gPt8BixOfZiqI73bA76pmndFQ7Y4lOMrGHJ8+/n2A/A5Wp+j9Tla7zNaR1cmAfH53pUpSTsr05UEJex2Z9p8Etf7EoQJdND0f39nap0nd62z3ZuS99qbkklc/z7Q9tQk9+GXp86evGeNevgPgkas7xsMAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0a93dfd0f9bd44d890b2450b7ff04266"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_8793e0cf1ba54c61b7368244ca828c44</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:26</sys_created_on>
+        <sys_id>b0de898b83e28b1002609b55eeaad3c4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:26</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_8793e0cf1ba54c61b7368244ca828c44</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:26</sys_created_on>
+        <sys_id>fcdec98b83e28b1002609b55eeaad332</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:26</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_8793e0cf1ba54c61b7368244ca828c44"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>false</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>timeFromCreateToActivate=8000</attributes>
+        <authored_on_release_version>-1</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <flow_priority>MEDIUM</flow_priority>
+        <internal_name>qc_complaint__create_customer_service_case</internal_name>
+        <label_cache>[{"name":"Created_1.current.complaint_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Complaint Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_number","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Number","type":"string","base_type":"string","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.order_value","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Order Value","type":"decimal","base_type":"decimal","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.dark_store","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Dark Store","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_partner","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Partner","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.delivery_zone","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Delivery Zone","type":"reference","base_type":"reference","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_sentiment","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Sentiment","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.ai_urgency_score","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Ai Urgency Score","type":"integer","base_type":"integer","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.fraud_review_required","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Fraud Review Required","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.needs_manual_review","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Needs Manual Review","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.resolution_type","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Resolution Type","type":"choice","base_type":"choice","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}},{"name":"Created_1.current.auto_resolved","label":"Trigger - Record Created➛x_2145749_qc_complaint Record➛Auto Resolved","type":"boolean","base_type":"boolean","usedInstances":{"0a93dfd0-f9bd-44d8-90b2-450b7ff04266":["values"]},"attributes":{}}]</label_cache>
+        <master>true</master>
+        <name>QC Complaint - Create Customer Service Case</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="QC Complaint - Create Customer Service Case">8793e0cf1ba54c61b7368244ca828c44</parent_flow>
+        <remote_trigger_id/>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>draft</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:28</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ddde0d8b83e28b1002609b55eeaad36d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <type>flow</type>
+        <version>2</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_variable_value action="delete_multiple" query="document_key=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=ddde0d8b83e28b1002609b55eeaad36d^sys_idNOT INd5de0d8b83e28b1002609b55eeaad3d3"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>ddde0d8b83e28b1002609b55eeaad36d</id>
+        <name>QC Complaint - Create Customer Service Case</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:28</sys_created_on>
+        <sys_id>d5de0d8b83e28b1002609b55eeaad3d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:28</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=d5de0d8b83e28b1002609b55eeaad3d3"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=ddde0d8b83e28b1002609b55eeaad36d^sys_idNOT IN19de0d8b83e28b1002609b55eeaad3d5,59de4d8b83e28b1002609b55eeaad309"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=8000,uiType=document_id</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Complaint - Create Customer Service Case">ddde0d8b83e28b1002609b55eeaad36d</model>
+        <model_id>ddde0d8b83e28b1002609b55eeaad36d</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_ddde0d8b83e28b1002609b55eeaad36d</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:28</sys_created_on>
+        <sys_id>19de0d8b83e28b1002609b55eeaad3d5</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 11:14:26</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=19de0d8b83e28b1002609b55eeaad3d5"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Complaint - Create Customer Service Case">ddde0d8b83e28b1002609b55eeaad36d</model>
+        <model_id>ddde0d8b83e28b1002609b55eeaad36d</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_ddde0d8b83e28b1002609b55eeaad36d</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:28</sys_created_on>
+        <sys_id>59de4d8b83e28b1002609b55eeaad309</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:28</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=59de4d8b83e28b1002609b55eeaad309"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d^sys_idNOT INa1de4d8b83e28b1002609b55eeaad383"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="QC Complaint - Create Customer Service Case">ddde0d8b83e28b1002609b55eeaad36d</flow>
+        <generation_source/>
+        <name>Created</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:29</sys_created_on>
+        <sys_id>a1de4d8b83e28b1002609b55eeaad383</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:29</sys_updated_on>
+        <trigger_definition display_value="Created">798916a0c31322002841b63b12d3ae7c</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/+1XXW/TMBT9K1aeQCrShoYQewPGpEqDSduAh6mK3PimtXDtzr5pG6b+d67z0XppunWsAYT21Pijvufec45zc30boZWjEdi+dsh1Ape564voOIp6keJDUPR4xYcKaCw1gtVcXeVToGn007HmE78mYApagMbyr8nYyATOpKPx9aAXTbgWHI3No2O0GfSi1JrJFUymiiOdlXLlaNJYATY6Pjw46EXFuVUQOnDGVebHi/j14dGbt0fv4pskTow/gGB5ANLRc/7toX3JWCphQZe4ptxSHPRRbzfybUDAlrQrxIQXFugLIFbJBClXMxa4ONcqD7YsnPwJxf8zB3FQxGpHejk28wtIgRAncCp1Ea5aVCbhajXiSEwOMwRHuSyXq4qcSlAVoS6xcorvE5SzuujL3i4KuMg0O9fsU5UjKyrkNiVR0v6AHG4pK7jJfEJF5mnNmVcGbU7PgqhGsySzlD0yqierq8ywRpD2J3wEZRg6V0GCAQnpVxeOPkvnpB4FuW+BUqxvYlF5CKgWxlMgDNqEsqs5bKZjo+OV9NY2qfE3XFFP72CCrZRvjY0NDfyr3oi4mHmdi1pyHZjl+xg0uwSi2vhfRE/5nu0yNDhuSjQ1ln2gedb3kXgBvjDOF6NfhXMVtu4cpEkcch0wBOp5ZjXaLcA6w7ULJjrasv2DerLX56Sq2K3UNLsrhIbXq9kdrb5FsNuDP7s9cJ0yc9LLvg3Odb7hbx9JarJ0zhJDwRbYmVOGPPkxsibTYhuK9Q72QkDKM4Uvu3slGwv3w7m7428a1SOi2y/0aFjMplPDtR39upZca9hnd5al+mi0kFhe3U1v1kvuUZ8vj1RDEgCotbCpgN14D5NpOR5b8uqM9+or7ndpn3ONLkYTcyHiAPHqI2BiBKiTgJWKa5L3NEMXLQPOqA9dfaZ11MoVHUFHfVzbNU9NiL/iqei2swvVaIhN2toEyZRVxaHOf5gzHANhUnS90MkFqi4bR09oE9qJYbTA7B8Bt59GzSNp6dZKuhsXQDn5mF6tocgHgj+/D9rKVzhzw80jJQXEqlzb/4uh0EEArZW5KvpT3xit6d4XEFtK8B9qZfAL5NobIfgUAAA=</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_create</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d^sys_idNOT IN61de4d8b83e28b1002609b55eeaad367"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes>timeFromCreateToActivate=8000</attributes>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="QC Complaint - Create Customer Service Case">ddde0d8b83e28b1002609b55eeaad36d</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:29</sys_created_on>
+        <sys_id>61de4d8b83e28b1002609b55eeaad367</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 11:14:27</sys_updated_on>
+        <ui_id>0a93dfd0-f9bd-44d8-90b2-450b7ff04266</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOgWEnadbmNrTraWuxdeil6wRZohNhsuzqI60b5L+Psp3EdfNx6aVAcwlEPj49UiTM+yXRLAcyJY6lCmh9GJAFUz4YrabcW1fkYCyYheRAObMBIaQtFavujgJLZpDTgSHTJeFzqYQBTab3DwMiBUZOEohPz5MJHyWj0TCOh2fjJJ2M0mQoRgxgjBSKpaAQ+jtIxPMuxa4qd9q+d2NPrhtHYUTQEw8IPDvQAlBIxpSFAcmZFswVpiJTZzwaDDBxo1W1QcyldkhIAvbZyhe89iwOuAwwMw6Nb3OkbaUac3bJHLtFZu68aaF8XmC9bFMTARnzyl10bQ3gpnSy0E1InWYbXSif6+umJGRDsH4YtHiLIqAMeQblbRrZ7bx4+rVWeSV1XZLWqQrO1ObEnDMy9S7oWRJQkCMRzVlZSj2jpSkWsg5GLXk0U3iIMlU84aVWznTEeBAeYVlZdIX2y9p8x4wMWfxAGgxeDYit7IVi1m5zwSLSRx+UNJm1OdCmDCGEG1m6r3jBAlq5q8Gmpesutp12fqbDZHz6ZXxOHzlFsfgu+Jg09MkfH8cjsVxe4Hs7EDSJuDdYGhe9xq1Wf1+x1K1Etc9TMPs5uqjdDLXEYwQ1qB8vmPlHcfTMgfAt5k00KKydqSjOqdOHcugj+0wvhT6kYB0dYP1QJqlFkAx9tZ+ii9rB4M0MO7milh8sRR/ZZ8oM84IaWEh4wr9HLw2I/XQ74X1ODSAsDozGXm6x+xl3gPt8BixOfZiqI73bA76pmndFQ7Y4lOMrGHJ8+/n2A/A5Wp+j9Tla7zNaR1cmAfH53pUpSTsr05UEJex2Z9p8Etf7EoQJdND0f39nap0nd62z3ZuS99qbkklc/z7Q9tQk9+GXp86evGeNevgPgkas7xsMAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=61de4d8b83e28b1002609b55eeaad367"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_ddde0d8b83e28b1002609b55eeaad36d</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:28</sys_created_on>
+        <sys_id>ddde4d8b83e28b1002609b55eeaad304</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:28</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_ddde0d8b83e28b1002609b55eeaad36d</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:29</sys_created_on>
+        <sys_id>edde4d8b83e28b1002609b55eeaad35a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 09:15:29</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_ddde0d8b83e28b1002609b55eeaad36d"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>8793e0cf1ba54c61b7368244ca828c44</sys_id>
+        <latest_snapshot>ddde0d8b83e28b1002609b55eeaad36d</latest_snapshot>
+        <compiler_build/>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=8793e0cf1ba54c61b7368244ca828c44^sys_idNOT INa9de4d8b83e28b1002609b55eeaad3e9"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.OncePerRecord</binding_strategy>
+        <plan/>
+        <plan_id>8793e0cf1ba54c61b7368244ca828c44</plan_id>
+        <snapshot>ddde0d8b83e28b1002609b55eeaad36d</snapshot>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-11 09:15:29</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a9de4d8b83e28b1002609b55eeaad3e9</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-11 12:47:13</sys_updated_on>
+        <trigger display_value="">df4ff9cf8362cb1002609b55eeaad376</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=8793e0cf1ba54c61b7368244ca828c44"/>
+</record_update>
