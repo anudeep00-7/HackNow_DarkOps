@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,timeFromCreateToActivate=41219000,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <display_name_after_preview/>
+        <flow_priority>MEDIUM</flow_priority>
+        <generation_source>fluent</generation_source>
+        <internal_name>qc_case__refund_reorder_decision</internal_name>
+        <label_cache>[{"name":"Updated_1.current.sys_created_by","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Created By","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_value","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Value","type":"decimal","base_type":"decimal","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_number","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Number","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_complaint_type","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Complaint Type","type":"string","base_type":"string","usedInstances":{"044e7c20-8496-401b-9a21-3f7d7652f1da":["condition"]},"attributes":{}},{"name":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1.count","label":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1➛count","type":"integer","base_type":"integer","usedInstances":{"b0df73a0-b8e4-4136-a0eb-b4b486769aca":["condition"]},"attributes":{}},{"name":"Updated_1.current.sys_id","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Id","type":"string","base_type":"string","usedInstances":{"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1":["conditions"],"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}}]</label_cache>
+        <master_snapshot>7427b4ef832ac3100a85e590ceaad3ce</master_snapshot>
+        <master_snapshot_digest/>
+        <name>QC Case - Refund Reorder Decision</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>5354176b832e07100a85e590ceaad3c6</remote_trigger_id>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>f01a049173dd4366b4c460cbcd9b1d4c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QC Case - Refund Reorder Decision</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_hub_flow_f01a049173dd4366b4c460cbcd9b1d4c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 23:56:35</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_variable_value action="delete_multiple" query="document_key=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_flow_record_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="sn_customerservice_case">x_2145749_qc_ai_urgency_scoreISNOTEMPTY^x_2145749_qc_complaint_typeISNOTEMPTY^x_2145749_qc_order_value&gt;0<item endquery="false" field="x_2145749_qc_ai_urgency_score" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="x_2145749_qc_complaint_type" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="x_2145749_qc_order_value" goto="false" newquery="false" operator="&gt;" or="false" value="0"/>
+        </condition>
+        <name/>
+        <on_delete>false</on_delete>
+        <on_insert>false</on_insert>
+        <on_update>true</on_update>
+        <published_version/>
+        <run_flow_in>background</run_flow_in>
+        <run_on_extended>false</run_on_extended>
+        <run_when_setting>both</run_when_setting>
+        <run_when_user_list/>
+        <run_when_user_setting>any</run_when_user_setting>
+        <sys_class_name>sys_flow_record_trigger</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-13 08:15:50</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>5354176b832e07100a85e590ceaad3c6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:50</sys_updated_on>
+        <table>sn_customerservice_case</table>
+        <trigger_definition/>
+    </sys_flow_record_trigger>
+    <sys_trigger_runner_mapping action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <data>{"run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any","run_on_extended":"false"}</data>
+        <identifier>f01a049173dd4366b4c460cbcd9b1d4c</identifier>
+        <identifier_type>flow</identifier_type>
+        <runner>FDTriggerRunner</runner>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-13 08:15:50</sys_created_on>
+        <sys_id>9754176b832e07100a85e590ceaad3c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:50</sys_updated_on>
+        <trigger display_value="">5354176b832e07100a85e590ceaad3c6</trigger>
+    </sys_trigger_runner_mapping>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN9754176b832e07100a85e590ceaad3c7"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN5c2774ef832ac3100a85e590ceaad3e6,9427b4ef832ac3100a85e590ceaad348,d427b4ef832ac3100a85e590ceaad33d"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</model>
+        <model_id>f01a049173dd4366b4c460cbcd9b1d4c</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:51</sys_created_on>
+        <sys_id>5c2774ef832ac3100a85e590ceaad3e6</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:45</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=5c2774ef832ac3100a85e590ceaad3e6"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,co_type_name=FDCollection,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</model>
+        <model_id>f01a049173dd4366b4c460cbcd9b1d4c</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:52</sys_created_on>
+        <sys_id>9427b4ef832ac3100a85e590ceaad348</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=9427b4ef832ac3100a85e590ceaad348"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=6000,uiType=document_id,uiTypeLabel=Document ID</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</model>
+        <model_id>f01a049173dd4366b4c460cbcd9b1d4c</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:52</sys_created_on>
+        <sys_id>d427b4ef832ac3100a85e590ceaad33d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:45</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=d427b4ef832ac3100a85e590ceaad33d"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN4554936b832e07100a85e590ceaad356"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
+        <generation_source/>
+        <name>Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-13 08:15:41</sys_created_on>
+        <sys_id>4554936b832e07100a85e590ceaad356</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
+        <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/+1YbW/bNhD+K4I+bYALOFuHYfm2rg1goG2GxttQdB1BkyeZGE26JGVHDfLfd5Qom9FLonZRggL5ZOtI8Z67e54jqQ9XqTMiz8EslHVUMbgo7YKnp2k6SyVdgcS/S7qSgM9COTCKymW5BTQ7byaKbvwYhy0oDsrVr7K1FgxeC4vPHz7O0g1VnDptyvTUmQJmaWb0ZgmbraQO18qotGjUhoNJT0/m81larRuc4II7Kgv/bBVhhXV6A8aC2aETwqitEAiLq5V/3jmRrYXkBlSNbEsNenLe71Un4hYI1xN4wIyI4dL5FPBDOFHQwWKA8nMly2jKpRWfoXq/ztn51gmt6iwWFkiU2PBOdrHW+3eQAcbA4EyoCkAYlJpReXiiDqu7KhxYjO76+pCkMwEyFNkyI7buV+bErinE9WwMK94VKvlrDSr5A/ObVKXuUCSXggOR9dh4ijSB3sWRihQRtFAuUyiyR2QE82ca7w2BukwZR4necG9z6HpS8O2QJaV85wvvM+sVm07FnguwFmPAX+eEyrscqiO9gz9XGCh8KnyM6emzE4y7qW61Gq0Bovl18O8Tm3gQmTZ1SRfHiQ0o/8JiQ/PAEnQhgbmoaBm+GT29EfgaxnBMxBAqpRUZg+ytVs8eFNhKu3WMpgHyAu03UoR0HUJn/ye8r2sGbS3aA6F2N2NryT9Yv6QFdDk77Ny1WPzUAuJ0ZlLvkVb3rnqqyg6LvSuhkLhlwjR6u3TTyQglA7nRheJDMG7OmEjMlP17O4rjjOQ7DhktpPv+sdXrsWFzjIUbx9GWbzw2UsRH1vW6fZLsbZI9V8mrkIakOifbe1dvBb3FWGy3rDCYD1dtPU0lEtdAmErJfkIXDO7REaLmgvCousEjxYGfR+00+FuyacwjFdNb9EHfTwIaEtBvWnHh6hNcWzPNkJ3krhSKxSIADUUuyQ8nz3/6+fkv5BMjVJDC5Ji1kliGe9Ti4u358tWb35fv/7kxj2nvDGMgvtpDsyoEpHL0dzGf/wjzLhUf2v0Iysdl6kmc66nYA3I8fEH5WorvqXKWOE0o5ySK4dB3N5qDfBkxMPAad8dt4Wx6HfGTVBjr/jfl94Wprod9B0W87vhDor/MT7evaAVEZ70XP5ElIT3YbVdl4taAoCSeT3DpCtaE+53SvqZtbC91ggOJeRB093P/q77FdC+BdcFbLag2fvFXoOH7X8v504Z4m8qX9ax713ahBNoJW1OV10fEhs5nKHGgbJ3UU5J6ypRiZ61vPGxCb7ADU3bC9cak2HKvn8lcU7mnpe10NewZvn2E4zIaUCiqlsajNYpmU7PO4My8jHpEKFerSQTryC5xJPWwv2+3LYzvAh//AzDJyO9jGgAA</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN3a6e994f9ef448f9a13a94f369ae7ce7,dc9ec29ced0f410682c28f24a9084ec1"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="">2de05916c31332002841b63b12d3aee1</action_type_parent>
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
+        <generation_source/>
+        <order>4</order>
+        <parent_ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
+        <sys_id>3a6e994f9ef448f9a13a94f369ae7ce7</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 03:18:12</sys_updated_on>
+        <ui_id>3a6e994f-9ef4-48f9-a13a-94f369ae7ce7</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Vy27bMBD8lYBnVZAsx4ndU4HWtyboK5c8CIpc2QQoSuHDsWvo37sUZcdJmiAtChQFqovF5XJ2ZjleXW6JFGRGJjlkx9N8wou8KEZZNjod5+WkKPORKBjAmCREsxow07FSAe0XCVkx5UNwTUf5+PhkPKW3nBqovBb4c+vBOswS0raKbS5elcyXUgkDmswurxPSMoOVHBgy2z7acpsWqGIlKMT8GlgdnUVWr1X04PAzCkOVx7HGiEAoSwisHWgBWK9iykJCaqYFc43ZkJkzHgMGmDjXarPPWErtEJCE3LWV3xH9NAt5FaA0DnFvv6RD82KYLxvJ4bx1stEx0hMbNhvla30WRYS2Q8W8cru2Y8RbxIM2UA4kBkbVl2Vz93lXcC51r27YVA1nar9izhlZegc23AcoqBGI1qxtpV7Q1jQr2R9GLnW6ULhIK9XcYVErFzplPBBPsUMsnWP8fR++YEYGFR8RBg93vXp660PdqGNgTKNoTLDcyNa9Q7gVDOS6ZGdlAdn02YvPy/uL7t1rD2zMmYUrn2WF2G6/tUgTBM1T7g12xqV2Y6kUXXfT3z/Vvi7BPJ/+wOaHRxCB1Y1HPYPrQfwSSs8WQYbTNFg0AlTiTewMiBvurWvqlwgGPRz9GaLlBgE/fHr6Z/3fkt8eSVBjIx0cxVYmr3bnDmAuQQn7E7vuZtJQIKq/n0v5n5pL+STrn78znSLPf2w4HXwnnoypKCjGAsNDs4b1S9mY7LzRR8G6o5P40Yzvb6800rBsBWLXy7hNuq67/gFRmM6+4AcAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=3a6e994f9ef448f9a13a94f369ae7ce7"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Look Up Records">43400a1587003300663ca1bb36cb0b4b</action_type>
+        <action_type_parent display_value="">43400a1587003300663ca1bb36cb0b4b</action_type_parent>
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <comment/>
+        <compiled_snapshot>43400a1587003300663ca1bb36cb0b4b</compiled_snapshot>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
+        <sys_id>dc9ec29ced0f410682c28f24a9084ec1</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 03:18:12</sys_updated_on>
+        <ui_id>dc9ec29c-ed0f-4106-82c2-8f24a9084ec1</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/9VXyW7bMBD9FUNnw5C8ZbkVCQL0kAZI0lzSgKBIyiZKUwpJeYnhf++QlOTdsR23TU6GhrO8mXkzpJ+nAafBZXCetMMQR53zszBstcKw220RHMVxq0viMO6EQT2QeMBAk6SScsNTqUE2xCJ3QqzZrxxM6XT6M6PYMIqiBsmVYtI09EQjTmczMKBcZwJPng61I30uKAiDy+eXepBhBWAMU8HldOXITDKGBI6ZAPdXi1j3zXOj8abkbahVWaqoRRXVAzY2TFIGQRMsNKsHAywhwVRNKolimN5JMRf0uTTgMbDKY83fwD3ADa1mwiBFwvxp9YmKenox6aecsLvMgvESg2NR2JBU5AP5w+dhO8ESnAtTdgIkuQZ/LLOoLQyjcoCUPPTT0X0Z74ZLl1+BV6QEi+oLG6N4nBumbVuYYAPwgwY4y7jsoUylQ+6MAcqg0RPw0UhEOoKYmvdkAxOLuwE1wo0bkF878RNW3CZxC27AeOaSR6+5jevTKAAjl7NPGLQ0UTwz38DnkBUIZ/W9yN6O5/327uY8H6Nm1O6ctS/QK0EAJJcUfl5zps06uXcrH8foRwuo5rq4F6NdMkvG68kVPHafSHrXBY/Dk/H4/D+xuED0yWgMgLiAbiNfdJ3mylVliIjItTtQWGrv613Sv8f3cPfSu5hTQqfKIMeHOeedDGuyTnBcM2nt7fjt7Bpd8ngPkKXhAyCqPXqUG4CXe7l0X3C5dTIut5qHcRmI9Dyt0FdV21Dgcuxs60r9N6uPV/WBbQsG0eylmoWr42JGh8Zs2pgrw9o6aFoXmeVPrrcQ7MRDnVCUcCYo4lJw6ZYfXHYQ569NO0V9MC3iIT+saMRpj5l59FKLpmaExe9N5wW7qhly6X14QbR3zl43ms8ZzADcYRpatfj8i9Z3Q3T0WvguDeu5qu2LrbS8xePafQVuI+JiN/AqRkHm9gkfbP/ioovgWbh1bKK6P/0SV+FHuUvOdt4bnZU7wtd1gbvr1D2auTd2pyw9zvYAVxrfWSLW4sk2vAVz/d5afqU1v/wr7VP+16hvuyc+9Cfk5Q+oCw5mcw8AAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=dc9ec29ced0f410682c28f24a9084ec1"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN044e7c208496401b9a213f7d7652f1da,b0df73a0b8e44136a0ebb4b486769aca"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <block display_value="">e827b4ef832ac3100a85e590ceaad397</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>3</order>
+        <outputs_assigned/>
+        <parent_ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
+        <sys_id>044e7c208496401b9a213f7d7652f1da</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
+        <ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VXW/TMBT9K8jPUZQ0TWF9m0CTkIBK29gLDOvGdloLx85sp22o+t+5zkdX0aKhjce9xcf3nnvu9Ym9I6bxdePdrbl0Ti41mX+7j4jUAcPvHdFQCTInzGguvTSaRGQNqgnYbve15uAFp2nMGmuF9vGWTtJp/nZ6QR8YZaaqFUjtqW9rsd9/b5Ik45XESnpJpReV+7G4fibNxpqXk3CoYIlJL6R5aEBJ31LsDCcTES4dRrV3r4N6YlBsJRXH5N52NVh0mxeWzHd/bAUSqqAQCud54y3OBdMlx9UF5GWeJjnLJrNskiSTd9O0mGVFOuEZiOkM48bE90cuPmPsUAQhN9Iby4OWSRIRsfVCc4H1SlBORKQCjf0b25K5tw0CVgBfaNUeIlbYPLKRELt18pcITEkSIkuBjTHR7x6WdLBND7OVkUws6k5bh3go1JDDjGoq/aVvIRhOlNAoPxoOkcYhn6iD6CBj0FTerMzmeix4JXXX4LCpDAN1WIHHMRSNFy6chlCiQiJaQV0HT9bWrGWXjFqqeKlwEZfKbLBouEdiYEF4jDOC+ArxDx18B1aGLj4jDSbjCTrqmJX12FtXnOy7qdDglrG/oRPaDwMD+rRLLLMWg+h9dHpf0Q54vLRO/87/ZMMygTK9YOl5G0J2zoZvPnXIqRlH1X9xZPqEIwfknyyZ56+OPHZkkFmAk4x2ryDShf/72Za8D9brS7jeQ1ww6VDJbcA+ji9t2Gjx1CU7hjbG/gw9PGL7310UENyzBwAA</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <block display_value="">6427b4ef832ac3100a85e590ceaad387</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>2</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
+        <sys_id>b0df73a0b8e44136a0ebb4b486769aca</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
+        <ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1U247TMBD9FeTnNnLSi9q+rUArIQErsat9gVU0sSethWMH22m3VP13xrl0K1oEAh55y5y5nZk58YHZJtRN8A/2xnu1Nmz16WnElIkYfR+YgQrZiglrpArKGjZiW9BNxA4HKZYosqUYo+TleJry+XiRiWy8KLMpLPliiiJNhG1MOB4/N5xPJKd8qXytYf/4l2XERmnpsKdcgyOmAR1bHX5whX2NuYYCNXW7D06ZNaUrSdYSZuUs5TMxyeaTjPNsMU2L+aRIMzkBnM4pbkh8fbaBK0uJTQjyQ3nrZOSS8RHD54BGIvUrQXscsQqMhGDdnq2CawhwCPLO6P0pYqNMoGosxj579Q1jJc5jZIk0mMDOezLzfqkdLDZWCbyrW24tEqDQfY6wuqnMh26EeA4sodFhOAchjad6WEfSkUbPqbzf2N3HoeGtMu2AvVNbAfpkQaA1FE1AH6+BGisqlFdQ17ScvHZ2q9pk4lIla01GUmq7o6ZRgwmISDyhHUFyS/ibFn4Ep+IU76kMJdMFfe6FU/UwW9ucHdut5F+byKebr58k75ZBAV3aDbXZYk/6OLrUet4CL4K/1O4/kmHJoUyXIr0uQ5hck+Grdy1yKcaB9U8Umf5CkT3yW5Kczf4r8lyRkWYBXom8fUGpXPy//1iST1F6XQvfaUiiUJ6YPETs7fBKR8eerq7EObSz7kuc4QU7fgcDbPem7wUAAA==</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:52</sys_created_on>
+        <sys_id>5427b4ef832ac3100a85e590ceaad31f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Table Name</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_table_name_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:52</sys_created_on>
+        <sys_id>5c27b4ef832ac3100a85e590ceaad34f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Changed Fields</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_changed_fields_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:52</sys_created_on>
+        <sys_id>dc27b4ef832ac3100a85e590ceaad343</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_current_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_f01a049173dd4366b4c460cbcd9b1d4c"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
+        <annotation/>
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <authored_on_release_version>-1</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <flow_priority>MEDIUM</flow_priority>
+        <internal_name>qc_case__refund_reorder_decision</internal_name>
+        <label_cache>[{"name":"Updated_1.current.sys_created_by","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Created By","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_value","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Value","type":"decimal","base_type":"decimal","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_number","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Number","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_complaint_type","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Complaint Type","type":"string","base_type":"string","usedInstances":{"044e7c20-8496-401b-9a21-3f7d7652f1da":["condition"]},"attributes":{}},{"name":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1.count","label":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1➛count","type":"integer","base_type":"integer","usedInstances":{"b0df73a0-b8e4-4136-a0eb-b4b486769aca":["condition"]},"attributes":{}},{"name":"Updated_1.current.sys_id","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Id","type":"string","base_type":"string","usedInstances":{"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1":["conditions"],"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}}]</label_cache>
+        <master>true</master>
+        <name>QC Case - Refund Reorder Decision</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</parent_flow>
+        <remote_trigger_id/>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>published</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:53</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7427b4ef832ac3100a85e590ceaad3ce</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
+        <type>flow</type>
+        <version>2</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_variable_value action="delete_multiple" query="document_key=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=7427b4ef832ac3100a85e590ceaad3ce^sys_idNOT IN3c27b4ef832ac3100a85e590ceaad3cf"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>7427b4ef832ac3100a85e590ceaad3ce</id>
+        <name>QC Case - Refund Reorder Decision</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:53</sys_created_on>
+        <sys_id>3c27b4ef832ac3100a85e590ceaad3cf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:53</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=3c27b4ef832ac3100a85e590ceaad3cf"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=7427b4ef832ac3100a85e590ceaad3ce^sys_idNOT IN3827b4ef832ac3100a85e590ceaad3e1,7c27b4ef832ac3100a85e590ceaad3d1,b827b4ef832ac3100a85e590ceaad3f9"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,co_type_name=FDCollection,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</model>
+        <model_id>7427b4ef832ac3100a85e590ceaad3ce</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>3827b4ef832ac3100a85e590ceaad3e1</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:48</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=3827b4ef832ac3100a85e590ceaad3e1"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,timeFromCreateToActivate=6000,uiType=document_id</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</model>
+        <model_id>7427b4ef832ac3100a85e590ceaad3ce</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:53</sys_created_on>
+        <sys_id>7c27b4ef832ac3100a85e590ceaad3d1</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:48</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=7c27b4ef832ac3100a85e590ceaad3d1"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</model>
+        <model_id>7427b4ef832ac3100a85e590ceaad3ce</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_only_option/>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>b827b4ef832ac3100a85e590ceaad3f9</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:48</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=b827b4ef832ac3100a85e590ceaad3f9"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=7427b4ef832ac3100a85e590ceaad3ce^sys_idNOT INcd27f4ef832ac3100a85e590ceaad346"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</flow>
+        <generation_source/>
+        <name>Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>cd27f4ef832ac3100a85e590ceaad346</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:48</sys_updated_on>
+        <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/+1YbW/bNhD+K4I+bYALOFuHYfm2rg1goG2GxttQdB1BkyeZGE26JGVHDfLfd5Qom9FLonZRggL5ZOtI8Z67e54jqQ9XqTMiz8EslHVUMbgo7YKnp2k6SyVdgcS/S7qSgM9COTCKymW5BTQ7byaKbvwYhy0oDsrVr7K1FgxeC4vPHz7O0g1VnDptyvTUmQJmaWb0ZgmbraQO18qotGjUhoNJT0/m81larRuc4II7Kgv/bBVhhXV6A8aC2aETwqitEAiLq5V/3jmRrYXkBlSNbEsNenLe71Un4hYI1xN4wIyI4dL5FPBDOFHQwWKA8nMly2jKpRWfoXq/ztn51gmt6iwWFkiU2PBOdrHW+3eQAcbA4EyoCkAYlJpReXiiDqu7KhxYjO76+pCkMwEyFNkyI7buV+bErinE9WwMK94VKvlrDSr5A/ObVKXuUCSXggOR9dh4ijSB3sWRihQRtFAuUyiyR2QE82ca7w2BukwZR4necG9z6HpS8O2QJaV85wvvM+sVm07FnguwFmPAX+eEyrscqiO9gz9XGCh8KnyM6emzE4y7qW61Gq0Bovl18O8Tm3gQmTZ1SRfHiQ0o/8JiQ/PAEnQhgbmoaBm+GT29EfgaxnBMxBAqpRUZg+ytVs8eFNhKu3WMpgHyAu03UoR0HUJn/ye8r2sGbS3aA6F2N2NryT9Yv6QFdDk77Ny1WPzUAuJ0ZlLvkVb3rnqqyg6LvSuhkLhlwjR6u3TTyQglA7nRheJDMG7OmEjMlP17O4rjjOQ7DhktpPv+sdXrsWFzjIUbx9GWbzw2UsRH1vW6fZLsbZI9V8mrkIakOifbe1dvBb3FWGy3rDCYD1dtPU0lEtdAmErJfkIXDO7REaLmgvCousEjxYGfR+00+FuyacwjFdNb9EHfTwIaEtBvWnHh6hNcWzPNkJ3krhSKxSIADUUuyQ8nz3/6+fkv5BMjVJDC5Ji1kliGe9Ti4u358tWb35fv/7kxj2nvDGMgvtpDsyoEpHL0dzGf/wjzLhUf2v0Iysdl6kmc66nYA3I8fEH5WorvqXKWOE0o5ySK4dB3N5qDfBkxMPAad8dt4Wx6HfGTVBjr/jfl94Wprod9B0W87vhDor/MT7evaAVEZ70XP5ElIT3YbVdl4taAoCSeT3DpCtaE+53SvqZtbC91ggOJeRB093P/q77FdC+BdcFbLag2fvFXoOH7X8v504Z4m8qX9ax713ahBNoJW1OV10fEhs5nKHGgbJ3UU5J6ypRiZ61vPGxCb7ADU3bC9cak2HKvn8lcU7mnpe10NewZvn2E4zIaUCiqlsajNYpmU7PO4My8jHpEKFerSQTryC5xJPWwv2+3LYzvAh//AzDJyO9jGgAA</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=7427b4ef832ac3100a85e590ceaad3ce^sys_idNOT IN0927f4ef832ac3100a85e590ceaad344,3c27f4ef832ac3100a85e590ceaad342"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</flow>
+        <generation_source/>
+        <order>4</order>
+        <parent_ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>0927f4ef832ac3100a85e590ceaad344</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:49</sys_updated_on>
+        <ui_id>3a6e994f-9ef4-48f9-a13a-94f369ae7ce7</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VS2/bMAz+K4XOnmEnadpmp6FdTluLrVsufQiyRDcCZNnRI20W+L+Pspw062stsEuB5eKI/Eh9H03SF2siBZmQcQ7Z/lE+5sN8OBxk2eBwlBfjYZEPxJABjEhCNKsAkY4VCmh3SMiSKR+Md3SQj/YPRkd0wamB0muBj4UH6xAlpG0UW81eBeZzqYQBTSYXVwlpmMGbHBgyWT9wvZa3YgUohP4IxJ/R4VbNk7Yvu7F7p9FRGxH4ZAmBOwdaABIpmbKQkIppwVxtVmTijEeDASbOtFptEXOpHSYkAXtn5S+89jALuBJQGYfo2x5pX7toLk+YY+eYmTtveiif15KDjTURUDKv3PGuLQLOGidrHUM6mX10rXylT2NJyDbB5lWhxVskAU3QGZj3MsrzeX37fcNyKnVXkt6pas7U9sScM7LwLvBZE1BQYSJasaaR+oY2pl7KLhi5VOmNwkNaqvoWL7XyRqeMB+IplpWlU7SfdOYZMzKo+IppMLhNiF3ZY8WsvdeCRaQLH5hEZb0GGssQQriRjfuEFyyhp9smm4EQkB0921h5cd9I3QzYnWHgzMKlz7KhWK9/NkgcBM1T7g3WyqXIk0rRttddG1HtqwLM8/A/hmU3BDOwqvaop58dEG/K0rHFJH00De0eE5TiQ6wMiGvuraurlwgGPRzbPFiLFSb8/O3xyP8vyZsX29/7b7PYphKUsE805GarQYXvwkHU93Cz9c69We/st1v+r7ZbPs663zvacVHcu19xO1+zR8suSoy2wHm35cP5JTSC8dXovTAAg4P4AY//P15qpGHZEsSmutFN2ra9+g1u+7kkbAgAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0927f4ef832ac3100a85e590ceaad344"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Look Up Records">43400a1587003300663ca1bb36cb0b4b</action_type>
+        <action_type_parent display_value="Look Up Records">d1c56ec50b30030085c083eb37673a50</action_type_parent>
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <comment/>
+        <compiled_snapshot>43400a1587003300663ca1bb36cb0b4b</compiled_snapshot>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>3c27f4ef832ac3100a85e590ceaad342</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 02:16:49</sys_updated_on>
+        <ui_id>dc9ec29c-ed0f-4106-82c2-8f24a9084ec1</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+VXyW7bMBD9FUNnwZC8ZbkVCQIUaBIgSXNpA4IiKZsoTSkk5SWG/70jUotry65dKECCngzNwnkznDdD/1h5nHqX3nk8CAIcDs/PgqDfD4LRqE9wGEX9EYmCaBh4vifxlIElSSTlhidSg2yGRWaFWLOfGbjS1ep7SrFhFIVdkinFpOnqpUacrtfgQLlOBV4+n+pHJlxQEHqXP158L8UKwBimvMvVlurYbASOmADTq810mlI0y7RR9q3pgETRHFToe2xhmKQM0MRYaOZ7Uywhv0QtK4limN5LUQsmXBo40cuNF5q/QVzII8gtYwYZEua01ScqyunE8TU2+NGojJhMFaZkknDCtKsNZTHOhLnalDmD+zTPwLkYHInSOxHZVN65qnjVAeXtgSTTAIKleao5dggOecSPk2T+UIK84dIWpUhSJASL6gsbo3iUmRzOymOCTeEcNMVpyuUYpSqZcesMUKbdsYCPbiySOcTUfCy7mOS4u1BY3L0B+bUVP2PF8yRu4RhwXvsedNKVwFrXqUAN0WuWI3GJFSkgWwVXgtyPKJ6aLxBlxgrMa/8oygyiup/ccTVbFqgXDoZngwv0ShAAySSFn9eMabNLkcPGbfLCQi558VRg3kqhYIP9RFb3JxusW+fOKQo2BK2x4fwzcaFI44ORAQBxAR2C3BXqJFO2lDNERKatQmGp3Vn/QJ2/sSY4PJov6pbTiTLI9lvNHCvDmuzSBHdM0nk7mRFHwCkZ8QixO08OTwPEck/YHtreEaWwYES/NUb0e+0wYlWlWRWyoeYlofPbLO3fcnu8bQ8tueEQrpsYd1LM8NSYvfUuo/snUXqz2Zzmek/Ptcz8mKKYM0ERl4JLO29hr0KcdxsJFE3AtYiHHH/RnNMxM3X00oomZo7FryZ90XGovCib3jtMkcFB2o7CmqLAFFiXGi5v870a7g6Q8OTZcQSIsg63eNF5qFA0QivmB1Ccje2lbA6Qr5W06O5Biy/MD7tTQ3j87iVf6Dvtp9i67TOAnB1cXMOtJeUqvcGAXQKc3P9HQCj7/z7v2k603IeqaH439RqelTe5YutZ2fs/n5Uf8i+Wv29ntfzf6+U3Po+cabAQAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=3c27f4ef832ac3100a85e590ceaad342"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=7427b4ef832ac3100a85e590ceaad3ce^sys_idNOT INb027f4ef832ac3100a85e590ceaad341,bc27f4ef832ac3100a85e590ceaad33e"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <block display_value="">e827b4ef832ac3100a85e590ceaad397</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>3</order>
+        <outputs_assigned/>
+        <parent_ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</parent_ui_id>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>b027f4ef832ac3100a85e590ceaad341</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
+        <ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VW2/aMBj9K5Ofoygh0A3eKqpKk7ZVaru+bJ31YTtgzbFTXwoZ4r/vcy4UDaSu6x77ho+/yzlHB2dLTPB18O7WnDsnl5rMvt0nROqI4e8t0VAJMiPMaC69NJok5BFUiNh2+7Xm4AWnecqCtUL7dENH+XjyfjylD4wyU9UKpPbUN7XY7b6HLCt4JXGTXlLpReV+XF3/45i1Na8fwqGCJTa9csxDACV9Q1EZOpMQLh1WNXdvRj1jFFtJxbG5i10NFtPmhSWz7R9XkqOPU5iUkzybsGJ0VoyybPRhnC/OikU+4gWI8RkOVLAQCkvnB3k9EeHICSHnLRrcnz/1rTcDaCyPVEZZQsTGC80FkihBOZGQCjTKN7YhM28DAlYAv9Kq2VesUDtOI7F24+QvESdlWawsBepiorvdH2mfmg4uL8ADUgnMB9uXspWRTLjOES5KCMrPD7Gu4KpuVbYtHhZq6DYqVPpLZwbZDxhCikhwSELUUWnk3gspb1ZmfT2wvJS6daW/VIaB2p/Ao3eL4COfLRFKVDiIVlDXMce1NY+ybUYuVbpUeEhLZda4NL49KbBIPEVjIb1E/KKF78DKqOIzjsFmzIKjjllZD9ra5WSXENe4uQLnnjSiuTRmblDca6OdPbGlHXSOix9FL2OXHL96tAWenr7j//iLw1xmUOZTlp8OMxSnwvyuy+hxpAd+L8l1/kyue+Svgj2ZvOX61bmONBfgJKPt9xfHxaflPwb7Pga4W7o3m0mH3G4j9nH46seLBhMl2SG0NvZnVPWE7X4D/GLOqD8IAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes>timeFromCreateToActivate=6000</attributes>
+        <block display_value="">6427b4ef832ac3100a85e590ceaad387</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="QC Case - Refund Reorder Decision">7427b4ef832ac3100a85e590ceaad3ce</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>2</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>bc27f4ef832ac3100a85e590ceaad33e</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
+        <ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VXW/aMBT9K5OfATkJIOCtoqo0aVulterLVkUX2wFrjp35A8oi/vuu8wGoIG1V97i3+Pje63NOjpOamOCr4N2juXFOrjVZfHseEKkjhs810VAKsiDMaC69NJoMyBZUiFhdczYXLJ2zoeC0GI4TOh3OUpYOZ0U6hjmdjQVLRswE7Q+H74HSjFPs59JVCvZP7xzDNlJxKzrKFVhk6oUli/rVluR4yhwmxSShE5al0yylNJ2Nk9U0WyUpz0CMpzhQwUooLF2eab0i3++rCDlvpV53609d60MPGssjlZQOiHjxQnOBJApQTgxICZqDN3ZPFt4GBKwAfq/V/lixkdrjNBJrX5z8JeIkSmNlIVAXE+3ucZl3nrZwcQsekEpgPtiulG2MZMK1jnBRQFB+eY61BfdVo7Jp8bBSfbdRodRfWjPIcUD/ChEJDkmIKiqN3DshxcPG7L72LO+kblzpNpVhoI4r8OjdKvjIpyZCiRIH5SVUFTqaV9ZsZdOMXMrRWuFiVCizw0NjbkfAIvERGgujO8RvG/gJrIwqPuMYbMYsuNwxK6teW3M4OQyI27ulAudOGtHc/GeIDFvFnba8tSe2NINu8OCt6GQcBpc3Jm+A07W5vAFvDnNBoUjmLLkeZsiuhflDm9HLSPf83pLr5A+57pC/CvZk8j/X7851pLkCJ1nefLtxXPy0/MNgP8cAt4cezWbSIbfHiH3s/xhxY4+Jkuwc2hn7I6o6YYffdHHB+3sGAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>3c27b4ef832ac3100a85e590ceaad3e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Changed Fields</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>7027b4ef832ac3100a85e590ceaad3dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:54</sys_created_on>
+        <sys_id>7427f4ef832ac3100a85e590ceaad300</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Table Name</sys_name>
+        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_7427b4ef832ac3100a85e590ceaad3ce"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>f01a049173dd4366b4c460cbcd9b1d4c</sys_id>
+        <latest_snapshot>7427b4ef832ac3100a85e590ceaad3ce</latest_snapshot>
+        <compiler_build>glide-australia-02-11-2026__patch3-05-25-2026_06-12-2026_1106.zip</compiler_build>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN4927f4ef832ac3100a85e590ceaad361"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.OncePerRecord</binding_strategy>
+        <plan>{"@class":"com.snc.process_flow.engine.serialization.plan_data.ChunkingPlanData","chunk_data":{"table":"sys_flow_trigger_plan","id":"4927f4ef832ac3100a85e590ceaad361","name":"plan","plan_signature":null},"plan_data":"CHUNKING_PLAN"}</plan>
+        <plan_id>f01a049173dd4366b4c460cbcd9b1d4c</plan_id>
+        <snapshot>7427b4ef832ac3100a85e590ceaad3ce</snapshot>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:48:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4927f4ef832ac3100a85e590ceaad361</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-13 08:15:50</sys_updated_on>
+        <trigger display_value="">5354176b832e07100a85e590ceaad3c6</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=f01a049173dd4366b4c460cbcd9b1d4c"/>
+</record_update>

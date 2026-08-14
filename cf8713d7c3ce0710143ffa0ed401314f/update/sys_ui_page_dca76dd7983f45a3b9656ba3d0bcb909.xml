@@ -2,185 +2,123 @@
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category/>
         <client_script/>
-        <description>DarkOps Complaint Case Form</description>
+        <description>Customer-facing complaint submission form for Quick Commerce</description>
         <direct>true</direct>
         <endpoint>x_2145749_qc_complaint_form.do</endpoint>
-        <html><![CDATA[
-<html class="-polaris">
-  <head>
-    <title>DarkOps - File Complaint</title>
-    <!-- @sdk:now-ux-globals -->
-    <style>.do-wrap{max-width:740px;margin:0 auto;padding:40px 24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-  .do-wrap *{box-sizing:border-box}
-  .do-back{color:#a855f7;text-decoration:none;font-size:.875rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;margin-bottom:28px;transition:color .2s}
-  .do-back:hover{color:#6366f1}
-  .do-hdr{text-align:center;margin-bottom:36px}
-  .do-hdr h1{font-size:1.8rem;font-weight:800;color:#a855f7;margin-bottom:6px}
-  .do-hdr p{color:#64748b;font-size:.95rem;margin:0}
-  .do-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 32px;margin-bottom:32px}
-  .do-section-hdr{font-size:.85rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.05em;margin-bottom:20px;padding-left:12px;border-left:3px solid #6366f1}
-  .do-fg{margin-bottom:20px}
-  .do-fg:last-child{margin-bottom:0}
-  .do-fg label{display:block;font-size:.75rem;font-weight:600;color:#475569;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
-  .do-fg .req{color:#ef4444}
-  .do-fc{width:100%;padding:11px 14px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;color:#1e293b;font-size:.9rem;font-family:inherit;outline:none;transition:border .2s,box-shadow .2s}
-  .do-fc:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.12)}
-  select.do-fc{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;background-color:#fff}
-  textarea.do-fc{resize:vertical;min-height:100px}
-  .do-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .do-preview{background:#f1f5f9;border:1px dashed #cbd5e1;border-radius:8px;padding:11px 14px;color:#94a3b8;font-size:.9rem;min-height:42px;transition:all .2s}
-  .do-preview.active{color:#1e293b;font-weight:500;border-color:#a855f7;background:#faf5ff}
-  .do-hint{font-size:.72rem;color:#94a3b8;margin-top:6px;font-style:italic}
-  .do-char-count{font-size:.72rem;color:#94a3b8;margin-top:6px;text-align:right}
-  .do-threshold{font-size:.75rem;margin-top:6px;font-weight:500;display:none}
-  .do-threshold.green{display:block;color:#059669}
-  .do-threshold.amber{display:block;color:#d97706}
-  .do-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-  .do-pill{padding:8px 16px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s;user-select:none;opacity:.6}
-  .do-pill:hover{opacity:.85;transform:translateY(-1px)}
-  .do-pill.selected{opacity:1;transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.12)}
-  .do-pill[data-val="1"]{background:#fef2f2;color:#dc2626;border-color:#fecaca}
-  .do-pill[data-val="1"].selected{background:#dc2626;color:#fff;border-color:#dc2626}
-  .do-pill[data-val="2"]{background:#fff7ed;color:#ea580c;border-color:#fed7aa}
-  .do-pill[data-val="2"].selected{background:#ea580c;color:#fff;border-color:#ea580c}
-  .do-pill[data-val="3"]{background:#eff6ff;color:#2563eb;border-color:#bfdbfe}
-  .do-pill[data-val="3"].selected{background:#2563eb;color:#fff;border-color:#2563eb}
-  .do-pill[data-val="4"]{background:#f8fafc;color:#64748b;border-color:#e2e8f0}
-  .do-pill[data-val="4"].selected{background:#64748b;color:#fff;border-color:#64748b}
-  .do-btn{width:100%;padding:14px;background:linear-gradient(135deg,#a855f7,#6366f1);color:#fff;border:none;border-radius:50px;font-size:1rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;box-shadow:0 4px 18px rgba(168,85,247,.25);margin-top:12px}
-  .do-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 24px rgba(168,85,247,.35)}
-  .do-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
-  .do-msg{margin-top:20px;padding:16px 18px;border-radius:10px;display:none;gap:10px;align-items:flex-start}
-  .do-msg.ok{display:flex;background:#ecfdf5;border:1px solid #a7f3d0;color:#059669}
-  .do-msg.err{display:flex;background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
-  .do-msg a{color:inherit;font-weight:600}
-  .do-spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:dospin .6s linear infinite;margin-right:8px;vertical-align:middle}
-  @keyframes dospin{to{transform:rotate(360deg)}}
-  @media(max-width:600px){.do-grid{grid-template-columns:1fr}.do-section{padding:20px}.do-pills{gap:8px}.do-pill{padding:6px 12px;font-size:.75rem}}</style>
-  </head>
-  <body>
-    <div class="do-wrap">
-      <a href="x_2145749_qc_darkops_home.do" class="do-back">$[AMP]#8592; Back to DarkOps Home</a>
-      <div class="do-hdr">
-        <h1>$[AMP]#128680; File Complaint Case</h1>
-        <p>Report an issue with your order and we'll resolve it quickly</p>
-      </div>
-      <form id="doForm" autocomplete="off">
-        <div class="do-section">
-          <div class="do-section-hdr">What Happened</div>
-          <div class="do-fg">
-            <label>Complaint Type
-              <span class="req">*</span>
-            </label>
-            <select class="do-fc" id="doCType">
-              <option value="">-- Select type --</option>
-              <option value="missing_items">Missing Items</option>
-              <option value="wrong_items">Wrong Items Delivered</option>
-              <option value="damaged_items">Damaged Items</option>
-              <option value="quality_issue">Quality Issue</option>
-              <option value="overcharge">Overcharge</option>
-              <option value="partner_behavior">Partner Behavior</option>
-              <option value="app_technical">App / Technical Issue</option>
-              <option value="late_delivery">Late Delivery</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="do-grid">
-            <div class="do-fg">
-              <label>Order Number
-                <span class="req">*</span>
-              </label>
-              <input type="text" class="do-fc" id="doONum" placeholder="e.g. ORD-2024-78541"></input>
-            </div>
-            <div class="do-fg">
-              <label>Order Value ($[AMP]#8377;)</label>
-              <input type="number" class="do-fc" id="doOVal" placeholder="e.g. 450" min="0" step="0.01"></input>
-              <div class="do-threshold" id="doValHint"></div>
-            </div>
-          </div>
-        </div>
-        <div class="do-section">
-          <div class="do-section-hdr">Details</div>
-          <div class="do-fg">
-            <label>Description
-              <span class="req">*</span>
-            </label>
-            <textarea class="do-fc" id="doDesc" placeholder="Describe the issue in detail..." maxlength="500"></textarea>
-            <div class="do-char-count" id="doCharCount">0 / 500 characters</div>
-          </div>
-          <div class="do-fg">
-            <label>Short Description (auto-generated)</label>
-            <div class="do-preview" id="doSdPrev">Select type + enter order number...</div>
-            <p class="do-hint">Auto-generated from complaint type and order number</p>
-          </div>
-          <div class="do-fg">
-            <label>Priority
-              <span class="req">*</span>
-            </label>
-            <div class="do-pills" id="doPriPills">
-              <span class="do-pill" data-val="1">1 $[AMP]#8212; Critical</span>
-              <span class="do-pill" data-val="2">2 $[AMP]#8212; High</span>
-              <span class="do-pill selected" data-val="3">3 $[AMP]#8212; Moderate</span>
-              <span class="do-pill" data-val="4">4 $[AMP]#8212; Low</span>
-            </div>
-            <input type="hidden" id="doPri" value="3"></input>
-          </div>
-        </div>
-        <button type="submit" class="do-btn" id="doSub" disabled="disabled">Submit Complaint Case</button>
-      </form>
-      <div class="do-msg" id="doMsg">
-        <span id="doMi"></span>
-        <div id="doMt"></div>
-      </div>
-    </div>
-    <script type="text/javascript">var labels={missing_items:'Missing Items',wrong_items:'Wrong Items Delivered',damaged_items:'Damaged Items',quality_issue:'Quality Issue',overcharge:'Overcharge',partner_behavior:'Partner Behavior',app_technical:'App / Technical Issue',late_delivery:'Late Delivery',other:'Other'};
-  var cType=document.getElementById('doCType'),oNum=document.getElementById('doONum'),oVal=document.getElementById('doOVal');
-  var descEl=document.getElementById('doDesc'),charCount=document.getElementById('doCharCount');
-  var sdPrev=document.getElementById('doSdPrev'),priHidden=document.getElementById('doPri');
-  var valHint=document.getElementById('doValHint');
-  var form=document.getElementById('doForm'),sub=document.getElementById('doSub');
-  var msg=document.getElementById('doMsg'),mi=document.getElementById('doMi'),mt=document.getElementById('doMt');
+        <html>
+      
+&lt;!-- @fluent-import-html WARNING: This file was imported from the output of a static build. Modifications of any kind are likely to result in unintended behavior. In most cases, you should edit the source file of the HTML imported below. If you are absolutely certain you want to take control of this HTML, you can remove this comment to prevent the SDK from regenerating it. However, you will then be responsible for the management of this HTML in your Fluent file. --&gt;
+&lt;html class="-polaris"&gt;
+  &lt;head&gt;
+    &lt;title&gt;File a Complaint&lt;/title&gt;
+    &lt;!-- @sdk:now-ux-globals --&gt;
+    &lt;!-- Resolved from sdk:now-ux-globals tag at NowSDK build time to support earlier Glide releases --&gt;
+    &lt;script&gt;window.NOW = {};
+window.NOW.user = {};
+window.NOW.batch_glide_ajax_requests = false;
+window.NOW.isUsingPolaris = true;
+window.NOW.exclude_dark_theme = "false";
+window.g_ck = "$[gs.getSession().getSessionToken() || gs.getSessionToken()]";&lt;/script&gt;
+    &lt;!-- Include ServiceNow's required scripts --&gt;
+    &lt;g:requires name="scripts/doctype/functions_bootstrap14.js"&gt;&lt;/g:requires&gt;
+    &lt;g:requires name="scripts/lib/prototype.js"&gt;&lt;/g:requires&gt;
+    &lt;g:requires name="scripts/classes/ajax/GlideURL.js"&gt;&lt;/g:requires&gt;
+    &lt;g:requires name="scripts/doctype/CustomEventManager.js"&gt;&lt;/g:requires&gt;
+    &lt;g:requires name="scripts/classes/ajax/GlideAjax.js"&gt;&lt;/g:requires&gt;
+    &lt;g:requires name="scripts/classes/GlideUser.js"&gt;&lt;/g:requires&gt;
+    &lt;g2:client_script type="user"&gt;&lt;/g2:client_script&gt;
+    &lt;link rel="preload" href="/uxasset/set-cache-buster/$[UxFrameworkScriptables.getFlushTimestamp()].js" as="script"&gt;&lt;/link&gt;
+    &lt;g:requires name="scripts/polaris_theme_refresh_observer.js"&gt;&lt;/g:requires&gt;
+    &lt;link data-source-id="glide-theme" id="polarisberg_theme_variables" rel="stylesheet" href="/$uxappimmutables.do?sysparm_request_type=ux_theme$[AMP]sysparm_app_sys_id=c86a62e2c7022010099a308dc7c26022$[AMP]uxpcb=$[sn_ui.PolarisUI.getThemeVariableCssCacheKey()]"&gt;&lt;/link&gt;
+    &lt;script type="module" src="/uxasset/externals/@devsnc/library-uxf/index.jsdbx"&gt;&lt;/script&gt;
+    &lt;!-- @sdk:now-ux-globals --&gt;
+    &lt;script type="text/javascript"&gt;//&lt;![CDATA[
+      (function () {
+        var testWorks = (function () {
+          try {
+            var result = Array.from(new Set([1, 2]));
+            return (
+              Array.isArray(result) &amp;&amp; result.length === 2 &amp;&amp; result[0] === 1
+            );
+          } catch (e) {
+            return false;
+          }
+        })();
+        if (testWorks) return;
+        var originalArrayFrom = Array.from;
+        function specArrayFrom(arrayLike, mapFn, thisArg) {
+          if (arrayLike == null)
+            throw new TypeError(
+              "Array.from requires an array-like or iterable object"
+            );
+          var C = this;
+          if (typeof C !== "function" || C === Window || C === Object) {
+            C = Array;
+          }
+          var mapping = typeof mapFn === "function";
+          var iterFn = arrayLike[Symbol.iterator];
+          if (typeof iterFn === "function") {
+            var result = [];
+            var i = 0;
+            var iterator = iterFn.call(arrayLike);
+            var step;
+            while (!(step = iterator.next()).done) {
+              result[i] = mapping
+                ? mapFn.call(thisArg, step.value, i)
+                : step.value;
+              i++;
+            }
+            result.length = i;
+            return result;
+          }
+          var items = Object(arrayLike);
+          var len = Math.min(
+            Math.max(Number(items.length) || 0, 0),
+            Number.MAX_SAFE_INTEGER
+          );
+          var result = new C(len);
+          for (var k = 0; k &lt; len; k++) {
+            result[k] = mapping ? mapFn.call(thisArg, items[k], k) : items[k];
+          }
+          result.length = len;
+          return result;
+        }
+        Array.from = function (arrayLike, mapFn, thisArg) {
+          if (
+            arrayLike != null &amp;&amp;
+            typeof arrayLike[Symbol.iterator] === "function"
+          ) {
+            try {
+              return specArrayFrom.call(this, arrayLike, mapFn, thisArg);
+            } catch (e) {
+              console.error("Array.from failed with error:", e);
+              return originalArrayFrom.call(this, arrayLike, mapFn, thisArg);
+            }
+          }
+          return originalArrayFrom.call(this, arrayLike, mapFn, thisArg);
+        };
+      })();
 
-  function genSD(){var t=cType.value,o=oNum.value.trim();if(t&&o){sdPrev.textContent=labels[t]+' - Order '+o;sdPrev.className='do-preview active'}else if(t){sdPrev.textContent=labels[t]+' - (enter order number)';sdPrev.className='do-preview'}else{sdPrev.textContent='Select type + enter order number...';sdPrev.className='do-preview'}}
-  cType.onchange=function(){genSD();checkReady()};
-  oNum.oninput=function(){genSD();checkReady()};
+      if (window.Element &amp;&amp; Element.Methods) {
+        Element.Methods.remove = function (element) {
+          element = $(element);
+          if (element.parentNode) {
+            element.parentNode.removeChild(element);
+          }
+          return element;
+        };
+        Element.addMethods();
+      }
 
-  descEl.oninput=function(){charCount.textContent=descEl.value.length+' / 500 characters';checkReady()};
-
-  oVal.oninput=function(){var v=parseFloat(oVal.value);if(!oVal.value||isNaN(v)){valHint.className='do-threshold';return}if(v<=500){valHint.textContent='\u2713 Likely auto-approved (fast resolution)';valHint.className='do-threshold green'}else{valHint.textContent='\u26A0 Will be reviewed by team';valHint.className='do-threshold amber'}};
-
-  var pills=document.querySelectorAll('#doPriPills .do-pill');
-  for(var i=0;i<pills.length;i++){pills[i].onclick=(function(pill){return function(){for(var j=0;j<pills.length;j++)pills[j].classList.remove('selected');pill.classList.add('selected');priHidden.value=pill.getAttribute('data-val');checkReady()}})(pills[i])}
-
-  function checkReady(){sub.disabled=!(cType.value&&oNum.value.trim()&&descEl.value.trim()&&priHidden.value)}
-
-  function show(type,html){msg.className='do-msg '+type;mi.textContent=type==='ok'?'\u2705':'\u274C';mt.innerHTML=html}
-
-  form.onsubmit=function(e){
-    e.preventDefault();
-    var type=cType.value,order=oNum.value.trim(),val=oVal.value;
-    var desc=descEl.value.trim(),pri=priHidden.value;
-    if(!type||!order||!desc||!pri){show('err','Please fill in all required fields.');return}
-    var sd=labels[type]+' - Order '+order;
-    sub.disabled=true;sub.innerHTML='<span class="do-spin"></span> Submitting...';msg.className='do-msg';
-    var body={short_description:sd,description:desc,priority:pri,x_2145749_qc_complaint_type:type,x_2145749_qc_order_number:order};
-    if(val)body.x_2145749_qc_order_value=val;
-    var xhr=new XMLHttpRequest();
-    xhr.open('POST','/api/now/table/sn_customerservice_case');
-    xhr.setRequestHeader('Content-Type','application/json');
-    xhr.setRequestHeader('Accept','application/json');
-    xhr.setRequestHeader('X-UserToken',window.g_ck);
-    xhr.onload=function(){
-      sub.disabled=false;sub.textContent='Submit Complaint Case';
-      if(xhr.status>=200&&xhr.status<300){var r=JSON.parse(xhr.responseText).result;show('ok','<strong>Case created!</strong><br>Case: <strong>'+(r.number||r.sys_id)+'</strong><br><a href="/sn_customerservice_case.do?sys_id='+r.sys_id+'" target="_blank">View Case \u2192</a>');form.reset();sdPrev.textContent='Select type + enter order number...';sdPrev.className='do-preview';charCount.textContent='0 / 500 characters';valHint.className='do-threshold';for(var j=0;j<pills.length;j++)pills[j].classList.remove('selected');pills[2].classList.add('selected');priHidden.value='3';checkReady()}
-      else{var err='';try{err=JSON.parse(xhr.responseText).error.message}catch(x){err='HTTP '+xhr.status}show('err','<strong>Failed:</strong> '+err)}
-    };
-    xhr.onerror=function(){sub.disabled=false;sub.textContent='Submit Complaint Case';show('err','Network error.')};
-    xhr.send(JSON.stringify(body));
-  };
-  checkReady();</script>
-  </body>
-</html>]]></html>
+      //]]
+      &gt;
+    &lt;/script&gt;
+    &lt;script src="/uxasset/externals/x_2145749_qc/main.jsdbx?uxpcb=$[UxFrameworkScriptables.getFlushTimestamp()]" type="module"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</html>
         <name>complaint_form</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
@@ -196,4 +134,53 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-07 16:29:12</sys_updated_on>
     </sys_ui_page>
+    <sn_glider_source_artifact_m2m action="INSERT_OR_UPDATE">
+        <application_file display_value="complaint_form">dca76dd7983f45a3b9656ba3d0bcb909</application_file>
+        <source_artifact display_value="x_2145749_qc_complaint_form.do - BYOUI Files">a7e6d3a2fbc247c496aac3c471dc5dce</source_artifact>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 19:56:52</sys_created_on>
+        <sys_id>03884cf1d13748e7b4f890937b51529f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 19:56:52</sys_updated_on>
+    </sn_glider_source_artifact_m2m>
+    <sn_glider_source_artifact action="INSERT_OR_UPDATE">
+        <name>x_2145749_qc_complaint_form.do - BYOUI Files</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 19:56:52</sys_created_on>
+        <sys_id>a7e6d3a2fbc247c496aac3c471dc5dce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 19:56:52</sys_updated_on>
+    </sn_glider_source_artifact>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color/>
+        <chunk_size_bytes>933336</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>application/zip</content_type>
+        <file_name>x_2145749_qc_complaint_form.do - BYOUI Files.zip</file_name>
+        <hash>ebc4a0cb62316f8c87471f42e18aba07e152b1a1a0692273a1873d6ca364772c</hash>
+        <image_height/>
+        <image_width/>
+        <size_bytes>26231</size_bytes>
+        <size_compressed>7294</size_compressed>
+        <state/>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:29:10</sys_created_on>
+        <sys_id>54855f977a9137e957fa3eab09201361</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-12 20:29:10</sys_updated_on>
+        <table_name>sn_glider_source_artifact</table_name>
+        <table_sys_id>a7e6d3a2fbc247c496aac3c471dc5dce</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>UEsDBBQAAAAIAAAAIQSixvk8tAcAAMchAAASAAAAc3JjL2NsaWVudC9hcHAuY3Nz1Vlbb9s2FH7PrxA6BE67KJHtOE49BNjaXTpge1n3btASZXOlRI2i46RD//vOISmJullymj0MbV1LPDw8l+/c6Os33nuRZJywVHk/C5l4vvdBSPZZpN6PNGfb1Pv4lCuaeH/uaMLSrffm+mwlhVDeP2ee5/th7Od7GZOQrjy53Vw8EHnh+6k4+KHgQq43JPy0lWKfRr6fSZYQ+XTpzRaL6uP16+8anHzC1TC3nIYijQy/G2R1c4sfS4ffRsiIyjarVIG+VPqWwDCHzcESPqZz/HDFUvSxRx5ccfSaogS4/baxuxL2GB9HoyUodIf/3jY5KSoVG2BU0IBEU2AynYFe0/nMYWVFbjIhoWIiJRtOS63ASJXRraEC5HmH+s7bPP2deGgbfRRn3+w1B8zxgKV7QCzCfd6tt17yJQD00luAB6Y3oPLcxUIomWIh4c39LI3gtcLDrVzrgrRL9dnsLTC+gVNc5pnIYctDKwY6mBekXcxvZ6g3MA9qWqeAvoonPvsxSRgH/+Y6OP09u/R8kmVgXfMGVkiaA6IkiytWkkQMLXgsFgwNIC97bG4EdbJ9QxaZaB5ScLPqerfO8MZlaGi743MMU2uwPnhb9tu2PzS3Drc2M9KXs7M3OsVtxKOfs8+ArBV814fDK02wEdGTpgHRtixdeQEKkJEo0tT6yfFWYTjrUy1tUxKHxkmGmrS5jqGuFzj4z99Rtt3VfJMrAij2nVWw0tVsYZS7QtSSLTXys7RkMA2Ch11NjxbLPEO5/EeODBeSJlqMiOVQR0DLmFOwj+f9tc8Vi5+0KyliOIRPKnGJcKgsPgOgAhqRHllLVUpWwlKLd2CR2mnJznFzQh59+2o5CzJ91rAdjbkt4KbZo5cLzqKKzCw5VI1oKaPAkoDIOxKJQ4d9Iikyu+r7SaQ3DFsTzTkzxgQrQGH+QAmIgQUXTbIzT2gPneS1CV2bGhCCHkqJZNw5pVjDu+q+LgPB7DpmTutRI/56rZjiBnQ6MiCyIGm2Ti3XWifrlYPF6jLQMdYbGWVcwp8+zXLIlYHhjxHbEDffb06WOIlA4kLeLtmqQl+XsnC87sOs2zEZ6sNb4aXDJmKS6soKSBB8n6S4siXZaE8eSV1FsKQipYVoH81peSEeaILPJlOOz2UvFoenJSnrXCv0M8BYc20NirfdULR1azQaOfQv+oCaQwbD0wFxR3jO2lau5DJ+/UXCqvXpFr/XIIdvNLDgf0AwzguKopMBcOCYaSzx3yD0SuVOSFfOHus9FGLFSa78cMe4kbTBzETS9wmNGPEunHoBXoIuRG+paXpMNRT2SxGZjPKoBH+MT13nj1dGsxilTSnv0ZMrWk2yXnOyobzuzQ0X4acSwAb0wdXdEuHTwnV3W2bYOm2Zswfa2CA43rGMLVXQNQbQsbQttl5L+rfWqnlG0bv3FIs6kx1OvY3wD65KQ3Tm7mK2chVR4ljCrWlRr94SRSti8FdsTktw6Vb10uYrDhnLfMfdRFLS49JGqzSYHt3q10eDSc9apbJqf0v7UlVyqD8uevyhguKOGiPKiqHXhGKvsHsuKiC4TsJQBfjCcusOIt50ESS5R0lOL53W0HldIs+MUHpcdZ3rvilcbN7ZIaQ6rGZzIGj1oyzNqdJVJtD2aJHXRFkBgkK6ExwOaJzvLnUGWzMgyvqKKukdMJNSAlbD66HCio5PIXtsYWUv+cWriCiy0i+u84ftt48Jvzyfv4evHnxN8/vJTqlsdX19OByuDvMrIbfXsyAIkHhicH8/mc4mnhlkzPeYcX4/OZ/Nl/NlfHcz8R4YPbwTj/cTbZxb+Ds5n/8E52RE7bzofvL7HQyVv82929004P7CW3yeXBsKPAi+vWriUlJQEfJLKuzXxroZ+BEyOtqLUHI696LK63Uo1zoedVjsZY4GzwQkKqStGXgF4Y8XKqYQCAhWpiAiIZzdvanAbMPFgeoSPrpJs0fV8o2EG0Ed1+hySLI6BbqzYzGO1UZSaL+KFPcHtNUi5U/gGCxgF1BTvIhyuA6RTx7cOdLXRfqDIw1lZ+9bmx8rQzYHRUe0yqj/XU58+dHgmS11RPIdwOL0ntpJfkZq9cRBJabA4GHhxB84uL/wE9EP6KRBu7o2G9cjnihso5OxCNYSwjbbGPSMKo3byvqe/hujGVzWwYe5emoXoSGu9evn5tXikd7GeqI+jJk7VlMxTrmNKfLP0Tamjng7De7DkObVMGgf++8oBjEy17cTA8HXOdOZs9drBgrWLcBSnY4GcscR+9i0cmMTSJFSiucGShcm+XRCjLzI3TA6YtqJkIJBMyjwvuerhq7SvP+T+5tS3ojmYX/v0nMR8/zj0n2ysc1SE39dY9cxw2knOHPDGMu51w2DAHzGjz2oe3A37uZlTBl9Xrb/ehSzNBajOtreIXkMVhzod2Hleem6yLybhCnv3R5MkFb5F1/6G/XSCfBFfN2VCF52ijxyIfdNHMcDDVUtdmpXnydAs9Wx93WhtVGyIVRtnLR9fdcsWfl7ZX5zhV7/opwKzDXXsMLmN1c3SEqu5lfVB5YzYGimjGIk7rhTrKZRS+WLOIZRVBN3sT99fmnxcH4071FXGzqDESbVg9kYr3dcItTuS3tFOMUNL5iMv5z9C1BLAwQUAAAACAAAACEEDHfkBooKAAB5LgAAEgAAAHNyYy9jbGllbnQvYXBwLnRzeN1ae2/buhX/P5+CVwMKZ4jltEi3IY1TdEkvFiC36ZpuxV1RGIxEx1z1uhKV1HP93Xf4FElRttc27XAFtLHIc8jz/PGQFM2rsmboDcEJO0Ar1DbkmmFGDvivl/M54c3w8wxn2Q1OPqI1mtdljqKac0TP9tQAqz2E5oQli3Ncf7xmZU2aA930r7IgP5e1aDWN5ySjd6RevsY1K0gtqJv2JqfsrMyrDNOC8aY3ZH5VMVoWB3t65njSkPqOJqSZ4Ip2IkAHrqo4aRpo20vKomHo7OqX15cvLl69nb399fXLazRF72HQFbrDWUuOUVSUbJZKSUgaHaAM35AM2l+VDCkJoR2tuSgdVwYG0mxLi+sS2jXbsseV06ahxe2MMpI3Ftcvsh1diHafK8U5viVpj+tctg9w3ddlYKZ3vHWA47cWZ5QtZyBMSyyev8t2dCHaOdcHsC54h9RznBB0LXz2hjRtJqOgaPMbUj8/Rg2rQa1n3K/LZkZTq2m9t0c+CaelZI4557wtEu5m9KKqRvtiIOnB92WdkvqVGPQANYRdde8fwJ86YEdRtM/nsrn+yXXrmMTrBp5Uh65gMYG8iUP5mke4ZLIaduS75IbuMYvWHUZQ6ePwq7YN3IlOsbfLSgpuko63bOBsFuC1c9Ikgutav22UtElqKnNYSmne+1wBZzSuNxqb6cTAw/sPp6P3H+x5Kw0snF2jzK7MWYlTiFTj18vu3RF6jrOGBBgNqlnMIRnMAJaFRUIxYJAmNq+bJ27aBBBRTngtfzvKOnn6GbI0y05H/H97EFLXpYyll/xX0D9mXRhBnk5PRar2sH+0H7MFKUaO5/bjBAPViE9WZiQWs4np1wdI2N9IssBFmhHDegbvt0RKo1eikZgXN8siQaOGU12kGmEswQB9LBk0oZhVd1ppp2M30CUycqBfudbr1Q7XscUfOkejn7QQqCasrQuLxYqzEatb6WH+sHppFNJG+g9QgU3wPaYAoP5K21NVTs6ZJL7qxzcBp4ipzTdgC0Eo1gmf1ot4V5VOgcqV3i8JhiQx/dW2ebsskc9a/VojEYlo5JjCiUvo0nxQeNACos72gOcrdyI5jVhgEQQ2/LFjmzawENEUTUW3tbzFELs5JNWjR6LHIKBpsDzgtymVdbMD8LrRYLc/UYfIqseSNi0lcnjJp/LOSjQR2Vq3z59VMceBy41zB9PsyNCo02WRHfRSGkARjl86bLyCcdT5R5h1JmuR44CRpW86SlUGdWUDV6EtoDyhBUk7au6Umcis485BVrdyx4yHLlDY9UGfSC1RHZ1eza2QVKrNGDjy2PVrRyY8CxWp8SMAoedse3qLrO97Tbg24SxND7ZUIStcA/OXc+WPWNoZTadTFJU3/4bFIbIS87lLFqe0ASWW0uYW3bFLZ8GiWtBGK1VdHgtpwEOKQRaYsHCJv2Yc+Wo06bK+hhFwseyS38QedMU5TAW1NR8/elFAFECtCipBsS2QAZVJ0tawL4h1nPYBwg1yGx04NvDlTuaMTBdpcmvh95HBapA1rQsQ6rUXbMGwCoRQV9T5eMAbAgszrDG5gYURxKXYP8a8+eUdKZgFCySuasLbzmWlz8FFTKJwRb6vxRQcQlQdo10jkQPJxR6hk5TeoSTDTfMK52QaJfNxBa6KTk0YBShAcgYKk9oiCxKquR2yTYSzGYWxI4RriscLmqakmEYc0aLTR394fHh4ePTsZALc3niLx0PDMcoyYDaApnZXEHonk8Vjb5hqaBTuP08HhH4t27rzPfixQTeEFGDghECQpJAP8A92oreAdzrN3Akn1e6GkQNEpyvVonJ6HbLHoCK0mJc9Ra5AD0Zwju5ploH4d5Tco6WrHdflljAkTixYybtlkGfL+Mt1ghCHlPDDA3huWsbKwmuVGDmNZKeNh/LxJ+GOHt+wAjlv43FDIMYg1Zf9IcriLKPJx+lKrsP3tEjL+zgrAeY4nteE70ZG+7rq0Y8vP0I/04ygF3AYsgAUN9HnqzmRqngG8x3qNTiv1otMe571TopvS/Ad0/tkQTCApUcpG10U6CWjJDK5KEyDO6P4idiLXs0PPlRDOPZ6SyBq2wbdLzBD94CLSJzVgPPYQoaxgHnHoFaMwvRi/FNuOdU0B9j1hOBNEcSHxI/pyoftNSpKsfTAzs7RBqJNHMN40SlbfWBcPAnTGeOJYxd0AWlc5yImQfwnWxPutqZpP8n6dHNKsj4hkIo9SYh4NhNdEVqwPANrTCNrkQ2MBGgjNJAEYJ0K+6ZR49bkt+j0jycTThGQaCLmDXTQomr9ROMPTV3ZAiSuHGKgEJlEIUY+BXshqBOyKDOYaRqR+DZGV2/Ox08OnxyN//yXp0ePQzyibpuuLPF8hOEPgJPYtQM6wS4L4Mk9uxuRmOEaQDoWw/VAij9g1JZCoRXoEkuu7leLbo9s0gui/urzsJElqrUNgSX6v2W4yAm/NlrU6r1TvBw9PYwPD0O0OYVyKNjTMFJBV3y4Nb6EPv9TeAmO7dG1S2yEmn4sXJmSPxhT/JgLySODB4CqhmQA7wPB1wm2NfbkOBscb8baye/Bo8LvgS4hD5yUYtukNImi0/EYXQt9oYYQxwZoPD6ZSKrQAJ3yTZzjajSCnRAoqfc/4dk+kuV01cBJ2VqbULyExhdzNPLULmQUHgDD0u0HDAmBJBT8kVhrb33DmaEIkDg7e4Dk6OsFF6RpWWRwDyjyw5ZQxhdvmEZVCddrYaFX1i1E0FXP4cpRksRxHEoofqbSu2uS5xotK8dVWbX8LjOVN6siPqOQh0Oe/FK4DPv7S7ytjjUCtjPu1seiX+jxAX8PQaHtaC3ctn3fABhqKHRH6/smtAz6txJbsRAO5PBNBki3+sk5Y4ZA8e6z+ryDKLoDhgbyyMfPDWmhZdqSGkhfBG7IEUftofE8HJ/TugmuYnzAyMZ9JQAgfzC5huB2ZQQXC0E1uBA4y0BlLwPiJbwMQN/gIjAsU38BCMN/4FRA7Q2tjes3326+43vqd3xPLb50eL7TbvPr8cg5UQ2EbHecJ25jvh8WuYJ9HRI5Y+2GQ843BdtR6IGRpMvI7pyQ73Y2FmQr7wMimYryfHtrKipVTTbq94GEZL+/hBSHXf9okEjMv8HXWQQOl79TVppLjUBGiu9WoEow9xzfOinD+3Sek51YW/JxYIu+6TjH2Zz/taZkDpdKeQ5nxwju6twz8sFENwLuluTmE6DtCZ7jT5ekuGWL6erxnw6/LQD0t/MDMTWbLbj2gVTvbkwzIeV6AlKiZIFrOPjv1xk/tAA2gRssfuE4HKq5h4xvHn8YdjgDJXAn3pYg1+NsieXXGcENQVVd3tEUjuMblLdwkZsKTflrVcLNFZSwCN+ULRypc7xZKLwJ1n2mvjai7lpbG4YdVrTyvpmunm7MhCO4Jvy/SwX7qwCdDFzQr8uG8JKzkpfqjx55C2pAapwRgG39YzwGGRlNMKRGDd/tTCPR3M8s+CYMqsFTccF/DELIVzWxa/uezOBVW4OATMFLwfCVoMRuebnne23oOtCns/ZqwY9tXH18W8B1rCYUWxrzxpOE71vUrb4p3bwdS+gOsHfhx297Ajd+5idc/a33/gtQSwMEFAAAAAgAAAAhBKiiEIv0AwAAgwsAABUAAABzcmMvY2xpZW50L2luZGV4Lmh0bWytVttu4zYQfd+vmBiLhYQ4cnYfUysLw7WLAk0KNCm2gGEsaIm2uKZElaJ8QTf/3uHFkijbBVrUL6aGh8OZMxfOOFM5h4STqooHd6XgRLJq8PgOYJxRkuoFLhVTnD7OGadAYCrykhNWqPHIyi2mSrcPhdjf1Ye7DRcrwqvH8eiC0KETyUoF6ljSeKDoQY2+kR2xUnO9/o1G45vF9MfJ62ThJMG6LhLFRAFBCH85IcCOSFC0Ul+E3FYQX4MBKHn0vu1RSauaKzw3kZIco7UUeVDQPbxQFSw+DuHTMgx/8E5JqmqJ2j0huPOsMv+BVRvChw/uhojTYqMyiOMYPrXixf3SiD562rwb3yAhKskgoL4/jSVrpJZ6J5r1Wxh0dLE1BA1VoTvebms6hGQbVhBuvJgjGR4zLbYhuSpp0oADole/sC0dQk7KeTEElWlKNr7p2pAGiv5DUXMeer6pTIo96Ei8Yp7MpBSyz/igNQx9+bNmSCmQAozmO65VCwlMUUlWmL1i9Y0manCdaO3/FP3VJnflhjY0Qqxx+watHZy8H8D37/oIyr6wIkWDm+9fzW39iGn1xurL4bI2IHMlKzbaEnurodJobW/uG67d1CDrveZ18XLMV4JHhgAl5PKKT6eTnvq+4V6pLDxV7n6U318Qu8tx194TJYTzNvi92tJHKkVLX7rPdPcJbgK95TRppVGBzSMIwygVxVlx6PIwFcawwk6c9hAAny251iqXq0NjQrQjvMY8Zn5e6t9DB+BbisTe3vqibnRPNjXNANjF3mJR/5QjSEGuu51Nsyt8aiDehLAnorIoZ4VfQlZKDsFzna+oDIxSZ1uoU/l+CPfh0DtjodHT5I+vL5P57OvPz6+zn2a/dTBnJjR5o6t5GqB+D7LG7Ag0bmtSCP/G2mpc3N6edzwT0m0npFdCaHxB4BC2IQbs9HmN035ctAHe9sW4tBo6rShum+O/6Yeen21zvLHNEV8Mvz3a2r1e7L167sanx+n5u9j46zX3luBhe++ZX73kv/p2ASSiqASnETW9vdvM1wTrPYU9w1CY3YfBEPqtojHy7Mn6T4ZezYv/546309K+yO5Dx31vHo5oxmlOC6UnA7eMnqjKRIoPdctcbyuSNBc7fEE7KUctxOfbCRH4vgH0nwMnj0oi8e9ZpGcxO0c4A6bYoNOLii9w6WAXuGn9I2nqXGznl7cTa6PRculGyZGdGr3B0qEqmcSDHGfVSFWHz/WhTFbx+8Xvh7kkOd3jBPRi0Ho0qKINVXNeV9kry3E+InkZhMtTzdg5NRdpzamV6eG2uXc8Og3L45VIj86UlO2ApfFACoEz7XiE3xZsMXgIZ+/Hd38DUEsDBBQAAAAIAAAAIQQmatMddAAAAKUAAAATAAAAc3JjL2NsaWVudC9tYWluLnRzeMvMLcgvKlEISk1MLlFIK8rPVVAqArGVrLmQpVz8fZFldVPyc/WTczJT85AUOhYUQNXo6ScWFAAluGB69ZKB2kpSg/LzSzRS8pNLc4Ea9dJTS1xzUkFMp0rPFA2lIqCskqaipl5Ral5KapGGDchAfTtNay4AUEsDBBQAAAAIAAAAIQTUrKt2egMAAA8KAAAaAAAAc3JjL2NsaWVudC9zZXJ2aWNlcy9hcGkudHO1VluP0zoQfu+vmFOho0QqKQeBjihkK2BBLA9stVskLoKsm7hbs4kdbIcSuv3vjC9J0wvLPkAfknpmPJfvG4+TCq40LCjJqFQQQxCO4IymQmZPlJaMXw7AvY8gPoJg1QN4mqa01CPok7LMWUo0E3z4RQneH6C2/1xwTbm+O61L2v+l1bu7bxWVU3FFORoFS8YzsQSigPA6jC6T9GrQW4ePez36vRRSA0Onck5SitnNT0vjDUwyLBv5BB/jKiczmm8E63Y7UTVPYV7x1O6cU50ujom8OtdCUmWKnkhRMEWftO4/fjqyERxClcwhxhWmPiQlG3KxHGoyy+nwe3L/vwcP/3/wKPmaJhn6TJRxOla1KokskjmjeaZiXCYsG1hdwklB/20MclYwHT+81wq+VlTW8enZ8YuzZ+83G/qmQpcN5oxckSVh2tUSYH4DWDVEjpo/QQgGxWZfRjRpN6KTyBASWANJdSU5BMYkQlWVa7i+ho+fwqggZRDIkaWm7QIHvYx8XVbi4Udhm7RRrEOMcDMXHwSnL4W0dAS4xTo4abntdQhadTnfZhzWcA28yvM95uDidqwN76x86PUugT8wxYu/SoEzMHGwCdGmQ8U4MmJjxOYQ/ONtwoY1U/O2h5MMHWg8gmK+8RjH0BezLzTVfRg34ugbySsKo2a9FeQkuyHG21sgS3P2Dbs5MfYIrvO5h61vIqO1XdPB2WW1i7UPfwu8jeVxF3PvsIN7W62x84Dvle2Xrvt2jJtD0HTjrrqtC9a/HUoesAmRmptqMLQD7dBZuGlY3ZIYpMEEahlxw2chCmo5i1vOPvuB5Ddsz7BtHg+auDF3/97fPUN/dIx16zgwyDZ30nNRlDnB9YTUuSCZ5QLvULO3KmYUo24uKSe3p27clW+m0Ja0e4IOKnyWXV3a5JOYEdDVqAVmjuyrVDLbOdsuD4h/2a+qmiGjbelB6Wof7aHRaVjEvtuo+w3w+yu2ra1t2YwplNQO0pjkuf3EABvH/AqqFwLz6k9Oz6deBwd6rNHMRFaP4PX56Ru8yAwIbF431XmjNT43s8O0oLgKfUBXGpXyQItG+CGEVWI/2wa0DWX26IXEzx9Ol/BCSiEdDGCcjCN8CHwVVClySU03X5wb6JWyU4OwnGYQvJpOJ3BnZUIpTXSl1uGF9WIjmHybo7GbU+jPiaH6J1BLAQIUABQAAAAIAAAAIQSixvk8tAcAAMchAAASAAAAAAAAAAAAAAAAAAAAAABzcmMvY2xpZW50L2FwcC5jc3NQSwECFAAUAAAACAAAACEEDHfkBooKAAB5LgAAEgAAAAAAAAAAAAAAAADkBwAAc3JjL2NsaWVudC9hcHAudHN4UEsBAhQAFAAAAAgAAAAhBKiiEIv0AwAAgwsAABUAAAAAAAAAAAAAAAAAnhIAAHNyYy9jbGllbnQvaW5kZXguaHRtbFBLAQIUABQAAAAIAAAAIQQmatMddAAAAKUAAAATAAAAAAAAAAAAAAAAAMUWAABzcmMvY2xpZW50L21haW4udHN4UEsBAhQAFAAAAAgAAAAhBNSsq3Z6AwAADwoAABoAAAAAAAAAAAAAAAAAahcAAHNyYy9jbGllbnQvc2VydmljZXMvYXBpLnRzUEsFBgAAAAAFAAUATAEAABwbAAAAAA==</data>
+        <length/>
+        <position>0</position>
+        <sys_attachment display_value="x_2145749_qc_complaint_form.do - BYOUI Files.zip" sys_id="54855f977a9137e957fa3eab09201361">54855f977a9137e957fa3eab09201361</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-12 20:29:10</sys_created_on>
+        <sys_id>f322bd8c3f91b243544f4460b050e9f3</sys_id>
+    </sys_attachment_doc>
 </record_update>

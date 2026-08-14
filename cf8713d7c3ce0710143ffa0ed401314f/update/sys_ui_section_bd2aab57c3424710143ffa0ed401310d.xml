@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4f83bed7832a83100a85e590ceaad366</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>bb1412e7832607100a85e590ceaad371</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>number</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>8383bed7832a83100a85e590ceaad368</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>bf1412e7832607100a85e590ceaad372</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>x_2145749_qc_fraud_review_required</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4f83bed7832a83100a85e590ceaad368</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>7b1412e7832607100a85e590ceaad373</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>x_2145749_qc_zone</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>0b83bed7832a83100a85e590ceaad369</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>371412e7832607100a85e590ceaad374</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>x_2145749_qc_delivery_partner</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>cb83f61b832a83100a85e590ceaad35a</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>ff1412e7832607100a85e590ceaad374</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -74,13 +74,13 @@
             <element>x_2145749_qc_order_number</element>
             <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>8783f61b832a83100a85e590ceaad35b</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>bb1412e7832607100a85e590ceaad375</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -88,13 +88,13 @@
             <element>x_2145749_qc_resolution_type</element>
             <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4383f61b832a83100a85e590ceaad35c</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>771412e7832607100a85e590ceaad376</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -102,13 +102,13 @@
             <element>x_2145749_qc_auto_resolved</element>
             <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>0f83f61b832a83100a85e590ceaad35c</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>331412e7832607100a85e590ceaad377</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -116,153 +116,167 @@
             <element>.split</element>
             <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>c783f61b832a83100a85e590ceaad35d</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>fb1412e7832607100a85e590ceaad377</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>x_2145749_qc_order_value</element>
+            <element>sys_created_on</element>
             <position>9</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>8383f61b832a83100a85e590ceaad35e</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>b71412e7832607100a85e590ceaad378</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_2145749_qc_order_value</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>731412e7832607100a85e590ceaad379</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_complaint_type</element>
-            <position>10</position>
+            <position>11</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4f83f61b832a83100a85e590ceaad35e</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>3f1412e7832607100a85e590ceaad379</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_dark_store</element>
-            <position>11</position>
+            <position>12</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>0b83f61b832a83100a85e590ceaad35f</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>f71412e7832607100a85e590ceaad37a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_ai_urgency_score</element>
-            <position>12</position>
+            <position>13</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>c383f61b832a83100a85e590ceaad360</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>b31412e7832607100a85e590ceaad37b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_needs_manual_review</element>
-            <position>13</position>
+            <position>14</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>8f83f61b832a83100a85e590ceaad360</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>7f1412e7832607100a85e590ceaad37b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_ai_sentiment</element>
-            <position>14</position>
+            <position>15</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4b83f61b832a83100a85e590ceaad361</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>3b1412e7832607100a85e590ceaad37c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_ai_urgency_level</element>
-            <position>15</position>
+            <position>16</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>0783f61b832a83100a85e590ceaad362</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>f31412e7832607100a85e590ceaad37d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>16</position>
+            <position>17</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>cf83f61b832a83100a85e590ceaad362</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>bf1412e7832607100a85e590ceaad37d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>x_2145749_qc_ai_urgency_reason</element>
-            <position>17</position>
+            <position>18</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>8b83f61b832a83100a85e590ceaad363</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>7b1412e7832607100a85e590ceaad37e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>short_description</element>
-            <position>18</position>
+            <position>19</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-08-12 11:13:58</sys_created_on>
-            <sys_id>4783f61b832a83100a85e590ceaad364</sys_id>
+            <sys_created_on>2026-08-13 03:35:09</sys_created_on>
+            <sys_id>371412e7832607100a85e590ceaad37f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Complaint Case Details" display_value="Complaint Case Details" name="sn_customerservice_case" sys_domain="global" view="Default view">bd2aab57c3424710143ffa0ed401310d</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-08-12 11:13:58</sys_updated_on>
+            <sys_updated_on>2026-08-13 03:35:09</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
