@@ -44,18 +44,42 @@
     }
 
     var decision = current.getValue('decision');
+    var requestType = current.getValue('request_type');
+
     if (decision === 'auto_escalated') {
-        caseGr.setValue('x_2145749_qc_fraud_review_required', current.getValue('fraud_flagged') === 'true');
+        caseGr.setValue('x_2145749_qc_fraud_review_required', true);
+        caseGr.setValue('x_2145749_qc_needs_manual_review', true);
+        caseGr.setValue('x_2145749_qc_resolution_type', 'pending');
         caseGr.work_notes = 'Refund request ' + current.getValue('number') +
             ' escalated by the Automated Resolution Engine: ' + current.getValue('decision_notes');
+
     } else if (decision === 'auto_approved') {
         caseGr.setValue('x_2145749_qc_auto_resolved', true);
-        var requestType = current.getValue('request_type');
-        caseGr.setValue('x_2145749_qc_resolution_type', requestType === 'reorder' ? 'reorder' : 'full_refund');
-        caseGr.work_notes = 'Refund request ' + current.getValue('number') + ' auto-approved by the Automated Resolution Engine.';
-    } else if (decision === 'manually_approved' || decision === 'manually_denied') {
-        caseGr.work_notes = 'Refund request ' + current.getValue('number') + ' ' + decision.replace('_', ' ') + ' by an agent.';
+        caseGr.setValue('x_2145749_qc_needs_manual_review', false);
+        caseGr.setValue('x_2145749_qc_fraud_review_required', false);
+        caseGr.setValue('x_2145749_qc_resolution_type', requestType === 'reorder' ? 'reorder' : 'refund');
+        caseGr.work_notes = 'Refund request ' + current.getValue('number') +
+            ' auto-approved by the Automated Resolution Engine.';
+
+    } else if (decision === 'manually_approved') {
+        caseGr.setValue('x_2145749_qc_auto_resolved', false);
+        caseGr.setValue('x_2145749_qc_fraud_review_required', false);
+        caseGr.setValue('x_2145749_qc_needs_manual_review', false);
+        caseGr.setValue('x_2145749_qc_resolution_type', requestType === 'reorder' ? 'reorder' : 'refund');
+        caseGr.work_notes = 'Refund request ' + current.getValue('number') +
+            ' manually approved by ' + gs.getUserDisplayName() +
+            '. Amount approved: ' + current.getValue('amount_approved');
+
+    } else if (decision === 'manually_denied') {
+        caseGr.setValue('x_2145749_qc_auto_resolved', false);
+        caseGr.setValue('x_2145749_qc_fraud_review_required', false);
+        caseGr.setValue('x_2145749_qc_needs_manual_review', false);
+        caseGr.setValue('x_2145749_qc_resolution_type', 'no_action');
+        caseGr.work_notes = 'Refund request ' + current.getValue('number') +
+            ' manually denied by ' + gs.getUserDisplayName() +
+            '. Reason: ' + current.getValue('decision_notes');
     }
+
     caseGr.update();
 })(current, previous);
 ]]></script>
@@ -68,9 +92,9 @@
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Sync Refund Decision to Case</sys_name>
         <sys_overrides/>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_script_3e886c58e0ce4e2caf6bdd5be0675f43</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-07-18 18:15:10</sys_updated_on>

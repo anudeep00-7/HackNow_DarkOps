@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_2145749_qc_refund_request</collection>
+        <condition/>
+        <description>Sets auto-approve/escalate decision after fraud evaluation. Fires on any update, uses script guards instead of filterCondition to avoid NULL-to-0 CHANGES detection issues.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Automated Resolution Engine Decision</name>
+        <order>200</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function automatedResolutionDecision(current, previous) {
+    // --- FIX: Re-read the full record from database ---
+    // In cascaded BR chains (complaint→case→refund→fraud eval→decision),
+    // the `current` object may not have all fields fully loaded.
+    var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+    if (!refundGr.get(current.getUniqueValue())) {
+        gs.error('Automated Resolution Engine: Could not re-read refund request ' + current.getUniqueValue());
+        return;
+    }
+
+    // --- GUARD 1: Only process if decision hasn't been made yet ---
+    var existingDecision = refundGr.getValue('decision');
+    var existingDecision = refundGr.getValue('decision');
+if (existingDecision && existingDecision !== '' && existingDecision !== 'pending') {
+    return;
+}
+
+    // --- GUARD 2: Only process if fraud evaluation has completed ---
+    // The "Evaluate Fraud Risk" BR sets fraud_risk_score (even to 0) and fraud_flagged.
+    // If fraud_risk_score is still null/empty, fraud evaluation hasn't run yet.
+    // We check fraud_flagged field presence as a secondary indicator.
+    var fraudScoreRaw = refundGr.getValue('fraud_risk_score');
+    var fraudFlaggedRaw = refundGr.getValue('fraud_flagged');
+    if ((fraudScoreRaw === null || fraudScoreRaw === '') &&
+        (fraudFlaggedRaw === null || fraudFlaggedRaw === '')) {
+        // Fraud evaluation hasn't happened yet - skip this update
+        return;
+    }
+
+    // --- THRESHOLDS ---
+    var HIGH_VALUE_THRESHOLD = 2000; // Escalate refunds >= 2000
+    var HIGH_FRAUD_SCORE_THRESHOLD = 50; // Score above which we escalate even without flag
+
+    var isFraudFlagged = refundGr.getValue('fraud_flagged') == '1' || refundGr.getValue('fraud_flagged') == 'true';
+    var fraudRiskScore = parseFloat(refundGr.getValue('fraud_risk_score')) || 0;
+    var amountRequested = parseFloat(refundGr.getValue('amount_requested')) || 0;
+
+    var decision = '';
+    var decisionNotes = '';
+    var amountApproved = 0;
+
+    // --- DECISION LOGIC ---
+    if (isFraudFlagged || fraudRiskScore >= HIGH_FRAUD_SCORE_THRESHOLD) {
+        // ESCALATE: Fraud detected
+        decision = 'auto_escalated';
+        decisionNotes = 'Automated Resolution Engine: Fraud risk detected (score: ' +
+            fraudRiskScore + '). Escalated for manual fraud review.';
+
+        // Assign to QC Fraud Review group
+        var groupGr = new GlideRecord('sys_user_group');
+        groupGr.addQuery('name', 'QC Fraud Review');
+        groupGr.query();
+        if (groupGr.next()) {
+            refundGr.setValue('assignment_group', groupGr.getUniqueValue());
+        }
+
+    } else if (amountRequested >= HIGH_VALUE_THRESHOLD) {
+        // ESCALATE: High-value refund needs review
+        decision = 'auto_escalated';
+        decisionNotes = 'Automated Resolution Engine: High-value refund (amount ' +
+            amountRequested + ' >= ' + HIGH_VALUE_THRESHOLD +
+            '). Escalated for manual review.';
+
+        // Assign to QC Fraud Review group for high-value review
+        var hvGroupGr = new GlideRecord('sys_user_group');
+        hvGroupGr.addQuery('name', 'QC Fraud Review');
+        hvGroupGr.query();
+        if (hvGroupGr.next()) {
+            refundGr.setValue('assignment_group', hvGroupGr.getUniqueValue());
+        }
+
+    } else {
+        // AUTO-APPROVE: Low risk, low value
+        decision = 'auto_approved';
+        amountApproved = amountRequested;
+        decisionNotes = 'Automated Resolution Engine: Low risk (score: ' +
+            fraudRiskScore + '), value ' + amountRequested +
+            ' below threshold. Auto-approved.';
+    }
+
+    // --- SET DECISION on the fresh GlideRecord ---
+    refundGr.setValue('decision', decision);
+    refundGr.setValue('decision_notes', decisionNotes);
+    if (amountApproved > 0) {
+        refundGr.setValue('amount_approved', amountApproved);
+    }
+    refundGr.update();
+
+    gs.info('Automated Resolution Engine: ' + decision +
+        ' for refund ' + refundGr.getValue('number') +
+        ' | Fraud Score: ' + fraudRiskScore +
+        ' | Flagged: ' + isFraudFlagged +
+        ' | Amount: ' + amountRequested);
+
+    // --- Sync decision to Case directly (don't rely on cascaded Sync BR) ---
+    var caseSysId = refundGr.getValue('case');
+    if (caseSysId) {
+        var caseGr = new GlideRecord('sn_customerservice_case');
+        if (caseGr.get(caseSysId)) {
+            if (decision === 'auto_approved') {
+                caseGr.setValue('x_2145749_qc_auto_resolved', true);
+                caseGr.setValue('x_2145749_qc_resolution_type', 'auto_approved');
+                caseGr.setValue('x_2145749_qc_needs_manual_review', false);
+            } else if (decision === 'auto_escalated') {
+                caseGr.setValue('x_2145749_qc_auto_resolved', false);
+                caseGr.setValue('x_2145749_qc_needs_manual_review', true);
+                caseGr.setValue('x_2145749_qc_resolution_type', 'escalated');
+                if (isFraudFlagged || fraudRiskScore >= HIGH_FRAUD_SCORE_THRESHOLD) {
+                    caseGr.setValue('x_2145749_qc_fraud_review_required', true);
+                }
+            }
+            caseGr.setWorkflow(false); // Prevent additional BR triggers
+            caseGr.update();
+            gs.info('Automated Resolution Engine: Synced decision "' + decision + '" to case ' + caseGr.getValue('number'));
+        }
+    }
+
+    // --- UPDATE FRAUD FLAGS if escalated due to fraud ---
+    if (isFraudFlagged && decision === 'auto_escalated') {
+        var flagGr = new GlideRecord('x_2145749_qc_fraud_flag');
+        flagGr.addQuery('refund_request', refundGr.getUniqueValue());
+        flagGr.addQuery('review_status', '');
+        flagGr.query();
+        while (flagGr.next()) {
+            flagGr.setValue('review_status', 'pending');
+            flagGr.update();
+        }
+    }
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-15 14:21:31</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e4742f0e82304a6393d7238cbc829ecd</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Automated Resolution Engine Decision</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_e4742f0e82304a6393d7238cbc829ecd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-15 17:25:30</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=e4742f0e82304a6393d7238cbc829ecd"/>
+</record_update>

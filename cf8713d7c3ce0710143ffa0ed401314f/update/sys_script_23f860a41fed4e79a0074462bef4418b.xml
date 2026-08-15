@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_2145749_qc_complaint</collection>
+        <condition/>
+        <description>Creates a Customer Service Case from a QC Complaint and runs AI triage. Replaces the inactive flow snapshot.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>QC Complaint Create Case</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function createCaseFromComplaint(current, previous) {
+    // --- IDEMPOTENCY: Check if a Case already exists for this complaint ---
+    var existingCase = new GlideRecord('sn_customerservice_case');
+    existingCase.addQuery('x_2145749_qc_order_number', current.getValue('order_number'));
+    existingCase.addQuery('x_2145749_qc_complaint_type', current.getValue('complaint_type'));
+    existingCase.addQuery('opened_by', current.getValue('opened_by'));
+    existingCase.query();
+    if (existingCase.next()) {
+        // Case already exists - do not create duplicate
+        current.work_notes = 'Case already exists: ' + existingCase.getValue('number');
+        return;
+    }
+
+    // --- BUILD DESCRIPTION TEXT for AI analysis ---
+    var shortDesc = current.getValue('short_description') || '';
+    var description = current.getValue('description') || '';
+    var analysisText = (shortDesc + ' ' + description).trim();
+
+    // --- AI TRIAGE using ComplaintTriageEngine ---
+    var triageResult = null;
+    try {
+        var triageEngine = new x_2145749_qc.ComplaintTriageEngine();
+        triageResult = triageEngine.triage(analysisText, parseFloat(current.getValue('order_value')) || 0);
+    } catch (e) {
+        gs.warn('ComplaintTriageEngine failed: ' + e.message);
+    }
+
+    // --- AI NLP Analysis using ComplaintNLPEngine ---
+    var nlpResult = null;
+    try {
+        var nlpEngine = new x_2145749_qc.ComplaintNLPEngine();
+        nlpResult = nlpEngine.analyze(analysisText);
+    } catch (e) {
+        gs.warn('ComplaintNLPEngine failed: ' + e.message);
+    }
+
+    // --- Determine AI values ---
+    var aiSentiment = 0;
+    var aiUrgencyScore = 5;
+    var aiUrgencyLevel = 'medium';
+    var aiUrgencyReason = '';
+    var aiComplaintType = current.getValue('complaint_type') || '';
+
+    if (triageResult) {
+        aiSentiment = triageResult.sentiment || 0;
+        aiUrgencyScore = triageResult.urgency_score || 5;
+        // Use triage complaint type only if the user didn't explicitly set one
+        if (!aiComplaintType && triageResult.complaint_type && triageResult.complaint_type !== 'other') {
+            aiComplaintType = triageResult.complaint_type;
+        }
+    }
+
+    if (nlpResult) {
+        // NLP provides more granular urgency
+        if (nlpResult.score) {
+            aiUrgencyScore = nlpResult.score;
+        }
+        if (nlpResult.level) {
+            aiUrgencyLevel = nlpResult.level;
+        }
+        if (nlpResult.reason) {
+            aiUrgencyReason = nlpResult.reason;
+        }
+        // NLP category can refine if triage was 'other'
+        if ((!aiComplaintType || aiComplaintType === 'other') && nlpResult.category && nlpResult.category !== 'other') {
+            aiComplaintType = nlpResult.category;
+        }
+    }
+
+    // Map sentiment numeric to level name for display
+    var sentimentLabel = aiSentiment < 0 ? 'negative' : (aiSentiment > 0 ? 'positive' : 'neutral');
+
+    // --- CREATE THE CUSTOMER SERVICE CASE ---
+    var caseGr = new GlideRecord('sn_customerservice_case');
+    caseGr.initialize();
+
+    // Core complaint fields
+    caseGr.setValue('short_description', shortDesc || (aiComplaintType + ' - Order #' + current.getValue('order_number')));
+    caseGr.setValue('description', description);
+
+    // FIX BUG 2: Use opened_by (inherited from task) instead of contact (which references customer_contact table)
+    caseGr.setValue('opened_by', current.getValue('opened_by'));
+
+    // QC custom fields on Case (x_2145749_qc_ prefixed)
+    caseGr.setValue('x_2145749_qc_order_number', current.getValue('order_number') || '');
+    caseGr.setValue('x_2145749_qc_order_value', current.getValue('order_value') || 0);
+    caseGr.setValue('x_2145749_qc_complaint_type', aiComplaintType);
+    caseGr.setValue('x_2145749_qc_zone', current.getValue('delivery_zone') || '');
+    caseGr.setValue('x_2145749_qc_delivery_partner', current.getValue('delivery_partner') || '');
+    caseGr.setValue('x_2145749_qc_dark_store', current.getValue('dark_store') || '');
+
+    // AI/triage fields
+    caseGr.setValue('x_2145749_qc_ai_sentiment', aiSentiment);
+    caseGr.setValue('x_2145749_qc_ai_urgency_level', aiUrgencyLevel);
+    caseGr.setValue('x_2145749_qc_ai_urgency_reason', aiUrgencyReason);
+
+    // Initialize resolution fields
+    caseGr.setValue('x_2145749_qc_auto_resolved', false);
+    caseGr.setValue('x_2145749_qc_needs_manual_review', false);
+    caseGr.setValue('x_2145749_qc_fraud_review_required', false);
+    caseGr.setValue('x_2145749_qc_resolution_type', 'pending');
+
+    // Set priority based on AI urgency
+    if (aiUrgencyLevel === 'critical') {
+        caseGr.setValue('priority', '1');
+    } else if (aiUrgencyLevel === 'high') {
+        caseGr.setValue('priority', '2');
+    } else if (aiUrgencyLevel === 'medium') {
+        caseGr.setValue('priority', '3');
+    } else {
+        caseGr.setValue('priority', '4');
+    }
+
+    var caseSysId = caseGr.insert();
+
+    if (caseSysId) {
+        // Update the complaint with AI fields so they're visible on the complaint record too
+        var complaintGr = new GlideRecord('x_2145749_qc_complaint');
+        if (complaintGr.get(current.getUniqueValue())) {
+            complaintGr.setValue('ai_sentiment', aiSentiment);
+            complaintGr.setValue('ai_urgency_score', aiUrgencyScore);
+            if (aiComplaintType && !current.getValue('complaint_type')) {
+                complaintGr.setValue('complaint_type', aiComplaintType);
+            }
+            complaintGr.setWorkflow(false); // Prevent re-triggering this BR
+            complaintGr.update();
+        }
+
+        gs.info('QC Complaint Create Case: Created case ' + caseGr.getValue('number') +
+            ' from complaint ' + current.getValue('number') +
+            ' | AI Urgency: ' + aiUrgencyLevel + ' (' + aiUrgencyScore + ')' +
+            ' | Sentiment: ' + sentimentLabel +
+            ' | Complaint Type: ' + aiComplaintType);
+    } else {
+        gs.error('QC Complaint Create Case: Failed to create case for complaint ' + current.getValue('number'));
+    }
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-15 14:07:31</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>23f860a41fed4e79a0074462bef4418b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QC Complaint Create Case</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_23f860a41fed4e79a0074462bef4418b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-15 14:07:31</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=23f860a41fed4e79a0074462bef4418b"/>
+</record_update>

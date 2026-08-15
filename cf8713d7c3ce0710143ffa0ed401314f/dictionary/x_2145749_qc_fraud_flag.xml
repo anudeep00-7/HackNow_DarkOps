@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="5f14e713c3424710143ffa0ed40131e4" label="Refund Fraud Flag" max_length="40" name="x_2145749_qc_fraud_flag" type="collection">
         <element label="Details" max_length="4000" name="details" type="multi_two_lines"/>
+        <element choice="1" default="pending" label="Review Status" max_length="40" name="review_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Rejected" sequence="3" value="rejected"/>
+                <element inactive_on_update="false" label="Approved" sequence="2" value="approved"/>
+                <element inactive_on_update="false" label="Pending" sequence="1" value="pending"/>
+            </choice>
+        </element>
         <element label="Refund Request" mandatory="true" max_length="32" name="refund_request" reference="x_2145749_qc_refund_request" type="reference"/>
         <element display="true" label="Rule Triggered" mandatory="true" max_length="40" name="rule_name" type="choice">
             <choice>

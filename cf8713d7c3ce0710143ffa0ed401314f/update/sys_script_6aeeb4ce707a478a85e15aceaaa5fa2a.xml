@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sn_customerservice_case</collection>
+        <condition/>
+        <description>Auto-creates a Refund Request from qualifying Case complaint types. Replaces the broken flow trigger.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>QC Case Create Refund Request</name>
+        <order>300</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function caseCreateRefundRequest(current, previous) {
+    // --- QUALIFYING COMPLAINT TYPES for refund/reorder ---
+    var REFUND_QUALIFYING_TYPES = [
+        'missing_items',
+        'wrong_items',
+        'damaged_items',
+        'quality_issue',
+        'overcharge'
+    ];
+
+    var complaintType = current.getValue('x_2145749_qc_complaint_type');
+    if (!complaintType || REFUND_QUALIFYING_TYPES.indexOf(complaintType) === -1) {
+        // Non-qualifying complaint (e.g., late_delivery, partner_behavior, app_technical)
+        return;
+    }
+
+    var caseSysId = current.getUniqueValue();
+    var orderNumber = current.getValue('x_2145749_qc_order_number') || '';
+    var orderValue = parseFloat(current.getValue('x_2145749_qc_order_value')) || 0;
+
+    // --- IDEMPOTENCY: Check if a refund request already exists for this case ---
+    var existingRefund = new GlideRecord('x_2145749_qc_refund_request');
+    existingRefund.addQuery('case', caseSysId);
+    existingRefund.query();
+    if (existingRefund.next()) {
+        // Refund request already exists - do not duplicate
+        return;
+    }
+
+    // --- Determine request_type based on complaint type ---
+    // overcharge → refund only; missing/wrong → reorder preferred; damaged/quality → refund
+    var requestType = 'refund';
+    if (complaintType === 'missing_items' || complaintType === 'wrong_items') {
+        requestType = 'reorder';
+    }
+
+    // --- FIX: Determine the customer ---
+    // The complaint-create-case BR stores the customer in case.opened_by.
+    // Try opened_by first, then contact, then trace back to complaint.
+    var customer = current.getValue('opened_by') || '';
+    if (!customer || customer === gs.getUserID()) {
+        // opened_by might be auto-set to the running user - try contact field
+        customer = current.getValue('contact') || '';
+    }
+    if (!customer) {
+        // Fallback: look at the complaint that generated this case
+        var complaintGr = new GlideRecord('x_2145749_qc_complaint');
+        complaintGr.addQuery('order_number', current.getValue('x_2145749_qc_order_number'));
+        complaintGr.addQuery('complaint_type', current.getValue('x_2145749_qc_complaint_type'));
+        complaintGr.orderByDesc('sys_created_on');
+        complaintGr.setLimit(1);
+        complaintGr.query();
+        if (complaintGr.next()) {
+            customer = complaintGr.getValue('opened_by') || '';
+        }
+    }
+
+    // --- CREATE THE REFUND REQUEST ---
+    var refundGr = new GlideRecord('x_2145749_qc_refund_request');
+    refundGr.initialize();
+    refundGr.setValue('case', caseSysId);
+    refundGr.setValue('request_type', requestType);
+    refundGr.setValue('order_number', orderNumber);
+    refundGr.setValue('amount_requested', orderValue);
+    refundGr.setValue('customer', customer);
+    refundGr.setValue('claim_timestamp', new GlideDateTime().getDisplayValue());
+
+    // Set order_timestamp to slightly before claim (simulate normal ordering)
+    var orderTs = new GlideDateTime();
+    orderTs.addSeconds(-3600); // 1 hour before claim
+    refundGr.setValue('order_timestamp', orderTs.getDisplayValue());
+
+    // --- Generate refund number manually if auto-number doesn't fire ---
+    // ServiceNow auto-number may not fire in cascaded BR contexts
+    // We'll generate a number using sys_number and then check after insert
+    var refundSysId = refundGr.insert();
+
+    if (refundSysId) {
+        // Re-read to check if number was auto-generated
+        var checkGr = new GlideRecord('x_2145749_qc_refund_request');
+        if (checkGr.get(refundSysId)) {
+            var refundNumber = checkGr.getValue('number');
+            if (!refundNumber || refundNumber === '') {
+                // Auto-number didn't fire - generate manually from sys_number
+                var numGr = new GlideRecord('sys_number');
+                numGr.addQuery('category', 'x_2145749_qc_refund_request');
+                numGr.query();
+                if (numGr.next()) {
+                    var currentNum = parseInt(numGr.getValue('number'), 10) || 1000;
+                    currentNum = currentNum + 1;
+                    numGr.setValue('number', currentNum);
+                    numGr.update();
+                    var prefix = numGr.getValue('prefix') || 'RF';
+                    var numDigits = parseInt(numGr.getValue('maximum_digits'), 10) || 7;
+                    var numStr = currentNum.toString();
+                    while (numStr.length < numDigits) {
+                        numStr = '0' + numStr;
+                    }
+                    refundNumber = prefix + numStr;
+                } else {
+                    // Fallback: generate a simple number
+                    refundNumber = 'RF' + new GlideDateTime().getNumericValue();
+                }
+                checkGr.setValue('number', refundNumber);
+                checkGr.setWorkflow(false); // Don't retrigger BRs
+                checkGr.update();
+            }
+        }
+
+        gs.info('QC Case Create Refund: Created refund request ' +
+            (refundNumber || refundGr.getValue('number') || refundSysId) +
+            ' (type: ' + requestType + ', amount: ' + orderValue + ')' +
+            ' for case ' + current.getValue('number') +
+            ' | Customer: ' + customer +
+            ' | Complaint type: ' + complaintType);
+    } else {
+        gs.error('QC Case Create Refund: Failed to create refund for case ' + current.getValue('number'));
+    }
+})(current, previous);
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-15 14:18:59</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6aeeb4ce707a478a85e15aceaaa5fa2a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>QC Case Create Refund Request</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_script_6aeeb4ce707a478a85e15aceaaa5fa2a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-15 14:18:59</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=6aeeb4ce707a478a85e15aceaaa5fa2a"/>
+</record_update>

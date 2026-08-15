@@ -2,7 +2,7 @@
     <sys_hub_flow action="INSERT_OR_UPDATE">
         <access>public</access>
         <acls/>
-        <active>true</active>
+        <active>false</active>
         <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
         <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,timeFromCreateToActivate=41219000,viewActivatedIn=naturalLanguage</attributes>
@@ -16,7 +16,7 @@
         <flow_priority>MEDIUM</flow_priority>
         <generation_source>fluent</generation_source>
         <internal_name>qc_case__refund_reorder_decision</internal_name>
-        <label_cache>[{"name":"Updated_1.current.sys_created_by","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Created By","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_value","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Value","type":"decimal","base_type":"decimal","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_number","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Number","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_complaint_type","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Complaint Type","type":"string","base_type":"string","usedInstances":{"044e7c20-8496-401b-9a21-3f7d7652f1da":["condition"]},"attributes":{}},{"name":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1.count","label":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1➛count","type":"integer","base_type":"integer","usedInstances":{"b0df73a0-b8e4-4136-a0eb-b4b486769aca":["condition"]},"attributes":{}},{"name":"Updated_1.current.sys_id","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Id","type":"string","base_type":"string","usedInstances":{"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1":["conditions"],"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}}]</label_cache>
+        <label_cache>[]</label_cache>
         <master_snapshot>7427b4ef832ac3100a85e590ceaad3ce</master_snapshot>
         <master_snapshot_digest/>
         <name>QC Case - Refund Reorder Decision</name>
@@ -29,7 +29,7 @@
         <sc_callable>false</sc_callable>
         <show_draft_actions>false</show_draft_actions>
         <show_triggered_flows>false</show_triggered_flows>
-        <status>published</status>
+        <status>draft</status>
         <substatus/>
         <sys_class_name>sys_hub_flow</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -37,19 +37,19 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f01a049173dd4366b4c460cbcd9b1d4c</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>QC Case - Refund Reorder Decision</sys_name>
         <sys_overrides/>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_hub_flow_f01a049173dd4366b4c460cbcd9b1d4c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-13 23:56:35</sys_updated_on>
+        <sys_updated_on>2026-08-15 16:19:25</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
-        <version_record/>
+        <version_record>9a85a3d4833e8310199c7e95eeaad381</version_record>
     </sys_hub_flow>
     <sys_translated_text action="delete_multiple" query="documentkey=f01a049173dd4366b4c460cbcd9b1d4c"/>
     <sys_variable_value action="delete_multiple" query="document_key=f01a049173dd4366b4c460cbcd9b1d4c"/>
@@ -77,24 +77,24 @@
         <sys_id>5354176b832e07100a85e590ceaad3c6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_overrides/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:50</sys_updated_on>
         <table>sn_customerservice_case</table>
         <trigger_definition/>
     </sys_flow_record_trigger>
     <sys_trigger_runner_mapping action="INSERT_OR_UPDATE">
-        <active>true</active>
-        <data>{"run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any","run_on_extended":"false"}</data>
+        <active>false</active>
+        <data>{"run_on_extended":"false","run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any"}</data>
         <identifier>f01a049173dd4366b4c460cbcd9b1d4c</identifier>
         <identifier_type>flow</identifier_type>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-13 08:15:50</sys_created_on>
         <sys_id>9754176b832e07100a85e590ceaad3c7</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-13 08:15:50</sys_updated_on>
+        <sys_updated_on>2026-08-15 18:46:22</sys_updated_on>
         <trigger display_value="">5354176b832e07100a85e590ceaad3c6</trigger>
     </sys_trigger_runner_mapping>
     <sys_trigger_runner_mapping action="delete_multiple" query="identifier=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN9754176b832e07100a85e590ceaad3c7"/>
@@ -169,7 +169,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 02:16:45</sys_updated_on>
@@ -254,7 +254,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
@@ -339,7 +339,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 02:16:45</sys_updated_on>
@@ -371,43 +371,19 @@
         <sys_created_on>2026-08-13 08:15:41</sys_created_on>
         <sys_id>4554936b832e07100a85e590ceaad356</sys_id>
         <sys_mod_count>1</sys_mod_count>
-        <sys_scope/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
         <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
-        <trigger_inputs>H4sIAAAAAAAA/+1YbW/bNhD+K4I+bYALOFuHYfm2rg1goG2GxttQdB1BkyeZGE26JGVHDfLfd5Qom9FLonZRggL5ZOtI8Z67e54jqQ9XqTMiz8EslHVUMbgo7YKnp2k6SyVdgcS/S7qSgM9COTCKymW5BTQ7byaKbvwYhy0oDsrVr7K1FgxeC4vPHz7O0g1VnDptyvTUmQJmaWb0ZgmbraQO18qotGjUhoNJT0/m81larRuc4II7Kgv/bBVhhXV6A8aC2aETwqitEAiLq5V/3jmRrYXkBlSNbEsNenLe71Un4hYI1xN4wIyI4dL5FPBDOFHQwWKA8nMly2jKpRWfoXq/ztn51gmt6iwWFkiU2PBOdrHW+3eQAcbA4EyoCkAYlJpReXiiDqu7KhxYjO76+pCkMwEyFNkyI7buV+bErinE9WwMK94VKvlrDSr5A/ObVKXuUCSXggOR9dh4ijSB3sWRihQRtFAuUyiyR2QE82ca7w2BukwZR4necG9z6HpS8O2QJaV85wvvM+sVm07FnguwFmPAX+eEyrscqiO9gz9XGCh8KnyM6emzE4y7qW61Gq0Bovl18O8Tm3gQmTZ1SRfHiQ0o/8JiQ/PAEnQhgbmoaBm+GT29EfgaxnBMxBAqpRUZg+ytVs8eFNhKu3WMpgHyAu03UoR0HUJn/ye8r2sGbS3aA6F2N2NryT9Yv6QFdDk77Ny1WPzUAuJ0ZlLvkVb3rnqqyg6LvSuhkLhlwjR6u3TTyQglA7nRheJDMG7OmEjMlP17O4rjjOQ7DhktpPv+sdXrsWFzjIUbx9GWbzw2UsRH1vW6fZLsbZI9V8mrkIakOifbe1dvBb3FWGy3rDCYD1dtPU0lEtdAmErJfkIXDO7REaLmgvCousEjxYGfR+00+FuyacwjFdNb9EHfTwIaEtBvWnHh6hNcWzPNkJ3krhSKxSIADUUuyQ8nz3/6+fkv5BMjVJDC5Ji1kliGe9Ti4u358tWb35fv/7kxj2nvDGMgvtpDsyoEpHL0dzGf/wjzLhUf2v0Iysdl6kmc66nYA3I8fEH5WorvqXKWOE0o5ySK4dB3N5qDfBkxMPAad8dt4Wx6HfGTVBjr/jfl94Wprod9B0W87vhDor/MT7evaAVEZ70XP5ElIT3YbVdl4taAoCSeT3DpCtaE+53SvqZtbC91ggOJeRB093P/q77FdC+BdcFbLag2fvFXoOH7X8v504Z4m8qX9ax713ahBNoJW1OV10fEhs5nKHGgbJ3UU5J6ypRiZ61vPGxCb7ADU3bC9cak2HKvn8lcU7mnpe10NewZvn2E4zIaUCiqlsajNYpmU7PO4My8jHpEKFerSQTryC5xJPWwv2+3LYzvAh//AzDJyO9jGgAA</trigger_inputs>
+        <trigger_inputs>H4sIAAAAAAAAA71X224TMRD9FctPIAWpRSBEHpC4SpGAIhpACIHl2LMbC2cc7Nmkqyr/jryXdm9tA9nmKcp4dubMmTO+/Ljk5E2agp9hIIkKzvMw03zK+YRbuQDLp3wuFxb4hBsk8CjtPF8Dn3KKZoFyFdc0rAE1IJWfqqUzCt6bQHz64+eEryRqSc7nfEo+gwl3XoPn09OTkwkvQlTx+IRvpM3i/4BCZYHcCnwAvzEKhJKhSGbC2sr8676O7wzYqqagvFnTS0VmA3yaSBsgojVWe8AS61p6uQKK8C45DdTawdumabeb7MPp5wzZtyUg+xLAs4KoHsGpNRqELdf2J7gqaoBhn6HYLgFFFsDXgWu6+7zuT2ARo1Hl3YS2arsN3q2ESSJvFhlBiKGl3kS2I4YoMr77116cQwjGxV8ig2m/IyXrd3Tjkic1g8XnsuRqwpP3VcIztDmLWRPny3pm1441ivjBbCXTqhPJOVhQFKurSE++hOa/DyaECLo0xMqvYKBDsQ+Ujw4f3S+ShaNlM32d+ZWjZYsEifomOOFAPP88LeFKDpt2GZ15aVsP33Su1HYzoD0kPN6MJNZt2QwPHwuJeU8EMbZBJjFnyiHBBY0ou8R5SL3LUN+Ut+0xltql+n172msP9kBDIjNLD48o7whDGGwquwm5q++BtftR+TWuYf2Np+kzZG8vKIpWs+IAD4fLuwDRabhDpjLvAanY2qDOSXXO0aQeLf3sNm9CqK8ux9KZQ1FX3NBaDbUjs475fhTWRnSnIsYR3GuH2lB5onY1Vi+Fke56qpGrJvxCPD598vTZk+fijxLSiMyngCoXQTkPs/OPZ/O3Hz7Nv/9q+Sm3WltpkESk8yavAoEoEr046ff0+JlHkE2zJQOsDnW1rZOtRAqCnJBai0a4qy1i5TTYN41uVxoSBtcZBb5raEE4bDw6sgCiIZMY779eHqNddYfOdOeL8zxe50fc4RyCcMngJdYkrCIANFvkjJbAEmet2xpMCxxjbrXoYlO6YN44ho6YPwqc/3v59S+0Zfc6Q9sy3uN1toPpLqGOd/jPS6/DxZ+h+ZOBUEuJaXma12p45zwDqZasdGGly6jToDoPOjVmeNiAz3sFRSPL1lrSmLmk3co89AbbJMVAVXcXm8fRwlIKxxideksO5CVBmjempuK+MzZt6/hzMwBoSNS73c+//tLWEN4TAAA=</trigger_inputs>
         <trigger_outputs/>
         <trigger_type>record_update</trigger_type>
         <updation_source/>
     </sys_hub_trigger_instance_v2>
-    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT IN3a6e994f9ef448f9a13a94f369ae7ce7,dc9ec29ced0f410682c28f24a9084ec1"/>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c^sys_idNOT INdc9ec29ced0f410682c28f24a9084ec1"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
-        <action_type_parent display_value="">2de05916c31332002841b63b12d3aee1</action_type_parent>
-        <attributes>timeFromCreateToActivate=6000</attributes>
-        <comment/>
-        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
-        <display_text/>
-        <flow display_value="QC Case - Refund Reorder Decision">f01a049173dd4366b4c460cbcd9b1d4c</flow>
-        <generation_source/>
-        <order>4</order>
-        <parent_ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</parent_ui_id>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-08-12 20:48:47</sys_created_on>
-        <sys_id>3a6e994f9ef448f9a13a94f369ae7ce7</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-13 03:18:12</sys_updated_on>
-        <ui_id>3a6e994f-9ef4-48f9-a13a-94f369ae7ce7</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+1Vy27bMBD8lYBnVZAsx4ndU4HWtyboK5c8CIpc2QQoSuHDsWvo37sUZcdJmiAtChQFqovF5XJ2ZjleXW6JFGRGJjlkx9N8wou8KEZZNjod5+WkKPORKBjAmCREsxow07FSAe0XCVkx5UNwTUf5+PhkPKW3nBqovBb4c+vBOswS0raKbS5elcyXUgkDmswurxPSMoOVHBgy2z7acpsWqGIlKMT8GlgdnUVWr1X04PAzCkOVx7HGiEAoSwisHWgBWK9iykJCaqYFc43ZkJkzHgMGmDjXarPPWErtEJCE3LWV3xH9NAt5FaA0DnFvv6RD82KYLxvJ4bx1stEx0hMbNhvla30WRYS2Q8W8cru2Y8RbxIM2UA4kBkbVl2Vz93lXcC51r27YVA1nar9izhlZegc23AcoqBGI1qxtpV7Q1jQr2R9GLnW6ULhIK9XcYVErFzplPBBPsUMsnWP8fR++YEYGFR8RBg93vXp660PdqGNgTKNoTLDcyNa9Q7gVDOS6ZGdlAdn02YvPy/uL7t1rD2zMmYUrn2WF2G6/tUgTBM1T7g12xqV2Y6kUXXfT3z/Vvi7BPJ/+wOaHRxCB1Y1HPYPrQfwSSs8WQYbTNFg0AlTiTewMiBvurWvqlwgGPRz9GaLlBgE/fHr6Z/3fkt8eSVBjIx0cxVYmr3bnDmAuQQn7E7vuZtJQIKq/n0v5n5pL+STrn78znSLPf2w4HXwnnoypKCjGAsNDs4b1S9mY7LzRR8G6o5P40Yzvb6800rBsBWLXy7hNuq67/gFRmM6+4AcAAA==</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=3a6e994f9ef448f9a13a94f369ae7ce7"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Look Up Records">43400a1587003300663ca1bb36cb0b4b</action_type>
-        <action_type_parent display_value="">43400a1587003300663ca1bb36cb0b4b</action_type_parent>
+        <action_type display_value="Log">5bc1bcc6531003003bf1d9109ec587d4</action_type>
+        <action_type_parent display_value="">5bc1bcc6531003003bf1d9109ec587d4</action_type_parent>
         <attributes>timeFromCreateToActivate=6000</attributes>
         <comment/>
         <compiled_snapshot>43400a1587003300663ca1bb36cb0b4b</compiled_snapshot>
@@ -421,12 +397,12 @@
         <sys_created_on>2026-08-12 20:48:47</sys_created_on>
         <sys_id>dc9ec29ced0f410682c28f24a9084ec1</sys_id>
         <sys_mod_count>4</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 03:18:12</sys_updated_on>
         <ui_id>dc9ec29c-ed0f-4106-82c2-8f24a9084ec1</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/9VXyW7bMBD9FUNnw5C8ZbkVCQL0kAZI0lzSgKBIyiZKUwpJeYnhf++QlOTdsR23TU6GhrO8mXkzpJ+nAafBZXCetMMQR53zszBstcKw220RHMVxq0viMO6EQT2QeMBAk6SScsNTqUE2xCJ3QqzZrxxM6XT6M6PYMIqiBsmVYtI09EQjTmczMKBcZwJPng61I30uKAiDy+eXepBhBWAMU8HldOXITDKGBI6ZAPdXi1j3zXOj8abkbahVWaqoRRXVAzY2TFIGQRMsNKsHAywhwVRNKolimN5JMRf0uTTgMbDKY83fwD3ADa1mwiBFwvxp9YmKenox6aecsLvMgvESg2NR2JBU5AP5w+dhO8ESnAtTdgIkuQZ/LLOoLQyjcoCUPPTT0X0Z74ZLl1+BV6QEi+oLG6N4nBumbVuYYAPwgwY4y7jsoUylQ+6MAcqg0RPw0UhEOoKYmvdkAxOLuwE1wo0bkF878RNW3CZxC27AeOaSR6+5jevTKAAjl7NPGLQ0UTwz38DnkBUIZ/W9yN6O5/327uY8H6Nm1O6ctS/QK0EAJJcUfl5zps06uXcrH8foRwuo5rq4F6NdMkvG68kVPHafSHrXBY/Dk/H4/D+xuED0yWgMgLiAbiNfdJ3mylVliIjItTtQWGrv613Sv8f3cPfSu5hTQqfKIMeHOeedDGuyTnBcM2nt7fjt7Bpd8ngPkKXhAyCqPXqUG4CXe7l0X3C5dTIut5qHcRmI9Dyt0FdV21Dgcuxs60r9N6uPV/WBbQsG0eylmoWr42JGh8Zs2pgrw9o6aFoXmeVPrrcQ7MRDnVCUcCYo4lJw6ZYfXHYQ569NO0V9MC3iIT+saMRpj5l59FKLpmaExe9N5wW7qhly6X14QbR3zl43ms8ZzADcYRpatfj8i9Z3Q3T0WvguDeu5qu2LrbS8xePafQVuI+JiN/AqRkHm9gkfbP/ioovgWbh1bKK6P/0SV+FHuUvOdt4bnZU7wtd1gbvr1D2auTd2pyw9zvYAVxrfWSLW4sk2vAVz/d5afqU1v/wr7VP+16hvuyc+9Cfk5Q+oCw5mcw8AAA==</values>
+        <values>H4sIAAAAAAAAA42OQQrDIBREryJ/bS/grpseoZtSykcnifCjotYSgncv7hq6yXaYmfceOwVeQYYkzi9Bg5CmxvIemQ9TJE3OlyS83Y9psdmnerXVN5CZWAo0Jc68oiKT2aluafTtEr0F9a4PsBWl8Iwf3E3iRznwuOQKpy4qCVssURyyikG2f5tzo9OypWYfZur9+QWDPuZyGwEAAA==</values>
     </sys_hub_action_instance_v2>
     <sys_hub_alias_mapping action="delete_multiple" query="source_id=dc9ec29ced0f410682c28f24a9084ec1"/>
     <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=f01a049173dd4366b4c460cbcd9b1d4c"/>
@@ -450,12 +426,12 @@
         <sys_created_on>2026-08-12 20:48:47</sys_created_on>
         <sys_id>044e7c208496401b9a213f7d7652f1da</sys_id>
         <sys_mod_count>5</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
         <ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1VXW/TMBT9K8jPUZQ0TWF9m0CTkIBK29gLDOvGdloLx85sp22o+t+5zkdX0aKhjce9xcf3nnvu9Ym9I6bxdePdrbl0Ti41mX+7j4jUAcPvHdFQCTInzGguvTSaRGQNqgnYbve15uAFp2nMGmuF9vGWTtJp/nZ6QR8YZaaqFUjtqW9rsd9/b5Ik45XESnpJpReV+7G4fibNxpqXk3CoYIlJL6R5aEBJ31LsDCcTES4dRrV3r4N6YlBsJRXH5N52NVh0mxeWzHd/bAUSqqAQCud54y3OBdMlx9UF5GWeJjnLJrNskiSTd9O0mGVFOuEZiOkM48bE90cuPmPsUAQhN9Iby4OWSRIRsfVCc4H1SlBORKQCjf0b25K5tw0CVgBfaNUeIlbYPLKRELt18pcITEkSIkuBjTHR7x6WdLBND7OVkUws6k5bh3go1JDDjGoq/aVvIRhOlNAoPxoOkcYhn6iD6CBj0FTerMzmeix4JXXX4LCpDAN1WIHHMRSNFy6chlCiQiJaQV0HT9bWrGWXjFqqeKlwEZfKbLBouEdiYEF4jDOC+ArxDx18B1aGLj4jDSbjCTrqmJX12FtXnOy7qdDglrG/oRPaDwMD+rRLLLMWg+h9dHpf0Q54vLRO/87/ZMMygTK9YOl5G0J2zoZvPnXIqRlH1X9xZPqEIwfknyyZ56+OPHZkkFmAk4x2ryDShf/72Za8D9brS7jeQ1ww6VDJbcA+ji9t2Gjx1CU7hjbG/gw9PGL7310UENyzBwAA</values>
+        <values>H4sIAAAAAAAAA+2ST0sDQQzFv0vOS6FSERc89OhJkOpF6hBn0jV0/nWS6bos+91lscJepVdvyS/Je/DICKlqriq7tBXhLkL7tm/gjIXxw5P8tI4sC6e4m9ljnPcvgyFiYLtEfSrHg0/9kvFvPULEQNCCTdGxcoowm/k6s3F8yQ6VnFmvbC2Foq6+zM16c3u3uTcna2wK2SNHNTpkmqaHwCIcO8NKQd6fnv+u0Jd01b3DgB25KxROFT3rYFikEjTgWLLH4fU/lEUo9pO9K3T5zowFAykVaMepAbGFs26t8pmgPaAXmvbTN6wnCm3aAgAA</values>
         <workflow_reference/>
     </sys_hub_flow_logic_instance_v2>
     <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
@@ -477,12 +453,12 @@
         <sys_created_on>2026-08-12 20:48:47</sys_created_on>
         <sys_id>b0df73a0b8e44136a0ebb4b486769aca</sys_id>
         <sys_mod_count>5</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:46</sys_updated_on>
         <ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1U247TMBD9FeTnNnLSi9q+rUArIQErsat9gVU0sSethWMH22m3VP13xrl0K1oEAh55y5y5nZk58YHZJtRN8A/2xnu1Nmz16WnElIkYfR+YgQrZiglrpArKGjZiW9BNxA4HKZYosqUYo+TleJry+XiRiWy8KLMpLPliiiJNhG1MOB4/N5xPJKd8qXytYf/4l2XERmnpsKdcgyOmAR1bHX5whX2NuYYCNXW7D06ZNaUrSdYSZuUs5TMxyeaTjPNsMU2L+aRIMzkBnM4pbkh8fbaBK0uJTQjyQ3nrZOSS8RHD54BGIvUrQXscsQqMhGDdnq2CawhwCPLO6P0pYqNMoGosxj579Q1jJc5jZIk0mMDOezLzfqkdLDZWCbyrW24tEqDQfY6wuqnMh26EeA4sodFhOAchjad6WEfSkUbPqbzf2N3HoeGtMu2AvVNbAfpkQaA1FE1AH6+BGisqlFdQ17ScvHZ2q9pk4lIla01GUmq7o6ZRgwmISDyhHUFyS/ibFn4Ep+IU76kMJdMFfe6FU/UwW9ucHdut5F+byKebr58k75ZBAV3aDbXZYk/6OLrUet4CL4K/1O4/kmHJoUyXIr0uQ5hck+Grdy1yKcaB9U8Umf5CkT3yW5Kczf4r8lyRkWYBXom8fUGpXPy//1iST1F6XQvfaUiiUJ6YPETs7fBKR8eerq7EObSz7kuc4QU7fgcDbPem7wUAAA==</values>
+        <values>H4sIAAAAAAAAA52PwQrCMBBE/2XPrdRSpC148Oi9eBEP62ari2lSktRSQv5digqevc28GXaZCHYK4xR8Zw/ey81Ae75k8EQneNXs31YxiRdrupUdzdr/BIvBQegXzdY9em3nXyZfHcHgwNACWaMkiDWwPtPTymJU1DCVDeWsij6vtsUur0sq87ovK2yKumLabshOJqS0LyADJX7UuJz+v0B30crxZ/eIDgcO7KCNKQNPTsZwoCBPhrZH7Tld0guoBR9lNAEAAA==</values>
         <workflow_reference/>
     </sys_hub_flow_logic_instance_v2>
     <sys_hub_pill_compound action="delete_multiple" query="attached_to=f01a049173dd4366b4c460cbcd9b1d4c"/>
@@ -501,9 +477,9 @@
         <sys_id>5427b4ef832ac3100a85e590ceaad31f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Table Name</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_table_name_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
@@ -524,9 +500,9 @@
         <sys_id>5c27b4ef832ac3100a85e590ceaad34f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Changed Fields</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_changed_fields_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
@@ -547,9 +523,9 @@
         <sys_id>dc27b4ef832ac3100a85e590ceaad343</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_f01a049173dd4366b4c460cbcd9b1d4c_current_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:52</sys_updated_on>
@@ -561,10 +537,10 @@
     <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
         <access>public</access>
         <acls/>
-        <active>true</active>
+        <active>false</active>
         <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
-        <attributes>timeFromCreateToActivate=6000</attributes>
+        <attributes/>
         <authored_on_release_version>-1</authored_on_release_version>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
@@ -573,7 +549,7 @@
         <description/>
         <flow_priority>MEDIUM</flow_priority>
         <internal_name>qc_case__refund_reorder_decision</internal_name>
-        <label_cache>[{"name":"Updated_1.current.sys_created_by","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Created By","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_value","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Value","type":"decimal","base_type":"decimal","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_order_number","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Order Number","type":"string","base_type":"string","usedInstances":{"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}},{"name":"Updated_1.current.x_2145749_qc_complaint_type","label":"Trigger - Record Updated➛sn_customerservice_case Record➛X 2145749 Qc Complaint Type","type":"string","base_type":"string","usedInstances":{"044e7c20-8496-401b-9a21-3f7d7652f1da":["condition"]},"attributes":{}},{"name":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1.count","label":"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1➛count","type":"integer","base_type":"integer","usedInstances":{"b0df73a0-b8e4-4136-a0eb-b4b486769aca":["condition"]},"attributes":{}},{"name":"Updated_1.current.sys_id","label":"Trigger - Record Updated➛sn_customerservice_case Record➛Sys Id","type":"string","base_type":"string","usedInstances":{"dc9ec29c-ed0f-4106-82c2-8f24a9084ec1":["conditions"],"3a6e994f-9ef4-48f9-a13a-94f369ae7ce7":["values"]},"attributes":{}}]</label_cache>
+        <label_cache>[]</label_cache>
         <master>true</master>
         <name>QC Case - Refund Reorder Decision</name>
         <natlang/>
@@ -583,7 +559,7 @@
         <run_as>system</run_as>
         <run_with_roles/>
         <sc_callable>false</sc_callable>
-        <status>published</status>
+        <status>draft</status>
         <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-12 20:48:53</sys_created_on>
@@ -595,7 +571,7 @@
         <sys_overrides/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
@@ -687,7 +663,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 02:16:48</sys_updated_on>
@@ -772,7 +748,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:48</sys_updated_on>
@@ -857,7 +833,7 @@
         <sys_name/>
         <sys_package/>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:48</sys_updated_on>
@@ -915,7 +891,7 @@
         <sys_created_on>2026-08-12 20:48:54</sys_created_on>
         <sys_id>0927f4ef832ac3100a85e590ceaad344</sys_id>
         <sys_mod_count>1</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 02:16:49</sys_updated_on>
         <ui_id>3a6e994f-9ef4-48f9-a13a-94f369ae7ce7</ui_id>
@@ -939,7 +915,7 @@
         <sys_created_on>2026-08-12 20:48:54</sys_created_on>
         <sys_id>3c27f4ef832ac3100a85e590ceaad342</sys_id>
         <sys_mod_count>1</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 02:16:49</sys_updated_on>
         <ui_id>dc9ec29c-ed0f-4106-82c2-8f24a9084ec1</ui_id>
@@ -968,7 +944,7 @@
         <sys_created_on>2026-08-12 20:48:54</sys_created_on>
         <sys_id>b027f4ef832ac3100a85e590ceaad341</sys_id>
         <sys_mod_count>8</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
         <ui_id>044e7c20-8496-401b-9a21-3f7d7652f1da</ui_id>
@@ -995,7 +971,7 @@
         <sys_created_on>2026-08-12 20:48:54</sys_created_on>
         <sys_id>bc27f4ef832ac3100a85e590ceaad33e</sys_id>
         <sys_mod_count>8</sys_mod_count>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-13 08:15:49</sys_updated_on>
         <ui_id>b0df73a0-b8e4-4136-a0eb-b4b486769aca</ui_id>
@@ -1019,10 +995,10 @@
         <sys_id>3c27b4ef832ac3100a85e590ceaad3e8</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Changed Fields</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
-        <sys_update_name/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce_changed_fields_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
         <url/>
@@ -1042,10 +1018,10 @@
         <sys_id>7027b4ef832ac3100a85e590ceaad3dd</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
-        <sys_update_name/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce_current_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
         <url/>
@@ -1065,10 +1041,10 @@
         <sys_id>7427f4ef832ac3100a85e590ceaad300</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Table Name</sys_name>
-        <sys_package display_value="Quick Commerce Ops Platform" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
+        <sys_package display_value="DarkOps" source="x_2145749_qc">cf8713d7c3ce0710143ffa0ed401314f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Quick Commerce Ops Platform">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
-        <sys_update_name/>
+        <sys_scope display_value="DarkOps">cf8713d7c3ce0710143ffa0ed401314f</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_7427b4ef832ac3100a85e590ceaad3ce_table_name_en</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-08-12 20:48:54</sys_updated_on>
         <url/>
